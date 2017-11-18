@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { EshopService } from './eshop.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+<<<<<<< HEAD
   nodes: any;
+=======
+  subscription: any;
+>>>>>>> e8c9e16490e13f92dcb44908ae2fb381c28c110c
   data: any[] = [
     {
       id: 1,
@@ -49,8 +55,16 @@ export class AppComponent {
       path: [1,2,4,7]
     }
   ];
-  constructor(private router: Router) {
+  constructor(private router: Router, private eshopService: EshopService) {
 
+  }
+
+  ngOnInit() {
+    this.subscription = this.eshopService.filterOn('get:emp1').subscribe(
+      d => {
+        d.error ? console.log(d.error) : (() => { this.data = d.data; this.tree() })();
+      }
+    );
   }
   ngOnInit() {
     this.tree();
@@ -66,7 +80,6 @@ export class AppComponent {
   appendChild(parentId, childId) {
     let j1 = this.getJson(parentId);
     let j2 = this.getJson(childId);
-    // let isExists = this.getJson(parentId).children.find(x => x.id == childId);
     this.isExists(parentId, childId) || j1.children.push(j2);
     return (j1);
   }
@@ -88,5 +101,13 @@ export class AppComponent {
     });
     console.log("A:", A, "data:", this.data);
     this.nodes = A;
+  }
+
+  drawTree() {
+    this.eshopService.httpGet('get:emp1');
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();;
   }
 }

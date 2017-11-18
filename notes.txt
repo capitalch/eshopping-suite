@@ -1,1 +1,17 @@
 https://www.mockaroo.com/
+//good angular 2 tree and many other libraries
+https://libraries.io/explore/typescript-angular2-libraries?keywords=4%2CAngular+4%2Cangular+2%2Ctree%2Cangular-treeview%2Cangular+4&licenses=MIT%2CGPL-2.0&platforms=NPM
+// Angular 2 tree
+https://angular2-tree.readme.io/docs
+//wijmo
+http://demos.wijmo.com/5/Angular2/TreeViewIntro/TreeViewIntro/
+//creating tree from scratch. good one
+https://blog.imaginea.com/render-an-infinite-tree-in-angular-2/
+//ngx-treeview good one
+https://devarchy.com/angular/ngx-treeview
+//JQWidgets
+https://www.jqwidgets.com/angular/?gclid=EAIaIQobChMIqoGur-DH1wIVWB0rCh1_eww0EAMYASAAEgKZT_D_BwE
+//ng2-tree
+https://github.com/valor-software/ng2-tree#eyes-demo
+//prime-ng
+https://www.primefaces.org/primeng/#/tree

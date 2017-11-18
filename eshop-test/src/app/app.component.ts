@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+  nodes: any;
   data: any[] = [
     {
       id: 1,
@@ -41,13 +42,19 @@ export class AppComponent {
     , {
       id: 7,
       name: 'name7',
-      path: [1]
+      path: [1,2,4]
+    }, {
+      id: 8,
+      name: 'name8',
+      path: [1,2,4,7]
     }
   ];
   constructor(private router: Router) {
 
   }
-
+  ngOnInit() {
+    this.tree();
+  }
   lazyClick() {
     this.router.navigate(['lazy']);
   }
@@ -80,5 +87,6 @@ export class AppComponent {
       }
     });
     console.log("A:", A, "data:", this.data);
+    this.nodes = A;
   }
 }

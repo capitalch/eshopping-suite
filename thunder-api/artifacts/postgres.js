@@ -25,7 +25,7 @@ router.get('/db/test', (req, res, next) => {
     pool.connect(function (err, client, done) {
       if (err) console.log(err)
       myClient = client;
-      var query = format(sql.emp1);
+      var query = format(sql.mock);
       myClient.query(query, function (err, result) {
         if (err) {
           console.log(err);

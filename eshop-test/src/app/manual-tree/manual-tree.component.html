@@ -1,0 +1,12 @@
+<p>
+  manual-tree works!
+  <!-- <ui-tree *ngIf="item[key].length" [key]="key" [data]="item[key]"></ui-tree> -->
+  <ui-tree [data]="data" [key]="key"></ui-tree>
+</p>
+<div>
+  <span>Another way</span>
+  <ul *ngFor="let item of data">
+    <li>{{item.name}}</li>
+    <ul *ngFor="let item1 of item.categories"><li>{{item1.name}}</li></ul>
+  </ul>
+</div>

@@ -4,26 +4,24 @@ import {RouterModule} from '@angular/router';
 import {routes} from './app.routes';
 import { HttpClientModule} from '@angular/common/http'
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
 import { Tree1Component } from './tree1/tree1.component';
-import { TreeModule } from 'angular-tree-component';
-=======
-import {EshopService} from './eshop.service';
->>>>>>> e8c9e16490e13f92dcb44908ae2fb381c28c110c
-
+// import { TreeModule } from 'angular-tree-component';
+import { EshopService } from './eshop.service';
+import {TreeNode,TreeModule} from 'primeng/primeng';
+import { ManualTreeComponent } from './manual-tree/manual-tree.component';
+import { UiTreeComponent } from './ui-tree/ui-tree.component';
+// import { TreeNode } from '@angular/router/src/utils/tree';
 @NgModule({
   declarations: [
     AppComponent,
-    Tree1Component
+    Tree1Component,
+    ManualTreeComponent,
+    UiTreeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-<<<<<<< HEAD
-    TreeModule
-=======
-    HttpClientModule
->>>>>>> e8c9e16490e13f92dcb44908ae2fb381c28c110c
+    TreeModule, HttpClientModule, TreeModule
   ],
   providers: [EshopService],
   bootstrap: [AppComponent]

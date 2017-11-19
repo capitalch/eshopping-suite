@@ -4,12 +4,10 @@
     Welcome to {{title}}!
   </h1>
   <button (click)="lazyClick()">Lazy</button>
-<<<<<<< HEAD
   <button (click) = "tree()">Tree</button>
-  <tree-root [nodes]="nodes"></tree-root>
-=======
-  <button (click) = "drawTree()">Tree</button>
->>>>>>> e8c9e16490e13f92dcb44908ae2fb381c28c110c
+  <button (click) = "tree1()">Tree1</button>
+  <a [routerLink]="['manual']">Manual</a>
+  <!-- <tree-root [nodes]="nodes"></tree-root> -->
 </div>
 <router-outlet></router-outlet>
 

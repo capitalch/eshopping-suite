@@ -28,6 +28,6 @@ let sqls = {
         FROM emp, cte1
         WHERE emp.parent_id = cte1.id
       ) SELECT * FROM cte1;`
-
+  , mock:'select id, label, parent_id from mock_data'
 }
 module.exports = sqls;

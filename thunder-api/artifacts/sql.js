@@ -29,5 +29,15 @@ let sqls = {
         WHERE emp.parent_id = cte1.id
       ) SELECT * FROM cte1;`
   , mock:'select id, label, parent_id from mock_data'
+  , mockCnt :`WITH RECURSIVE cte1 AS (
+    SELECT id, label, parent_id,0 AS cnt
+    FROM mock_data WHERE parent_id IS NULL
+  
+    UNION ALL
+  
+    SELECT mock.id, mock.label, mock.parent_id, cte1.cnt + 1
+    FROM mock_data mock, cte1
+    WHERE mock.parent_id = cte1.id
+  ) SELECT * FROM cte1;`
 }
 module.exports = sqls;

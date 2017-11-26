@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EshopService } from '../eshop.service';
 import { TreeNode } from 'primeng/primeng';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-tree1',
@@ -14,71 +15,73 @@ import { TreeNode } from 'primeng/primeng';
 })
 export class Tree1Component implements OnInit {
   data1: any[];
+  tree: any[] = [];
+  lazyTree: any[] = [];
   subs: any;
-  start;end;
-  files = [
-    {
-      label: 'Folder 1',
-      collapsedIcon: 'fa-folder',
-      expandedIcon: 'fa-folder-open',
-      children: [
-        {
-          label: 'Folder 2',
-          collapsedIcon: 'fa-folder',
-          expandedIcon: 'fa-folder-open',
-          children: [
-            {
-              label: 'File 2',
-              icon: 'fa-file-o'
-            }
-          ]
-        },
-        {
-          label: 'Folder 2',
-          collapsedIcon: 'fa-folder',
-          expandedIcon: 'fa-folder-open'
-        },
-        {
-          label: 'File 1',
-          icon: 'fa-file-o'
-        }
-      ]
-    }
-  ];
+  start; end;
 
   constructor(private eshopService: EshopService) { }
 
   ngOnInit() {
     let a, b;
-    this.subs = this.eshopService.filterOn('get:mock:data:tree1').subscribe(d => {
+    // let sub1 = this.eshopService.filterOn('process:tree1').subscribe(d => {
+    //   this.processTree1();
+    // });
+    this.subs = this.eshopService.filterOn('get:mock:cnt:tree1').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
         this.end = performance.now(),
         console.log('Fetch time:', this.end - this.start, ' ms'),
         a = this.end,//performance.now(),
-        this.processTree1(),
+        // this.eshopService.emit('process:tree1'),
+        //this.processTree1(),
+        this.processLazy(),
         b = performance.now(),
-        console.log('Process Time:',(b - a), ':ms')
+        console.log('Process Time:', (b - a), ':ms')
       );
     });
+    // this.subs.add(sub1);
 
   }
   processTree1() {
-    let tree = []; let parent: any;
+    let parent: any;
     this.data1.forEach(x => {
       x.parent_id ? (
         parent = this.data1.find(y => y.id == x.parent_id),
         parent.children = parent.children || [],
         parent.children.push(x)
-      ) : tree.push(x);
+      ) : this.tree.push(x);
       delete x.parentId;
     });
-    console.log(tree);
   }
 
+  processLazy() {
+    let items: any[];
+    this.lazyTree = this.data1.filter(x => {
+      return (x.parent_id == null);
+    });
+    this.lazyTree.forEach(x => {
+      x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
+      x.label = x.label.concat(' (', x.cnt, ')');
+      x.leaf = x.cnt == 0;
+    })
+  }
+
+  loadNode(e) {
+    let item = e.node;
+    let children = this.data1.filter(x => {
+      return (item.id == x.parent_id);
+    });
+    children.forEach(x => {
+      x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
+      x.label = x.label.concat(' (', x.cnt, ')');
+      x.leaf = x.cnt == 0;
+    })
+    item.children = children;
+  }
   getData() {
     this.start = performance.now();
-    this.eshopService.httpGet('get:mock:data:tree1');
+    this.eshopService.httpGet('get:mock:cnt:tree1');
   }
 
   ngOnDestroy() {
@@ -106,6 +109,35 @@ export class Tree1Component implements OnInit {
 //         children: [
 //           { id: 7, name: 'subsub' }
 //         ]
+//       }
+//     ]
+//   }
+// ];
+// files = [
+//   {
+//     label: 'Folder 1',
+//     collapsedIcon: 'fa-folder',
+//     expandedIcon: 'fa-folder-open',
+//     children: [
+//       {
+//         label: 'Folder 2',
+//         collapsedIcon: 'fa-folder',
+//         expandedIcon: 'fa-folder-open',
+//         children: [
+//           {
+//             label: 'File 2',
+//             icon: 'fa-file-o'
+//           }
+//         ]
+//       },
+//       {
+//         label: 'Folder 2',
+//         collapsedIcon: 'fa-folder',
+//         expandedIcon: 'fa-folder-open'
+//       },
+//       {
+//         label: 'File 1',
+//         icon: 'fa-file-o'
 //       }
 //     ]
 //   }

@@ -1,5 +1,9 @@
-<p>
+<span style="display: inline">
   <button (click) = "getData()">Show tree1</button>
   <!-- <tree-root [nodes]="nodes"></tree-root> -->
-  <p-tree [value]="data1"></p-tree>
-</p>
+  <p-tree [value]="tree"></p-tree>  
+</span>
+<span>----</span>
+<span style="display: inline">
+  <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)"></p-tree>
+</span>

@@ -1,3 +1,23 @@
+//to do
+1. Create product table with images
+2. Convert mock_data to category
+3. Connect category with product
+4. Show leaf category with product count
+5. On click leaf category show images of products in screen
+6. Update the online project with latest output
+7. cleanup online_test project
+
+-- drop table temp;
+-- select * into temp from mock_data
+-- 	where id not in(select distinct parent_id from mock_data where parent_id is not null);
+-- select * from temp;
+
+-- SELECT *
+-- FROM temp
+-- -- WHERE Difficult = 'Easy' AND Category_id = 3
+-- ORDER BY random()
+-- LIMIT 1;
+
 https://www.mockaroo.com/
 //good angular 2 tree and many other libraries
 https://libraries.io/explore/typescript-angular2-libraries?keywords=4%2CAngular+4%2Cangular+2%2Ctree%2Cangular-treeview%2Cangular+4&licenses=MIT%2CGPL-2.0&platforms=NPM

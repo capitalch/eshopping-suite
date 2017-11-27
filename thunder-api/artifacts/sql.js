@@ -28,7 +28,7 @@ let sqls = {
         FROM emp, cte1
         WHERE emp.parent_id = cte1.id
       ) SELECT * FROM cte1;`
-  , mock:'select id, label, parent_id from mock_data'
+  , mock:'select id, label, parent_id from category'
   , mockCnt :`WITH RECURSIVE cte1 AS (
     SELECT id, label, parent_id,0 AS cnt
     FROM mock_data WHERE parent_id IS NULL

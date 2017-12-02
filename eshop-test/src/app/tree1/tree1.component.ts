@@ -61,9 +61,11 @@ export class Tree1Component implements OnInit {
       return (x.parent_id == null);
     });
     this.lazyTree.forEach(x => {
-      x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
-      x.label = x.label.concat(' (', x.cnt, ')');
-      x.leaf = x.cnt == 0;
+      if (x.cnt==undefined) {
+        x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
+        (x.cnt) && (x.label = x.label.concat(' (', x.cnt, ')'));
+        x.leaf = x.cnt == 0;
+      }
     })
   }
 
@@ -73,10 +75,15 @@ export class Tree1Component implements OnInit {
       return (item.id == x.parent_id);
     });
     children.forEach(x => {
-      x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
-      x.label = x.label.concat(' (', x.cnt, ')');
-      x.leaf = x.cnt == 0;
-    })
+      if (x.cnt==undefined ) {
+        x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
+        (x.cnt) && (x.label = x.label.concat(' (', x.cnt, ')'));
+        x.leaf = x.cnt == 0;
+        // x.leaf && (
+        //   this.eshopService.httpGet("get:products:on:category")
+        // );
+      }
+    });
     item.children = children;
   }
   getData() {
@@ -89,56 +96,3 @@ export class Tree1Component implements OnInit {
   }
 }
 //deprecated
-// nodes = [
-//   {
-//     id: 1,
-//     name: 'root1',
-//     children: [
-//       { id: 2, name: 'child1' },
-//       { id: 3, name: 'child2' }
-//     ]
-//   },
-//   {
-//     id: 4,
-//     name: 'root2',
-//     children: [
-//       { id: 5, name: 'child2.1' },
-//       {
-//         id: 6,
-//         name: 'child2.2',
-//         children: [
-//           { id: 7, name: 'subsub' }
-//         ]
-//       }
-//     ]
-//   }
-// ];
-// files = [
-//   {
-//     label: 'Folder 1',
-//     collapsedIcon: 'fa-folder',
-//     expandedIcon: 'fa-folder-open',
-//     children: [
-//       {
-//         label: 'Folder 2',
-//         collapsedIcon: 'fa-folder',
-//         expandedIcon: 'fa-folder-open',
-//         children: [
-//           {
-//             label: 'File 2',
-//             icon: 'fa-file-o'
-//           }
-//         ]
-//       },
-//       {
-//         label: 'Folder 2',
-//         collapsedIcon: 'fa-folder',
-//         expandedIcon: 'fa-folder-open'
-//       },
-//       {
-//         label: 'File 1',
-//         icon: 'fa-file-o'
-//       }
-//     ]
-//   }
-// ];

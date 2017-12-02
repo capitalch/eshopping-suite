@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpParams} from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
@@ -27,33 +27,69 @@ export class EshopService {
     return (this.subject.filter(d => (d.id === id)));
   };
 
-  httpGet(id: string) {
+  httpGet(id: string, queryParams?: {}) {
     try {
+      // let baseUrl = environment
+      //   .maestroBaseUrl
+      //   .replace(/\/$/, '');
+      // let path = environment.maestroPath;
+      // let url = baseUrl.concat('/', path, '/', urlMaps[id]);
       let url = urlMaps[id];
+      let httpParams = new HttpParams();
+      httpParams = queryParams && (Object.keys(queryParams).reduce((prevValue, x, i) => {
+        httpParams = httpParams.append(x, queryParams[x]);
+        return (httpParams);
+      }, httpParams));
       if (url) {
         this
           .httpClient
-          .get(url)
-          // .map(response => response.json())
+          .get(url, { params: httpParams })
           .subscribe(d => {
             this
               .subject
-              .next({ id: id, data: d});
+              .next({ id: id, data: d });
           }, err => {
-            this
-              .subject
-              .next({ id: id, error: err });            
+            this.subject.next({ id: id, error: err });            
           });
       } else {
         this
           .subject
-          .next({ id: id, error: this.messages.idNotMappedToUrl });
-
+          .next({ id: id, error: this.messages.idNotMappedToUrl })
       }
     } catch (err) {
       this
         .subject
-        .next({ id: id, error: this.messages.httpGetUnknownError });
+        .next({ id: id, error: this.messages.httpGetUnknownError })
     }
-  };
+  }
 }
+//deprecated
+
+// httpGet(id: string) {
+//   try {
+//     let url = urlMaps[id];
+//     if (url) {
+//       this
+//         .httpClient
+//         .get(url)
+//         .subscribe(d => {
+//           this
+//             .subject
+//             .next({ id: id, data: d});
+//         }, err => {
+//           this
+//             .subject
+//             .next({ id: id, error: err });            
+//         });
+//     } else {
+//       this
+//         .subject
+//         .next({ id: id, error: this.messages.idNotMappedToUrl });
+
+//     }
+//   } catch (err) {
+//     this
+//       .subject
+//       .next({ id: id, error: this.messages.httpGetUnknownError });
+//   }
+// };

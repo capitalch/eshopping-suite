@@ -1,5 +1,6 @@
 let sqls = {
-  genre1: `WITH RECURSIVE genres_materialized_path AS (
+  'get:products:on:category': `select * from product where cat_id = $1;`
+  , genre1: `WITH RECURSIVE genres_materialized_path AS (
         SELECT id, name, ARRAY[]::INTEGER[] AS path
         FROM genres WHERE parent_id IS NULL
       
@@ -28,8 +29,8 @@ let sqls = {
         FROM emp, cte1
         WHERE emp.parent_id = cte1.id
       ) SELECT * FROM cte1;`
-  , mock:'select id, label, parent_id from category'
-  , mockCnt :`WITH RECURSIVE cte1 AS (
+  , mock: 'select id, label, parent_id from category'
+  , mockCnt: `WITH RECURSIVE cte1 AS (
     SELECT id, label, parent_id,0 AS cnt
     FROM mock_data WHERE parent_id IS NULL
   

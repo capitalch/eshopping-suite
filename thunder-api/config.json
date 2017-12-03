@@ -1,4 +1,8 @@
-{    
+{
     "port": 3002,
-    "env": "development"
+    "env": "development",
+    "user": "postgres",
+    "database": "ecomm",
+    "password": "su$hant123",
+    "dbPort": 5433
 }

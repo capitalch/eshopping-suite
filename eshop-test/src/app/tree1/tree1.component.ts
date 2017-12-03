@@ -16,6 +16,7 @@ import * as _ from 'lodash';
 export class Tree1Component implements OnInit {
   data1: any[];
   tree: any[] = [];
+  products: {};
   lazyTree: any[] = [];
   subs: any;
   start; end;
@@ -24,9 +25,6 @@ export class Tree1Component implements OnInit {
 
   ngOnInit() {
     let a, b;
-    // let sub1 = this.eshopService.filterOn('process:tree1').subscribe(d => {
-    //   this.processTree1();
-    // });
     this.subs = this.eshopService.filterOn('get:mock:cnt:tree1').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
@@ -40,7 +38,12 @@ export class Tree1Component implements OnInit {
         console.log('Process Time:', (b - a), ':ms')
       );
     });
-    // this.subs.add(sub1);
+    let sub1 = this.eshopService.filterOn('get:products:on:category').subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.products = d.data
+      );
+    })
+    this.subs.add(sub1);
 
   }
   processTree1() {
@@ -61,7 +64,7 @@ export class Tree1Component implements OnInit {
       return (x.parent_id == null);
     });
     this.lazyTree.forEach(x => {
-      if (x.cnt==undefined) {
+      if (x.cnt == undefined) {
         x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
         (x.cnt) && (x.label = x.label.concat(' (', x.cnt, ')'));
         x.leaf = x.cnt == 0;
@@ -75,17 +78,31 @@ export class Tree1Component implements OnInit {
       return (item.id == x.parent_id);
     });
     children.forEach(x => {
-      if (x.cnt==undefined ) {
+      if (x.cnt == undefined) {
         x.cnt = this.data1.filter(y => x.id == y.parent_id).length;
         (x.cnt) && (x.label = x.label.concat(' (', x.cnt, ')'));
         x.leaf = x.cnt == 0;
+        // let id;
         // x.leaf && (
-        //   this.eshopService.httpGet("get:products:on:category")
+        //   id = "get:products:on:category",
+        //   this.eshopService.httpPost(id, { id: id, params: { cat_id: x.id } })
         // );
       }
     });
+    let leafIds = [];
+    leafIds = children.filter(x => x.leaf).map(x => x.id);
+    this.eshopService.httpPost('get:products:on:category',leafIds);
     item.children = children;
   }
+
+  testData() {
+    let id = "get:products:on:category";
+    let leafIds = [];
+    // leafIds = children.filter(x => x.leaf).map(x => x.id);
+    leafIds = [16811,19529,9247];
+    this.eshopService.httpPost('get:products:on:category',{id:id,params:leafIds});
+  }
+
   getData() {
     this.start = performance.now();
     this.eshopService.httpGet('get:mock:cnt:tree1');

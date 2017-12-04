@@ -1,6 +1,7 @@
 "use strict";
 var express = require('express');
 var fs = require('fs');
+var Q = require('q');
 var router = express.Router();
 var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var util = require('util');
@@ -45,21 +46,40 @@ router.post('/db/sql/products', (req, res, next) => {
     let sqlString = sql[stmt.id];
     let params = stmt.params;
 
-    params.forEach(x => {
-      pool.query(sqlString, [x])
-        .then(result => {
-          ret[x] = result.rows;
-          res.json({ data: ret });
-        }).catch(e => {
-          ret[x] = e;
-          res.json({ data: ret });
-        }
-        )
+    let promises = params.map(x => {
+      let promise = pool.query(sqlString, [x]);
+      return (promise);
     });
 
-    // pool.query(sqlString, params)
-    //   .then(result => res.json({ data: result.rows }))
-    //   .catch(e => setImmediate(() => { throw e }))
+    Q.allSettled(promises)
+    .then(items => {
+      let result = items.map((x,i) => {
+        let obj = {cat_id:params[i], products:x.value.rows};
+        return(obj)
+      });
+      res.json(result);
+    });
+
+    // Q.all(promises)
+    //   .then(values => {
+    //     let result = values.map((x,i) => {
+    //       let obj = {id:params[i], value:x.rows};
+    //       return(obj)
+    //     });
+    //     res.json(result);
+    //   });
+    // res.json({ data: result });
+    // params.forEach(x => {
+    //   pool.query(sqlString, [x])
+    //     .then(result => {
+    //       ret[x] = result.rows;
+    //       res.json({ data: ret });
+    //     }).catch(e => {
+    //       ret[x] = e;
+    //       res.json({ data: ret });
+    //     }
+    //     )
+    // });
 
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);

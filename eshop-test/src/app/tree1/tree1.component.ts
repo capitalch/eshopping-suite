@@ -90,8 +90,8 @@ export class Tree1Component implements OnInit {
       }
     });
     let leafIds = [];
-    leafIds = children.filter(x => x.leaf).map(x => x.id);
-    this.eshopService.httpPost('get:products:on:category',leafIds);
+    // leafIds = children.filter(x => x.leaf).map(x => x.id);
+    // this.eshopService.httpPost('get:products:on:category',leafIds);
     item.children = children;
   }
 

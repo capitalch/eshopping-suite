@@ -1,5 +1,5 @@
 let sqls = {
-  'get:products:on:category': `select * from product where cat_id = $1;`
+  'get:products:on:category': `select * from product where cat_id in (%s);`
   , genre1: `WITH RECURSIVE genres_materialized_path AS (
         SELECT id, name, ARRAY[]::INTEGER[] AS path
         FROM genres WHERE parent_id IS NULL
@@ -40,5 +40,24 @@ let sqls = {
     FROM mock_data mock, cte1
     WHERE mock.parent_id = cte1.id
   ) SELECT * FROM cte1;`
+  , catWithProduct:`drop table temp2;
+  with cte1 as (
+  with cte as (
+  select c.id, c.label, c.parent_id,c1.id as temp1
+      from category c
+        left join category c1 
+          on c.id = c1.parent_id)
+  select id,label,parent_id,
+    CASE
+        WHEN  min(temp1) is null
+            then 0
+          ELSE
+            count(*)
+      END as cnt
+    from cte
+        group by id, label,parent_id      	
+            order by id
+  ) select id, label, parent_id, cnt into temp2 from cte1;
+  select t.id,label,parent_id,cnt as cnt1, p.cat_id from temp2 t inner join product p on t.id = p.cat_id`
 }
 module.exports = sqls;

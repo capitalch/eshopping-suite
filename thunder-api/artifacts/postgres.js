@@ -9,7 +9,7 @@ var def = require('./definitions');
 var messages = require('./messages');
 var pg = require('pg');
 var format = require('pg-format');
-let sql = require('./sql');
+var sql = require('./sql');
 const { Pool } = require('pg');
 
 const dbConfig = {
@@ -22,14 +22,13 @@ const dbConfig = {
 };
 
 const pool = new Pool(dbConfig);
-router.post('/db/sql', (req, res, next) => {
+router.post('/db/sql/products', (req, res, next) => {
   try {
-
-    let stmt = req.body;
-    let sqlString = sql[stmt.id];
-    let params = stmt.params;
-
-    pool.query(sqlString, params)
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
+    sqlString = format(sqlString, params);
+    pool.query(sqlString)
       .then(result => res.json({ data: result.rows }))
       .catch(e => setImmediate(() => { throw e }))
 
@@ -39,7 +38,7 @@ router.post('/db/sql', (req, res, next) => {
   }
 })
 
-router.post('/db/sql/products', (req, res, next) => {
+router.post('/db/sql/multi', (req, res, next) => {
   try {
     let sqlObj = req.body;
     let sqlString = sql[sqlObj.id];

@@ -41,46 +41,24 @@ router.post('/db/sql', (req, res, next) => {
 
 router.post('/db/sql/products', (req, res, next) => {
   try {
-    let ret = {};
-    let stmt = req.body;
-    let sqlString = sql[stmt.id];
-    let params = stmt.params;
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
 
     let promises = params.map(x => {
       let promise = pool.query(sqlString, [x]);
       return (promise);
     });
-
+//Q.allSettled() is used as against to Q.all() or Promise.all() 
+//because it completes even if there are errors in one+ promises 
     Q.allSettled(promises)
     .then(items => {
-      let result = items.map((x,i) => {
+      let ret = items.map((x,i) => {
         let obj = {cat_id:params[i], products:x.value.rows};
         return(obj)
       });
-      res.json(result);
+      res.json(ret);
     });
-
-    // Q.all(promises)
-    //   .then(values => {
-    //     let result = values.map((x,i) => {
-    //       let obj = {id:params[i], value:x.rows};
-    //       return(obj)
-    //     });
-    //     res.json(result);
-    //   });
-    // res.json({ data: result });
-    // params.forEach(x => {
-    //   pool.query(sqlString, [x])
-    //     .then(result => {
-    //       ret[x] = result.rows;
-    //       res.json({ data: ret });
-    //     }).catch(e => {
-    //       ret[x] = e;
-    //       res.json({ data: ret });
-    //     }
-    //     )
-    // });
-
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);

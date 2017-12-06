@@ -59,5 +59,26 @@ let sqls = {
             order by id
   ) select id, label, parent_id, cnt into temp2 from cte1;
   select t.id,label,parent_id,cnt as cnt1, p.cat_id from temp2 t inner join product p on t.id = p.cat_id`
+  , catWithProduct1:`drop table temp1;
+  with cte1 as(
+    select c1.id,c1.label,c1.parent_id, 
+      COALESCE(c2.id,0) as id2 
+        from categories c1 left join categories c2 on c1.id = c2.parent_id
+  )
+  select id,label,parent_id ,
+    CASE min(id2)
+        WHEN 0
+            then 0
+          ELSE
+            count(id)
+      END as cnt into temp1
+    from cte1 
+        group by id,label,parent_id 
+        order by id;
+  select t.id, label,parent_id, min(cnt) as cnt,  count(p.id) as pcnt
+    from temp1 t
+        left join products p
+            on t.id = p.cat_id
+                group by t.id,label,parent_id`
 }
 module.exports = sqls;

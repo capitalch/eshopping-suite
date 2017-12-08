@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{title}}!
   </h1>
@@ -7,7 +7,33 @@
   <button (click) = "tree()">Tree</button>
   <button (click) = "tree1()">Tree1</button>
   <a [routerLink]="['manual']">Manual</a>
-  <!-- <tree-root [nodes]="nodes"></tree-root> -->
+  <tree-root [nodes]="nodes"></tree-root>
 </div>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
 
+<div class="header">
+  <div class="logoContainer">
+    <img class="logo" src="../assets/logo/logo.png" width="100px" height="100px">
+    <br />
+    <div class="heading">
+      <span style="color:#ff0000;">J</span>
+      <span style="color:#ff7f00;">O</span>
+      <span style="color:#ffff00;">Y</span>
+      <span style="color:#80ff00;">K</span>
+      <span style="color:#00ff00;">A</span>
+      <span style="color:#00ffff;">R</span>
+      <span style="color:#ff7f00;">T</span>
+    </div>
+  </div>
+  <div class="headerContent">
+    <app-header-content></app-header-content>
+  </div>
+</div>
+<div class="bodyContent">
+  <app-body-content></app-body-content>
+</div>
+<div class="footer">
+  <div class="copyright">
+      Copyright &copy;Kush Infotech
+  </div>
+</div>

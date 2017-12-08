@@ -1,0 +1,57 @@
+.header
+{
+    width: 100%;
+    height:118px;
+    border: 1px solid black;
+    background: #232f3e;
+}
+
+.heading
+{
+    font-size: 16px;
+    font-family: serif;
+    text-align: center;
+    float:left;
+}
+
+.headerContent
+{
+    border: 1px solid white;
+    margin-left: 105px;
+    margin-right: 5px;  
+    height:100%;  
+}
+
+.logoContainer
+{
+    width: 100px;
+    float: left;
+}
+
+.logo
+{
+    float:left;
+}
+
+.bodyContent
+{
+    width:100%;
+    min-height: 548px;
+    background:white;
+}
+
+.footer
+{
+    bottom: 5px;
+    width: 100%;
+    height:75px;
+    border: 1px solid black;
+    background: #232f3e;
+}
+
+.copyright
+{
+    text-align: center;
+    color:white;
+    margin-top: 45px;
+}

@@ -10,13 +10,19 @@ import { EshopService } from './eshop.service';
 import {TreeNode,TreeModule} from 'primeng/primeng';
 import { ManualTreeComponent } from './manual-tree/manual-tree.component';
 import { UiTreeComponent } from './ui-tree/ui-tree.component';
+import { BodyContentComponent } from './body-content/body-content.component';
+import { HeaderContentComponent } from './header-content/header-content.component';
+import { CategoriesComponent } from './categories/categories.component';
 // import { TreeNode } from '@angular/router/src/utils/tree';
 @NgModule({
   declarations: [
     AppComponent,
     Tree1Component,
     ManualTreeComponent,
-    UiTreeComponent
+    UiTreeComponent,
+    BodyContentComponent,
+    HeaderContentComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

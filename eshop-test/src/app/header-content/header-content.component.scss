@@ -1,0 +1,102 @@
+.leftControls
+{
+    float:left;
+    width: 70%;
+}
+
+.searchContainer
+{
+    width: 70%;
+    margin-top: 20px;
+}
+
+.searchInput
+{
+    width:90%;
+    height: 25px;
+    border: 2px solid white;
+    margin-left: 20px;
+    float:left;
+}
+
+.searchButton
+{
+    width: 32px;
+    height: 32px;
+    float:left;
+    background-image: url('/assets/icons/search.png');
+    border: 1px solid black;
+}
+
+.displayControls
+{
+    margin-top: 45px;
+}
+
+.welcomeMsg
+{
+    margin-left:20px;
+    color: white;
+    background: #232f3e;
+    float: left;
+    font-size: 17px;
+}
+
+.rightControls
+{
+    float: right;
+    height: 100%;
+}
+
+.loginControls
+{
+    margin-top:20px;
+    margin-right: 55px;
+    height: 20%;
+}
+
+.cartContainer
+{
+
+}
+
+.cartButton
+{
+    background-image: url('/assets/icons/cart.png');
+    width: 42px;
+    height: 36px;
+    border: 0px solid black;
+}
+
+.cartCount
+{
+    background: #232f3e;
+    width: 66px;
+    float: left;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+}
+
+a 
+{
+    text-decoration: none;
+}
+
+.welcomeMsg:hover, .aboutMenu:hover, .contactMenu:hover ,.cartCount:hover 
+{
+    text-decoration: underline;
+    color: white;
+}
+
+.searchButton, .cartButton, .pointer
+{
+    cursor:pointer;
+}
+
+.aboutMenu, .contactMenu
+{
+    margin-left: 25px;
+    color:white;
+    font-size: 17px;
+}

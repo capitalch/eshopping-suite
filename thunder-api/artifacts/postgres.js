@@ -22,6 +22,22 @@ const dbConfig = {
 };
 
 const pool = new Pool(dbConfig);
+
+router.post('/db/sql/generic', (req, res, next) => {
+  try {
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
+    sqlString = format(sqlString, params);
+    pool.query(sqlString)
+      .then(result => res.json(result.rows ))
+      .catch(e => setImmediate(() => { throw e }))
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
 router.post('/db/sql/products', (req, res, next) => {
   try {
     let sqlObj = req.body;
@@ -48,16 +64,16 @@ router.post('/db/sql/multi', (req, res, next) => {
       let promise = pool.query(sqlString, [x]);
       return (promise);
     });
-//Q.allSettled() is used as against to Q.all() or Promise.all() 
-//because it completes even if there are errors in one+ promises 
+    //Q.allSettled() is used as against to Q.all() or Promise.all() 
+    //because it completes even if there are errors in one+ promises 
     Q.allSettled(promises)
-    .then(items => {
-      let ret = items.map((x,i) => {
-        let obj = {cat_id:params[i], products:x.value.rows};
-        return(obj)
+      .then(items => {
+        let ret = items.map((x, i) => {
+          let obj = { cat_id: params[i], products: x.value.rows };
+          return (obj)
+        });
+        res.json(ret);
       });
-      res.json(ret);
-    });
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);

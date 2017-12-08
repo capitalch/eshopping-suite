@@ -1,5 +1,34 @@
 let sqls = {
   'get:products:on:category': `select * from product where cat_id in (%s);`
+  , 'get:categories:with:count':`with cte2 as (
+    with cte1 as (
+      select c1.id,c1.label,c1.parent_id, 
+        COALESCE(c2.id,0) as id2 
+          from category c1 left join category c2 on c1.id = c2.parent_id
+    )
+    select id,label,parent_id ,
+      CASE min(id2)
+          WHEN 0
+              then 0
+          ELSE
+              count(id)
+          END as cat_cnt
+      from cte1 
+          group by id,label,parent_id 
+          order by id
+  )
+    select c2.id, label || ' (' || 
+      CASE
+      WHEN min(cat_cnt) = 0 
+      then count(p.id)
+      ELSE min(cat_cnt)
+      end
+      || ')' as label,parent_id, min(cat_cnt) as cat_cnt,  count(p.id) as product_cnt
+      from cte2 c2
+          left join product p
+              on c2.id = p.cat_id
+                  group by c2.id,label,parent_id
+                    order by c2.id;`
   , genre1: `WITH RECURSIVE genres_materialized_path AS (
         SELECT id, name, ARRAY[]::INTEGER[] AS path
         FROM genres WHERE parent_id IS NULL
@@ -40,45 +69,5 @@ let sqls = {
     FROM mock_data mock, cte1
     WHERE mock.parent_id = cte1.id
   ) SELECT * FROM cte1;`
-  , catWithProduct:`drop table temp2;
-  with cte1 as (
-  with cte as (
-  select c.id, c.label, c.parent_id,c1.id as temp1
-      from category c
-        left join category c1 
-          on c.id = c1.parent_id)
-  select id,label,parent_id,
-    CASE
-        WHEN  min(temp1) is null
-            then 0
-          ELSE
-            count(*)
-      END as cnt
-    from cte
-        group by id, label,parent_id      	
-            order by id
-  ) select id, label, parent_id, cnt into temp2 from cte1;
-  select t.id,label,parent_id,cnt as cnt1, p.cat_id from temp2 t inner join product p on t.id = p.cat_id`
-  , catWithProduct1:`drop table temp1;
-  with cte1 as(
-    select c1.id,c1.label,c1.parent_id, 
-      COALESCE(c2.id,0) as id2 
-        from categories c1 left join categories c2 on c1.id = c2.parent_id
-  )
-  select id,label,parent_id ,
-    CASE min(id2)
-        WHEN 0
-            then 0
-          ELSE
-            count(id)
-      END as cnt into temp1
-    from cte1 
-        group by id,label,parent_id 
-        order by id;
-  select t.id, label,parent_id, min(cnt) as cnt,  count(p.id) as pcnt
-    from temp1 t
-        left join products p
-            on t.id = p.cat_id
-                group by t.id,label,parent_id`
 }
 module.exports = sqls;

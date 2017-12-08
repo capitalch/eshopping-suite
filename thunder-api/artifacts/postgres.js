@@ -9,7 +9,7 @@ var def = require('./definitions');
 var messages = require('./messages');
 var pg = require('pg');
 var format = require('pg-format');
-let sql = require('./sql');
+var sql = require('./sql');
 const { Pool } = require('pg');
 
 const dbConfig = {
@@ -22,17 +22,16 @@ const dbConfig = {
 };
 
 const pool = new Pool(dbConfig);
-router.post('/db/sql', (req, res, next) => {
+
+router.post('/db/sql/generic', (req, res, next) => {
   try {
-
-    let stmt = req.body;
-    let sqlString = sql[stmt.id];
-    let params = stmt.params;
-
-    pool.query(sqlString, params)
-      .then(result => res.json({ data: result.rows }))
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
+    sqlString = format(sqlString, params);
+    pool.query(sqlString)
+      .then(result => res.json(result.rows ))
       .catch(e => setImmediate(() => { throw e }))
-
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);
@@ -44,21 +43,37 @@ router.post('/db/sql/products', (req, res, next) => {
     let sqlObj = req.body;
     let sqlString = sql[sqlObj.id];
     let params = sqlObj.params;
+    sqlString = format(sqlString, params);
+    pool.query(sqlString)
+      .then(result => res.json({ data: result.rows }))
+      .catch(e => setImmediate(() => { throw e }))
+
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
+router.post('/db/sql/multi', (req, res, next) => {
+  try {
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
 
     let promises = params.map(x => {
       let promise = pool.query(sqlString, [x]);
       return (promise);
     });
-//Q.allSettled() is used as against to Q.all() or Promise.all() 
-//because it completes even if there are errors in one+ promises 
+    //Q.allSettled() is used as against to Q.all() or Promise.all() 
+    //because it completes even if there are errors in one+ promises 
     Q.allSettled(promises)
-    .then(items => {
-      let ret = items.map((x,i) => {
-        let obj = {cat_id:params[i], products:x.value.rows};
-        return(obj)
+      .then(items => {
+        let ret = items.map((x, i) => {
+          let obj = { cat_id: params[i], products: x.value.rows };
+          return (obj)
+        });
+        res.json(ret);
       });
-      res.json(ret);
-    });
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);

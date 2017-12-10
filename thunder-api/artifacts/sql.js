@@ -1,6 +1,6 @@
 let sqls = {
-  'get:products:on:category': `select * from product where cat_id = $1;`
-  , 'get:categories:with:count':`with cte2 as (
+  'post:products:on:category': `select * from product where cat_id = %s;`
+  , 'post:categories:with:count':`with cte2 as (
     with cte1 as (
       select c1.id,c1.label,c1.parent_id, 
         COALESCE(c2.id,0) as id2 

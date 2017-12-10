@@ -15,8 +15,8 @@ import * as _ from 'lodash';
 })
 export class Tree1Component implements OnInit {
   data1: any[];
-  products:any[];
-  selectedFiles:TreeNode[];
+  products: any[];
+  selectedFiles: TreeNode[];
   lazyTree: any[] = [];
   subs: any;
 
@@ -24,17 +24,19 @@ export class Tree1Component implements OnInit {
 
   ngOnInit() {
     let a, b;
-    this.subs = this.eshopService.filterOn('get:categories:with:count').subscribe(d => {
+    this.subs = this.eshopService.filterOn('post:categories:with:count').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
         this.processLazy()
       );
     });
-    let sub1 = this.eshopService.filterOn('').subscribe(d=>{
-      d.error ? console.log(d.error) :(
-        this.products = d.data
+    let sub1 = this.eshopService.filterOn('post:products:on:category').subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.products = d.data,
+        console.log(this.products)
       );
-    })
+    });
+    this.subs.add(sub1);
   }
 
   processLazy() {
@@ -55,19 +57,21 @@ export class Tree1Component implements OnInit {
   }
   nodeSelect(e) {
     this.loadNode(e);
-    e.node.expanded ? e.node.expanded=false: e.node.expanded=true;
-    let id = '';
-    e.node.leaf && (this.eshopService.emit('',{}));
+    e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
+    let id = 'post:products:on:category';
+    e.node.leaf && (
+      this.eshopService.httpPost(id, { id: id, params: [e.node.id]  })
+    );
   }
   testData() {
-    let id = "get:products:on:category";
+    let id = "post:products:on:category";
     let leafIds = [];
     leafIds = [16811, 19529, 9247];
-    this.eshopService.httpPost('get:products:on:category', { id: id, params: leafIds });
+    this.eshopService.httpPost('post:products:on:category', { id: id, params: leafIds });
   }
 
   getData() {
-    let id = 'get:categories:with:count';
+    let id = 'post:categories:with:count';
     this.eshopService.httpPost(id, { id: id, params: {} });
   }
 

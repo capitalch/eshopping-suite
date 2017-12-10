@@ -28,10 +28,25 @@ router.post('/db/sql/generic', (req, res, next) => {
     let sqlObj = req.body;
     let sqlString = sql[sqlObj.id];
     let params = sqlObj.params;
+    sqlString = format(sqlString,params);
+    pool.query(sqlString)
+      .then(result => res.json(result.rows ))
+      .catch(e => setImmediate(() => { throw e }))      
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
+router.get('/db/sql/generic', (req, res, next) => {
+  try {
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
     sqlString = format(sqlString, params);
     pool.query(sqlString)
       .then(result => res.json(result.rows ))
-      .catch(e => setImmediate(() => { throw e }))
+      .catch(e => setImmediate(() => { throw e }))      
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);

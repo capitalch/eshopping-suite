@@ -15,6 +15,8 @@ import * as _ from 'lodash';
 })
 export class Tree1Component implements OnInit {
   data1: any[];
+  products:any[];
+  selectedFiles:TreeNode[];
   lazyTree: any[] = [];
   subs: any;
 
@@ -25,9 +27,14 @@ export class Tree1Component implements OnInit {
     this.subs = this.eshopService.filterOn('get:categories:with:count').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
-        this.processLazy()        
+        this.processLazy()
       );
-    });    
+    });
+    let sub1 = this.eshopService.filterOn('').subscribe(d=>{
+      d.error ? console.log(d.error) :(
+        this.products = d.data
+      );
+    })
   }
 
   processLazy() {
@@ -46,7 +53,12 @@ export class Tree1Component implements OnInit {
     });
     item.children = children;
   }
-
+  nodeSelect(e) {
+    this.loadNode(e);
+    e.node.expanded ? e.node.expanded=false: e.node.expanded=true;
+    let id = '';
+    e.node.leaf && (this.eshopService.emit('',{}));
+  }
   testData() {
     let id = "get:products:on:category";
     let leafIds = [];

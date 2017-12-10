@@ -6,5 +6,6 @@
 </span>
 <span>----</span>
 <span style="display: inline">
-  <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)"></p-tree>
+  <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)" selectionMode="single" [(selection)] ="selectedFiles"
+  (onNodeSelect)="nodeSelect($event)"></p-tree>
 </span>

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {routes} from './app.routes';
@@ -19,7 +20,7 @@ import { UiTreeComponent } from './ui-tree/ui-tree.component';
     UiTreeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     RouterModule.forRoot(routes),
     TreeModule, HttpClientModule, TreeModule
   ],

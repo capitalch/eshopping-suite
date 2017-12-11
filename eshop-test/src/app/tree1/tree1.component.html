@@ -1,7 +1,8 @@
 <span style="display: inline">
+    <input [(ngModel)]="userInput">
+  <button (click) = "search()">Search</button>
   <button (click) = "getData()">Show tree1</button>
-  <button (click) = "testData()">Test Data</button>
-  <!-- <tree-root [nodes]="nodes"></tree-root> -->
+  <!-- <button (click) = "testData()">Test Data</button> -->
   <p-tree [value]="tree"></p-tree>  
 </span>
 <span>----</span>

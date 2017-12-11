@@ -28,8 +28,9 @@ export class EshopService {
     return (this.subject.filter(d => (d.id === id)));
   };
 
-  httpPost(id: string, body?: {}, queryParams?: {}) {
+  httpPost(id: string, body?: any, queryParams?: {}) {
     let url = urlMaps[id];
+    body && (body.id=id);
     if (queryParams) {
       let httpParams = new HttpParams();
       httpParams = Object

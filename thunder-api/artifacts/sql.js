@@ -1,6 +1,6 @@
 let sqls = {
-  'post:products:on:category': `select * from product where cat_id = %s;`
-  , 'post:categories:with:count':`with cte2 as (
+  'post:query:products:on:category': `select * from product where cat_id = %s;`
+  , 'post:query:categories:with:count': `with cte2 as (
     with cte1 as (
       select c1.id,c1.label,c1.parent_id, 
         COALESCE(c2.id,0) as id2 
@@ -29,6 +29,18 @@ let sqls = {
               on c2.id = p.cat_id
                   group by c2.id,label,parent_id
                     order by c2.id;`
+  , 'post:query:categories:product:on:input': `WITH RECURSIVE cte1 AS (
+      SELECT id, label, 0 as parent_id
+      FROM category WHERE id in(
+      SELECT id
+      FROM category
+      WHERE to_tsvector('english', label) @@ to_tsquery('english', %L)
+      )
+      UNION ALL
+      SELECT c1.id, c1.label, c1.parent_id
+      FROM category c1, cte1
+      WHERE c1.parent_id = cte1.id
+    ) SELECT * FROM cte1;`
   , genre1: `WITH RECURSIVE genres_materialized_path AS (
         SELECT id, name, ARRAY[]::INTEGER[] AS path
         FROM genres WHERE parent_id IS NULL

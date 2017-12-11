@@ -15,6 +15,7 @@ import * as _ from 'lodash';
 })
 export class Tree1Component implements OnInit {
   data1: any[];
+  userInput: string;
   products: any[];
   selectedFiles: TreeNode[];
   lazyTree: any[] = [];
@@ -24,16 +25,23 @@ export class Tree1Component implements OnInit {
 
   ngOnInit() {
     let a, b;
-    this.subs = this.eshopService.filterOn('post:categories:with:count').subscribe(d => {
+    this.subs = this.eshopService.filterOn('post:query:categories:with:count').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
         this.processLazy()
       );
     });
-    let sub1 = this.eshopService.filterOn('post:products:on:category').subscribe(d => {
+    let sub1 = this.eshopService.filterOn('post:query:products:on:category').subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.products = d.data,
+        this.data1 = d.data,
         console.log(this.products)
+      );
+    });
+    let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.data1 = d.data,
+        this.processLazy1()
+        // console.log(this.products)
       );
     });
     this.subs.add(sub1);
@@ -44,6 +52,14 @@ export class Tree1Component implements OnInit {
     this.lazyTree = this.data1.filter(x => {
       x.leaf = x.cat_cnt == 0;
       return (x.parent_id == null);
+    });
+  }
+
+  processLazy1() {
+    let items: any[];
+    this.lazyTree = this.data1.filter(x => {
+      x.leaf = x.cat_cnt == 0;
+      return (x.parent_id == 0);
     });
   }
 
@@ -58,21 +74,18 @@ export class Tree1Component implements OnInit {
   nodeSelect(e) {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
-    let id = 'post:products:on:category';
     e.node.leaf && (
-      this.eshopService.httpPost(id, { id: id, params: [e.node.id]  })
+      this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })
     );
-  }
-  testData() {
-    let id = "post:products:on:category";
-    let leafIds = [];
-    leafIds = [16811, 19529, 9247];
-    this.eshopService.httpPost('post:products:on:category', { id: id, params: leafIds });
   }
 
   getData() {
-    let id = 'post:categories:with:count';
-    this.eshopService.httpPost(id, { id: id, params: {} });
+    this.eshopService.httpPost('post:query:categories:with:count', { params: {} });
+  }
+
+  search() {
+    this.eshopService.httpPost('post:query:categories:product:on:input',{params:[this.userInput]});
+    console.log(this.userInput);
   }
 
   ngOnDestroy() {
@@ -80,6 +93,12 @@ export class Tree1Component implements OnInit {
   }
 }
 //deprecated
+// testData() {
+  //   let id = "post:products:on:category";
+  //   let leafIds = [];
+  //   leafIds = [16811, 19529, 9247];
+  //   this.eshopService.httpPost('post:products:on:category', { id: id, params: leafIds });
+  // }
 //,b = performance.now()
 // ,console.log('Process Time:', (b - a), ':ms')
 // this.end = performance.now(),

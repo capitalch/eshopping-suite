@@ -40,7 +40,7 @@ let sqls = {
       SELECT c1.id, c1.label, c1.parent_id
       FROM category c1, cte1
       WHERE c1.parent_id = cte1.id
-    ) SELECT * FROM cte1;`
+    ) select distinct on (label) * FROM cte1;`
   , genre1: `WITH RECURSIVE genres_materialized_path AS (
         SELECT id, name, ARRAY[]::INTEGER[] AS path
         FROM genres WHERE parent_id IS NULL

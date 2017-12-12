@@ -44,7 +44,7 @@ export class Tree1Component implements OnInit {
         // console.log(this.products)
       );
     });
-    this.subs.add(sub1);
+    this.subs.add(sub1).add(sub2);
   }
 
   processLazy() {

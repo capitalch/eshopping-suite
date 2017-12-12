@@ -29,7 +29,7 @@ let sqls = {
               on c2.id = p.cat_id
                   group by c2.id,label,parent_id
                     order by c2.id;`
-  , 'post:query:categories:product:on:input': `WITH RECURSIVE cte1 AS (
+  , 'post:query:categories:product:on:input': `WITH RECURSIVE cte AS (
       SELECT id, label, 0 as parent_id
       FROM category WHERE id in(
       SELECT id

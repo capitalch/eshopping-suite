@@ -1,3 +1,74 @@
+//important sql's
+select c1.id, c1.label, c1.parent_id, count(c1.id) as child_cnt
+	from cats c1 left outer join cats c2
+    	on c1.id = c2.parent_id
+        	group by c1.id
+        		order by c1.id
+//
+with cte2 as (
+    with cte1 as (
+        SELECT id, label, cast(nullif(NULL, '') AS int) as parent_id,
+        COALESCE(parent_id,0) as id2
+      FROM cats WHERE id in(
+       SELECT id
+       FROM cats
+      --WHERE to_tsvector('english', label) @@ to_tsquery('english', '')
+    ))
+    select id,label,parent_id ,
+      CASE min(id2)
+          WHEN 0
+              then 0
+          ELSE
+              count(id)
+          END as cat_cnt
+      from cte1 
+          group by id,label,parent_id 
+          order by id
+  )
+    select c2.id, label || ' (' || 
+      CASE
+      WHEN min(cat_cnt) = 0 
+      then count(p.id)
+      ELSE min(cat_cnt)
+      end
+      || ')' as label,parent_id, min(cat_cnt) as cat_cnt,  count(p.id) as product_cnt
+      from cte2 c2
+          left join product p
+              on c2.id = p.cat_id
+                  group by c2.id,label,parent_id
+                    order by c2.id;
+//
+with cte2 as (
+    with cte1 as (
+      select c1.id,c1.label,c1.parent_id, 
+        COALESCE(c2.id,0) as id2 
+          from category c1 left join category c2 on c1.id = c2.parent_id
+    )
+    select id,label,parent_id ,
+      CASE min(id2)
+          WHEN 0
+              then 0
+          ELSE
+              count(id)
+          END as cat_cnt
+      from cte1 
+          group by id,label,parent_id 
+          order by id
+  )
+    select c2.id, label || ' (' || 
+      CASE
+      WHEN min(cat_cnt) = 0 
+      then count(p.id)
+      ELSE min(cat_cnt)
+      end
+      || ')' as label,parent_id, min(cat_cnt) as cat_cnt,  count(p.id) as product_cnt
+      from cte2 c2
+          left join product p
+              on c2.id = p.cat_id
+                  group by c2.id,label,parent_id
+                    order by c2.id;
+
+
 //to do
 1. Create product table with images
 2. Convert mock_data to category

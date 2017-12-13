@@ -29,8 +29,40 @@ let sqls = {
               on c2.id = p.cat_id
                   group by c2.id,label,parent_id
                     order by c2.id;`
-  , 'post:query:categories:product:on:input': `WITH RECURSIVE cte1 AS (
-      SELECT id, label, 0 as parent_id
+  , 'post:query:categories:product:on:input': `with cte2 as (
+    with cte1 as (
+        SELECT id, label, cast(nullif(NULL, '') AS int) as parent_id,
+        COALESCE(parent_id,0) as id2
+      FROM category WHERE id in(
+       SELECT id
+       FROM category
+      WHERE to_tsvector('english', label) @@ to_tsquery('english', %L)
+    ))
+    select id,label,parent_id ,
+      CASE min(id2)
+          WHEN 0
+              then 0
+          ELSE
+              count(id)
+          END as cat_cnt
+      from cte1 
+          group by id,label,parent_id 
+          order by id
+  )
+    select c2.id, label || ' (' || 
+      CASE
+      WHEN min(cat_cnt) = 0 
+      then count(p.id)
+      ELSE min(cat_cnt)
+      end
+      || ')' as label,parent_id, min(cat_cnt) as cat_cnt,  count(p.id) as product_cnt
+      from cte2 c2
+          left join product p
+              on c2.id = p.cat_id
+                  group by c2.id,label,parent_id
+                    order by c2.id;`
+  , 'post:query:categories:product:on:input1': `WITH RECURSIVE cte1 AS (
+      SELECT id, label, cast(nullif(NULL, '') AS int) as parent_id
       FROM category WHERE id in(
       SELECT id
       FROM category
@@ -70,7 +102,6 @@ let sqls = {
         FROM emp, cte1
         WHERE emp.parent_id = cte1.id
       ) SELECT * FROM cte1;`
-  , mock: 'select id, label, parent_id from category'
   , mockCnt: `WITH RECURSIVE cte1 AS (
     SELECT id, label, parent_id,0 AS cnt
     FROM mock_data WHERE parent_id IS NULL

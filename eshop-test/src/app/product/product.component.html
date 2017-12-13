@@ -1,0 +1,11 @@
+<div class="productCollection" *ngFor="let product of products.data">
+ <div class="product">
+  <a (click)= "productDetails(product.id);">
+    <img src="{{product.image}}" width="200px" height="200px" />
+      <div>{{product.name}}</div>
+      <div>{{product.code}}</div>
+      <div>{{product.descr}}</div>
+      <div>{{product.list_price}}</div>
+    </a>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import { UiTreeComponent } from './ui-tree/ui-tree.component';
 import { BodyContentComponent } from './body-content/body-content.component';
 import { HeaderContentComponent } from './header-content/header-content.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductComponent } from './product/product.component';
 // import { TreeNode } from '@angular/router/src/utils/tree';
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CategoriesComponent } from './categories/categories.component';
     UiTreeComponent,
     BodyContentComponent,
     HeaderContentComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,FormsModule,

@@ -1,1 +1,2 @@
-<p-tree class="catergoryTree" [value]="parentCategories" (onNodeExpand)="loadNode($event)" ></p-tree>
+<p-tree class="catergoryTree" [value]="parentCategories" (onNodeExpand)="loadNode($event)"
+    selectionMode="single" [(selection)] ="selectedFiles" (onNodeSelect)="nodeSelect($event)"></p-tree>

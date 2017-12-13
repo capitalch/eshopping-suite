@@ -16,14 +16,15 @@ export class CategoriesComponent implements OnInit {
 
   categories: any[];
   parentCategories: any[] = [];
-  subs: any;
+  categoriesSub: any;
+  selectedFiles: TreeNode[];
 
   constructor(private eshopService: EshopService) { 
-    this.getData();
+    this.getCategories();
   }
 
   ngOnInit() {
-    this.subs = this.eshopService.filterOn('get:categories:with:count').subscribe(d => {
+    this.categoriesSub = this.eshopService.filterOn('post:query:categories:with:count').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.categories = d.data,
         this.processLazy()        
@@ -39,8 +40,8 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  getData() {
-    let id = 'get:categories:with:count';
+  getCategories() {
+    let id = 'post:query:categories:with:count';
     this.eshopService.httpPost(id, { id: id, params: {} });
   }
 
@@ -53,8 +54,17 @@ export class CategoriesComponent implements OnInit {
     item.children = children;
   }
 
+  nodeSelect(e) {
+    this.loadNode(e);
+    alert(e.node.id);
+    e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
+    e.node.leaf && (
+      this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })
+    );
+  }
+
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.categoriesSub.unsubscribe();
   }
 
 }

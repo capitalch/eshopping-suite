@@ -40,8 +40,7 @@ export class Tree1Component implements OnInit {
     let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
-        this.processLazy1()
-        // console.log(this.products)
+        this.processLazy()
       );
     });
     this.subs.add(sub1).add(sub2);
@@ -52,14 +51,6 @@ export class Tree1Component implements OnInit {
     this.lazyTree = this.data1.filter(x => {
       x.leaf = x.cat_cnt == 0;
       return (x.parent_id == null);
-    });
-  }
-
-  processLazy1() {
-    let items: any[];
-    this.lazyTree = this.data1.filter(x => {
-      x.leaf = x.cat_cnt == 0;
-      return (x.parent_id == 0);
     });
   }
 

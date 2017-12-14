@@ -1,4 +1,14 @@
 //important sql's
+with recursive cte1 as(
+	(select id, label, cast(nullif(NULL, '') AS int) as parent_id
+    	from category where id <=300 limit 100)
+    union all
+    select c1.id, c1.label, c1.parent_id
+    	from category c1 inner join cte1 c2
+    		on c1.parent_id = c2.id
+) select distinct(id), label, parent_id from cte1 order by id ;
+
+//
 drop table temp1,temp2;
 select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_count	
     into temp1

@@ -1,34 +1,19 @@
 let sqls = {
   'post:query:products:on:category': `select * from product where cat_id = %s;`
-  , 'post:query:categories:with:count': `with cte2 as (
-    with cte1 as (
-      select c1.id,c1.label,c1.parent_id, 
-        COALESCE(c2.id,0) as id2 
-          from category c1 left join category c2 on c1.id = c2.parent_id
-    )
-    select id,label,parent_id ,
-      CASE min(id2)
-          WHEN 0
-              then 0
-          ELSE
-              count(id)
-          END as cat_cnt
-      from cte1 
-          group by id,label,parent_id 
-          order by id
-  )
-    select c2.id, label || ' (' || 
-      CASE
-      WHEN min(cat_cnt) = 0 
-      then count(p.id)
-      ELSE min(cat_cnt)
-      end
-      || ')' as label,parent_id, min(cat_cnt) as cat_cnt,  count(p.id) as product_cnt
-      from cte2 c2
-          left join product p
-              on c2.id = p.cat_id
-                  group by c2.id,label,parent_id
-                    order by c2.id;`
+  , 'post:query:categories:with:count': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
+      from category c1 left outer join category c2 
+          on c1.id = c2.parent_id
+              group by c1.id
+                order by c1.id),
+        cte2 as (select c1.id, c1.label, c1.parent_id, min(c1.cat_cnt) as cat_cnt,
+        sum(CASE WHEN p.id is null then 0 else 1 end) as product_cnt
+          from cte1 c1 left outer join product p   	
+              on c1.id = p.cat_id
+                  group by c1.id, c1.label, c1.parent_id
+                    order by c1.id)
+        select c2.id, c2.label || ' (' || 
+        CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
+        || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
   , 'post:query:categories:product:on:input': `with cte2 as (
     with cte1 as (
         SELECT id, label, cast(nullif(NULL, '') AS int) as parent_id,

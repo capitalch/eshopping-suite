@@ -14,7 +14,7 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class Tree1Component implements OnInit {
-  data1: any[]=[];
+  data1: any[] = [];
   userInput: string;
   products: any[];
   selectedFiles: TreeNode[];
@@ -33,19 +33,28 @@ export class Tree1Component implements OnInit {
     });
     let sub1 = this.eshopService.filterOn('post:query:products:on:category').subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.data1 = d.data,
+        this.products = d.data,
         console.log(this.products)
       );
     });
     let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
-        this.processLazy()
+        this.processLazy1()
       );
     });
     this.subs.add(sub1).add(sub2);
   }
-
+  processLazy1() {
+    // this.lazyTree = this.data1.filter(x => {
+    //   x.leaf = x.cat_cnt == 0;
+    //   return (x.parent_id == null);
+    // });
+    this.lazyTree = this.data1;
+    this.data1.forEach(x=>{
+      x.leaf = x.cat_cnt == 0;
+    });
+  }
   processLazy() {
     let items: any[];
     this.lazyTree = this.data1.filter(x => {
@@ -75,7 +84,7 @@ export class Tree1Component implements OnInit {
   }
 
   search() {
-    this.eshopService.httpPost('post:query:categories:product:on:input',{params:[this.userInput]});
+    this.eshopService.httpPost('post:query:categories:product:on:input', { params: [this.userInput] });
     console.log(this.userInput);
   }
 

@@ -14,7 +14,7 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class Tree1Component implements OnInit {
-  data1: any[];
+  data1: any[]=[];
   userInput: string;
   products: any[];
   selectedFiles: TreeNode[];

@@ -1,4 +1,25 @@
 //important sql's
+drop table temp1,temp2;
+select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_count	
+    into temp1
+	from cats c1 left outer join cats c2 
+    	on c1.id = c2.parent_id
+        	group by c1.id
+        		order by c1.id;
+
+select t.id, t.label, t.parent_id, t.cat_count,
+sum(CASE WHEN p.id is null then 0 else 1 end) as product_count into temp2
+	from temp1 t left outer join product p
+    	
+    	on t.id = p.cat_id
+        	group by t.id, t.label, t.parent_id, t.cat_count
+        		order by t.id;
+select id, t.label || ' (' || 
+CASE WHEN t.cat_count = 0 then t.product_count else t.cat_count end
+
+|| ')' as label, parent_id from temp2 t
+
+//
 select c1.id, c1.label, c1.parent_id, count(c1.id) as child_cnt
 	from cats c1 left outer join cats c2
     	on c1.id = c2.parent_id

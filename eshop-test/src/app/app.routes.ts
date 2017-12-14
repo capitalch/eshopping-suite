@@ -11,10 +11,10 @@ export const routes : Routes = [
       path: 'lazy',
       loadChildren: './lazy/lazy.module#LazyModule' 
     },{
-      path:'tree1',
-      component: Tree1Component
-    },{
       path:'manual',
       component:ManualTreeComponent
+    },{
+      path:'tree1',
+      component:Tree1Component
     }
   ];

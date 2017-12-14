@@ -68,7 +68,8 @@ with cte2 as (
                   group by c2.id,label,parent_id
                     order by c2.id;
 
-
+npm install -ddd node-sass > npm.log 2> npm.err
+https://stackoverflow.com/questions/38896091/installing-node-sass-stuck-on-install-js
 //to do
 1. Create product table with images
 2. Convert mock_data to category

@@ -30,6 +30,7 @@ export class EshopService {
 
   httpPost(id: string, body?: any, queryParams?: {}) {
     let url = urlMaps[id];
+    body=body || {};
     body && (body.id=id);
     if (queryParams) {
       let httpParams = new HttpParams();

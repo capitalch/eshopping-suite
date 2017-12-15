@@ -10,7 +10,8 @@ let sqls = {
           from cte1 c1 left outer join product p   	
               on c1.id = p.cat_id
                   group by c1.id, c1.label, c1.parent_id
-                    order by c1.id)
+                    order by c1
+                    .id)
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
@@ -97,12 +98,14 @@ let sqls = {
     FROM mock_data mock, cte1
     WHERE mock.parent_id = cte1.id
   ) SELECT * FROM cte1;`
-  , multiSql:`with cte1 as(
+  , multiSql:`
+  with cte1 as(
+
     SELECT id, label,  parent_id
        FROM cats
          WHERE to_tsvector('english', label) @@ to_tsquery('english', 'pork')
-  ) select * into temp1 from cte1;
-  update temp1 set parent_id = null;
-  select * from temp1;`
+  ) select * into temp11 from cte1;
+  
+  `
 }
 module.exports = sqls;

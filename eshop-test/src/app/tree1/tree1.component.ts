@@ -14,7 +14,7 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class Tree1Component implements OnInit {
-  data1: any[]=[];
+  data1: any[] = [];
   userInput: string;
   products: any[];
   selectedFiles: TreeNode[];
@@ -43,7 +43,12 @@ export class Tree1Component implements OnInit {
         this.processLazy()
       );
     });
-    this.subs.add(sub1).add(sub2);
+    let sub3 = this.eshopService.filterOn('multiSql').subscribe(d=>{
+      d.error ? console.log(d.error):(
+        console.log(d.data)
+      );
+    })
+    this.subs.add(sub1).add(sub2).add(sub3);
   }
 
   processLazy() {
@@ -69,13 +74,15 @@ export class Tree1Component implements OnInit {
       this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })
     );
   }
-
+  test() {
+    this.eshopService.httpPost('multiSql');
+  }
   getData() {
     this.eshopService.httpPost('post:query:categories:with:count', { params: {} });
   }
 
   search() {
-    this.eshopService.httpPost('post:query:categories:product:on:input',{params:[this.userInput]});
+    this.eshopService.httpPost('post:query:categories:product:on:input', { params: [this.userInput] });
     console.log(this.userInput);
   }
 

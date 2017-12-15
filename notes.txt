@@ -1,4 +1,19 @@
 //important sql's
+//search based recursive query to return all children
+with recursive cte1 as (
+	select id,label, parent_id
+		from category
+    		where id in(
+            SELECT id, parent_id
+              FROM category
+              	WHERE to_tsvector('english', label) @@ to_tsquery('english', 'fish')
+            )
+    union
+    	select c1.id, c1.label, c1.parent_id
+    		from category c1 inner join cte1 c2
+    			on c1.parent_id = c2.id
+) select * from cte1;
+
 with recursive cte1 as(
 	(select id, label, cast(nullif(NULL, '') AS int) as parent_id
     	from category where id <=300 limit 100)

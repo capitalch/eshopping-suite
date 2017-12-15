@@ -97,5 +97,12 @@ let sqls = {
     FROM mock_data mock, cte1
     WHERE mock.parent_id = cte1.id
   ) SELECT * FROM cte1;`
+  , multiSql:`with cte1 as(
+    SELECT id, label,  parent_id
+       FROM cats
+         WHERE to_tsvector('english', label) @@ to_tsquery('english', 'pork')
+  ) select * into temp1 from cte1;
+  update temp1 set parent_id = null;
+  select * from temp1;`
 }
 module.exports = sqls;

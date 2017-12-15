@@ -43,7 +43,12 @@ export class Tree1Component implements OnInit {
         this.processLazy1()
       );
     });
-    this.subs.add(sub1).add(sub2);
+    let sub3 = this.eshopService.filterOn('multiSql').subscribe(d=>{
+      d.error ? console.log(d.error):(
+        console.log(d.data)
+      );
+    })
+    this.subs.add(sub1).add(sub2).add(sub3);
   }
   processLazy1() {
     // this.lazyTree = this.data1.filter(x => {
@@ -78,7 +83,9 @@ export class Tree1Component implements OnInit {
       this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })
     );
   }
-
+  test() {
+    this.eshopService.httpPost('multiSql');
+  }
   getData() {
     this.eshopService.httpPost('post:query:categories:with:count', { params: {} });
   }

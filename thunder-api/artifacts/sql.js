@@ -15,12 +15,55 @@ let sqls = {
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
-  , 'post:query:categories:product:on:input': `with recursive 
+  , 'post:query:categories:product:on:input':`create temporary table temp1 (id int not null, label text, parent_id int,cat_cnt int, product_cnt int) on commit drop;
+  
+  insert into temp1 
+          with recursive 
+        cte1 as (
+          SELECT id, label, parent_id
+                FROM category
+                    WHERE 
+                    to_tsvector('english', label) @@ to_tsquery('english', 'pork')
+        ), 
+        cte2 as(
+          select id, label, 
+            CASE
+              WHEN parent_id in(select id from cte1)
+              then parent_id
+              else null::int
+            END as parent_id
+            from cte1
+        ) , 
+        cte3 as(  
+            select id, label, parent_id from cte2 
+            union all
+              select c1.id, c1.label, c1.parent_id
+                from category c1 inner join cte3 c3
+                  on c1.parent_id = c3.id
+        ) ,
+        cte4 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
+              from cte3 c1 left outer join cte3 c2 
+                  on c1.id = c2.parent_id
+                      group by c1.id, c1.label, c1.parent_id
+                        order by c1.id),
+        cte5 as (select c1.id, c1.label, c1.parent_id, min(c1.cat_cnt) as cat_cnt,
+                sum(CASE WHEN p.id is null then 0 else 1 end) as product_cnt
+                  from cte4 c1 left outer join product p   	
+                      on c1.id = p.cat_id
+                          group by c1.id, c1.label, c1.parent_id
+                            order by c1
+                            .id)
+        select c2.id, c2.label || ' (' || 
+                CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
+                || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte5 c2;
+         update temp1 t set parent_id = -1 where t.parent_id is null;
+         insert into temp1(id,label,parent_id,cat_cnt,product_cnt) values (-1,'Categories',null,0,0);
+     select id,label,parent_id,cat_cnt,product_cnt from temp1 t order by t.id;`
+  , 'post:query:categories:product:on:input2': `with recursive 
       cte1 as (
         SELECT id, label, parent_id
               FROM category
                   WHERE 
-                  --id in(13716)
                   to_tsvector('english', label) @@ to_tsquery('english', %L)
       ), 
       cte2 as(

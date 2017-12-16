@@ -40,7 +40,7 @@ export class Tree1Component implements OnInit {
     let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
-        this.processLazy1()
+        this.processLazy()
       );
     });
     let sub3 = this.eshopService.filterOn('multiSql').subscribe(d=>{

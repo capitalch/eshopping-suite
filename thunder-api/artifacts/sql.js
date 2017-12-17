@@ -63,13 +63,13 @@ let sqls = {
   cte0 as (
       select id, name as label, cat_id as parent_id
         from product
-            where to_tsvector('english', name) @@ to_tsquery('english', 'lamb')
+            where to_tsvector('english', name) @@ to_tsquery('english', %L)
     ),
     cte1 as (
       SELECT id, label, parent_id
             FROM cats
                 WHERE 
-                to_tsvector('english', label) @@ to_tsquery('english', 'lamb')
+                to_tsvector('english', label) @@ to_tsquery('english', %L)
         union
       SELECT id, label, parent_id
         from cats where id in(

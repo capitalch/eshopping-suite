@@ -32,8 +32,14 @@ export class Tree1Component implements OnInit {
       );
     });
     let sub1 = this.eshopService.filterOn('post:query:products:on:category').subscribe(d => {
-      d.error ? console.log(d.error) : (
+      let id,node;
+      d.error ? 
+      console.log(d.error) : (        
         this.products = d.data,
+        node = d.carryBag,
+        !node.hasProducts &&
+        (node.label = node.label.concat(' (',d.data.length,')')),
+        node.hasProducts=true,
         console.log(this.products)
       );
     });
@@ -82,9 +88,9 @@ export class Tree1Component implements OnInit {
   nodeSelect(e) {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
-    e.node.leaf && (
-      this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })
-    );
+    // e.node.leaf && (
+    !e.node.hasProducts &&  this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] },null,e.node)
+    // );
   }
   test() {
     this.eshopService.httpPost('multiSql');

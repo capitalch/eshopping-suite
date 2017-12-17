@@ -39,10 +39,10 @@ export class Tree1Component implements OnInit {
     });
     let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
       let index;
-      d.error ? console.log(d.error) : (
-        index = d.data.length,
-        index && (index--),
-        this.data1 = d.data[index].rows,
+
+      d.error ? console.log(d.error) :
+      (       
+        this.data1 = d.data,
         this.processLazy()
       );
     });
@@ -94,7 +94,7 @@ export class Tree1Component implements OnInit {
   }
 
   search() {
-    this.eshopService.httpPost('post:query:categories:product:on:input', { params: [this.userInput] });
+    this.eshopService.httpPost('post:query:categories:product:on:input', { params: [this.userInput,this.userInput] });
     console.log(this.userInput);
   }
 

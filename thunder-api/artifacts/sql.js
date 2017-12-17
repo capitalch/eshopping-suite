@@ -15,7 +15,7 @@ let sqls = {
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
-  , 'post:query:categories:product:on:input':`create temporary table temp1 (id int not null, label text, parent_id int,cat_cnt int, product_cnt int) on commit drop;
+  , 'post:query:categories:product:on:input2':`create temporary table temp1 (id int not null, label text, parent_id int,cat_cnt int, product_cnt int) on commit drop;
   
   insert into temp1 
           with recursive 
@@ -59,7 +59,7 @@ let sqls = {
          update temp1 t set parent_id = -1 where t.parent_id is null;
          insert into temp1(id,label,parent_id,cat_cnt,product_cnt) values (-1,'Categories',null,0,0);
      select id,label,parent_id,cat_cnt,product_cnt from temp1 t order by t.id;`
-  , 'post:query:categories:product:on:input2': `with recursive 
+  , 'post:query:categories:product:on:input': `with recursive 
       cte1 as (
         SELECT id, label, parent_id
               FROM category
@@ -67,7 +67,7 @@ let sqls = {
                   to_tsvector('english', label) @@ to_tsquery('english', %L)
               union
                 SELECT id, label, parent_id
-                  from cats where id in(
+                  from category where id in(
                     select cat_id from product where to_tsvector('english', name) @@ to_tsquery('english', %L)
                   ) 
       ), 

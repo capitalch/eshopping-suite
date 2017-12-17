@@ -108,7 +108,7 @@ let sqls = {
         select 0 as id, 'Any category' as label, null::int as parent_id, 0 as cat_cnt, (select count(0) from cte0) as product_cnt
     )
     select
-        id, label, parent_id, cat_cnt, product_cnt from cte6 
+    id, label || ' (' || product_cnt || ')' as label , parent_id, cat_cnt, product_cnt from cte6 
           union
         select c2.id, c2.label || ' (' || 
             CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END

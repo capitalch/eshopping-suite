@@ -67,7 +67,7 @@ let sqls = {
     ),
     cte1 as (
       SELECT id, label, parent_id
-            FROM cats
+            FROM category
                 WHERE 
                 to_tsvector('english', label) @@ to_tsquery('english', %L)
         union

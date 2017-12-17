@@ -23,7 +23,7 @@ let sqls = {
           SELECT id, label, parent_id
                 FROM category
                     WHERE 
-                    to_tsvector('english', label) @@ to_tsquery('english', 'pork')
+                    to_tsvector('english', label) @@ to_tsquery('english', %L)
         ), 
         cte2 as(
           select id, label, 

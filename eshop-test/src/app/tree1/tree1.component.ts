@@ -38,8 +38,11 @@ export class Tree1Component implements OnInit {
       );
     });
     let sub2 = this.eshopService.filterOn('post:query:categories:product:on:input').subscribe(d => {
+      let index;
       d.error ? console.log(d.error) : (
-        this.data1 = d.data,
+        index = d.data.length,
+        index && (index--),
+        this.data1 = d.data[index].rows,
         this.processLazy()
       );
     });

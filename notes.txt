@@ -1,4 +1,59 @@
 //important sql's
+//search based recursive query to return all children
+with recursive 
+cte1 as (
+	SELECT id, label, parent_id
+        FROM category
+            WHERE to_tsvector('english', label) @@ to_tsquery('english', 'lamb')
+), 
+cte2 as(
+	select id, label, 
+    CASE
+    	WHEN parent_id in(select id from cte1)
+    	then parent_id
+    	else null::int
+    END as parent_id
+    from cte1
+) , 
+cte3 as(  
+    select id, label, parent_id from cte2 
+    union all
+    	select c1.id, c1.label, c1.parent_id
+    		from category c1 inner join cte3 c3
+    			on c1.parent_id = c3.id
+) select * from cte3 order by id;
+
+with recursive cte1 as(
+	(select id, label, cast(nullif(NULL, '') AS int) as parent_id
+    	from category where id <=300 limit 100)
+    union all
+    select c1.id, c1.label, c1.parent_id
+    	from category c1 inner join cte1 c2
+    		on c1.parent_id = c2.id
+) select distinct(id), label, parent_id from cte1 order by id ;
+
+//
+drop table temp1,temp2;
+select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_count	
+    into temp1
+	from cats c1 left outer join cats c2 
+    	on c1.id = c2.parent_id
+        	group by c1.id
+        		order by c1.id;
+
+select t.id, t.label, t.parent_id, t.cat_count,
+sum(CASE WHEN p.id is null then 0 else 1 end) as product_count into temp2
+	from temp1 t left outer join product p
+    	
+    	on t.id = p.cat_id
+        	group by t.id, t.label, t.parent_id, t.cat_count
+        		order by t.id;
+select id, t.label || ' (' || 
+CASE WHEN t.cat_count = 0 then t.product_count else t.cat_count end
+
+|| ')' as label, parent_id from temp2 t
+
+//
 select c1.id, c1.label, c1.parent_id, count(c1.id) as child_cnt
 	from cats c1 left outer join cats c2
     	on c1.id = c2.parent_id
@@ -68,7 +123,8 @@ with cte2 as (
                   group by c2.id,label,parent_id
                     order by c2.id;
 
-
+npm install -ddd node-sass > npm.log 2> npm.err
+https://stackoverflow.com/questions/38896091/installing-node-sass-stuck-on-install-js
 //to do
 1. Create product table with images
 2. Convert mock_data to category

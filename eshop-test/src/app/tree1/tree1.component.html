@@ -1,12 +1,12 @@
+<h1>Tree test and demo</h1>
 <span style="display: inline">
     <input [(ngModel)]="userInput">
   <button (click) = "search()">Search</button>
   <button (click) = "getData()">Show tree1</button>
-  <!-- <button (click) = "testData()">Test Data</button> -->
-  <!-- <p-tree [value]="tree"></p-tree>   -->
+  <button (click) = "test()">Test</button>
 </span>
-<span>----</span>
-<span style="display: inline">
+
+<!-- <span style="display: inline"> -->
   <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)" selectionMode="single" [(selection)] ="selectedFiles"
   (onNodeSelect)="nodeSelect($event)"></p-tree>
-</span>
+<!-- </span> -->

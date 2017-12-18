@@ -28,9 +28,13 @@ router.post('/db/sql/generic', (req, res, next) => {
     let sqlObj = req.body;
     let sqlString = sql[sqlObj.id];
     let params = sqlObj.params;
-    sqlString = format(sqlString, params);
+    sqlString = format.withArray(sqlString, params);
     pool.query(sqlString)
-      .then(result => res.json(result.rows))
+      .then(result => {
+          Array.isArray(result) || (result = result.rows);
+          res.json(result);
+        }
+      )
       .catch(
       e => setImmediate(
         () => {

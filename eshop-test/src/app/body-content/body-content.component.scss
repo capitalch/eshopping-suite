@@ -8,8 +8,8 @@
 .products
 {
     border: 1px solid red;
-    float:left;
     margin-right:5px;
     margin-left:5px;
     text-align: center;
+    display: flex;
 }

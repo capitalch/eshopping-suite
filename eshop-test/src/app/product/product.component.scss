@@ -1,10 +1,40 @@
+.productContainer
+{
+    display: inline-block;
+}
+
 .product
 {
     width: 270px;
     float: left;
+    height: 300px;
 }
 
-.productCollection
+a
 {
-    width: 1116px;
+    cursor: pointer;
+}
+
+.pagination
+{
+    display: -webkit-inline-box;
+    border: 1px solid blue;
+}
+
+.spacing
+{
+    padding: 9px;
+    border: .5px solid blue;
+}
+
+.disabled
+{
+    background:grey;
+    color: white;
+}
+
+.active
+{
+    background: black;
+    color:white;
 }

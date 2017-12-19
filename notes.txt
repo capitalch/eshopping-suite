@@ -1,3 +1,5 @@
+//site for creating fake data in postgres
+https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 //search based recursive query to return all children
 with recursive 

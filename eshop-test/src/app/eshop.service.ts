@@ -28,7 +28,7 @@ export class EshopService {
     return (this.subject.filter(d => (d.id === id)));
   };
 
-  httpPost(id: string, body?: any, queryParams?: {}) {
+  httpPost(id: string, body?: any, queryParams?: {}, carryBag?:any) {
     let url = urlMaps[id];
     body=body || {};
     body && (body.id=id);
@@ -48,7 +48,7 @@ export class EshopService {
       .subscribe(d => {
         this
           .subject
-          .next({ id: id, data: d, body: body });
+          .next({ id: id, data: d, body: body,carryBag:carryBag });
       }, err => {
         this
           .subject

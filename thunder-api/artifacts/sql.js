@@ -1,5 +1,15 @@
 let sqls = {
-  'post:query:products:on:category': `select * from product where cat_id = %s;`
+  'post:query:products:on:category': `with recursive cte1 as (
+    select id,label, parent_id
+        from category where id = %s
+      union
+        select c1.id, c1.label, c1.parent_id
+          from category c1 inner join cte1 c2
+            on c1.parent_id = c2.id
+      )
+      select * from product where cat_id in (
+          select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
+      )`
   , 'post:query:categories:with:count': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
       from category c1 left outer join category c2 
           on c1.id = c2.parent_id
@@ -15,8 +25,7 @@ let sqls = {
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
-  , 'post:query:categories:product:on:input2':`create temporary table temp1 (id int not null, label text, parent_id int,cat_cnt int, product_cnt int) on commit drop;
-  
+  , 'post:query:categories:product:on:input2':`create temporary table temp1 (id int not null, label text, parent_id int,cat_cnt int, product_cnt int) on commit drop;  
   insert into temp1 
           with recursive 
         cte1 as (
@@ -108,12 +117,13 @@ let sqls = {
         select 0 as id, 'Any category' as label, null::int as parent_id, 0 as cat_cnt, (select count(0) from cte0) as product_cnt
     )
     select
-    id, label || ' (' || product_cnt || ')' as label , parent_id, cat_cnt, product_cnt from cte6 
+    id, '(' || product_cnt || ') ' || label as label , parent_id, cat_cnt, product_cnt from cte6 
           union
-        select c2.id, c2.label || ' (' || 
-            CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
-            || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte5 c2
+        select c2.id, '(' || 
+        CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
+        || ') ' || c2.label as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte5 c2
             order by id;`
+  , 'post:query:products:on:category1': `select * from product where cat_id = %s;`            
   , 'post:query:categories:product:on:input1': `with cte2 as (
     with cte1 as (
         SELECT id, label, cast(nullif(NULL, '') AS int) as parent_id,

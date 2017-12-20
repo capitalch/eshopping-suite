@@ -1,18 +1,23 @@
-<div class="productContainer" *ngIf="showProduct">
-  <div class="product" *ngFor="let product of pagedItems">
-    <a (click)= "productDetails(product.id);">
-      <img src="{{product.image}}" width="200px" height="200px" />
-      <div>{{product.name}}</div>
-      <div>{{product.code}}</div>
-      <div>{{product.descr}}</div>
-      <div>{{product.list_price}}</div>
-    </a>
+<div [ngClass]="test" (click)="setDiv();">  
+    <div class="product" *ngFor="let product of pagedItems">
+      <a (click)= "getDetails(product.id);">
+        <img src="{{product.image}}" width="200px" height="200px" />
+        <div>{{product.name}}</div>
+        <div>{{product.code}}</div>
+        <div>{{product.descr}}</div>
+        <div>{{product.list_price}}</div>
+      </a>
+  </div>
+
+  <div *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <div class="spacing" [ngClass]="{disabled:pager.currentPage === 1}"> <a (click)="setPage(1)">First</a> </div>
+    <div class="spacing" [ngClass]="{disabled:pager.currentPage === 1}"> <a (click)="setPage(pager.currentPage - 1)">Previous</a> </div>
+    <div class="spacing" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"> <a (click)="setPage(page)">{{page}}</a> </div>
+    <div class="spacing" [ngClass]="{disabled:pager.currentPage === pager.totalPages}"> <a (click)="setPage(pager.currentPage + 1)">Next</a> </div>
+    <div class="spacing" [ngClass]="{disabled:pager.currentPage === pager.totalPages}"> <a (click)="setPage(pager.totalPages)">Last</a> </div>
   </div>
 </div>
-<div *ngIf="pager.pages && pager.pages.length" class="pagination">
-  <div class="spacing" [ngClass]="{disabled:pager.currentPage === 1}"> <a (click)="setPage(1)">First</a> </div>
-  <div class="spacing" [ngClass]="{disabled:pager.currentPage === 1}"> <a (click)="setPage(pager.currentPage - 1)">Previous</a> </div>
-  <div class="spacing" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"> <a (click)="setPage(page)">{{page}}</a> </div>
-  <div class="spacing" [ngClass]="{disabled:pager.currentPage === pager.totalPages}"> <a (click)="setPage(pager.currentPage + 1)">Next</a> </div>
-  <div class="spacing" [ngClass]="{disabled:pager.currentPage === pager.totalPages}"> <a (click)="setPage(pager.totalPages)">Last</a> </div>
+
+<div [ngClass]="test1">
+
 </div>

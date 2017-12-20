@@ -1,13 +1,30 @@
-.productContainer
-{
-    display: inline-block;
-}
-
 .product
 {
     width: 270px;
     float: left;
     height: 300px;
+}
+
+.productDetails
+{
+    width:1094px;
+    height:500px;
+    background: red;
+}
+
+.productContainer
+{
+    width:1094px;
+}
+
+.productContainerDisable
+{
+    display: none;
+}
+
+.productDetailsDisable
+{
+    display: none;
 }
 
 a

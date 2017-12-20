@@ -16,8 +16,11 @@ export class ProductComponent implements OnInit {
 
   products: any[];
   productSub: any;
-  showProduct = false;
+  productDetails: any;
 
+  test:any = "productContainerDisable";
+  test1:any = "productDetailsDisable";
+  
   // pager object
   pager: any = {};
   // paged items
@@ -28,17 +31,25 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.productSub = this.eshopService.filterOn('post:query:products:on:category').subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.products = d.data.data,
-        this.showProduct = true,
+        this.products = d.data,
+        this.test = "productContainer",
         // initialize to page 1
         this.setPage(1)
       );
     });
   }
 
-  productDetails(id)
+  getDetails(id)
   {
     alert("ProductID - "+ id);
+
+    //change class
+    this.test = "productContainerDisable";
+    this.test1 = "productDetails";
+
+    //getting product details
+    this.productDetails = this.products.filter(p=>p.id == id);
+    
   }
 
   setPage(page: number) {
@@ -51,7 +62,13 @@ export class ProductComponent implements OnInit {
 
     // get current page of items
     this.pagedItems = this.products.slice(this.pager.startIndex, this.pager.endIndex + 1);
-}
+  }
+
+  setDiv()
+  {
+    this.test = "productsBoxDisable";
+    this.test1 = "productDetails";
+  }
 
   ngOnDestroy()
   {

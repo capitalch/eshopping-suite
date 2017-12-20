@@ -1,5 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
-import {DashBoardComponent} from './dash-board/dash-board.component';
+import {JbodyComponent} from './jbody/jbody.component';
+import {JproductComponent} from './jproduct/jproduct.component';
+import {JproductDetailsComponent} from './jproduct-details/jproduct-details.component';
 export const routes : Routes = [
     {
       path: '',
@@ -11,7 +13,18 @@ export const routes : Routes = [
     //   loadChildren: './lazy/lazy.module#LazyModule' 
     // },
     {
-      path:'dashBoard',
-      component:DashBoardComponent
+      path:'jbody',
+      component:JbodyComponent,
+      children:[
+        {
+          path:'jproduct',
+          component:JproductComponent
+        },
+        {
+          path:'jdetails',
+          component:JproductDetailsComponent,
+          pathMatch:'full'
+        }
+      ]
     }
   ];

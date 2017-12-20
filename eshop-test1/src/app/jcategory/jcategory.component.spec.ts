@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashBoardComponent } from './dash-board.component';
+import { JcategoryComponent } from './jcategory.component';
 
-describe('DashBoardComponent', () => {
-  let component: DashBoardComponent;
-  let fixture: ComponentFixture<DashBoardComponent>;
+describe('JcategoryComponent', () => {
+  let component: JcategoryComponent;
+  let fixture: ComponentFixture<JcategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashBoardComponent ]
+      declarations: [ JcategoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashBoardComponent);
+    fixture = TestBed.createComponent(JcategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

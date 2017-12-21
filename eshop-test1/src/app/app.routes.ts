@@ -1,36 +1,30 @@
-import { RouterModule, Routes } from '@angular/router';
-import { DashBoardComponent } from './dash-board/dash-board.component';
-import { ProductComponent } from './product/product.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { FurtherDetailsComponent } from './further-details/further-Details.component';
-export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashBoard',
-    pathMatch: 'full'
-  },
-  // , {
-  //   path: 'lazy',
-  //   loadChildren: './lazy/lazy.module#LazyModule' 
-  // },
-  {
-    path: 'dashBoard',
-    component: DashBoardComponent,
-    children: [
-      {
-        path: 'product',
-        component: ProductComponent
-      },
-      {
-        path: 'productDetails',
-        component: ProductDetailsComponent
-        // ,children: [
-        //   {
-        //     path: 'furtherDetails',
-        //     component:FurtherDetailsComponent
-        //   }
-        // ]
-      }
-    ]
-  }
-];
+import {RouterModule, Routes} from '@angular/router';
+import {JbodyComponent} from './jbody/jbody.component';
+import {JproductComponent} from './jproduct/jproduct.component';
+import {JproductDetailsComponent} from './jproduct-details/jproduct-details.component';
+export const routes : Routes = [
+    {
+      path: '',
+      redirectTo: 'dashBoard',
+      pathMatch: 'full'
+    },
+    // , {
+    //   path: 'lazy',
+    //   loadChildren: './lazy/lazy.module#LazyModule' 
+    // },
+    {
+      path:'jbody',
+      component:JbodyComponent,
+      children:[
+        {
+          path:'jproduct',
+          component:JproductComponent
+        },
+        {
+          path:'jdetails',
+          component:JproductDetailsComponent,
+          pathMatch:'full'
+        }
+      ]
+    }
+  ];

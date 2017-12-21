@@ -15,6 +15,7 @@ import { BodyContentComponent } from './body-content/body-content.component';
 import { HeaderContentComponent } from './header-content/header-content.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductComponent } from './product/product.component';
+import {PaginationService} from './pagination.service';
 // import { TreeNode } from '@angular/router/src/utils/tree';
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ProductComponent } from './product/product.component';
     RouterModule.forRoot(routes),
     TreeModule, HttpClientModule, TreeModule
   ],
-  providers: [EshopService],
+  providers: [EshopService, PaginationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

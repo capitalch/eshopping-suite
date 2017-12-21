@@ -3,15 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
-import { DashBoardComponent } from './dash-board/dash-board.component';
-import { ProductComponent } from './product/product.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { FurtherDetailsComponent } from './further-details/further-details.component';
+import { JbodyComponent } from './jbody/jbody.component';
+import { JcategoryComponent } from './jcategory/jcategory.component';
+import { JproductComponent } from './jproduct/jproduct.component';
+import { JproductDetailsComponent } from './jproduct-details/jproduct-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent, DashBoardComponent, ProductComponent, 
-    ProductDetailsComponent, FurtherDetailsComponent
+    AppComponent, JbodyComponent, JcategoryComponent, JproductComponent, JproductDetailsComponent
   ],
   imports: [
     BrowserModule,

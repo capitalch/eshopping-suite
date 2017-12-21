@@ -1,3 +1,11 @@
+// To do
+1. Create realistic data
+2. Broker service
+3. Router setup for Body, product, details
+4. app.config. Map enumerable http calls
+5. Placement of Category Product and Product details in main app
+6. Sql for count product in category and 1st page
+7. 
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's

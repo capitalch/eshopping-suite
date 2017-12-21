@@ -21,5 +21,14 @@
 </div>
 
 <div [ngClass]="productDetailsClass">
-  <input type="button" class="back" (click)="showProducts();"/>
+  <div class="backButtonContainer">
+    <input type="button" class="back" (click)="showProducts();"/>
+  </div>
+  <div class="detailsContainer" *ngIf="productDetails !== undefined">
+    <div class="imageContainer">
+      <img class="image" [src]="productDetails.image" />
+    </div>
+    <div>{{productDetails.name}}</div>
+    <div>{{productDetails.list_price}}</div>
+  </div>
 </div>

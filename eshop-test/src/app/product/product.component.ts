@@ -14,7 +14,7 @@ import { PaginationService } from '../pagination.service';
 })
 export class ProductComponent implements OnInit {
 
-  products: any[];
+  products: any;
   productSub: any;
   productDetails: any;
 
@@ -41,15 +41,14 @@ export class ProductComponent implements OnInit {
 
   showDetails(id)
   {
-    alert("ProductID - "+ id);
+    //getting product details
+    this.productDetails = this.products.find(p=>p.id == id);
+    
 
     //change class
     this.productContainerClass = "productContainerDisable";
     this.productDetailsClass = "productDetails";
 
-    //getting product details
-    this.productDetails = this.products.filter(p=>p.id == id);
-    
   }
 
   showProducts()

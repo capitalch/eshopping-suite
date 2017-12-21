@@ -38,7 +38,7 @@ let sqls = {
                 to_tsvector('english', label) @@ to_tsquery('english', %L)
         union
       SELECT id, label, parent_id
-        from cats where id in(
+        from category where id in(
           select parent_id from cte0
         ) 
     ), 

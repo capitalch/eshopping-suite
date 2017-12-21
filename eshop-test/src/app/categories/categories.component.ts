@@ -56,7 +56,7 @@ export class CategoriesComponent implements OnInit {
 
   nodeSelect(e) {
     this.loadNode(e);
-    alert(e.node.id);
+    //alert(e.node.id);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     e.node.leaf && (
       this.eshopService.httpPost('post:query:products:on:category', { params: [e.node.id] })

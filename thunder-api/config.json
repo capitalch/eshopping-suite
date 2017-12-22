@@ -4,5 +4,5 @@
     "user": "postgres",
     "database": "ecomm",
     "password": "su$hant123",
-    "dbPort": 5433
+    "dbPort": 5432
 }

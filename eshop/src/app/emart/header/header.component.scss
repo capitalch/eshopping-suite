@@ -1,102 +1,93 @@
-.leftControls
+// ======================================= Common ====================================================
+
+.upperSection, .lowerSection
+{
+    background: #232f3e;
+}
+
+
+//===============================================Upper Section ====================================================
+
+.upperSection
+{
+    width:100%;
+    height: 50%;
+}
+
+.logo
 {
     float:left;
-    width: 70%;
 }
 
 .searchContainer
 {
-    width: 70%;
-    margin-top: 20px;
+    width: 50%;
+    float: left;
+    margin-top: .5%;
+    margin-left: 1%;
 }
 
 .searchInput
 {
-    width:90%;
+    width:85%;
     height: 25px;
-    border: 2px solid white;
-    margin-left: 20px;
     float:left;
+    vertical-align: middle;
+    border: 2px solid white;
 }
 
 .searchButton
 {
-    width: 40px;
-    height: 35px;
+    width: 6%;
+    height: 2.4em;
     float:left;
     background-image: url('/assets/icons/search.png');
-    border: 1px solid black;
-    margin-top: -3px;
-}
-
-.displayControls
-{
-    margin-top: 45px;
-}
-
-.welcomeMsg
-{
-    margin-left:20px;
-    color: white;
-    background: #232f3e;
-    float: left;
-    font-size: 17px;
-}
-
-.rightControls
-{
-    float: right;
-    height: 100%;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 .loginControls
 {
-    margin-top:20px;
-    margin-right: 55px;
-    height: 20%;
+    float:right;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-right: 1%;
 }
 
-.cartContainer
-{
 
-}
-.cartButton
+//==========================================LOWER SECTION=========================================================
+
+.lowerSection
 {
-    background-image: url('/assets/icons/cart.png');
-    width: 42px;
-    height: 36px;
-    border: 0px solid black;
+    width:100%;
+    height: 50%;
 }
 
-.cartCount
+.displayControls
 {
-    background: #232f3e;
-    width: 66px;
     float: left;
-    text-align: center;
-    color: white;
-    font-size: 17px;
-}
-
-a 
-{
-    text-decoration: none;
-}
-
-.welcomeMsg:hover, .aboutMenu:hover, .contactMenu:hover ,.cartCount:hover 
-{
-    text-decoration: underline;
-    color: white;
-}
-
-.searchButton, .cartButton, .pointer
-{
-    cursor:pointer;
+    margin-top: 1%;
+    width: 47%;
+    margin-left: -10%;
 }
 
 .aboutMenu, .contactMenu
 {
-    margin-left: 25px;
+    margin-left: 5%;
+}
+
+.welcomeMsg
+{
+    float: left;
+}
+
+.aboutMenu, .contactMenu, .welcomeMsg
+{
     color:white;
-    font-size: 17px;
+}
+
+.welcomeMsg:hover, .aboutMenu:hover, .contactMenu:hover
+{
+    text-decoration: underline;
+    color: red;
 }

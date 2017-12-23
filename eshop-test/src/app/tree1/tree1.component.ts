@@ -25,7 +25,7 @@ export class Tree1Component implements OnInit {
 
   ngOnInit() {
     let a, b;
-    this.subs = this.eshopService.filterOn('post:query:categories:with:count').subscribe(d => {
+    this.subs = this.eshopService.filterOn('multiSql').subscribe(d => {
       d.error ? console.log(d.error) : (
         this.data1 = d.data,
         this.processLazy()

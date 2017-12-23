@@ -1,0 +1,93 @@
+// ======================================= Common ====================================================
+
+.upperSection, .lowerSection
+{
+    background: #232f3e;
+}
+
+
+//===============================================Upper Section ====================================================
+
+.upperSection
+{
+    width:100%;
+    height: 50%;
+}
+
+.logo
+{
+    float:left;
+}
+
+.searchContainer
+{
+    width: 50%;
+    float: left;
+    margin-top: .5%;
+    margin-left: 1%;
+}
+
+.searchInput
+{
+    width:85%;
+    height: 25px;
+    float:left;
+    vertical-align: middle;
+    border: 2px solid white;
+}
+
+.searchButton
+{
+    width: 6%;
+    height: 2.4em;
+    float:left;
+    background-image: url('/assets/icons/search.png');
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.loginControls
+{
+    float:right;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-right: 1%;
+}
+
+
+//==========================================LOWER SECTION=========================================================
+
+.lowerSection
+{
+    width:100%;
+    height: 50%;
+}
+
+.displayControls
+{
+    float: left;
+    margin-top: 1%;
+    width: 47%;
+    margin-left: -10%;
+}
+
+.aboutMenu, .contactMenu
+{
+    margin-left: 5%;
+}
+
+.welcomeMsg
+{
+    float: left;
+}
+
+.aboutMenu, .contactMenu, .welcomeMsg
+{
+    color:white;
+}
+
+.welcomeMsg:hover, .aboutMenu:hover, .contactMenu:hover
+{
+    text-decoration: underline;
+    color: red;
+}

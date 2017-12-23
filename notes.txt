@@ -1,6 +1,38 @@
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
+//product generator
+SELECT(
+    SELECT concat_ws('',name_first, name_last, name_last1) as generated
+    FROM (
+        SELECT string_agg(x,'')
+        FROM (
+            select start_arr[ 1 + ( (random() * 25)::int) % 16 ]
+            FROM
+            (
+                select '{CO,GE,FOR,SO,CO,GIM,SE,CO,GE,CA,FRA,GEC,GE,GA,FRO,GIP}'::text[] as start_arr
+            ) syllarr,
+            -- need 3 syllabes, and force generator interpretation with the '*0' (else 3 same syllabes)
+            generate_series(1, 1 + (generator*0))
+        ) AS comp3syl(x)
+    ) AS comp_name_1st(name_first),
+    
+    (
+        SELECT x[ 1 + ( (random() * 25)::int) % 14 ]
+        FROM (
+            select '{aLtd,a& Co,aSARL,aSA,aGmbh,aUnited,aBrothers,a& Sons,aInternational,aExt,aWorldwide,aGlobal,a2000,a3000}'::text[]
+        ) AS z2(x)
+    ) AS comp_name_last1(name_last1),
+    
+    (
+        SELECT x[ 1 + ( (random() * 25)::int) % 14 ]
+        FROM (
+            select '{Ltd,& Co,SARL,SA,Gmbh,United,Brothers,& Sons,International,Ext,Worldwide,Global,2000,3000}'::text[]
+        ) AS z2(x)
+    ) AS comp_name_last(name_last)
+    )
+FROM generate_series(1,1) as generator
+
 //search based recursive query to return all children
 with recursive 
 cte1 as (
@@ -254,6 +286,8 @@ with cte2 as (
 
 
 https://www.mockaroo.com/
+Formula type for random images
+'https://robohash.org/' + format(random(1,10000),0) + '.png?size=250x250&set=set1'  
 //good angular 2 tree and many other libraries
 https://libraries.io/explore/typescript-angular2-libraries?keywords=4%2CAngular+4%2Cangular+2%2Ctree%2Cangular-treeview%2Cangular+4&licenses=MIT%2CGPL-2.0&platforms=NPM
 // Angular 2 tree

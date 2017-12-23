@@ -11,31 +11,38 @@ https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_gen
 //important sql's
 //product generator
 SELECT(
-    SELECT concat_ws('',name_first, name_last, name_last1) as generated
+    SELECT concat_ws('',name_first, name_middle, name_last) as generated
     FROM (
         SELECT string_agg(x,'')
-        FROM (
-            select start_arr[ 1 + ( (random() * 25)::int) % 16 ]
+        FROM (select start_arr[ 1 + ( (random() * 160)::int) % 128 ]
             FROM
             (
-                select '{CO,GE,FOR,SO,CO,GIM,SE,CO,GE,CA,FRA,GEC,GE,GA,FRO,GIP}'::text[] as start_arr
-            ) syllarr,
-            -- need 3 syllabes, and force generator interpretation with the '*0' (else 3 same syllabes)
+                select '{
+                Bac,Bad,Baf,Bag,Baj,Bak,Bal,Bam,Ban,Bap,Bar,Bas,Bat,Baw,Bax,Bay,Baz,
+                Bec,Bed,Bef,Beg,Bej,Bek,Bel,Bem,Ben,Bep,Ber,Bes,Bet,Bew,Bex,Bey,Bez,
+                Bic,Bid,Bif,Big,Bij,Bik,Bil,Bim,Bin,Bip,Bir,Bis,Bit,Biw,Bix,Biy,Biz,
+                Boc,Bod,Bof,Bog,Boj,Bok,Bol,Bom,Bon,Bop,Bor,Bos,Bot,Bow,Box,Boy,Boz,
+                Buc,Bud,Buf,Bug,Buj,Buk,Bul,Bum,Bun,Bup,Bur,Bus,But,Buw,Bux,Buy,Buz,
+                Dec,Ded,Def,Deg,Dej,Dek,Del,Dem,Den,Dep,Der,Des,Det,Dew,Dex,Dey,Dez,
+                Gec,Ged,Gef,Geg,Gej,Gek,Gel,Gem,Gen,Gep,Ger,Ges,Get,Gew,Gex,Gey,Gez}'::text[] as start_arr
+            ) syllarr,            
             generate_series(1, 1 + (generator*0))
         ) AS comp3syl(x)
-    ) AS comp_name_1st(name_first),
-    
+    ) AS comp_name_1st(name_first),    
     (
-        SELECT x[ 1 + ( (random() * 25)::int) % 14 ]
+        SELECT x[ 1 + ( (random() * 85)::int) % 65 ]
         FROM (
-            select '{aLtd,a& Co,aSARL,aSA,aGmbh,aUnited,aBrothers,a& Sons,aInternational,aExt,aWorldwide,aGlobal,a2000,a3000}'::text[]
+            select '{ac,ad,af,ag,al,am,an,ap,ar,as,at,ax,az,
+            		ec,ed,ef,eg,el,em,en,ep,er,es,et,ex,ez,
+            		ic,id,if,ig,il,im,in,ip,ir,is,it,ix,iz
+            		oc,od,of,og,ol,om,on,op,or,os,ot,ox,oz
+            		uc,ud,uf,ug,ul,um,un,up,ur,us,ut,ux,uz}'::text[]
         ) AS z2(x)
-    ) AS comp_name_last1(name_last1),
-    
+    ) AS comp_name_last1(name_middle),    
     (
-        SELECT x[ 1 + ( (random() * 25)::int) % 14 ]
+        SELECT x[ 1 + ( (random() * 45)::int) % 36 ]
         FROM (
-            select '{Ltd,& Co,SARL,SA,Gmbh,United,Brothers,& Sons,International,Ext,Worldwide,Global,2000,3000}'::text[]
+            select '{-01,-12,-03,-09,-12,-23,-02,-10,-20,-30,-40,-50,-60,-70,-80,-90,-110,-120,-130,-140,-150,-160,-170,-180,-190,-200,-210,-220,-230,-240,-250,-260,-270,-280,-290,-300}'::text[]
         ) AS z2(x)
     ) AS comp_name_last(name_last)
     )

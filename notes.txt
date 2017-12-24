@@ -47,6 +47,55 @@ SELECT(
     ) AS comp_name_last(name_last)
     )
 FROM generate_series(1,1) as generator
+//used to create 50000 products---------------------------------------------------------------------------
+insert into product(name,list_price,code,descr,specs,details,image)
+select
+(
+    SELECT concat_ws('',name_first, name_middle, name_last) as generated
+    FROM (
+        SELECT string_agg(x,'')
+        FROM (select start_arr[ 1 + ( (random() * 160)::int) % 119 ]
+            FROM
+            (
+                select '{
+                Bac,Bad,Baf,Bag,Baj,Bak,Bal,Bam,Ban,Bap,Bar,Bas,Bat,Baw,Bax,Bay,Baz,
+                Bec,Bed,Bef,Beg,Bej,Bek,Bel,Bem,Ben,Bep,Ber,Bes,Bet,Bew,Bex,Bey,Bez,
+                Bic,Bid,Bif,Big,Bij,Bik,Bil,Bim,Bin,Bip,Bir,Bis,Bit,Biw,Bix,Biy,Biz,
+                Boc,Bod,Bof,Bog,Boj,Bok,Bol,Bom,Bon,Bop,Bor,Bos,Bot,Bow,Box,Boy,Boz,
+                Buc,Bud,Buf,Bug,Buj,Buk,Bul,Bum,Bun,Bup,Bur,Bus,But,Buw,Bux,Buy,Buz,
+                Dec,Ded,Def,Deg,Dej,Dek,Del,Dem,Den,Dep,Der,Des,Det,Dew,Dex,Dey,Dez,
+                Gec,Ged,Gef,Geg,Gej,Gek,Gel,Gem,Gen,Gep,Ger,Ges,Get,Gew,Gex,Gey,Gez}'::text[] as start_arr
+            ) syllarr,            
+            generate_series(1, 1 + (generator*0))
+        ) AS comp3syl(x)
+    ) AS comp_name_1st(name_first),    
+    (
+        SELECT x[ 1 + ( (random() * 85)::int) % 65 ]
+        FROM (
+            select '{ac,ad,af,ag,al,am,an,ap,ar,as,at,ax,az,
+            		ec,ed,ef,eg,el,em,en,ep,er,es,et,ex,ez,
+            		ic,id,if,ig,il,im,in,ip,ir,is,it,ix,iz
+            		oc,od,of,og,ol,om,on,op,or,os,ot,ox,oz
+            		uc,ud,uf,ug,ul,um,un,up,ur,us,ut,ux,uz}'::text[]
+        ) AS z2(x)
+    ) AS comp_name_last1(name_middle),    
+    (
+        SELECT x[ 1 + ( (random() * 45)::int) % 36 ]
+        FROM (
+            select '{-01,-12,-03,-09,-12,-23,-02,-10,-20,-30,-40,-50,-60,-70,-80,-90,-110,-120,-130,-140,-150,-160,-170,-180,-190,-200,-210,-220,-230,-240,-250,-260,-270,-280,-290,-300}'::text[]
+        ) AS z2(x)
+    ) AS comp_name_last(name_last)
+    ) as name,
+
+ (random() * 20000 + 1000)::int as list_price,
+ md5(RANDOM()::text) as code,
+ lipsum(20) as descr,
+ lipsum(15) as specs,
+ lipsum(50) as details,
+ 'https://robohash.org/' || random()::text || '.png?size=250x250&set=set1'  as image
+from generate_series(1,50000) as generator
+----------------------------------------------------------------------------------------------------------
+
 
 //function to create lorem ipsum---------------------------------------------------------------
 create or replace function lipsum( quantity_ integer ) returns character varying

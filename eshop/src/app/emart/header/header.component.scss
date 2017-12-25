@@ -17,6 +17,10 @@
 .logo
 {
     float:left;
+    margin-top: .5%;
+    margin-left: 1%;
+    font-size: xx-large;
+    color: white;
 }
 
 .searchContainer
@@ -30,7 +34,7 @@
 .searchInput
 {
     width:85%;
-    height: 25px;
+    height: 1.9em;
     float:left;
     vertical-align: middle;
     border: 2px solid white;
@@ -38,10 +42,9 @@
 
 .searchButton
 {
-    width: 6%;
+    width: 10%;
     height: 2.4em;
     float:left;
-    background-image: url('/assets/icons/search.png');
     vertical-align: middle;
     cursor: pointer;
 }
@@ -66,9 +69,9 @@
 .displayControls
 {
     float: left;
-    margin-top: 1%;
     width: 47%;
-    margin-left: -10%;
+    margin-top: .5%;
+    margin-left: 1%;
 }
 
 .aboutMenu, .contactMenu

@@ -1,6 +1,6 @@
 // ======================================= Common ====================================================
 
-.upperSection, .lowerSection
+.upper-section, .lower-section
 {
     background: #232f3e;
 }
@@ -8,7 +8,7 @@
 
 //===============================================Upper Section ====================================================
 
-.upperSection
+.upper-section
 {
     width:100%;
     height: 50%;
@@ -23,7 +23,7 @@
     color: white;
 }
 
-.searchContainer
+.search-container
 {
     width: 50%;
     float: left;
@@ -31,7 +31,7 @@
     margin-left: 1%;
 }
 
-.searchInput
+.search-input
 {
     width:85%;
     height: 1.9em;
@@ -40,7 +40,7 @@
     border: 2px solid white;
 }
 
-.searchButton
+.search-button
 {
     width: 10%;
     height: 2.4em;
@@ -49,7 +49,7 @@
     cursor: pointer;
 }
 
-.loginControls
+.login-controls
 {
     float:right;
     cursor: pointer;
@@ -60,36 +60,36 @@
 
 //==========================================LOWER SECTION=========================================================
 
-.lowerSection
+.lower-section
 {
     width:100%;
     height: 50%;
 }
 
-.displayControls
+.display-controls
 {
     float: left;
     width: 47%;
-    margin-top: .5%;
+    margin-top: 1.5%;
     margin-left: 1%;
 }
 
-.aboutMenu, .contactMenu
+.about-menu, .contact-menu
 {
     margin-left: 5%;
 }
 
-.welcomeMsg
+.welcome-msg
 {
     float: left;
 }
 
-.aboutMenu, .contactMenu, .welcomeMsg
+.about-menu, .contact-menu, .welcome-msg
 {
     color:white;
 }
 
-.welcomeMsg:hover, .aboutMenu:hover, .contactMenu:hover
+.welcome-msg:hover, .about-menu:hover, .contact-menu:hover
 {
     text-decoration: underline;
     color: red;

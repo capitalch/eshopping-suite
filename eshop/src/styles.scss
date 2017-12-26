@@ -10,8 +10,15 @@ body {
     height:$es-header-height;
     .section {
         line-height: $es-header-height;
-        .button {
-            cursor:pointer;
+        // .button {
+        //     cursor:pointer;
+        // }
+        // button {
+        //     height:10px;
+        // }
+        .btn-sm {
+            background-color: silver;
+            color:white;
         }
         .search-box {
             margin-left:$es-header-height/4;

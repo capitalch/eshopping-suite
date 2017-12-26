@@ -1,0 +1,278 @@
+1st level
+---------
+
+
+INSERT INTO public.category(label, parent_id) VALUES ('Electronics', null);
+INSERT INTO public.category(label, parent_id) VALUES ('Books', null);
+INSERT INTO public.category(label, parent_id) VALUES ('Grocery & Gourmet Foods', null);
+INSERT INTO public.category(label, parent_id) VALUES ('Fashion', null);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports & Fitness', null);
+
+
+
+
+
+
+
+2nd level
+----------
+
+
+INSERT INTO public.category(label, parent_id) VALUES ('Cameras', 1);
+INSERT INTO public.category(label, parent_id) VALUES ('Televisions', 1);
+INSERT INTO public.category(label, parent_id) VALUES ('Mobiles', 1);
+INSERT INTO public.category(label, parent_id) VALUES ('Air Conditioners', 1);
+INSERT INTO public.category(label, parent_id) VALUES ('Kitchen Appliances', 1);
+INSERT INTO public.category(label, parent_id) VALUES ('Smart Wearable Tech', 1);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Photography Books', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Reference', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Childrens Literature & Fiction', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Cinema & Broadcast', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Digital Media & Graphic Design', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Comics & Mangas', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Action & Adventure', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Arts, Film & Photography', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Biographies, Diaries & True Accounts', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Business & Economics', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Childrens & Young Adult', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Comics & Graphic Novels', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Computing, Internet & Digital Media', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Crafts, Home & Lifestyle', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Crime, Thriller & Mystery', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Exam Preparation', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Fantasy, Science Fiction & Horror', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Health & Personal Development', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Historical Fiction', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('History', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Humour', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Language, Linguistics & Writing', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Law', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Literature & Fiction', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Maps & Atlases', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Politics', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Religion', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Romance', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Sciences, Technology & Medicine', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Society & Social Sciences', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Textbooks', 2);
+INSERT INTO public.category(label, parent_id) VALUES ('Travel', 2);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Coffee, Tea & Beverages', 3);
+INSERT INTO public.category(label, parent_id) VALUES ('Baking Supplies', 3);
+INSERT INTO public.category(label, parent_id) VALUES ('Sweets, Chocolate & Gum', 3);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Men', 4);
+INSERT INTO public.category(label, parent_id) VALUES ('Women', 4);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Exercise', 5);
+INSERT INTO public.category(label, parent_id) VALUES ('Gym Accessories', 5);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports', 5);
+
+
+
+
+
+
+3rd level
+----------
+
+
+INSERT INTO public.category(label, parent_id) VALUES ('Point & Shoot Digital Cameras', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Digital SLR Cameras', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Point & Shoot Digital Camera Bundles', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Action Cameras', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Instant Film Cameras', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Lens Kits', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Digital SLR Camera Bundles', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Digital Cameras', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Camera Cases', 6);
+INSERT INTO public.category(label, parent_id) VALUES ('Spy Cameras', 6);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Full HD TVs', 7);
+INSERT INTO public.category(label, parent_id) VALUES ('Smart TVs', 7);
+INSERT INTO public.category(label, parent_id) VALUES ('Ultra HD TVs', 7);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Smartphones', 8);
+INSERT INTO public.category(label, parent_id) VALUES ('Feature Phones', 8);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Split ACs', 9);
+INSERT INTO public.category(label, parent_id) VALUES ('Window ACs', 9);
+INSERT INTO public.category(label, parent_id) VALUES ('Coolers', 9);
+INSERT INTO public.category(label, parent_id) VALUES ('Fans', 9);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Juicers/Mixers/Grinders', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Food Processors', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Water Purifiers', 10);
+INSERT INTO public.category(label, parent_id) VALUES ('Gas Stoves', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Chimneys', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Induction Cooktops', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Electric Cookers', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Coffee Makers & Electric Kettles', 10);
+INSERT INTO public.category(label, parent_id) VALUES ('Toasters & Sandwich Makers', 10);
+INSERT INTO public.category(label, parent_id) VALUES ('Hand Blenders & Choppers', 10); 
+INSERT INTO public.category(label, parent_id) VALUES ('Roti Makers', 10);
+INSERT INTO public.category(label, parent_id) VALUES ('Grills', 10);
+INSERT INTO public.category(label, parent_id) VALUES ('Snack Makers', 10);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Smart Watches', 11);
+INSERT INTO public.category(label, parent_id) VALUES ('Smart Glasses (VR)', 11);
+INSERT INTO public.category(label, parent_id) VALUES ('Smart Bands', 11);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Footwear', 48);
+INSERT INTO public.category(label, parent_id) VALUES ('Clothing', 48);
+INSERT INTO public.category(label, parent_id) VALUES ('Watches', 48);
+INSERT INTO public.category(label, parent_id) VALUES ('Accessories', 48);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Ethnic Wear', 49);
+INSERT INTO public.category(label, parent_id) VALUES ('Footwear', 49);
+INSERT INTO public.category(label, parent_id) VALUES ('Western Wear', 49);
+INSERT INTO public.category(label, parent_id) VALUES ('Winter Wear', 49);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Home Gym', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Dumbbells', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Treadmills', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Abdominal Exercisers', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Exercise Bikes', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Yoga Mats', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Exercise Benches', 50);
+INSERT INTO public.category(label, parent_id) VALUES ('Weighing Scales', 50);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Mens Active Wear', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Womens Active Wear', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports Footwear', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Fitness Gadgets', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Sippers', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Gym Gloves', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports Nutrition', 51);
+INSERT INTO public.category(label, parent_id) VALUES ('Gym Bags', 51);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Running', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Cricket', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Football', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Skating', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Badminton', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Basketball', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Table Tennis', 52);
+INSERT INTO public.category(label, parent_id) VALUES ('Archery and Shooting', 52);
+
+
+
+
+
+       
+4th level
+------------
+
+
+INSERT INTO public.category(label, parent_id) VALUES ('Sports Shoes', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Casual Shoes', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Sandals & Floaters', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Formal Shoes', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Loafers', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Slippers', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Sneakers', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Running Shoes', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Boots', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Ethnic Footwear', 88);
+INSERT INTO public.category(label, parent_id) VALUES ('Socks', 88);
+    
+INSERT INTO public.category(label, parent_id) VALUES ('TShirts  Polos', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Jeans', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Shirts', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Jackets', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Sweaters', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Sweatshirts', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Trousers & Chinos', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Thermals', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Trackpants & Tracksuits', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Kurta, Pyjama & Sherwanis', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Suits & Blazers', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Suitings & Shirtings', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Innerwear & Sleepwear', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Sportswear', 89);
+INSERT INTO public.category(label, parent_id) VALUES ('Rainwear', 89);
+        
+INSERT INTO public.category(label, parent_id) VALUES ('Luxury Watches', 90);
+INSERT INTO public.category(label, parent_id) VALUES ('Trendy Watches', 90);
+INSERT INTO public.category(label, parent_id) VALUES ('Watch Gift Sets', 90);
+
+INSERT INTO public.category(label, parent_id) VALUES ('Wallets', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Belts', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Jewellery & Cufflinks', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Hats & Caps', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Gift Sets', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Neckties & Cravats', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Card Holders', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Keychains', 91);
+INSERT INTO public.category(label, parent_id) VALUES ('Suspenders', 91);   
+
+INSERT INTO public.category(label, parent_id) VALUES ('Sarees', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Salwar Suits', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Kurtas & Kurtis', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Lehengas', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Shawls', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Saree Combo', 92);
+INSERT INTO public.category(label, parent_id) VALUES ('Salwars & Churidars', 92);     
+
+INSERT INTO public.category(label, parent_id) VALUES ('Heels', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Boots', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Casual Shoes', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Flats & Sandals', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Sports Shoes', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Ballerinas', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Slippers & Flip Flops', 93);
+INSERT INTO public.category(label, parent_id) VALUES ('Ethnic Footwear', 93);    
+
+INSERT INTO public.category(label, parent_id) VALUES ('Tops & Tunics', 94);
+INSERT INTO public.category(label, parent_id) VALUES ('Dresses', 94);
+INSERT INTO public.category(label, parent_id) VALUES ('T-Shirts', 94);
+INSERT INTO public.category(label, parent_id) VALUES ('Jeans & Jeggings', 94);
+INSERT INTO public.category(label, parent_id) VALUES ('Innerwear', 94);
+INSERT INTO public.category(label, parent_id) VALUES ('Sportswear', 94);        
+
+INSERT INTO public.category(label, parent_id) VALUES ('Shrugs & Waistcoats', 95);
+INSERT INTO public.category(label, parent_id) VALUES ('Sweatshirts', 95);
+INSERT INTO public.category(label, parent_id) VALUES ('Jackets', 95);
+INSERT INTO public.category(label, parent_id) VALUES ('Cardigans & Pullovers', 95);   
+        
+
+    
+        
+
+    
+
+
+    
+
+
+    
+
+
+    
+        
+            
+        
+            
+        
+            
+        
+            
+    
+        
+            
+        
+            
+        
+            
+        
+            
+
+    
+        
+    
+        
+    
+        
+

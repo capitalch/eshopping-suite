@@ -1,0 +1,96 @@
+// ======================================= Common ====================================================
+@import 'variables';
+// @import 'mixins';
+
+// .upper-section, .lower-section
+// {
+//     background: #232f3e;
+// }
+// .upper-section, .lower-section
+// {
+//     width:100vw;
+//     height: 6vh;
+// }
+
+//===============================================Upper Section ====================================================
+
+// .logo
+// {
+//     @include logo-mixin;
+// }
+
+// input[type="button"]{
+//     background-color: $primary;
+// }
+.search-container
+{
+    width: 50vw;
+    float: left;
+    margin-top: 0.8vh;
+    margin-left: 1%;
+}
+
+.search-input
+{
+    width: 44vw;
+    height: 3.3vh;
+    float:left;
+    vertical-align: middle;
+}
+
+.search-button
+{
+    width: 5vw;
+    height: 4.1vh;
+    float:left;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.login-controls
+{
+    float:right;
+    cursor: pointer;
+    margin-top: 2vh;
+    margin-right: 1.5vw;
+}
+
+.pointer
+{
+    width: 4vw;
+    height: 3vh;
+    cursor: pointer;
+}
+
+
+//==========================================LOWER SECTION=========================================================
+
+// .display-controls
+// {
+//     float: left;
+//     width: 30vw;
+//     margin-top: 2vh;
+//     margin-left: 1vw;
+//     font-size: 1vw;
+// }
+
+.about-menu, .contact-menu
+{
+    margin-left: 3vw;
+}
+
+.welcome-msg
+{
+    float: left;
+}
+
+.about-menu, .contact-menu, .welcome-msg
+{
+    color:white;
+}
+
+.welcome-msg:hover, .about-menu:hover, .contact-menu:hover
+{
+    text-decoration: underline;
+    color: red;
+}

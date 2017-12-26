@@ -1,30 +1,21 @@
-import {RouterModule, Routes} from '@angular/router';
-import {JbodyComponent} from './jbody/jbody.component';
-import {JproductComponent} from './jproduct/jproduct.component';
-import {JproductDetailsComponent} from './jproduct-details/jproduct-details.component';
-export const routes : Routes = [
+import { RouterModule, Routes } from '@angular/router';
+import { EmartComponent } from './emart/emart.component';
+// import { TestComponent } from './test/test.component';
+
+export const routes: Routes = [
     {
-      path: '',
-      redirectTo: 'dashBoard',
-      pathMatch: 'full'
+        path: '',
+        redirectTo: 'emart',
+        pathMatch: 'full'
     },
-    // , {
-    //   path: 'lazy',
-    //   loadChildren: './lazy/lazy.module#LazyModule' 
-    // },
     {
-      path:'jbody',
-      component:JbodyComponent,
-      children:[
-        {
-          path:'jproduct',
-          component:JproductComponent
-        },
-        {
-          path:'jdetails',
-          component:JproductDetailsComponent,
-          pathMatch:'full'
-        }
-      ]
+        path: 'emart',
+        // component: EmartComponent
+        loadChildren:'./emart/emart.module#EmartModule',
+        pathMatch: 'full'
     }
-  ];
+    // ,{
+    //     path:'test',
+    //     component:TestComponent
+    // }
+]

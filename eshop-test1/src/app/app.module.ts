@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { routes } from './app.routes';
+import { AppService } from './service/app.service';
+import { BrokerService } from './service/broker.service';
 import { AppComponent } from './app.component';
-import { JbodyComponent } from './jbody/jbody.component';
-import { JcategoryComponent } from './jcategory/jcategory.component';
-import { JproductComponent } from './jproduct/jproduct.component';
-import { JproductDetailsComponent } from './jproduct-details/jproduct-details.component';
+import { EmartModule } from './emart/emart.module';
+import { routes } from './app.routes';
+// import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
-    AppComponent, JbodyComponent, JcategoryComponent, JproductComponent, JproductDetailsComponent
+    AppComponent
+    // ,TestComponent
   ],
   imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes)
+    BrowserModule, RouterModule.forRoot(routes)
+    // , EmartModule
   ],
-  providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
+  providers: [AppService, BrokerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

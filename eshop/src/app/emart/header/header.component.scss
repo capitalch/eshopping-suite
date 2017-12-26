@@ -1,27 +1,27 @@
 // ======================================= Common ====================================================
 @import 'variables';
-@import 'mixins';
+// @import 'mixins';
 
-.upper-section, .lower-section
-{
-    background: #232f3e;
-}
-.upper-section, .lower-section
-{
-    width:100vw;
-    height: 6vh;
-}
+// .upper-section, .lower-section
+// {
+//     background: #232f3e;
+// }
+// .upper-section, .lower-section
+// {
+//     width:100vw;
+//     height: 6vh;
+// }
 
 //===============================================Upper Section ====================================================
 
-.logo
-{
-    @include logo-mixin;
-}
+// .logo
+// {
+//     @include logo-mixin;
+// }
 
-input[type="button"]{
-    background-color: $primary;
-}
+// input[type="button"]{
+//     background-color: $primary;
+// }
 .search-container
 {
     width: 50vw;
@@ -65,14 +65,14 @@ input[type="button"]{
 
 //==========================================LOWER SECTION=========================================================
 
-.display-controls
-{
-    float: left;
-    width: 30vw;
-    margin-top: 2vh;
-    margin-left: 1vw;
-    font-size: 1vw;
-}
+// .display-controls
+// {
+//     float: left;
+//     width: 30vw;
+//     margin-top: 2vh;
+//     margin-left: 1vw;
+//     font-size: 1vw;
+// }
 
 .about-menu, .contact-menu
 {

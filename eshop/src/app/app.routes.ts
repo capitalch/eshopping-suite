@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { EmartComponent } from './emart/emart.component';
-import { TestComponent } from './test/test.component';
+// import { TestComponent } from './test/test.component';
 
 export const routes: Routes = [
     {

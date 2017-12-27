@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
@@ -19,7 +19,6 @@ import { routes } from './app.routes';
     BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule, AngularMaterialModule
     // , EmartModule
   ],
-  schemas: [NO_ERRORS_SCHEMA],
   providers: [AppService, BrokerService],
   bootstrap: [AppComponent]
 })

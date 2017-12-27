@@ -1,96 +1,63 @@
-// ======================================= Common ====================================================
 @import 'variables';
-// @import 'mixins';
 
-// .upper-section, .lower-section
-// {
-//     background: #232f3e;
-// }
-// .upper-section, .lower-section
-// {
-//     width:100vw;
-//     height: 6vh;
-// }
-
-//===============================================Upper Section ====================================================
-
-// .logo
-// {
-//     @include logo-mixin;
-// }
-
-// input[type="button"]{
-//     background-color: $primary;
-// }
-.search-container
-{
-    width: 50vw;
-    float: left;
-    margin-top: 0.8vh;
-    margin-left: 1%;
-}
-
-.search-input
-{
-    width: 44vw;
-    height: 3.3vh;
-    float:left;
-    vertical-align: middle;
-}
-
-.search-button
-{
-    width: 5vw;
-    height: 4.1vh;
-    float:left;
-    vertical-align: middle;
-    cursor: pointer;
-}
-
-.login-controls
-{
-    float:right;
-    cursor: pointer;
-    margin-top: 2vh;
-    margin-right: 1.5vw;
-}
-
-.pointer
-{
-    width: 4vw;
-    height: 3vh;
-    cursor: pointer;
+.header {
+    background-color: $emart-header-background;
+    color: $emart-header-font-color;
+    width:100vw;
+    height:6vh;
+    .logo {
+        float:left;
+        font-size: 2.0em;
+        margin-top: 0.8vh;
+        margin-left: 1vw;
+        color:$theme-logo-color;
+    }
+    .search-container {
+        width: 50vw;
+        float: left;
+        margin-top: 0.8vh;
+        margin-left: 1vw;
+        .search-input{
+            width: 44vw;
+            height: 3.3vh;
+            float:left;
+            vertical-align: middle;    
+        }
+        .search-button{
+            width: 5vw;
+            height: 4.1vh;
+            float:left;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    }
+    .login-controls
+    {
+        float:right;
+        margin-top: 2vh;
+        margin-right: 1.5vw;
+        .header-button {
+            cursor: pointer;
+        }
+        .profile-button
+        {
+            // @extend .header-button;
+            // border: none;
+            // color: white;
+            // padding: 20px;
+            // text-align: center;
+            // text-decoration: none;
+            // display: inline-block;
+            // font-size: 16px;
+            // margin: 4px 2px;
+            // border-radius: 50%;
+            
+        }
+    }
 }
 
 
-//==========================================LOWER SECTION=========================================================
 
-// .display-controls
-// {
-//     float: left;
-//     width: 30vw;
-//     margin-top: 2vh;
-//     margin-left: 1vw;
-//     font-size: 1vw;
-// }
 
-.about-menu, .contact-menu
-{
-    margin-left: 3vw;
-}
 
-.welcome-msg
-{
-    float: left;
-}
 
-.about-menu, .contact-menu, .welcome-msg
-{
-    color:white;
-}
-
-.welcome-msg:hover, .about-menu:hover, .contact-menu:hover
-{
-    text-decoration: underline;
-    color: red;
-}

@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~material-design-icons/iconfont/material-icons.css';
 @import 'variables';
 body {
     font-size: $es-base-font-size;
@@ -10,30 +9,27 @@ body {
     color: $es-header-footer-base-color;
     height:$es-header-height;
     .section {
-        line-height: $es-header-height;       
-        .es-mat-search { 
-            color: rgba(255, 255, 255, 1);
-            font-size: 30px;
-            vertical-align: middle;
-            cursor:pointer;
-        }        
+        line-height: $es-header-height;         
         .search-box {
             margin-left:$es-header-height/4;
             height:$es-search-box-height;
             width:$es-search-box-width;
         }
         .es-button {
-            // height:1em;
             background-color: $es-header-footer-background-color;
-            margin-top: 7px;
-            min-width: 4vw;
-            // width: 4.5vw;
-            // margin-right: 2em;
+            margin-top: 0.5em;
+        }
+        .es-search-button {
+            min-width:1em;
+            margin-top:-3px;
+            width:1em;
+            background: $es-header-footer-background-color;
+            min-height: 1em;
+            height:3.0em;
+            vertical-align: middle;
         }
         .item-right{
-            float:right;   
-            // margin-top:$es-header-height/4;
-            // margin-right: $es-header-height/4;
+            float:right;
         }
         .clear {
             clear:both;

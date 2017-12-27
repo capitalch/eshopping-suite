@@ -3,85 +3,55 @@
 .header {
     background-color: $emart-header-background;
     color: $emart-header-font-color;
-    .upper-section {
-        width:100vw;
-        height: 6vh;
-        .logo {
+    width:100vw;
+    height:6vh;
+    .logo {
+        float:left;
+        font-size: 2.5em;
+        margin-top: 0.8vh;
+        margin-left: 1vw;
+        color:$theme-logo-color;
+    }
+    .search-container {
+        width: 50vw;
+        float: left;
+        margin-top: 0.8vh;
+        margin-left: 1vw;
+        .search-input{
+            width: 44vw;
+            height: 3.3vh;
             float:left;
-            font-size: 2.5em;
-            margin-top: 0.8vh;
-            margin-left: 1vw;
-            color:$logo-color;
+            vertical-align: middle;    
         }
-        .search-container {
-            width: 50vw;
-            float: left;
-            margin-top: 0.8vh;
-            margin-left: 1vw;
-            .search-input{
-                width: 44vw;
-                height: 3.3vh;
-                float:left;
-                vertical-align: middle;    
-            }
-            .search-button{
-                width: 5vw;
-                height: 4.1vh;
-                float:left;
-                vertical-align: middle;
-                cursor: pointer;
-            }
-        }
-        .login-controls
-        {
-            float:right;
-            margin-top: 2vh;
-            margin-right: 1.5vw;
-            .header-button {
-                cursor: pointer;
-            }
+        .search-button{
+            width: 5vw;
+            height: 4.1vh;
+            float:left;
+            vertical-align: middle;
+            cursor: pointer;
         }
     }
-    .lower-section{
-        width:100vw;
-        height: 6vh;
-        .menu-controls{
-            float: left;
-            width: 30vw;
-            margin-top: 2vh;
-            margin-left: 1vw;
-            font-size: 1.3em;
-            .welcome-msg{
-                color: $emart-header-font-color
-            }
-            .about-menu, .contact-menu
-            {
-                @extend .welcome-msg;
-                margin-left: 3vw;
-            }
-            .welcome-msg:hover, .about-menu:hover, .contact-menu:hover
-            {
-                text-decoration: underline;
-                color: red;
-            }
+    .login-controls
+    {
+        float:right;
+        margin-top: 2vh;
+        margin-right: 1.5vw;
+        .header-button {
+            cursor: pointer;
         }
-        .cart-controls{
-            float:right;
-            // .cartButton
-            // {
-            //     background-image: url('/assets/icons/cart.png');
-            //     width: 42px;
-            //     height: 36px;
-            // }
-            // .cartCount
-            // {
-            //     background: $emart-header-background;
-            //     width: 66px;
-            //     float: left;
-            //     text-align: center;
-            //     color: $emart-header-font-color;
-            //     font-size: 17px;
-            // }
+        .profile-button
+        {
+            // @extend .header-button;
+            // border: none;
+            // color: white;
+            // padding: 20px;
+            // text-align: center;
+            // text-decoration: none;
+            // display: inline-block;
+            // font-size: 16px;
+            // margin: 4px 2px;
+            // border-radius: 50%;
+            
         }
     }
 }

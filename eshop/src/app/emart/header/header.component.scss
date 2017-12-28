@@ -54,11 +54,12 @@
         {
             float:right;
             margin-top: 1vh;
-            margin-right: .5vw;
+            width:13vw;
             .header-button {  
                 background-color: $emart-header-background;
                 cursor: pointer;
                 min-width:0vw;
+                border: 1px solid $emart-header-background;
             }
             .header-button:hover
             {

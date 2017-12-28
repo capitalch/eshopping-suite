@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {BrokerService} from '../service/broker.service';
 
 @Component({
   selector: 'app-emart',
@@ -8,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class EmartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private brokerService: BrokerService) { }
 
   ngOnInit() {
   }

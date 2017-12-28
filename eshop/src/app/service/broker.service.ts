@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
-import { getHttpUrl } from '../../assets/options';
+import { urlMaps } from '../../assets/options';
 
 @Injectable()
 export class BrokerService {
@@ -13,7 +13,29 @@ export class BrokerService {
     idNotMappedToUrl: 'Message id is not mapped to http url in config.ts file at application root.',
     httpGetUnknownError: 'Unknown error encountered while making http get request'
   };
-  constructor(private httpClient: HttpClient) { }
+
+  getHttpUrl = (id) => {
+    let host = urlMaps.host.replace(/\/$/, "");
+    let url = urlMaps[id];
+    url && (url = url.replace(/^,/, ''));
+    url = host.concat('/', url);
+    return (url);
+  }
+
+  constructor(private httpClient: HttpClient) {
+
+    httpClient
+      .get('assets/settings.json')
+      .subscribe(d => {
+        console.log(d);
+      }, err => {
+        console.log(err);
+      });
+
+    // console.log(this.getHttpUrl('post:query:generic'));
+  }
+
+
 
   emit(id: string, options?: any) {
     this
@@ -26,7 +48,7 @@ export class BrokerService {
   };
 
   httpPost(id: string, body?: any, queryParams?: {}, carryBag?: any) {
-    let url = getHttpUrl(id);// urlMaps[id];
+    let url = this.getHttpUrl(id);// urlMaps[id];
     body = body || {};
     body && (body.id = id);
     if (queryParams) {
@@ -55,7 +77,7 @@ export class BrokerService {
 
   httpGet(id: string, queryParams?: {}) {
     try {
-      let url = getHttpUrl(id);// urlMaps[id];
+      let url = this.getHttpUrl(id);// urlMaps[id];
       let httpParams = new HttpParams();
       httpParams = queryParams && (Object.keys(queryParams).reduce((prevValue, x, i) => {
         httpParams = httpParams.append(x, queryParams[x]);

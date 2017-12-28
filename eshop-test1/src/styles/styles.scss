@@ -14,6 +14,7 @@ body {
             margin-left:$es-header-height/4;
             height:$es-search-box-height;
             width:$es-search-box-width;
+            font-size: 1.4em;
         }
         .es-button {
             background-color: $es-header-footer-background-color;
@@ -27,6 +28,9 @@ body {
             min-height: 1em;
             height:3.0em;
             vertical-align: middle;
+            i{
+                font-size: 1.5em;
+            }
         }
         .item-right{
             float:right;

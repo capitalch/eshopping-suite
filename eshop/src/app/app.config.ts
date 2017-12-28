@@ -1,5 +1,5 @@
-export const internalMessages = {
-
+export const localMessages = {
+    'getsettings':'get:settings'
 };
 export const httpMessages = {
     getCategoriesWithCount: 'post:query:generic',

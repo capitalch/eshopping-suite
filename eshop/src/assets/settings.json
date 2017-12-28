@@ -1,3 +1,4 @@
 {
-	"test":"http://localhost:4200"
+	"host":"http://localhost:3002",
+	"post:query:generic":"db/sql/generic"
 }

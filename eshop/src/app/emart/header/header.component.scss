@@ -4,34 +4,34 @@
     background-color: $emart-header-background;
     color: $emart-header-font-color;
     width:100vw;
-    height:8vh;
+    height:4.3em;
     .left-container{
         float:left;
-        font-size: 2.0em;
-        margin-top: 0.8vh;
         margin-left: 1vw;
+        margin-top: .9vh;
         .logo {
             float: left;
             font-size: 2.5em;
-            margin-top: 1.5vh;
             color:$theme-logo-color;
         }
         .search-container {
             float:left;
             width: 40vw;
-            margin-top: 1.4vh;
             margin-left: 1vw;
             .search-input{
-                width: 30vw;
-                height: 4.2vh;
+                width: 28vw;
+                height: 1.8em;
                 float:left;
                 vertical-align: middle; 
                 font-size: 1.5em;
             }
             .search-button{
-                @extend .button-border-background;
+                background-color: $emart-header-background;
+                border: 1px solid $emart-header-font-color;
                 float:left;
                 cursor: pointer;
+                min-width:0vw;
+                height: 2.9em;
             }
         }
     }
@@ -53,22 +53,34 @@
         .login-controls
         {
             float:right;
-            margin-top: 1.5vh;
-            margin-right: 1.5vw;
-            .header-button {
-                @extend .button-border-background;
+            margin-top: 1vh;
+            margin-right: .5vw;
+            .header-button {  
+                background-color: $emart-header-background;
                 cursor: pointer;
+                min-width:0vw;
+            }
+            .header-button:hover
+            {
+                border: 1px solid $emart-header-font-color;
             }
         }
     }
 }
-
-.button-border-background
-{
-    background-color: $emart-header-background;
-    border: 1px solid $emart-header-font-color;
+@media screen and (max-width: 800px) {
+    .button-text {
+        display: none;
+    }
+    .header .left-container .search-container .search-button
+    {
+        border:.5px solid white;
+    }
+    .header .left-container .logo
+    {
+        font-size: 2em;
+        margin-top: 1vh;
+    }
 }
-
 
 
 

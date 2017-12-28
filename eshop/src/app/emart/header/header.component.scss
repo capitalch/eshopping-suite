@@ -4,56 +4,67 @@
     background-color: $emart-header-background;
     color: $emart-header-font-color;
     width:100vw;
-    height:6vh;
-    .logo {
+    height:8vh;
+    .left-container{
         float:left;
-        font-size: 2.5em;
-        margin-top: 0.8vh;
         margin-left: 1vw;
-        color:$theme-logo-color;
-    }
-    .search-container {
-        width: 50vw;
-        float: left;
-        margin-top: 0.8vh;
-        margin-left: 1vw;
-        .search-input{
-            width: 44vw;
-            height: 3.3vh;
-            float:left;
-            vertical-align: middle;    
+        .logo {
+            float: left;
+            font-size: 2.5em;
+            margin-top: 1.5vh;
+            color:$theme-logo-color;
         }
-        .search-button{
-            width: 5vw;
-            height: 4.1vh;
+        .search-container {
             float:left;
-            vertical-align: middle;
-            cursor: pointer;
+            width: 40vw;
+            margin-top: 1.4vh;
+            margin-left: 1vw;
+            .search-input{
+                width: 30vw;
+                height: 4.2vh;
+                float:left;
+                vertical-align: middle; 
+                font-size: 1.5em;
+            }
+            .search-button{
+                @extend .button-border-background;
+                float:left;
+                cursor: pointer;
+            }
         }
     }
-    .login-controls
+    .right-container
     {
         float:right;
-        margin-top: 2vh;
-        margin-right: 1.5vw;
-        .header-button {
-            cursor: pointer;
-        }
-        .profile-button
+        margin-right: 1vw;
+        .profile-controls
         {
-            // @extend .header-button;
-            // border: none;
-            // color: white;
-            // padding: 20px;
-            // text-align: center;
-            // text-decoration: none;
-            // display: inline-block;
-            // font-size: 16px;
-            // margin: 4px 2px;
-            // border-radius: 50%;
-            
+            float:right;
+            margin-top: .3vh;
+            .round-image
+            {
+                border-radius: 50%;
+                margin-top: .4vh;
+                cursor: pointer;
+            }
+        }
+        .login-controls
+        {
+            float:right;
+            margin-top: 1.5vh;
+            margin-right: 1.5vw;
+            .header-button {
+                @extend .button-border-background;
+                cursor: pointer;
+            }
         }
     }
+}
+
+.button-border-background
+{
+    background-color: $emart-header-background;
+    border: 1px solid $emart-header-font-color;
 }
 
 

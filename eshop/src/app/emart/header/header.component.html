@@ -1,14 +1,24 @@
 <div class="header">
-  <div class='section'>
+  <div class='left-container'>
     <span class="logo">eMART</span>
     <div class="search-container">
       <input class="search-input" />
-      <input class="search-button" type="button" value="Search" />
-    </div>
-    <div class="login-controls">
-      <!-- <input class="profile-button" type="button" /> -->
-      <input class="header-button" type="button" value="SignUp" />
-      <input class="header-button" type="button" value="Login" />
+      <button mat-button class="search-button" >
+        <i class="fa fa-search fa-x" aria-hidden="true"></i> Search
+      </button>
     </div>
   </div>
-</div>
+  <div class="right-container">
+    <div class="profile-controls">
+        <a><img class="round-image" src="../../../assets/temp/person.PNG" width="60em" height="50em"/></a>
+    </div>
+    <div class="login-controls">
+      <button mat-button class="header-button">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        Login</button>
+      <button mat-button class="header-button">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+        Signup</button> 
+    </div>
+   </div>
+  </div>  

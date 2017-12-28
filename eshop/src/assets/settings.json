@@ -1,4 +1,6 @@
 {
 	"host":"http://localhost:3002",
-	"post:query:generic":"db/sql/generic"
+	"post:query:categories:with:count":"db/sql/generic",
+	"post:query:products:on:category":"db/sql/generic",
+	"post:query:categories:product:on:input":"db/sql/generic"
 }

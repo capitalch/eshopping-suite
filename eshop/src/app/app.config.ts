@@ -1,10 +1,10 @@
-export const internalMessages = {
-
+export const localMessages = {
+    'getsettings':'get:settings'
 };
 export const httpMessages = {
-    getCategoriesWithCount: 'post:query:generic',
-    getProductsOnCategory: 'post:query:generic',
-    searchCategoriesProductsOnInput: 'post:query:generic'
+    getCategoriesWithCount: 'post:query:categories:with:count',
+    getProductsOnCategory: 'post:query:products:on:category',
+    searchCategoriesProductsOnInput: 'post:query:categories:product:on:input'
 }
 // export const urlMaps = {
 //     'get:emp1': `http://localhost:3002/db/test`

@@ -31,7 +31,7 @@ import {PaginationService} from './pagination.service';
   imports: [
     BrowserModule,FormsModule,
     RouterModule.forRoot(routes),
-    TreeModule, HttpClientModule, TreeModule
+    TreeModule, HttpClientModule
   ],
   providers: [EshopService, PaginationService],
   bootstrap: [AppComponent]

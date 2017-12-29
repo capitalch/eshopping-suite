@@ -41,7 +41,6 @@ export class CategoryComponent implements OnInit {
       );
     })
     this.subs.add(sub1).add(sub2);
-    let x = this.ptree;
   }
 
   processLazy() {

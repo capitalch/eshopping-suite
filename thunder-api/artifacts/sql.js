@@ -29,7 +29,7 @@ let sqls = {
   with cte0 as (    
     select id, name as label, cat_id as parent_id
       from product
-          where to_tsvector('english', name) @@ to_tsquery('english', '-200')    
+          where to_tsvector('english', name) @@ to_tsquery('english', %L)    
   )    
   , cte1 as(        
     select id,label, 0 as parent_id

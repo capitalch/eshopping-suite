@@ -4,20 +4,25 @@
     height: 4.3em;
 }
 
+.body-container
+{
+    height: 87vh;
+}
+
 .category-container
 {
-    background: red;
-    width:30em;
+    width:27.5em;
+    float:left;
 }
 
 .product-container
 {
-
+    width: 92.5em;
+    float:left;
 }
 
 .footer-container
 {
     width: 100vw;
     height: 4.3em;
-    background: yellow;
 }

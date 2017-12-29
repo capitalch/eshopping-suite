@@ -1,6 +1,6 @@
 @import 'variables';
 
-.header {
+.em-header {
     background-color: $emart-header-background;
     color: $emart-header-font-color;
     width:100vw;
@@ -54,7 +54,7 @@
         {
             float:right;
             margin-top: 1vh;
-            width:13vw;
+            width:16em;
             .header-button {  
                 background-color: $emart-header-background;
                 cursor: pointer;
@@ -80,6 +80,10 @@
     {
         font-size: 2em;
         margin-top: 1vh;
+    }
+    .em-header .right-container .login-controls
+    {
+        width:9em;
     }
 }
 

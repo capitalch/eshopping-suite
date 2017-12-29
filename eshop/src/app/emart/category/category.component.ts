@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { TreeNode } from 'primeng/primeng';
 import * as _ from 'lodash';
@@ -14,6 +14,7 @@ import { localMessages, httpMessages } from '../../app.config';
 })
 
 export class CategoryComponent implements OnInit {
+  @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
@@ -40,10 +41,11 @@ export class CategoryComponent implements OnInit {
       );
     })
     this.subs.add(sub1).add(sub2);
+    let x = this.ptree;
   }
 
   processLazy() {
-    let items: any[];
+    // let items: any[];
     this.lazyTree = this.categories.filter(x => {
       x.leaf = x.cat_cnt == 0;
       return (x.parent_id == null);

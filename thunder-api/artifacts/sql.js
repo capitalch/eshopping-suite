@@ -25,7 +25,35 @@ let sqls = {
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
-  , 'post:query:categories:product:on:input': `with recursive 
+  , 'post:query:categories:product:on:input': `
+  with cte0 as (    
+    select id, name as label, cat_id as parent_id
+      from product
+          where to_tsvector('english', name) @@ to_tsquery('english', '-200')    
+  )    
+  , cte1 as(        
+    select id,label, 0 as parent_id
+        from category
+          where id in(select parent_id from cte0)
+  ), cte3 as(
+      select 0 as id, 'All categories' as label, null::int as parent_id, (select count(0) from cte1)::int as cat_cnt, 0::int as product_cnt
+      union
+    select cte1.id, cte1.label, cte1.parent_id, 0 as cat_cnt, count(0)::int as product_cnt 
+      from cte1 inner join cte0
+        on cte1.id = cte0.parent_id
+        group by cte1.id, cte1.label, cte1.parent_id
+        order by id
+  )
+  select id,
+--    CASE
+--     	WHEN id = 0 then label
+--         else label || '(' || product_cnt || ')'
+--         end
+--         as label , parent_id, cat_cnt, product_cnt from cte3 order by label
+  label || '(' || GREATEST(product_cnt,cat_cnt) || ')' as label, parent_id, cat_cnt, product_cnt from cte3 order by id
+  `,
+
+  'post:query:categories:product:on:input1': `with recursive 
   cte0 as (
       select id, name as label, cat_id as parent_id
         from product

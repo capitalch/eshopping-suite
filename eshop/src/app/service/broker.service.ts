@@ -54,7 +54,7 @@ export class BrokerService {
   httpPost(id: string, body?: any, queryParams?: {}, carryBag?: any) {
     let url = this.getHttpUrl(id);// urlMaps[id];
     body = body || {};
-    body && (body.id = id);
+    body.id || (body.id = id);
     if (queryParams) {
       let httpParams = new HttpParams();
       httpParams = Object

@@ -32,42 +32,42 @@ export class CategoryComponent implements OnInit {
       console.log('categories init:');
       this.brokerService.httpPost(httpMessages.getCategoriesWithCount);
     });
-    let sub2 = this.brokerService.filterOn(httpMessages.searchCategoriesProductsOnInput).subscribe(d => {
+    let sub2 = this.brokerService.filterOn(httpMessages.searchSpecificOrReturnAll).subscribe(d => {
       d.error ? (console.log(d.error)) : (
-        this.categories=d.data,
+        this.categories = d.data,
         this.processLazy(),
         console.log(d.data)
       );
-  })
+    })
     this.subs.add(sub1).add(sub2);
   }
 
-processLazy() {
-  let items: any[];
-  this.lazyTree = this.categories.filter(x => {
-    x.leaf = x.cat_cnt == 0;
-    return (x.parent_id == null);
-  });
-}
+  processLazy() {
+    let items: any[];
+    this.lazyTree = this.categories.filter(x => {
+      x.leaf = x.cat_cnt == 0;
+      return (x.parent_id == null);
+    });
+  }
 
-loadNode(e) {
-  let item = e.node;
-  let children = this.categories.filter(x => {
-    x.leaf = x.cat_cnt == 0;
-    return (item.id == x.parent_id);
-  });
-  item.children = children;
-}
+  loadNode(e) {
+    let item = e.node;
+    let children = this.categories.filter(x => {
+      x.leaf = x.cat_cnt == 0;
+      return (item.id == x.parent_id);
+    });
+    item.children = children;
+  }
 
-nodeSelect(e) {
-  this.loadNode(e);
-  e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
-  // e.node.leaf && (
-  !e.node.hasProducts && this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [e.node.id] }, null, e.node);
-  // );
-}
+  nodeSelect(e) {
+    this.loadNode(e);
+    e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
+    // e.node.leaf && (
+    !e.node.hasProducts && this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [e.node.id] }, null, e.node);
+    // );
+  }
 
-ngOnDestroy() {
-  this.subs.unsubscribe();
-}
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 }

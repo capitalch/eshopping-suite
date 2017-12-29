@@ -80,7 +80,7 @@ let sqls = {
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ') ' || c2.label as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte5 c2
             order by id;`
-, multiSql:`
+  , multiSql: `
     with cte1 as(
       SELECT id, label,  parent_id
           FROM cats

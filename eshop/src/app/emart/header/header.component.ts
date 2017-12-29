@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { httpMessages } from '../../app.config';
+import { httpMessages, localMessages } from '../../app.config';
 import { BrokerService } from '../../service/broker.service';
 
 @Component({
@@ -18,11 +18,12 @@ export class HeaderComponent implements OnInit {
   }
 
   doSearch() {
-    this.brokerService.httpPost(httpMessages.searchCategoriesProductsOnInput, { params: [this.searchString,this.searchString] });
+    let httpMessage = httpMessages.getCategoriesWithCount;
+    this.searchString && (httpMessage = httpMessages.searchCategoriesProductsOnInput);
+    this.brokerService.httpPost(httpMessages.searchSpecificOrReturnAll, { id: httpMessage, params: [this.searchString, this.searchString] });
   }
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
-
 }

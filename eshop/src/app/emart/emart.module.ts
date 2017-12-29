@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { TreeModule } from 'primeng/primeng';
@@ -14,6 +15,7 @@ import { routes } from './emart.routes';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     AngularMaterialModule,
     TreeModule

@@ -48,6 +48,11 @@
                 border-radius: 50%;
                 margin-top: .4vh;
                 cursor: pointer;
+                border: 1px solid $emart-header-background;
+            }
+            .round-image:hover
+            {
+                border: 1px solid $emart-header-font-color;
             }
         }
         .login-controls
@@ -72,11 +77,11 @@
     .button-text {
         display: none;
     }
-    .header .left-container .search-container .search-button
+    .em-header .left-container .search-container .search-button
     {
         border:.5px solid white;
     }
-    .header .left-container .logo
+    .em-header .left-container .logo
     {
         font-size: 2em;
         margin-top: 1vh;

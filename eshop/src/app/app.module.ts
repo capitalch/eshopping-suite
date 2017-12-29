@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
@@ -17,7 +18,8 @@ import { routes } from './app.routes';
     // ,TestComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule, AngularMaterialModule, HttpClientModule
+    BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule,
+    AngularMaterialModule, HttpClientModule
     // , EmartModule
   ],
   providers: [AppService, BrokerService],

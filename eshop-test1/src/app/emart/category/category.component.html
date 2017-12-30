@@ -1,3 +1,6 @@
-<p>
-  category works!
-</p>
+<p-tree #ptree [value]="lazyTree" (onNodeExpand)="loadNode($event)" selectionMode="single" [(selection)] ="selectedFiles"
+  (onNodeSelect)="nodeSelect($event)"></p-tree>
+
+<div class="filter-container">
+
+</div>

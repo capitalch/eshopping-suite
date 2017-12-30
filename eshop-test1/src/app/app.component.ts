@@ -10,7 +10,7 @@ export class AppComponent {
   constructor(private router: Router) {
 
   }
-  // test() {
-  //   this.router.navigate(['emart']);
-  // }
+  nav(){
+    console.log('Nav');
+  }
 }

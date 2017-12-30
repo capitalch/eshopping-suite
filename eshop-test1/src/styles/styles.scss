@@ -1,56 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 body {
-    font-size: $es-base-font-size;
+    font-size: $theme-font-size;
+    margin:0px !important;
 }
-
-.es-header {
-    background-color: $es-header-footer-background-color;
-    color: $es-header-footer-base-color;
-    height:$es-header-height;
-    .section {
-        line-height: $es-header-height;         
-        .search-box {
-            margin-left:$es-header-height/4;
-            height:$es-search-box-height;
-            width:$es-search-box-width;
-            font-size: 1.4em;
-        }
-        .es-button {
-            background-color: $es-header-footer-background-color;
-            margin-top: 0.5em;
-        }
-        .es-search-button {
-            min-width:1em;
-            margin-top:-3px;
-            width:1em;
-            background: $es-header-footer-background-color;
-            min-height: 1em;
-            height:3.0em;
-            vertical-align: middle;
-            i{
-                font-size: 1.5em;
-            }
-        }
-        .item-right{
-            float:right;
-        }
-        .clear {
-            clear:both;
-        }
-        .es-logo {
-            float:left;
-            margin-top: 0.1em;
-            margin-left: 0.4em;
-            font-size: 2em;
-            color: $es-logo-color;
-        }
-    }
-}
-
-
-
-
-// input[type="button"]{
-//     background-color: $es-basic-button-background-color;
-// }

@@ -12,7 +12,7 @@ export class AppService {
       .subscribe(d => {
         console.log(d);
         this.brokerService.init(d);
-        this.brokerService.emit(localMessages.getsettings, d);
+        this.brokerService.behEmit(localMessages.getsettings, d);
       }, err => {
         console.log(err);
       });

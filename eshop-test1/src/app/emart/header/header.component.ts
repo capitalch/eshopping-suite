@@ -8,7 +8,6 @@ import { BrokerService } from '../../service/broker.service';
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
 export class HeaderComponent implements OnInit {
   subs: any;
   searchString: string = '';

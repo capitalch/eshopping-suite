@@ -1,25 +1,21 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation, } from '@angular/core';
+import {Router} from '@angular/router';
 import { BrokerService } from '../../service/broker.service';
 import { TreeNode } from 'primeng/primeng';
-import * as _ from 'lodash';
 import { AppService } from '../../service/app.service';
 import { localMessages, httpMessages } from '../../app.config';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'
-  ],
+  styleUrls: ['./category.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
 export class CategoryComponent implements OnInit {
-  @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
-  // selectedFiles: TreeNode[];
-  constructor(private brokerService: BrokerService, private appService: AppService) {
+  constructor(private brokerService: BrokerService, private appService: AppService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,6 +34,12 @@ export class CategoryComponent implements OnInit {
         this.categories = d.data,
         this.processLazy(),
         console.log(d.data)
+      );
+    });
+    let sub3 = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d=>{
+      d.error ?console.log(d.error) :(
+        console.log(d.data),
+        this.router.navigate(['emart/composite/product'])
       );
     })
     this.subs.add(sub1).add(sub2);
@@ -65,10 +67,15 @@ export class CategoryComponent implements OnInit {
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     // e.node.leaf && (
     !e.node.hasProducts && this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [e.node.id] }, null, e.node);
+    
     // );
   }
 
+  nav(){
+    this.router.navigate(['emart/composite/product']);
+  }
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
+
 }

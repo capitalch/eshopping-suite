@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmartComponent } from './emart.component';
+import { Comp3Component } from './comp3.component';
 
-describe('EmartComponent', () => {
-  let component: EmartComponent;
-  let fixture: ComponentFixture<EmartComponent>;
+describe('Comp3Component', () => {
+  let component: Comp3Component;
+  let fixture: ComponentFixture<Comp3Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmartComponent ]
+      declarations: [ Comp3Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmartComponent);
+    fixture = TestBed.createComponent(Comp3Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

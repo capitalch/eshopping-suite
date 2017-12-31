@@ -7,20 +7,13 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { AppService } from './service/app.service';
 import { BrokerService } from './service/broker.service';
 import { AppComponent } from './app.component';
-import { EmartModule } from './emart/emart.module';
 import { routes } from './app.routes';
-import { Comp1Component } from './comp1/comp1.component';
-import { Comp2Component } from './comp2/comp2.component';
-import { Comp3Component } from './comp3/comp3.component';
-import { Composite1Component } from './composite1/composite1.component';
+// import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Comp1Component,
-    Comp2Component,
-    Comp3Component,
-    Composite1Component
+    AppComponent
+    // ,CategoryComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule,

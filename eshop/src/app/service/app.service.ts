@@ -4,7 +4,9 @@ import { BrokerService } from './broker.service';
 import { localMessages } from '../app.config';
 @Injectable()
 export class AppService {
-  constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
+  constructor(private httpClient: HttpClient
+    , private brokerService: BrokerService
+  ) {
     console.log('App service called');
     //get settings file
     httpClient

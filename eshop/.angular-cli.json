@@ -24,14 +24,12 @@
         "../node_modules/primeng/resources/themes/omega/theme.css",
         "styles/styles.scss"
       ],
-      "scripts": [
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      },
-      "stylePreprocessorOptions": {
+      },"stylePreprocessorOptions": {
         "includePaths": [
           "styles"
         ]
@@ -63,7 +61,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "component": {}
   }
 }

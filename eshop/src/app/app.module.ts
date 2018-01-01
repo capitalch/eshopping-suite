@@ -1,24 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { AppComponent } from './app.component';
+import { routes } from './app.routes';
 import { AppService } from './service/app.service';
 import { BrokerService } from './service/broker.service';
-import { AppComponent } from './app.component';
-import { EmartModule } from './emart/emart.module';
-import { routes } from './app.routes';
+
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule,
-    AngularMaterialModule, HttpClientModule
-    // , EmartModule
+    BrowserModule, RouterModule.forRoot(routes)
+    , BrowserAnimationsModule
+    , AngularMaterialModule
+    , HttpClientModule
   ],
   providers: [AppService, BrokerService],
   bootstrap: [AppComponent]

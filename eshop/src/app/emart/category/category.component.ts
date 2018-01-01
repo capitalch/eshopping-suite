@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { TreeNode } from 'primeng/primeng';
-import * as _ from 'lodash';
+// import * as _ from 'lodash';
 import { AppService } from '../../service/app.service';
 import { localMessages, httpMessages } from '../../app.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -14,12 +15,12 @@ import { localMessages, httpMessages } from '../../app.config';
 })
 
 export class CategoryComponent implements OnInit {
-  @ViewChild('ptree') ptree: ElementRef;
+  // @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
   // selectedFiles: TreeNode[];
-  constructor(private brokerService: BrokerService, private appService: AppService) {
+  constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
   }
 
   ngOnInit() {
@@ -39,7 +40,15 @@ export class CategoryComponent implements OnInit {
         this.processLazy(),
         console.log(d.data)
       );
-    })
+    });
+
+    let sub3 = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        console.log(d.data),
+        this.router.navigate(['emart/composite/product'])
+      );
+    });
+
     this.subs.add(sub1).add(sub2);
   }
 
@@ -63,9 +72,13 @@ export class CategoryComponent implements OnInit {
   nodeSelect(e) {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
-    // e.node.leaf && (
-    !e.node.hasProducts && this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [e.node.id] }, null, e.node);
-    // );
+    this.router.navigate(['emart/composite/product']);
+    !e.node.hasProducts
+      && this.brokerService.httpPost(httpMessages.getProductsOnCategory
+        , { params: [e.node.id] }
+        , null
+        , e.node
+      );
   }
 
   ngOnDestroy() {

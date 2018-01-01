@@ -1,34 +1,28 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CompositeComponent } from './composite/composite.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './emart.routes';
+import { ProductComponent } from './product/product.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { TreeModule } from 'primeng/primeng';
-import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
-import { HeaderComponent } from './header/header.component';
-import { EmartComponent } from './emart.component';
 import { FooterComponent } from './footer/footer.component';
-import { routes } from './emart.routes';
+import { TreeModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(routes),
+    CommonModule, RouterModule.forChild(routes), 
+    FormsModule, 
     AngularMaterialModule,
     TreeModule
   ],
-  exports: [
-    EmartComponent
-  ],
-  declarations: [
+  declarations: [CompositeComponent, 
+    ProductComponent, 
     ProductDetailsComponent,
-    ProductComponent,
-    CategoryComponent,
-    HeaderComponent,
-    EmartComponent,
-    FooterComponent]
+    HeaderComponent, CategoryComponent, FooterComponent
+  ]
 })
 export class EmartModule { }

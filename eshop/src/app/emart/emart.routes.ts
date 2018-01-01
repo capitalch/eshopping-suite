@@ -1,11 +1,20 @@
 import {RouterModule, Routes} from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
-import {EmartComponent} from './emart.component';
-// import {BodyComponent} from './body/body.component';
-
-export const routes : Routes = [
+import { CompositeComponent } from './composite/composite.component';
+import { ProductComponent } from './product/product.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+export const routes : Routes =[
     {
       path: '',
-      component: EmartComponent  
+      redirectTo:'composite',
+      //pathMatch:'full'
+    }
+    , {
+      path: 'composite',
+      component:CompositeComponent,
+      //pathMatch:'full',
+      children: [
+        { path: 'product', component: ProductComponent },
+        { path: 'productDetails', component: ProductDetailsComponent }
+      ]
     }
   ];

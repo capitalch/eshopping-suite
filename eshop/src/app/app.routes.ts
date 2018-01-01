@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { EmartComponent } from './emart/emart.component';
-// import { TestComponent } from './test/test.component';
+// import { CompositeComponent } from './emart/composite/composite.component';
 
 export const routes: Routes = [
     {
@@ -10,12 +9,8 @@ export const routes: Routes = [
     },
     {
         path: 'emart',
-        // component: EmartComponent
-        loadChildren:'./emart/emart.module#EmartModule',
-        pathMatch: 'full'
+        loadChildren: './emart/emart.module#EmartModule'
+        //, pathMatch: 'full'
+        // component:CompositeComponent,        
     }
-    // ,{
-    //     path:'test',
-    //     component:TestComponent
-    // }
 ]

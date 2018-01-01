@@ -10,7 +10,17 @@ export const routes: Routes = [
     {
         path: 'emart',
         loadChildren: './emart/emart.module#EmartModule'
-        //, pathMatch: 'full'
-        // component:CompositeComponent,        
+    },
+    {
+        path:'admin',
+        loadChildren:'./admin/admin.module#AdminModule'
+    },
+    {
+        path:'b2b',
+        loadChildren:'./b2b/b2b.module#B2bModule'
+    },
+    {
+        path:'reports',
+        loadChildren:'./reports/reports.module#ReportsModule'
     }
 ]

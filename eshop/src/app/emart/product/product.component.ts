@@ -2,40 +2,62 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BrokerService } from '../../service/broker.service';
 import { httpMessages, localMessages } from '../../app.config';
-import { settings } from '../emart.config';
-
+import { settings, navUrls } from '../emart.config';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
+
 export class ProductComponent implements OnInit {
   subs: any;
+  catId: number;
+  pageObject: {
+    length: number,
+    pageIndex: number,
+    pageSize: number,
+    pageSizeOptions: [number]
+  } = {
+      length: 0,
+      pageIndex: 0,
+      pageSize: +settings.productPageSize,
+      pageSizeOptions: [5, 10, 20, 50]
+    }
   pageNo: number = 1;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) { }
 
   ngOnInit() {
-    // console.log('product init');
     this.subs = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
-      d.error ? console.log(d.error) : (console.log(d.data));
+      d.error ? console.log(d.error) : (
+        console.log(d.data),
+        this.pageObject.length = d.data[0].count
+      );
     });
 
     let sub1 = this.brokerService.filterOn(localMessages.getsettings).subscribe(d => {
       this.activatedRoute.params.subscribe(params => {
-        let catId = params.catId;
-        let pageSize = +settings.productPageSize;
-        let offSet = (this.pageNo - 1) * pageSize  ;
-        this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [catId, offSet, pageSize] })
+        this.catId = params.catId;
+        this.pageChange();
       });
     });
-
     this.subs.add(sub1);
-    // this.activatedRoute.params.subscribe(params => {
-    //   let catId = params.catId;
-    //   this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [catId] })
-    // });
-    // MatPaginator
+  }
+
+  pageChange() {
+    let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
+    this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [this.catId, offSet, this.pageObject.pageSize] })
+  }
+
+  pageSelected(e) {
+    this.pageObject.pageIndex = e.pageIndex;
+    this.pageObject.pageSize = e.pageSize;
+    this.pageChange();
+    console.log(e);
+  }
+
+  itemSelected(e) {
+    this.router.navigate([navUrls.productDetails])
   }
 
   nav() {

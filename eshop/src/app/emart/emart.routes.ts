@@ -13,7 +13,7 @@ export const routes : Routes =[
       component:CompositeComponent,
       //pathMatch:'full',
       children: [
-        { path: 'product', component: ProductComponent },
+        { path: 'product/:catId', component: ProductComponent },
         { path: 'productDetails', component: ProductDetailsComponent }
       ]
     }

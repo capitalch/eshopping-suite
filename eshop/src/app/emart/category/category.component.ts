@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit {
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
-  // selectedFiles: TreeNode[];
+  selectedFiles: TreeNode[];
   constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
   }
 

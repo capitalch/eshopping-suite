@@ -7,9 +7,9 @@ let sqls = {
           from category c1 inner join cte1 c2
             on c1.parent_id = c2.id
       )
-      select * from product where cat_id in (
+      select * , count(0) OVER() as count from product where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
-      )`
+      ) order by id offset %s limit %s;`
   , 'post:query:categories:with:count': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
       from category c1 left outer join category c2 
           on c1.id = c2.parent_id

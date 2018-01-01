@@ -24,14 +24,14 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('categories init:');
     this.subs = this.brokerService.filterOn(httpMessages.getCategoriesWithCount).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
         this.processLazy()
       );
     });
-    let sub1 = this.brokerService.filterOn(localMessages.getsettings).subscribe(d => {
-      console.log('categories init:');
+    let sub1 = this.brokerService.filterOn(localMessages.getsettings).subscribe(d => {      
       this.brokerService.httpPost(httpMessages.getCategoriesWithCount);
     });
     let sub2 = this.brokerService.filterOn(httpMessages.searchSpecificOrReturnAll).subscribe(d => {

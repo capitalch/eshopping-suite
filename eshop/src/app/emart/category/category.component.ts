@@ -65,6 +65,11 @@ export class CategoryComponent implements OnInit {
   nodeSelect(e) {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
+    let sub = this.brokerService.filterOn('test').subscribe(d=>{
+      console.log(d.data);
+      (!e.node.hasProducts && !e.node.leaf) && (e.node.hasProducts=true,e.node.label+='('+d.data+')');
+      sub.unsubscribe();
+    })
     let catId = e.node.id;
     this.router.navigate([navUrls.product, catId]);
   }

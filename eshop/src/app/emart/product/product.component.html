@@ -1,6 +1,13 @@
-<button (click)="nav()">Product Details</button>
-<p>
-  product works!
-</p>
-<mat-paginator [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
+<mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
   [pageSize] = "pageObject.pageSize" [pageSizeOptions] = "pageObject.pageSizeOptions" (page) = "pageSelected($event)"></mat-paginator>
+<div class="products">
+  <div class="product" *ngFor="let product of products">
+    <a (click)= "showDetails(product.id);">
+      <img src="{{product.image}}" width="100px" height="100px" />
+      <div>{{product.name}}</div>
+      <div>{{product.code}}</div>
+      <div>{{product.descr}}</div>
+      <div>{{product.list_price}}</div>
+    </a>
+  </div>
+</div>

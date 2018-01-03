@@ -25,12 +25,15 @@ export class ProductComponent implements OnInit {
       pageSizeOptions: [5, 10, 20, 50]
     }
   pageNo: number = 1;
+  products: any;
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) { }
 
   ngOnInit() {
     this.subs = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
       d.error ? console.log(d.error) : (
         console.log(d.data),
+        this.products = d.data,
         this.pageObject.length = d.data[0].count
       );
     });

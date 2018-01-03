@@ -31,14 +31,14 @@
                 float:left;
                 cursor: pointer;
                 min-width:0vw;
-                height: 2.9em;
+                height: 2.75em;
             }
         }
     }
     .right-container
     {
         float:right;
-        margin-right: 1vw;
+        margin-right: 2vw;
         .profile-controls
         {
             float:right;
@@ -73,7 +73,8 @@
         }
     }
 }
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 850px) {
     .button-text {
         display: none;
     }
@@ -91,6 +92,32 @@
         width:9em;
     }
 }
+
+
+@media screen and (min-width: 200px) and (max-width:600px){
+    .em-header .left-container .logo
+    {
+        font-size: 1em;
+        margin-top: 2vh;
+    }
+    .button-text {
+        display: none;
+    }
+    .em-header .left-container .search-container {
+        float: left;
+        width: 43vw;
+        margin-left: 1vw;
+    }
+    .em-header .right-container .login-controls {
+        float: right;
+        margin-top: 1vh;
+        width: 9em;
+    }
+}
+
+
+
+
 
 
 

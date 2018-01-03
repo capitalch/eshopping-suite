@@ -3,4 +3,6 @@
 body {
     font-size: $theme-font-size;
     margin:0px !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

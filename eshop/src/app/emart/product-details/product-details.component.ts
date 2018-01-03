@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {navUrls} from '../emart.config';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   nav(){
-    this.router.navigate(['emart/composite/product'])
+    this.router.navigate([navUrls.product]);
   }
 }

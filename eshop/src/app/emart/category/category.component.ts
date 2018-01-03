@@ -42,13 +42,6 @@ export class CategoryComponent implements OnInit {
       );
     });
 
-    // let sub3 = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
-    //   d.error ? console.log(d.error) : (
-    //     console.log(d.data),
-    //     this.router.navigate([navUrls.product])
-    //   );
-    // });
-
     this.subs.add(sub1).add(sub2);
   }
 
@@ -74,12 +67,6 @@ export class CategoryComponent implements OnInit {
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     let catId = e.node.id;
     this.router.navigate([navUrls.product, catId]);
-    // !e.node.hasProducts
-    //   && this.brokerService.httpPost(httpMessages.getProductsOnCategory
-    //     , { params: [e.node.id] }
-    //     , null
-    //     , e.node
-    //   );
   }
 
   ngOnDestroy() {

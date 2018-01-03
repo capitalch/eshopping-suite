@@ -6,7 +6,6 @@
 
 .body-container
 {
-    height: 57.5em;
 }
 
 .category-container
@@ -17,7 +16,6 @@
 
 .product-container
 {
-    width: 92.5em;
     float:left;
     min-height: 57.5em;
 }
@@ -26,4 +24,12 @@
 {
     width: 100vw;
     height: 4.3em;
+    float: left;
+}
+
+@media screen and (max-width: 700px) {
+    .category-container
+    {
+        width:20em;
+    }
 }

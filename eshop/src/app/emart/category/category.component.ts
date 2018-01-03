@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
         this.processLazy()
       );
     });
-    let sub1 = this.brokerService.filterOn(localMessages.getsettings).subscribe(d => {      
+    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {      
       this.brokerService.httpPost(httpMessages.getCategoriesWithCount);
     });
     let sub2 = this.brokerService.filterOn(httpMessages.searchSpecificOrReturnAll).subscribe(d => {

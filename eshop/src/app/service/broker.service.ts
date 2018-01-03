@@ -20,7 +20,7 @@ export class BrokerService {
 
   constructor(private httpClient: HttpClient) {
     this.subject = new Subject();
-    this.behSubject = new BehaviorSubject(1);
+    this.behSubject = new BehaviorSubject(0);
   }
   init(_settings){
     this.settings = _settings;

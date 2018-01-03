@@ -14,6 +14,7 @@ https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_gen
 
 //working
 --------------------------------------------------------------------------------------------------------------
+https://stackoverflow.com/questions/12293888/postgresql-count-the-number-of-children
 with recursive cte1 as (
 	select c.id, label, parent_id, count(0) as prod_cnt from category c
     	join product p on c.id = p.cat_id group by cat_id, c.id

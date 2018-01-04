@@ -19,15 +19,18 @@ export class CategoryComponent implements OnInit {
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
-  selectedFiles: TreeNode[];
+  selectedFiles: any;
   constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
   }
 
   ngOnInit() {
     console.log('categories init:');
+    let catId;
     this.subs = this.brokerService.filterOn(httpMessages.getCategoriesWithCount).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
+        d.data && (d.data.length > 0) && (this.selectedFiles=d.data[0]) 
+          && (catId=d.data[0].id) && (this.router.navigate([navUrls.product, catId])),
         this.processLazy()
       );
     });

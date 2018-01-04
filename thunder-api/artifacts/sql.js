@@ -10,7 +10,22 @@ let sqls = {
       select * , count(0) OVER() as count from product where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
       ) order by id offset %s limit %s;`
-  , 'post:query:categories:with:count': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
+  , 'post:query:categories:with:count':`with recursive cte1 as(
+    select c.id,c.label, c.parent_id, count(0) as product_cnt, true as leaf
+        from category c inner join product p
+          on p.cat_id = c.id
+            group by c.id, c.parent_id 
+      union all
+        select c.id,c.label, c.parent_id, cte1.product_cnt, false as leaf
+          from category c join cte1
+            on c.id = cte1.parent_id
+  ), cte2 as (select id, label, parent_id, sum(product_cnt) as product_cnt, leaf
+    from cte1
+        group by id, parent_id, label, leaf
+            order by id, parent_id)
+  select id, label || ' (' || product_cnt || ')' as label, parent_id, product_cnt, leaf from cte2` 
+  
+  ,'post:query:categories:with:count1': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
       from category c1 left outer join category c2 
           on c1.id = c2.parent_id
               group by c1.id

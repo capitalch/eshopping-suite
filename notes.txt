@@ -19,7 +19,7 @@ with recursive cte1 as(
     	from category c inner join product p
     		on p.cat_id = c.id
     			group by c.id, c.parent_id 
-    union
+    union all
     	select c.id,c.label, c.parent_id, cte1.product_cnt
     		from category c join cte1
     			on c.id = cte1.parent_id

@@ -34,9 +34,7 @@ export class ProductComponent implements OnInit {
       d.error ? console.log(d.error) : (
         console.log(d.data),
         this.products = d.data,
-        this.pageObject.length = d.data[0].count,
-        this.brokerService.emit('test',this.pageObject.length
-      ));
+        this.pageObject.length = d.data[0].count);
     });
 
     let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {

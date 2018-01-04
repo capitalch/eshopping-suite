@@ -21,7 +21,7 @@ var allowCrossDomain = function (req, res, next) {
             'ccess-Control-Allow-Origin,x-access-token');
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
-        res.send(200);
+        res.sendStatus(200);
     } else {
         next();
     }

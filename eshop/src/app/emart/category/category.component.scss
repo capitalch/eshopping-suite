@@ -7,12 +7,16 @@ p-tree {
     width:23em;
     height: 22em;
     border: 1px solid black;
+    .ui-tree-container {
+        height:95%;
+        margin-top: 14px ;
+    }
 }
 
-.ui-tree-container
-{
-    margin-top: 9px !important;
-}
+// .ui-tree-container
+// {
+//     margin-top: 9px !important;
+// }
 
 .filter-container
 {

@@ -38,8 +38,9 @@ export class ProductComponent implements OnInit {
       );
     });
 
-    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
+    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {      
       this.activatedRoute.params.subscribe(params => {
+        this.pageObject.pageIndex=0;
         this.catId = params.catId;
         this.pageObject.length = params.count;
         (params.searchString && (params.searchString != "undefined"))

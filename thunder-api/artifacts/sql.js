@@ -10,6 +10,7 @@ let sqls = {
       select * from product where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
       ) order by id offset %s limit %s;`
+  , 'post:query:search:products:only:on:input':``
   , 'post:query:categories:with:count':`with recursive cte1 as(
     select c.id,c.label, c.parent_id, count(0) as product_cnt, true as leaf
         from category c inner join product p

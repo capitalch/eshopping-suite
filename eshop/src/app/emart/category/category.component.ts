@@ -18,6 +18,7 @@ export class CategoryComponent implements OnInit {
   // @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
+  searchString:string;
   lazyTree: any[] = [];
   selectedFiles: any;
   constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
@@ -40,6 +41,7 @@ export class CategoryComponent implements OnInit {
     let sub2 = this.brokerService.filterOn(httpMessages.searchSpecificOrReturnAll).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
+        this.searchString=d.carryBag,
         this.processLazy(),
         console.log(d.data)
       );
@@ -69,7 +71,7 @@ export class CategoryComponent implements OnInit {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     let catId = e.node.id;
-    this.router.navigate([navUrls.product, {catId:catId, count:e.node.product_cnt}]);
+    this.router.navigate([navUrls.product, {catId:catId, count:e.node.product_cnt, searchString:this.searchString}]);
   }
 
   ngOnDestroy() {

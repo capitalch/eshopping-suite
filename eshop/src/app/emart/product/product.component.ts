@@ -13,6 +13,7 @@ import { settings, navUrls } from '../emart.config';
 export class ProductComponent implements OnInit {
   subs: any;
   catId: number;
+  searchString:String;
   pageObject: {
     length: number,
     pageIndex: number,
@@ -42,6 +43,7 @@ export class ProductComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         this.catId = params.catId;
         this.pageObject.length = params.count;
+        this.searchString = params.searchString;
         this.pageChange();
       });
     });
@@ -50,7 +52,9 @@ export class ProductComponent implements OnInit {
 
   pageChange() {
     let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
-    this.brokerService.httpPost(httpMessages.getProductsOnCategory, { params: [this.catId, offSet, this.pageObject.pageSize] })
+    let httpMessage = this.searchString ? httpMessages.searchProductsOnlyOnInput :httpMessages.getProductsOnCategory
+    this.brokerService.httpPost(httpMessage, { params: [this.catId, offSet, this.pageObject.pageSize, this.searchString
+    ] })
   }
 
   pageSelected(e) {

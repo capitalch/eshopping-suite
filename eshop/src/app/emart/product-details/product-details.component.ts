@@ -15,6 +15,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   nav(){
-    this.router.navigate([navUrls.product]);
+    window.history.back();
   }
 }

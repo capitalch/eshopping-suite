@@ -1,6 +1,8 @@
 .pagination
 {
     margin-left:1vw;
+    margin-right: 30vw;
+    float: left;
 }
 .products
 {
@@ -67,6 +69,10 @@
 {
     margin-right: 10px;
     color:red;
-    
+}
+
+.mat-paginator-container
+{
+    justify-content: flex-start;
 }
 

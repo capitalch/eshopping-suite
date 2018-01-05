@@ -10,7 +10,34 @@
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 
+//Get products with count on category id
+with recursive cte1 as (
+    select id,label, parent_id
+        from category where id = %s
+      union
+        select c1.id, c1.label, c1.parent_id
+          from category c1 inner join cte1 c2
+            on c1.parent_id = c2.id
+      )
+      select * , count(0) OVER() as count from product where cat_id in (
+          select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
+      ) order by id offset %s limit %s
+
+
+https://stackoverflow.com/questions/12293888/postgresql-count-the-number-of-children
+with recursive cte1 as (
+	select c.id, label, parent_id, count(0) as prod_cnt from category c
+    	join product p on c.id = p.cat_id group by cat_id, c.id
+    union
+    	select c2.id, c2.label, c2.parent_id, 0 as prod_cnt from cte1 c1
+    		join category c2 on c1.parent_id = c2.id 
+)
+, cte2 as (
+	select c1.id, c1.label, c1.parent_id, sum(c2.prod_cnt) as prod_cnt from category c1 left outer join cte1 on
+    	group by c1.id, c1.label, c1.parent_id order by c1.id
+) select * from cte2 order by id
 --------------------------------------------------------------------------------------------------------------
+
 //Product table set cat_id to random id from category table's id column
 There was a problem that subquery is executed only once and random row is selected then this same row's id was set in the cat_id.
 So in normal going I got same cat_id value for all rows in product table. Remedy to this was in the subquery 

@@ -19,15 +19,18 @@ export class CategoryComponent implements OnInit {
   subs: any;
   categories: any[] = [];
   lazyTree: any[] = [];
-  selectedFiles: TreeNode[];
+  selectedFiles: any;
   constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
   }
 
   ngOnInit() {
     console.log('categories init:');
+    let catId;
     this.subs = this.brokerService.filterOn(httpMessages.getCategoriesWithCount).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
+        d.data && (d.data.length > 0) && (this.selectedFiles=d.data[0]) 
+          && (catId=d.data[0].id) && (this.router.navigate([navUrls.product, {catId:catId,count:d.data[0].product_cnt}])),
         this.processLazy()
       );
     });
@@ -48,7 +51,7 @@ export class CategoryComponent implements OnInit {
   processLazy() {
     // let items: any[];
     this.lazyTree = this.categories.filter(x => {
-      x.leaf = x.cat_cnt == 0;
+      // x.leaf = x.cat_cnt == 0;
       return (x.parent_id == null);
     });
   }
@@ -56,7 +59,7 @@ export class CategoryComponent implements OnInit {
   loadNode(e) {
     let item = e.node;
     let children = this.categories.filter(x => {
-      x.leaf = x.cat_cnt == 0;
+      // x.leaf = x.cat_cnt == 0;
       return (item.id == x.parent_id);
     });
     item.children = children;
@@ -65,13 +68,8 @@ export class CategoryComponent implements OnInit {
   nodeSelect(e) {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
-    let sub = this.brokerService.filterOn('test').subscribe(d=>{
-      console.log(d.data);
-      (!e.node.hasProducts && !e.node.leaf) && (e.node.hasProducts=true,e.node.label+='('+d.data+')');
-      sub.unsubscribe();
-    })
     let catId = e.node.id;
-    this.router.navigate([navUrls.product, catId]);
+    this.router.navigate([navUrls.product, {catId:catId, count:e.node.product_cnt}]);
   }
 
   ngOnDestroy() {

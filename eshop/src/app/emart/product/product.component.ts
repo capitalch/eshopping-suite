@@ -60,12 +60,9 @@ export class ProductComponent implements OnInit {
     console.log(e);
   }
 
-  itemSelected(e) {
-    this.router.navigate([navUrls.productDetails])
-  }
-
-  nav() {
-    this.router.navigate(['emart/composite/productDetails'])
+  showDetails(id)
+  {
+    this.router.navigate([navUrls.productDetails]);
   }
 
   ngOnDestroy() {

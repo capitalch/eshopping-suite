@@ -29,7 +29,6 @@
                 background-color: $emart-header-background;
                 border: 1px solid $emart-header-font-color;
                 float:left;
-                cursor: pointer;
                 min-width:0vw;
                 height: 2.75em;
             }
@@ -47,7 +46,6 @@
             {
                 border-radius: 50%;
                 margin-top: .4vh;
-                cursor: pointer;
                 border: 1px solid $emart-header-background;
             }
             .round-image:hover
@@ -62,7 +60,6 @@
             width:16em;
             .header-button {  
                 background-color: $emart-header-background;
-                cursor: pointer;
                 min-width:0vw;
                 border: 1px solid $emart-header-background;
             }

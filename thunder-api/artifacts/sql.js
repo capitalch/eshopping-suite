@@ -7,7 +7,7 @@ let sqls = {
           from category c1 inner join cte1 c2
             on c1.parent_id = c2.id
       )
-      select * , count(0) OVER() as count from product where cat_id in (
+      select * from product where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
       ) order by id offset %s limit %s;`
   , 'post:query:categories:with:count':`with recursive cte1 as(
@@ -24,7 +24,20 @@ let sqls = {
         group by id, parent_id, label, leaf
             order by id, parent_id)
   select id, label || ' (' || product_cnt || ')' as label, parent_id, product_cnt, leaf from cte2` 
-  
+  ,'post:query:categories:product:on:input':`with cte0 as (    
+    select id, name as label, cat_id
+      from product
+          where to_tsvector('english', name) @@ to_tsquery('english', %L)    
+  )  --select * from cte0
+  , cte1 as (
+  	select 0 as id, 'All categories' as label, null::int as parent_id, (select count(0) from cte0)::int as product_cnt, false as leaf
+      union
+    select c1.id, c1.label, 0::int as parent_id, count(0), true as leaf
+    	from category c1 inner join cte0 c2
+      		on c1.id = c2.cat_id
+      			group by c1.id, c1.label
+  ) select id, label || ' (' || product_cnt || ')' as label, parent_id, product_cnt, leaf from cte1
+  	order by id`
   ,'post:query:categories:with:count1': `with cte1 as (select c1.id, c1.label, c1.parent_id, sum(CASE WHEN c2.id is null then 0 else 1 end) as cat_cnt	
       from category c1 left outer join category c2 
           on c1.id = c2.parent_id
@@ -40,7 +53,7 @@ let sqls = {
         select c2.id, c2.label || ' (' || 
         CASE WHEN c2.cat_cnt = 0 then c2.product_cnt else c2.cat_cnt END
         || ')' as label, c2.parent_id, c2.cat_cnt,c2.product_cnt from cte2 c2;`
-  , 'post:query:categories:product:on:input': `
+  , 'post:query:categories:product:on:input2': `
   with cte0 as (    
     select id, name as label, cat_id as parent_id
       from product

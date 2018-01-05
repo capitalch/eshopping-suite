@@ -30,7 +30,7 @@ export class CategoryComponent implements OnInit {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
         d.data && (d.data.length > 0) && (this.selectedFiles=d.data[0]) 
-          && (catId=d.data[0].id) && (this.router.navigate([navUrls.product, catId])),
+          && (catId=d.data[0].id) && (this.router.navigate([navUrls.product, {catId:catId,count:d.data[0].product_cnt}])),
         this.processLazy()
       );
     });
@@ -69,7 +69,7 @@ export class CategoryComponent implements OnInit {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     let catId = e.node.id;
-    this.router.navigate([navUrls.product, catId]);
+    this.router.navigate([navUrls.product, {catId:catId, count:e.node.product_cnt}]);
   }
 
   ngOnDestroy() {

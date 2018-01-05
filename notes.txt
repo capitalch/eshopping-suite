@@ -10,51 +10,18 @@
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 
---------------------------------------------------------------------------------------------------------------
-
-//working
---------------------------------------------------------------------------------------------------------------
-with recursive cte1 as(
-	select c.id,c.label, c.parent_id, count(0) as product_cnt
-    	from category c inner join product p
-    		on p.cat_id = c.id
-    			group by c.id, c.parent_id 
-    union all
-    	select c.id,c.label, c.parent_id, cte1.product_cnt
-    		from category c join cte1
-    			on c.id = cte1.parent_id
-) select id, label, parent_id, sum(product_cnt)
-	from cte1
-    	--where id in(select parent_id from cte1)
-    	group by id, parent_id, label
-        	order by id, parent_id
-----------------
-WITH RECURSIVE cte1 AS (
-    SELECT id, label, parent_id, salary
-        FROM emp
-        WHERE salary is not null
-    UNION
-    SELECT emp.id,emp.label, emp.parent_id, cte1.salary
-        FROM cte1 JOIN emp ON cte1.parent_id = emp.id
-)
-SELECT id,parent_id, sum(salary) as total
-    FROM cte1
-    GROUP BY id , parent_id
-    ORDER BY id;
-----------------
--- WITH RECURSIVE children AS (
---     SELECT id, value, parent
---         FROM t
---         WHERE value is not null
---     UNION
---     SELECT t.id, children.value, t.parent
---         FROM children JOIN t ON children.parent = t.id
--- )
--- SELECT id,parent, sum(value) as total
---     FROM children 
---     GROUP BY id , parent
---     ORDER BY id;
-------------------
+//Get products with count on category id
+with recursive cte1 as (
+    select id,label, parent_id
+        from category where id = %s
+      union
+        select c1.id, c1.label, c1.parent_id
+          from category c1 inner join cte1 c2
+            on c1.parent_id = c2.id
+      )
+      select * , count(0) OVER() as count from product where cat_id in (
+          select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
+      ) order by id offset %s limit %s
 
 
 https://stackoverflow.com/questions/12293888/postgresql-count-the-number-of-children

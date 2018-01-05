@@ -33,13 +33,15 @@ export class ProductComponent implements OnInit {
     this.subs = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
       d.error ? console.log(d.error) : (
         console.log(d.data),
-        this.products = d.data,
-        this.pageObject.length = d.data[0].count);
+        this.products = d.data
+        // ,d.data && d.data.length && (d.data.length > 0) && (this.pageObject.length = d.data[0].count)
+      );
     });
 
     let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
       this.activatedRoute.params.subscribe(params => {
         this.catId = params.catId;
+        this.pageObject.length = params.count;
         this.pageChange();
       });
     });

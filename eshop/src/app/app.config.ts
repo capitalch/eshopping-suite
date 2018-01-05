@@ -6,7 +6,8 @@ export const httpMessages = {
     getProductsOnCategory: 'post:query:products:on:category',
     searchCategoriesProductsOnInput: 'post:query:categories:product:on:input',
     searchSpecificOrReturnAll: 'search:specific:or:return:all',
-    searchProductsOnlyOnInput:'post:query:search:products:only:on:input'
+    searchProductsOnlyOnInput:'post:query:search:products:only:on:input',
+    getEmartDefault:'get:emart:default'
 }
 // export const urlMaps = {
 //     'get:emp1': `http://localhost:3002/db/test`

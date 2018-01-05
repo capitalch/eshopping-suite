@@ -18,7 +18,7 @@ export class CategoryComponent implements OnInit {
   // @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
-  searchString:string;
+  searchString:any;
   lazyTree: any[] = [];
   selectedFiles: any;
   constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {

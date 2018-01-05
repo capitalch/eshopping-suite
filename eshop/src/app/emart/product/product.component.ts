@@ -12,8 +12,8 @@ import { settings, navUrls } from '../emart.config';
 
 export class ProductComponent implements OnInit {
   subs: any;
-  catId: number;
-  searchString:String;
+  catId: any;
+  searchString: any;
   pageObject: {
     length: number,
     pageIndex: number,
@@ -31,11 +31,10 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) { }
 
   ngOnInit() {
-    this.subs = this.brokerService.filterOn(httpMessages.getProductsOnCategory).subscribe(d => {
+    this.subs = this.brokerService.filterOn(httpMessages.getEmartDefault).subscribe(d => {
       d.error ? console.log(d.error) : (
         console.log(d.data),
         this.products = d.data
-        // ,d.data && d.data.length && (d.data.length > 0) && (this.pageObject.length = d.data[0].count)
       );
     });
 
@@ -43,7 +42,8 @@ export class ProductComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         this.catId = params.catId;
         this.pageObject.length = params.count;
-        this.searchString = params.searchString;
+        (params.searchString && (params.searchString != "undefined"))
+          ? this.searchString = params.searchString : this.searchString = undefined;
         this.pageChange();
       });
     });
@@ -52,9 +52,23 @@ export class ProductComponent implements OnInit {
 
   pageChange() {
     let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
-    let httpMessage = this.searchString ? httpMessages.searchProductsOnlyOnInput :httpMessages.getProductsOnCategory
-    this.brokerService.httpPost(httpMessage, { params: [this.catId, offSet, this.pageObject.pageSize, this.searchString
-    ] })
+    let httpMessage: string, params: any[];
+    // if (this.catId == 0) {
+    //   //all categories with search criteria
+    // } else if (this.searchString && this.searchString != 'undefined') {
+    //   //specific category with search
+    // } else {
+    //   //specific category with no search
+    // }
+    (this.catId == 0) && (this.catId = '%')
+    this.searchString
+      ? (httpMessage = httpMessages.searchProductsOnlyOnInput
+        , params = [this.catId, this.searchString, offSet, this.pageObject.pageSize])
+      : (httpMessage = httpMessages.getProductsOnCategory
+        , params = [this.catId, offSet, this.pageObject.pageSize]);
+    this.brokerService.httpPost(httpMessages.getEmartDefault, {
+      id: httpMessage, params: params
+    })
   }
 
   pageSelected(e) {
@@ -66,10 +80,6 @@ export class ProductComponent implements OnInit {
 
   itemSelected(e) {
     this.router.navigate([navUrls.productDetails])
-  }
-
-  nav() {
-    this.router.navigate(['emart/composite/productDetails'])
   }
 
   ngOnDestroy() {

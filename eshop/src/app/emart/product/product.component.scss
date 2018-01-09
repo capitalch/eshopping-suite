@@ -1,12 +1,11 @@
 .pagination
 {
-    margin-left:1vw;
-    margin-right: 30vw;
-    float: left;
+    margin-left:.5vw;
 }
 .products
 {
     width: 75vw;
+    display: flow-root;
 }
 .product
 {
@@ -71,8 +70,39 @@
     color:red;
 }
 
-.mat-paginator-container
+.mat-paginator
 {
-    justify-content: flex-start;
+    display: inline-flex;
+}
+
+
+@media screen and (max-width: 1320px) {
+    .pagination
+    {
+        width: 98%;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .mat-paginator
+    {
+        font-size:9px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .mat-paginator
+    {
+        font-size:9px;
+    }
+    .pagination
+    {
+        width:98%;
+    }
+    .mat-card-header
+    {
+        margin:0px;
+    }
 }
 

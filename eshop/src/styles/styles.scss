@@ -11,3 +11,9 @@ a
 {
     cursor: pointer;
 }
+
+@media screen and (max-width: 900px) {
+    body{
+        overflow-x: auto;
+    }
+}

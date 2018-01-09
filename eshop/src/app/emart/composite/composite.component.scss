@@ -6,6 +6,7 @@
 
 .body-container
 {
+    min-width:612px;
 }
 
 .category-container
@@ -18,6 +19,7 @@
 {
     float:left;
     min-height: 57.5em;
+    width: 70%;
 }
 
 .footer-container
@@ -27,9 +29,24 @@
     float: left;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1320px) {
     .category-container
     {
-        width:20em;
+        width: 22.5em;
+    }
+    .product-container
+    {
+        width:37em;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .category-container
+    {
+        width: 20em;
+    }
+    .product-container
+    {
+        width:31em;
     }
 }

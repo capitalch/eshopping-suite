@@ -1,5 +1,7 @@
-<mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
-  [pageSize] = "pageObject.pageSize" [pageSizeOptions] = "pageObject.pageSizeOptions" (page) = "pageSelected($event)"></mat-paginator>
+<div class="pagination">
+  <mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
+    [pageSize] = "pageObject.pageSize" [pageSizeOptions] = "pageObject.pageSizeOptions" (page) = "pageSelected($event)"></mat-paginator>
+</div>
 <div class="products">
   <mat-card class="product" *ngFor="let product of products">
     <a (click)= "showDetails(product.id);">
@@ -19,5 +21,7 @@
     </a>
   </mat-card>
 </div>
-<mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
-[pageSize] = "pageObject.pageSize" [pageSizeOptions] = "pageObject.pageSizeOptions" (page) = "pageSelected($event)"></mat-paginator>
+<div class="pagination">
+  <mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" 
+  [pageSize] = "pageObject.pageSize" [pageSizeOptions] = "pageObject.pageSizeOptions" (page) = "pageSelected($event)"></mat-paginator>
+</div>

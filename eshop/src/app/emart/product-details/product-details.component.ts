@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {navUrls} from '../emart.config';
 
 @Component({
@@ -9,12 +9,19 @@ import {navUrls} from '../emart.config';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  productId: any;
+
+  constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
+    this.activatedRoute.params.subscribe(params => {
+      this.productId = params.productId;
+      alert(this.productId);
+    });
+  }
 
   ngOnInit() {
   }
 
-  nav(){
+  back(){
     window.history.back();
   }
 }

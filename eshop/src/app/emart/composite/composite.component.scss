@@ -7,19 +7,17 @@
 .body-container
 {
     min-width:612px;
-}
-
-.category-container
-{
-    width:27.5em;
-    float:left;
-}
-
-.product-container
-{
-    float:left;
-    min-height: 57.5em;
-    width: 70%;
+    .category-container
+    {
+        width:27.5em;
+        float:left;
+    }
+    .product-container
+    {
+        float:left;
+        min-height: 57.5em;
+        width: 70%;
+    }
 }
 
 .footer-container
@@ -30,22 +28,22 @@
 }
 
 @media screen and (max-width: 1320px) {
-    .category-container
+    .body-container .category-container
     {
         width: 22.5em;
     }
-    .product-container
+    .body-container .product-container
     {
         width:37em;
     }
 }
 
 @media screen and (max-width: 900px) {
-    .category-container
+    .body-container .category-container
     {
         width: 20em;
     }
-    .product-container
+    .body-container .product-container
     {
         width:31em;
     }

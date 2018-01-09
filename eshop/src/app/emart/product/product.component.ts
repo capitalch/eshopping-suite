@@ -54,13 +54,6 @@ export class ProductComponent implements OnInit {
   pageChange() {
     let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
     let httpMessage: string, params: any[];
-    // if (this.catId == 0) {
-    //   //all categories with search criteria
-    // } else if (this.searchString && this.searchString != 'undefined') {
-    //   //specific category with search
-    // } else {
-    //   //specific category with no search
-    // }
     (this.catId == 0) && (this.catId = '%')
     this.searchString
       ? (httpMessage = httpMessages.searchProductsOnlyOnInput
@@ -79,15 +72,11 @@ export class ProductComponent implements OnInit {
     console.log(e);
   }
 
-  showDetails(id)
+  showProductDetails(id)
   {
-    this.router.navigate([navUrls.productDetails]);
+    this.router.navigate([navUrls.productDetails,{productId:id}]);
   }
   
-  itemSelected(e) {
-    this.router.navigate([navUrls.productDetails])
-  }
-
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

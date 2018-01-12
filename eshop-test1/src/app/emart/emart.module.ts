@@ -10,11 +10,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { routes } from './emart.routes';
 import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './category/category.component';
+import {RatingModule} from 'ng2-rating'
 
 @NgModule({
   imports: [
     CommonModule,RouterModule.forChild(routes),AngularMaterialModule,
-    FormsModule,TreeModule
+    FormsModule,TreeModule,RatingModule
   ],
   declarations: [CompositeComponent, ProductComponent, ProductDetailsComponent, HeaderComponent, CategoryComponent]
 })

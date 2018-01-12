@@ -72,9 +72,10 @@ export class ProductComponent implements OnInit {
     console.log(e);
   }
 
-  showProductDetails(id)
+  showProductDetails(selectedProduct)
   {
-    this.router.navigate([navUrls.productDetails,{productId:id}]);
+    console.log(selectedProduct);
+    this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
   }
   
   ngOnDestroy() {

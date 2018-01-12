@@ -4,7 +4,7 @@
 </div>
 <div class="products">
   <mat-card class="product" *ngFor="let product of products">
-    <a (click)= "showProductDetails(product.id);">
+    <a (click)= "showProductDetails(product);">
       <mat-card-header class="product-header">
         <mat-card-title>{{product.name}}</mat-card-title>
         <mat-card-subtitle>Hi this is a test description</mat-card-subtitle>

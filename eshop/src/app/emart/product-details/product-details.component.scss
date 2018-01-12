@@ -1,0 +1,62 @@
+.name-rating
+{
+    width: 100em;
+    background: red;
+    height: 5em;
+    display:table;
+}
+.image-spec-container
+{
+    background: yellow;
+    width: 100em;
+    height: 37em;
+}
+.image
+{
+    width: 40em;
+    border: 1px solid black;
+    height: 37em;
+    float: left;
+}
+.specs
+{
+    width: 50.8em;
+    border: 1px solid black;
+    height: 37em;
+    float: left;
+}
+.qa-review-container
+{
+    background: red;
+    width: 100em;
+    height: 15.5em;
+}
+.qa
+{
+    width: 40em;
+    border: 1px solid black;
+    height: 15em;
+    float: left;
+}
+.review
+{
+    width: 50.8em;
+    border: 1px solid black;
+    height: 15em;
+    float: left;
+}
+
+.product-name
+{
+    font-size:4em;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 46%;
+}
+
+.rating
+{
+    display: table-cell;
+    vertical-align: middle;
+}

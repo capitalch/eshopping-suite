@@ -11,13 +11,15 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { CategoryComponent } from './category/category.component';
 import { FooterComponent } from './footer/footer.component';
 import { TreeModule } from 'primeng/primeng';
+import {RatingModule} from "ng2-rating";
 
 @NgModule({
   imports: [
     CommonModule, RouterModule.forChild(routes), 
     FormsModule, 
     AngularMaterialModule,
-    TreeModule
+    TreeModule,
+    RatingModule
   ],
   declarations: [CompositeComponent, 
     ProductComponent, 

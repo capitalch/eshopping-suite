@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {navUrls} from '../emart.config';
+import {RatingModule} from "ng2-rating";
 
 @Component({
   selector: 'app-product-details',
@@ -9,12 +10,11 @@ import {navUrls} from '../emart.config';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  productId: any;
+  product: any;
 
   constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
-    this.activatedRoute.params.subscribe(params => {
-      this.productId = params.productId;
-      alert(this.productId);
+    this.activatedRoute.params.subscribe(param => {
+      this.product = JSON.parse(param.product);
     });
   }
 

@@ -1,4 +1,24 @@
-<p>
-  product-details works!
-</p>
-<button (click)="back()">Product</button>
+<div class="name-rating">
+  <span class="product-name">{{product.name}}</span>
+  <span class="rating">
+    <button mat-button class="rating-button">
+      <rating [(ngModel)]="product.scores" readonly="true"></rating>
+    </button>
+  </span>
+</div>
+<div class="image-spec-container">
+  <div class="image">
+    <img class="main-image" src="{{product.image}}">
+  </div>
+  <div class="specs">
+    <span>{{product.specs}}</span>  
+  </div>
+</div>
+<div class="qa-review-container">
+  <div class="qa">
+    <span>{{product.question_answers}}</span>
+  </div>
+  <div class="review">
+    <span>{{product.reviews}}</span>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {RatingModule} from "ng2-rating";
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  star = 3.5;
+
+  constructor(private router: Router, private rating:RatingModule) { }
 
   ngOnInit() {
   }

@@ -8,13 +8,13 @@ body {
     height:4em;
     background: teal;
     color:white;
-    display: flex;
-    align-items: center;
+    line-height: 4em;
+    // display: flex;
+    // align-items: center;
 }
 .but-transition{
     width: 100px;
     height:2em;
-    display: block;
 }
 .main-container{
     width:100vw;

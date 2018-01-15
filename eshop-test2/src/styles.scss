@@ -1,0 +1,64 @@
+body {
+    font: 12px;
+    margin: 0px;
+    padding: 0px;
+}
+.header{
+    width:100vw;
+    height:4em;
+    background: teal;
+    color:white;
+    line-height: 4em;
+    // display: flex;
+    // align-items: center;
+}
+.but-transition{
+    width: 100px;
+    height:2em;
+}
+.main-container{
+    width:100vw;
+    // border:1px solid red
+    // font-size: 0px;
+}
+.container {
+    height: 98vh;
+    // font-size: 12px;
+    // border: solid gray; // min-height: 30em;
+    // display: inline-block;
+    float: left;
+    // border: gray 1px inset
+    // .top {
+    //     height: 30%
+    // }
+    // .bottom {
+    //     height: 70%
+    // } // overflow: auto;
+}
+
+.left-pane {
+    width: 30%;
+    border-right: 1px inset
+}
+
+.right-pane {
+    width: 68.5%;
+    // overflow: auto;
+}
+
+.product {
+    height: 7em;
+    width: 7em;
+    background: red;
+    border: 2px solid yellow;
+    display: block;
+    float: left;
+}
+
+// .part {
+//     height: 7em;
+//     width: 7em;
+//     background: red;
+//     border: 2px solid yellow;
+//     display: inline-block;
+// }

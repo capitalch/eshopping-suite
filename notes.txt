@@ -9,7 +9,16 @@
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
-
+----------------------------------------------------------------------------------------------------------------
+//create images array from robohash and set the images column of product table. This was used.
+update product
+	set images = ARRAY[
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set1',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set2',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set3',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set4'											
+	]
+---------------------------------------------------------------------------------------------------------------
 //Get products with count on category id
 with recursive cte1 as (
     select id,label, parent_id

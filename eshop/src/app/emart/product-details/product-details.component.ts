@@ -11,10 +11,12 @@ import {RatingModule} from "ng2-rating";
 export class ProductDetailsComponent implements OnInit {
 
   product: any;
+  specsDisplay: any;
 
   constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.params.subscribe(param => {
       this.product = JSON.parse(param.product);
+      console.log(this.product);
     });
   }
 

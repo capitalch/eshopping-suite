@@ -8,11 +8,16 @@
 </div>
 <div class="image-spec-container">
   <div class="image">
-    <img class="main-image" src="{{product.image}}">
+    <img class="main-image" src="{{product.images[0]}}">
+    <div class="image-icons">
+      <div *ngFor="let image of product.images">
+        <a><img class="icons" src="{{image}}"></a>
+      </div> 
+    </div>
   </div>
   <div class="specs">
-    <span>{{product.specs}}</span>  
-  </div>
+  
+  </div> 
 </div>
 <div class="qa-review-container">
   <div class="qa">

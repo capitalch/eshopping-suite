@@ -3,31 +3,91 @@ body {
     margin: 0px;
     padding: 0px;
 }
-.header{
-    width:100vw;
-    height:4em;
+
+.header {
+    width: 100vw;
+    height: 4em;
     background: teal;
-    color:white;
+    color: white;
     line-height: 4em;
-    // display: flex;
-    // align-items: center;
 }
-.but-transition{
+
+.button-transition {
     width: 100px;
-    height:2em;
+    height: 2em;
+    transition: width 400px;
 }
-.main-container{
-    width:100vw;
-    // border:1px solid red
+
+button.button-transition:hover {
+    width: 500px;
+}
+
+.dropdown {
+    overflow: hidden;
+}
+
+.nav {
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    button {
+        background-color: inherit;
+        color: inherit;
+        border: none;
+        outline: none;
+    }
+    
+    .content {
+        display: none;
+        position: absolute;
+        color: red;
+        width: 60%;
+        background-color: yellow;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        // z-index: 1;
+    }
+
+    div{
+        display:inline;
+    }
+
+    div:hover .content {
+        display: block;
+    }
+}
+
+.drop-menu {
+    height: 6em;
+    background: yellow;
+    border: red;
+    height: 0px;
+    width: 0px;
+    transition: height width;
+}
+
+div.drop-menu:hover {
+    width: 100px;
+    height: 100px;
+}
+
+div.nav:hover {
+    background: rgb(7, 48, 7);
+}
+
+.main-container {
+    width: 100vw; // border:1px solid red
     // font-size: 0px;
 }
+
 .container {
-    height: 98vh;
-    // font-size: 12px;
+    height: 98vh; // font-size: 12px;
     // border: solid gray; // min-height: 30em;
     // display: inline-block;
-    float: left;
-    // border: gray 1px inset
+    float: left; // border: gray 1px inset
     // .top {
     //     height: 30%
     // }
@@ -42,8 +102,7 @@ body {
 }
 
 .right-pane {
-    width: 68.5%;
-    // overflow: auto;
+    width: 68.5%; // overflow: auto;
 }
 
 .product {

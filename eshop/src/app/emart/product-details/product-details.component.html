@@ -16,7 +16,15 @@
     </div>
   </div>
   <div class="specs">
-  
+    <div *ngFor="let group of product.product_info">
+      <h4>{{group.header}}</h4>
+        <table *ngFor="let feature of group.details">
+          <tr>
+            <td>{{feature.name}}</td>
+            <td>{{feature.value}}</td>
+          </tr>
+        </table>  
+    </div>
   </div> 
 </div>
 <div class="qa-review-container">

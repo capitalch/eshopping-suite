@@ -13,6 +13,9 @@
 5. Payment gateway
 6. 
 7. 
+//postgeres best practises
+https://kukuruku.co/post/postgresql-set-of-practices/
+
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's

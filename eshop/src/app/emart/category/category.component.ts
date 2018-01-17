@@ -4,7 +4,7 @@ import { TreeNode } from 'primeng/primeng';
 import { AppService } from '../../service/app.service';
 import { localMessages, httpMessages } from '../../app.config';
 import { Router } from '@angular/router';
-import {navUrls} from '../emart.config';
+import { navUrls } from '../emart.config';
 
 @Component({
   selector: 'app-category',
@@ -18,30 +18,30 @@ export class CategoryComponent implements OnInit {
   // @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
-  searchString:any;
+  searchString: any;
   lazyTree: any[] = [];
   selectedFiles: any;
-  constructor(private router:Router, private brokerService: BrokerService, private appService: AppService) {
+  constructor(private router: Router, private brokerService: BrokerService, private appService: AppService) {
   }
 
   ngOnInit() {
     console.log('categories init:');
     let catId;
-    this.subs = this.brokerService.filterOn(httpMessages.getCategoriesWithCount).subscribe(d => {
+    this.subs = this.brokerService.filterOn(httpMessages.categoriesWithCount).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
-        d.data && (d.data.length > 0) && (this.selectedFiles=d.data[0]) 
-          && (catId=d.data[0].id) && (this.router.navigate([navUrls.product, {catId:catId,count:d.data[0].product_cnt}])),
+        d.data && (d.data.length > 0) && (this.selectedFiles = d.data[0])
+        && (catId = d.data[0].id) && (this.router.navigate([navUrls.product, { catId: catId, count: d.data[0].product_cnt }])),
         this.processLazy()
       );
     });
-    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {      
-      this.brokerService.httpPost(httpMessages.getCategoriesWithCount);
+    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
+      this.brokerService.httpPost(httpMessages.categoriesWithCount);
     });
-    let sub2 = this.brokerService.filterOn(httpMessages.searchSpecificOrReturnAll).subscribe(d => {
+    let sub2 = this.brokerService.filterOn(localMessages.headerToCategory).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
-        this.searchString=d.carryBag,
+        this.searchString = d.carryBag,
         this.processLazy(),
         console.log(d.data)
       );
@@ -51,9 +51,7 @@ export class CategoryComponent implements OnInit {
   }
 
   processLazy() {
-    // let items: any[];
     this.lazyTree = this.categories.filter(x => {
-      // x.leaf = x.cat_cnt == 0;
       return (x.parent_id == null);
     });
   }
@@ -61,7 +59,6 @@ export class CategoryComponent implements OnInit {
   loadNode(e) {
     let item = e.node;
     let children = this.categories.filter(x => {
-      // x.leaf = x.cat_cnt == 0;
       return (item.id == x.parent_id);
     });
     item.children = children;
@@ -71,7 +68,7 @@ export class CategoryComponent implements OnInit {
     this.loadNode(e);
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     let catId = e.node.id;
-    this.router.navigate([navUrls.product, {catId:catId, count:e.node.product_cnt, searchString:this.searchString}]);
+    this.router.navigate([navUrls.product, { catId: catId, count: e.node.product_cnt, searchString: this.searchString }]);
   }
 
   ngOnDestroy() {

@@ -31,9 +31,9 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) { }
 
   ngOnInit() {
-    this.subs = this.brokerService.filterOn(httpMessages.getEmartDefault).subscribe(d => {
+    this.subs = this.brokerService.filterOn(httpMessages.default).subscribe(d => {
       d.error ? console.log(d.error) : (
-        console.log(d.data),
+        // console.log(d.data),
         this.products = d.data
       );
     });
@@ -53,15 +53,15 @@ export class ProductComponent implements OnInit {
 
   pageChange() {
     let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
-    let httpMessage: string, params: any[];
+    let artifact: string, params: any[];
     (this.catId == 0) && (this.catId = '%')
     this.searchString
-      ? (httpMessage = httpMessages.searchProductsOnlyOnInput
+      ? (artifact = httpMessages.searchProductsOnCriteria
         , params = [this.catId, this.searchString, offSet, this.pageObject.pageSize])
-      : (httpMessage = httpMessages.getProductsOnCategory
+      : (artifact = httpMessages.productsOnCategory
         , params = [this.catId, offSet, this.pageObject.pageSize]);
-    this.brokerService.httpPost(httpMessages.getEmartDefault, {
-      id: httpMessage, params: params
+    this.brokerService.httpPost(httpMessages.default, {
+      id: artifact, params: params
     })
   }
 
@@ -75,7 +75,8 @@ export class ProductComponent implements OnInit {
   showProductDetails(selectedProduct)
   {
     console.log(selectedProduct);
-    this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
+    // this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
+    this.router.navigate([navUrls.productDetails,{id:selectedProduct.id}]);
   }
   
   ngOnDestroy() {

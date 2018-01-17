@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
   }
 
   doSearch() {
-    let httpMessage;
+    let artifact;
     this.searchString ?
-      (httpMessage = httpMessages.searchCategoriesProductsOnInput)
-      : (httpMessage = httpMessages.getCategoriesWithCount);
-    this.brokerService.httpPost(httpMessages.searchSpecificOrReturnAll, { id: httpMessage, params: [this.searchString, this.searchString] },null, this.searchString);
+      (artifact = httpMessages.searchProductsCategoriesOnCriteria)
+      : (artifact = httpMessages.categoriesWithCount);
+    this.brokerService.httpPost(localMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] },null, this.searchString);
   }
 
   ngOnDestroy() {

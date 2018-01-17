@@ -9,19 +9,25 @@ import {RatingModule} from "ng2-rating";
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-
+  // productId:number;
   product: any;
-
+  subs:any;
   constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.params.subscribe(param => {
-      this.product = JSON.parse(param.product);
+      // console.log(param.id);
+      // this.product = JSON.parse(param.product);
     });
   }
 
   ngOnInit() {
+    //this subs = 
   }
 
   back(){
     window.history.back();
+  }
+
+  ngOnDestroy(){
+    this.subs.unsubscribe();
   }
 }

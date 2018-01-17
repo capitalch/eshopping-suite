@@ -11,16 +11,21 @@ import {RatingModule} from "ng2-rating";
 export class ProductDetailsComponent implements OnInit {
 
   product: any;
-  specsDisplay: any;
+  displayImage: any;
 
   constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.params.subscribe(param => {
       this.product = JSON.parse(param.product);
-      console.log(this.product);
+      this.displayImage = this.product.images[0];
     });
   }
 
   ngOnInit() {
+  }
+
+  changeDisplayImage(url)
+  {
+    this.displayImage = url;
   }
 
   back(){

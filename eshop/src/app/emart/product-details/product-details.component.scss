@@ -20,7 +20,6 @@
 }
 .image-icons
 {
-    background: blue;
     height: 25%;
 }
 .specs
@@ -29,6 +28,7 @@
     border: 1px solid black;
     height: 37em;
     float: left;
+    overflow-y:scroll;
 }
 .qa-review-container
 {
@@ -85,4 +85,16 @@
     display: -webkit-box;
     overflow: hidden;
     overflow-x: scroll;
+}
+
+.spec-group
+{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.spec-group-details
+{
+    font-size: 1.3em;
 }

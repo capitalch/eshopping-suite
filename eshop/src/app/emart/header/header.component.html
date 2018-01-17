@@ -1,13 +1,12 @@
 <div class="em-header">
   <div class='left-container'>
     <span class="logo">eMART</span>
-    <div class="search-container">
-      <input class="search-input" type="text" [(ngModel)]="searchString" />
-      <button mat-button class="search-button" (click)="doSearch()"  >
-        <i class="fa fa-search fa-x" aria-hidden="true"></i> 
-        <span class="button-text">Search</span>
-      </button>
-    </div>
+    <input class="search-input" type="text" [(ngModel)]="searchString" />
+    <button mat-button class="search-button" (click)="doSearch()"  >
+      <i class="fa fa-search fa-x" aria-hidden="true"></i> 
+      <span class="button-text">Search</span>
+    </button>
+    <!-- <button> $ Search </button> -->
   </div>
   <div class="right-container">
     <div class="profile-controls">

@@ -1,71 +1,57 @@
 @import 'variables';
-
 .em-header {
     background-color: $emart-header-background;
     color: $emart-header-font-color;
-    width:100vw;
-    height:4.3em;
-    min-width:612px;
-    .left-container{
-        float:left;
+    width: 100vw;
+    height: 4.3em;
+    min-width: 612px;
+    .left-container {
         margin-left: 1vw;
-        margin-top: .9vh;
+        height: 4.3em;
+        width:50%;
+        float: left;
+        line-height: 4.3em;
         .logo {
-            float: left;
             font-size: 2.5em;
-            color:$theme-logo-color;
+            margin-right: 1em;
+            color: $theme-logo-color;
         }
-        .search-container {
-            float:left;
-            width: 40vw;
-            margin-left: 1vw;
-            .search-input {
-                width: 28vw;
-                height: 1.8em;
-                float:left;
-                vertical-align: middle; 
-                font-size: 1.5em;
-            }
-            .search-button{
-                background-color: $emart-header-background;
-                border: 1px solid $emart-header-font-color;
-                float:left;
-                min-width:0vw;
-                height: 2.75em;
-            }
+        .search-input {
+            width: 28vw;
+            height: 1.2em;
+            font-size: 2.5em;
+        }
+        .search-button {
+            background-color: $emart-header-background;
+            border: 1px solid $emart-header-font-color;
+            height: 3em;
+            border-radius: 3px;
+            vertical-align: super;
         }
     }
-    .right-container
-    {
-        float:right;
-        margin-right: 2vw;
-        .profile-controls
-        {
-            float:right;
+    .right-container {
+        float: right;
+        margin-right: 3vw;
+        .profile-controls {
+            float: right;
             margin-top: .3vh;
-            .round-image
-            {
+            .round-image {
                 border-radius: 50%;
-                margin-top: .4vh;
                 border: 1px solid $emart-header-background;
             }
-            .round-image:hover
-            {
+            .round-image:hover {
                 border: 1px solid $emart-header-font-color;
             }
         }
-        .login-controls
-        {
-            float:right;
-            margin-top: 1vh;
-            width:16em;
-            .header-button {  
+        .login-controls {
+            float: right;
+            width: 16em;
+            .header-button {
                 background-color: $emart-header-background;
-                min-width:0vw;
+                min-width: 0vw;
                 border: 1px solid $emart-header-background;
             }
-            .header-button:hover
-            {
+            .header-button:hover {
                 border: 1px solid $emart-header-font-color;
             }
         }
@@ -76,25 +62,20 @@
     .button-text {
         display: none;
     }
-    .em-header .left-container .search-container .search-button
-    {
-        border:.5px solid white;
+    .em-header .left-container .search-container .search-button {
+        border: .5px solid white;
     }
-    .em-header .left-container .logo
-    {
+    .em-header .left-container .logo {
         font-size: 2em;
         margin-top: 1vh;
     }
-    .em-header .right-container .login-controls
-    {
-        width:9em;
+    .em-header .right-container .login-controls {
+        width: 9em;
     }
 }
 
-
-@media screen and (min-width: 200px) and (max-width:600px){
-    .em-header .left-container .logo
-    {
+@media screen and (min-width: 200px) and (max-width:600px) {
+    .em-header .left-container .logo {
         font-size: 1em;
         margin-top: 2vh;
     }
@@ -112,12 +93,3 @@
         width: 9em;
     }
 }
-
-
-
-
-
-
-
-
-

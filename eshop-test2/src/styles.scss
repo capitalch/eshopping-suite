@@ -55,7 +55,7 @@ button.button-transition:hover {
         display:inline;
     }
 
-    div:hover .content {
+    button:hover ~.content {
         display: block;
     }
 }

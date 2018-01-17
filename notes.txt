@@ -1,11 +1,21 @@
 // To do
-1. Create realistic data
-2. Broker service
-3. Router setup for Body, product, details
-4. app.config. Map enumerable http calls
-5. Placement of Category Product and Product details in main app
-6. Sql for count product in category and 1st page
+1. Product search and display
+    DB
+        QA setup in database
+        Scores and review setup
+        Indexing and search
+    UI
+        Filter on left side
+
+2. Implement shopping cart
+3. User management
+4. New product entry
+5. Payment gateway
+6. 
 7. 
+//postgeres best practises
+https://kukuruku.co/post/postgresql-set-of-practices/
+
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's

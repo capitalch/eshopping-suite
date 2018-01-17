@@ -2,6 +2,7 @@
 {
     width: 100vw;
     height: 4.3em;
+    line-height: 4.3em
 }
 
 .body-container
@@ -16,7 +17,7 @@
     {
         float:left;
         min-height: 57.5em;
-        width: 70%;
+        width: 77%;
     }
 }
 
@@ -25,6 +26,14 @@
     width: 100vw;
     height: 4.3em;
     float: left;
+}
+
+@media screen and (max-width: 1440px)
+{
+    .body-container .product-container
+    {
+        width:76%;
+    }
 }
 
 @media screen and (max-width: 1320px) {

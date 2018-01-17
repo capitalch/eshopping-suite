@@ -23,6 +23,11 @@ export class ProductDetailsComponent implements OnInit {
     //this subs = 
   }
 
+  changeDisplayImage(url)
+  {
+    // this.displayImage = url;
+  }
+
   back(){
     window.history.back();
   }

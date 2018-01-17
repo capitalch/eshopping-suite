@@ -8,11 +8,24 @@
 </div>
 <div class="image-spec-container">
   <div class="image">
-    <img class="main-image" src="{{product.image}}">
+    <img class="main-image" src="{{displayImage}}">
+    <div class="image-icons">
+      <div *ngFor="let image of product.images">
+        <a (click)="changeDisplayImage(image)"><img class="icons" src="{{image}}"></a>
+      </div> 
+    </div>
   </div>
   <div class="specs">
-    <span>{{product.specs}}</span>  
-  </div>
+    <div class="spec-group" *ngFor="let group of product.product_info">
+      <h2>{{group.header}}</h2>
+        <table border="1" class="spec-group-details">
+          <tr *ngFor="let feature of group.details">
+            <td>{{feature.name}}</td>
+            <td>{{feature.value}}</td>
+          </tr>
+        </table>  
+    </div>
+  </div> 
 </div>
 <div class="qa-review-container">
   <div class="qa">

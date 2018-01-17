@@ -33,7 +33,6 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.subs = this.brokerService.filterOn(httpMessages.default).subscribe(d => {
       d.error ? console.log(d.error) : (
-        // console.log(d.data),
         this.products = d.data
       );
     });
@@ -69,7 +68,6 @@ export class ProductComponent implements OnInit {
     this.pageObject.pageIndex = e.pageIndex;
     this.pageObject.pageSize = e.pageSize;
     this.pageChange();
-    console.log(e);
   }
 
   showProductDetails(selectedProduct)

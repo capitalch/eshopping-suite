@@ -1,6 +1,6 @@
 .name-rating
 {
-    width: 100em;
+    width: 100%;
     background: red;
     height: 5em;
     display:table;
@@ -8,39 +8,44 @@
 .image-spec-container
 {
     background: yellow;
-    width: 100em;
+    width: 100%;
     height: 37em;
 }
 .image
 {
-    width: 40em;
+    width: 37%;
     border: 1px solid black;
     height: 37em;
     float: left;
 }
+.image-icons
+{
+    height: 25%;
+}
 .specs
 {
-    width: 50.8em;
+    width: 62.5%;
     border: 1px solid black;
     height: 37em;
     float: left;
+    overflow-y:scroll;
 }
 .qa-review-container
 {
     background: red;
-    width: 100em;
+    width: 100%;
     height: 15.5em;
 }
 .qa
 {
-    width: 40em;
+    width: 37%;
     border: 1px solid black;
     height: 15em;
     float: left;
 }
 .review
 {
-    width: 50.8em;
+    width: 62.5%;
     border: 1px solid black;
     height: 15em;
     float: left;
@@ -59,4 +64,37 @@
 {
     display: table-cell;
     vertical-align: middle;
+}
+
+.main-image
+{
+    margin-left: 15%;
+    margin-bottom: 20%;
+}
+
+.icons
+{
+    height: 90px;
+    width: 75px;
+    float:left;
+    border:1px solid black;
+}
+
+.image-icons
+{
+    display: -webkit-box;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.spec-group
+{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.spec-group-details
+{
+    font-size: 1.3em;
 }

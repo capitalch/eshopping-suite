@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BrokerService } from '../../service/broker.service';
 import { httpMessages, localMessages } from '../../app.config';
 import { settings, navUrls } from '../emart.config';
+import { AppService } from '../../service/app.service';
 
 @Component({
   selector: 'app-product',
@@ -28,18 +29,29 @@ export class ProductComponent implements OnInit {
   pageNo: number = 1;
   products: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) { }
+  constructor(private appService: AppService, private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
+    console.log('product');
+  }
 
   ngOnInit() {
-    this.subs = this.brokerService.filterOn(httpMessages.default).subscribe(d => {
+    this.activatedRoute.params.subscribe(params => {
+      this.pageObject.pageIndex = 0;
+      this.catId = params.catId;
+      this.pageObject.length = params.count;
+      (params.searchString && (params.searchString != "undefined"))
+        ? this.searchString = params.searchString : this.searchString = undefined;
+      this.pageChange();
+    });
+
+    this.subs = this.brokerService.filterOn(httpMessages.products).subscribe(d => {
       d.error ? console.log(d.error) : (
         this.products = d.data
       );
     });
 
-    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {      
+    let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
       this.activatedRoute.params.subscribe(params => {
-        this.pageObject.pageIndex=0;
+        this.pageObject.pageIndex = 0;
         this.catId = params.catId;
         this.pageObject.length = params.count;
         (params.searchString && (params.searchString != "undefined"))
@@ -59,7 +71,7 @@ export class ProductComponent implements OnInit {
         , params = [this.catId, this.searchString, offSet, this.pageObject.pageSize])
       : (artifact = httpMessages.productsOnCategory
         , params = [this.catId, offSet, this.pageObject.pageSize]);
-    this.brokerService.httpPost(httpMessages.default, {
+    this.brokerService.httpPost(httpMessages.products, {
       id: artifact, params: params
     })
   }
@@ -70,13 +82,12 @@ export class ProductComponent implements OnInit {
     this.pageChange();
   }
 
-  showProductDetails(selectedProduct)
-  {
+  showProductDetails(selectedProduct) {
     console.log(selectedProduct);
     // this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
-    this.router.navigate([navUrls.productDetails,{id:selectedProduct.id}]);
+    this.router.navigate([navUrls.productDetails, { id: selectedProduct.id }]);
   }
-  
+
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

@@ -7,7 +7,7 @@ export class AppService {
   constructor(private httpClient: HttpClient
     , private brokerService: BrokerService
   ) {
-    console.log('App service called');
+    console.log('App service');
     //get settings file
     httpClient
       .get('assets/settings.json')

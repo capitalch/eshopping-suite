@@ -19,6 +19,7 @@ export class BrokerService {
   };
 
   constructor(private httpClient: HttpClient) {
+    console.log('broker service');
     this.subject = new Subject();
     this.behSubject = new BehaviorSubject(0);
   }

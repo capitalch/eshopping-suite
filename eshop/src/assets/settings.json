@@ -1,9 +1,10 @@
 {
 	"host":"http://localhost:3002",
 	"default":"db/sql/generic",
+	"products":"default",
 	"post:query:categories:with:count":"default",
 	"post:query:products:on:category":"default",
 	"post:search products:categories:on:criteria":"default",
-	"search:specific:or:return:all":"default",
-	"post:search:products:on:criteria":"default"
+	"post:search:products:on:criteria":"default",
+	"header:to:category":"default"
 }

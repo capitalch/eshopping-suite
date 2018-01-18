@@ -10,15 +10,16 @@ let sqls = {
       select 
       p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
       from product p left join brand b 
- 		on p.brand_id = b.id
-	  where cat_id in (
+ 		  on p.brand_id = b.id
+	    where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)
       ) order by p.id offset %s limit %s;`
 
-  , 'post:search:products:on:criteria': `select *
-  from product
-      where cat_id::text LIKE %L and to_tsvector('english', name) @@ to_tsquery('english',%L)
-      order by id offset %s limit %s;`
+  , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
+      from product p left join brand b 
+      on p.brand_id = b.id
+      where cat_id::text LIKE %L and to_tsvector('english', p.name) @@ to_tsquery('english',%L)
+      order by p.id offset %s limit %s;`
 
   , 'post:query:categories:with:count': `with recursive cte1 as(
     select c.id,c.label, c.parent_id, count(0) as product_cnt, true as leaf

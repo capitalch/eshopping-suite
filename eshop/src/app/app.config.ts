@@ -1,9 +1,9 @@
 export const localMessages = {
-    'getsettings': 'get:settings',
-    'headerToCategory':'header:to:category'
+    'getsettings': 'get:settings'
 };
 export const httpMessages = {
-    default:'default',
+    products:'products',
+    headerToCategory:'header:to:category',
     categoriesWithCount: 'post:query:categories:with:count',
     productsOnCategory: 'post:query:products:on:category',
     searchProductsOnCriteria:'post:search:products:on:criteria',

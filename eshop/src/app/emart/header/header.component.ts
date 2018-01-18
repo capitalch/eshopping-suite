@@ -12,7 +12,9 @@ import { BrokerService } from '../../service/broker.service';
 export class HeaderComponent implements OnInit {
   subs: any;
   searchString: string = '';
-  constructor(private brokerService: BrokerService) { }
+  constructor(private brokerService: BrokerService) { 
+    console.log('header');
+  }
 
   ngOnInit() {
   }
@@ -22,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.searchString ?
       (artifact = httpMessages.searchProductsCategoriesOnCriteria)
       : (artifact = httpMessages.categoriesWithCount);
-    this.brokerService.httpPost(localMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] },null, this.searchString);
+    this.brokerService.httpPost(httpMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] },null, this.searchString);
   }
 
   ngOnDestroy() {

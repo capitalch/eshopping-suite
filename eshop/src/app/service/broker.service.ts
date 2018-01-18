@@ -29,7 +29,8 @@ export class BrokerService {
   getHttpUrl = (id) => {
     let host = this.settings.host.replace(/\/$/, "");
     let url = this.settings[id];
-    url && (url=='default') && (url=this.settings['default']);
+    url || (url=this.settings['defaultEndPoint']);
+    // url && (url=='default') && (url=this.settings['defaultEndPoint']);
     url && (url = url.replace(/^,/, ''));
     url = host.concat('/', url);
     return (url);
@@ -84,7 +85,7 @@ export class BrokerService {
   httpGet(id: string, queryParams?: {}) {
     try {
       let url = this.getHttpUrl(id);// urlMaps[id];
-      let httpParams = new HttpParams();
+      let httpParams = new HttpParams();      
       httpParams = queryParams && (Object.keys(queryParams).reduce((prevValue, x, i) => {
         httpParams = httpParams.append(x, queryParams[x]);
         return (httpParams);

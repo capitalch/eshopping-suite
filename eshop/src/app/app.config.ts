@@ -7,5 +7,6 @@ export const httpMessages = {
     categoriesWithCount: 'post:query:categories:with:count',
     productsOnCategory: 'post:query:products:on:category',
     searchProductsOnCriteria:'post:search:products:on:criteria',
-    searchProductsCategoriesOnCriteria: 'post:search:products:categories:on:criteria'
+    searchProductsCategoriesOnCriteria: 'post:search:products:categories:on:criteria',
+    productDetailsOnId:'get:product:details:on:id'
 }

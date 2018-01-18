@@ -83,7 +83,7 @@ export class ProductComponent implements OnInit {
   }
 
   showProductDetails(selectedProduct) {
-    console.log(selectedProduct);
+    // console.log(selectedProduct);
     // this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
     this.router.navigate([navUrls.productDetails, { id: selectedProduct.id }]);
   }

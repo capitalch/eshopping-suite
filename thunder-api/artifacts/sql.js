@@ -1,5 +1,7 @@
 let sqls = {
-  'post:query:products:on:category': `with recursive cte1 as (
+  'get:product:details:on:id':`select *
+	  from product where id = %s;`
+  , 'post:query:products:on:category': `with recursive cte1 as (
     select id,label, parent_id
         from category where id = %s
       union

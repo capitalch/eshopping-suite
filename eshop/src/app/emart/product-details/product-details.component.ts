@@ -11,21 +11,19 @@ import { httpMessages } from '../../app.config';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  //productId:number;
-  product: any = {};
+  product: any = {images:[]};
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {
       this.product.id = param.id;
       console.log(param.id);
-      // this.product = JSON.parse(param.product);
     });
   }
 
   ngOnInit() {
     this.subs = this.brokerService.filterOn(httpMessages.productDetailsOnId).subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.product = d.data[0]
+        this.product = d.data && d.data[0]
       );
     });
     this.brokerService.httpPost(httpMessages.productDetailsOnId, { id: null, params: [this.product.id] });

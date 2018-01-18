@@ -19,6 +19,34 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
+----------------------------------------------------------------------------------------------
+//Create master rows with details json
+select c1.id, label, array_to_json(array_agg(to_json(p1)))
+	from category c1 left join  lateral (select id, name, list_price, offer_price from product p where p.cat_id = c1.id) p1
+		on true
+			group by c1.id
+			 order by c1.id
+----------------------------------------------------------------------------------------------
+// Following sql was used to create question answer tables
+insert into question (content,likes,product_id,is_approved,user_id,mdate)
+select lipsum(15) as content, (random()*200)::int as likes, 6003 as product_id, true as is_approved, 1 as user_id, NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate
+	from generate_series(1,50000) as generator
+	
+select * from question
+truncate table answer cascade
+ALTER SEQUENCE answer_id_seq RESTART WITH 1;
+update question set product_id = (
+	select id from product where is_approved order by random() limit 1 
+), is_approved = is_approved;
+
+update question q set product_id = 
+(select (random() * 44000)::int + 6003 where q.is_approved=true);
+
+insert into answer (mdate,content,likes,question_id,user_id,is_approved) 
+select NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate, lipsum(60) as content, (random()*200)::int as likes, 1 as question_id, 1 as user_id, true as is_approved
+	from generate_series(1,100000) as generator;
+update answer a set question_id = 
+(select (random() * 49999)::int + 1 where a.is_approved=true);
 ----------------------------------------------------------------------------------------------------------------
 //create images array from robohash and set the images column of product table. This was used.
 update product

@@ -12,6 +12,8 @@ import { httpMessages } from '../../app.config';
 })
 export class ProductDetailsComponent implements OnInit {
   product: any = {images:[]};
+  qa:any=[];
+  reviewResponse:any=[];
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {
@@ -23,10 +25,15 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.subs = this.brokerService.filterOn(httpMessages.productDetailsOnId).subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.product = d.data && d.data[0]
+        this.product = d.data && d.data[0].rows[0],
+        console.log('product:',this.product),
+        this.qa = d.data && d.data[1].rows,
+        console.log('qa:',this.qa),
+        this.reviewResponse = d.data && d.data[2].rows,
+        console.log('Review Response:',this.reviewResponse)
       );
     });
-    this.brokerService.httpPost(httpMessages.productDetailsOnId, { id: null, params: [this.product.id] });
+    this.brokerService.httpPost(httpMessages.productDetailsOnId, { id: null, params: [this.product.id,this.product.id, this.product.id] });
   }
 
   changeDisplayImage(url) {

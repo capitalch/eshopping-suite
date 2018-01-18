@@ -48,6 +48,27 @@ select NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate, lipsum(60) as con
 update answer a set question_id = 
 (select (random() * 49999)::int + 1 where a.is_approved=true);
 ----------------------------------------------------------------------------------------------------------------
+//following sql was used to create review reponse table
+insert into review (user_id, product_id, mdate, rating, images, content, is_approved, likes, title)
+select 1 as user_id, 6003 as product_id,NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate, ((random()*4)::int + 1) as rating,
+ARRAY[
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set1',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set2',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set3',
+		'https://robohash.org/' || md5(random()::text) || '.png?size=250x250&set=set4'											
+	] as images, lipsum(20)::text as content, true as is_approved, (random()*200)::int as likes, lipsum(7)::text as title
+	from generate_series(1,50000) as generator
+
+update review r set product_id = 
+(select (random() * 44000)::int + 6003 where r.is_approved=true);
+
+insert into response (user_id, review_id,content,likes,mdate,is_approved)
+select 1 as user_id, 1 as review_id, lipsum(25)::text as content, (random()*200)::int as likes, NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate, true as is_approved
+from generate_series(1,100000) as generator
+
+update response r set review_id =
+(select (random() * 49999)::int + 1 where r.is_approved = true);
+-----------------------------------------------------------------------------------------------------------------
 //create images array from robohash and set the images column of product table. This was used.
 update product
 	set images = ARRAY[

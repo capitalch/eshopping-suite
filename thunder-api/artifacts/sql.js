@@ -1,6 +1,17 @@
 let sqls = {
   'get:product:details:on:id':`select *
-	  from product where id = %s;`
+    from product where id = %s;
+    select q.id, q.content, q.likes, q.product_id, q.is_approved, q.user_id, q.mdate , array_to_json(array_agg(to_json(a))) as answers
+	  from question q left join lateral (select id, mdate, content, likes, user_id, is_approved from answer a where a.question_id = q.id ) a
+		on true where q.product_id =%s
+			group by q.id
+        order by q.id;
+        select r.id, r.user_id, r.product_id, r.mdate, r.rating, r.images, r.content, r.is_approved, r.likes, r.title, array_to_json(array_agg(to_json(a))) as responses
+        from review r left join lateral (select id, user_id, review_id, content, likes, mdate, is_approved from response a where a.review_id = r.id ) a
+        on true where r.product_id = %s
+          group by r.id
+            order by r.id
+    `
   , 'post:query:products:on:category': `with recursive cte1 as (
     select id,label, parent_id
         from category where id = %s

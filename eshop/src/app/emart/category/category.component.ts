@@ -44,9 +44,8 @@ export class CategoryComponent implements OnInit {
         this.categories = d.data,
         this.searchString = d.carryBag,        
         this.processLazy(),
-        this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }])
-        // console.log(d.data)
-      );
+        this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }]
+      ));
     });
 
     this.subs.add(sub1).add(sub2);

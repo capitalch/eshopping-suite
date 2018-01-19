@@ -19,25 +19,3 @@ p-tree {
     height: 30.9em;
     border: 1px solid black;
 }
-
-@media screen and (max-width: 1320px) {
-    .ui-tree
-    {
-        width:18.5em;
-    }
-    .filter-container
-    {
-        width:22em;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .ui-tree
-    {
-        width: 16.5em;
-    }
-    .filter-container
-    {
-        width: 19.6em;
-    }
-}

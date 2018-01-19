@@ -28,32 +28,3 @@
     float: left;
 }
 
-@media screen and (max-width: 1440px)
-{
-    .body-container .product-container
-    {
-        width:76%;
-    }
-}
-
-@media screen and (max-width: 1320px) {
-    .body-container .category-container
-    {
-        width: 22.5em;
-    }
-    .body-container .product-container
-    {
-        width:37em;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .body-container .category-container
-    {
-        width: 20em;
-    }
-    .body-container .product-container
-    {
-        width:31em;
-    }
-}

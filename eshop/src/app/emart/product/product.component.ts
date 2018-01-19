@@ -56,7 +56,7 @@ export class ProductComponent implements OnInit {
         this.pageObject.length = params.count;
         (params.searchString && (params.searchString != "undefined"))
           ? this.searchString = params.searchString : this.searchString = undefined;
-        this.pageChange();
+        // this.pageChange();
       });
     });
     this.subs.add(sub1);
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
   pageChange() {
     let offSet = this.pageObject.pageIndex * this.pageObject.pageSize;
     let artifact: string, params: any[];
-    (this.catId == 0) && (this.catId = '%')
+    (this.catId == 0) && (this.catId = "%")
     this.searchString
       ? (artifact = httpMessages.searchProductsOnCriteria
         , params = [this.catId, this.searchString, offSet, this.pageObject.pageSize])

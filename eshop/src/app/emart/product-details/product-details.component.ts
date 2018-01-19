@@ -11,14 +11,14 @@ import { httpMessages } from '../../app.config';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product: any = {images:[]};
+  product: any = {};
   qa:any=[];
   reviewResponse:any=[];
+  displayImage: any;
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {
       this.product.id = param.id;
-      console.log(param.id);
     });
   }
 
@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     this.subs = this.brokerService.filterOn(httpMessages.productDetailsOnId).subscribe(d => {
       d.error ? console.log(d.error) : (
         this.product = d.data && d.data[0].rows[0],
-        console.log('product:',this.product),
+        this.displayImage = this.product.images[0],
         this.qa = d.data && d.data[1].rows,
         console.log('qa:',this.qa),
         this.reviewResponse = d.data && d.data[2].rows,
@@ -37,7 +37,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   changeDisplayImage(url) {
-    // this.displayImage = url;
+    this.displayImage = url;
   }
 
   back() {

@@ -1,7 +1,9 @@
 .pagination
 {
     margin-left:.5vw;
+    width: 61%;
 }
+
 .products
 {
     width: 70vw;
@@ -74,39 +76,3 @@
 {
     display: inline-flex;
 }
-
-
-@media screen and (max-width: 1320px) {
-    .pagination
-    {
-        width: 98%;
-        float: left;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .mat-paginator
-    {
-        font-size:9px;
-    }
-    .products
-    {
-        width:50vw;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .mat-paginator
-    {
-        font-size:9px;
-    }
-    .pagination
-    {
-        width:98%;
-    }
-    .mat-card-header
-    {
-        margin:0px;
-    }
-}
-

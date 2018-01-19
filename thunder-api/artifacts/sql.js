@@ -14,7 +14,7 @@ let sqls = {
     `
   , 'post:query:products:on:category': `with recursive cte1 as (
     select id,label, parent_id
-        from category where id = %s
+        from category where id::text like %L
       union
         select c1.id, c1.label, c1.parent_id
           from category c1 inner join cte1 c2

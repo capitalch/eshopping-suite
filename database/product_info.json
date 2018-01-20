@@ -1,0 +1,56 @@
+[
+    {
+        "name": "label",
+        "values": [
+            "red color",
+            "8gb",
+            "50gms",
+            "Light weight"
+        ]
+    },
+    {
+        "name": "General",
+        "values": [
+            {
+                "name": "In the box",
+                "value": "Handset, Earphones Tuned by AKG, USB Type C Cable, Travel Adapter, USB Connector (C to A), Micro USB Connector (C to B), Ejector Pin, Quick Start and Smart Switch Leaflet"
+            },
+            {
+                "name": "Model Number",
+                "value": "SM-G950FZKDINS"
+            },
+            {
+                "name": "Model Name",
+                "value": "Galaxy S8"
+            },
+            {
+                "name": "Color",
+                "value": "Midnight Black"
+            },
+            {
+                "name": "Browse Type",
+                "value": "Smartphones"
+            },
+            {
+                "name": "SIM Type",
+                "value": "Dual Sim"
+            },
+            {
+                "name": "Hybrid Sim Slot",
+                "value": "Yes"
+            },
+            {
+                "name": "Touchscreen",
+                "value": "Yes"
+            },
+            {
+                "name": "OTG Compatible",
+                "value": "Yes"
+            },
+            {
+                "name": "Quick Charging",
+                "value": "Yes"
+            }
+        ]
+    }
+]

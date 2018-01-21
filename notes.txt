@@ -20,9 +20,7 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 ----------------------------------------------------------------------------------------------
-//typescriptselect id, name, product_info,j->>'values' from product p
-	left join lateral jsonb_array_elements(p.product_info) j on true
-		where p.id < 6010 order by p.id
+//typescript
         ------------------------------
 //Create master rows with details json
 select c1.id, label, array_to_json(array_agg(to_json(p1)))

@@ -4,6 +4,7 @@ import { BrokerService } from '../../service/broker.service';
 import { httpMessages, localMessages } from '../../app.config';
 import { settings, navUrls } from '../emart.config';
 import { AppService } from '../../service/app.service';
+// import * as moment from 'moment';
 
 @Component({
   selector: 'app-product',
@@ -86,6 +87,16 @@ export class ProductComponent implements OnInit {
     // console.log(selectedProduct);
     // this.router.navigate([navUrls.productDetails,{product:JSON.stringify(selectedProduct)}]);
     this.router.navigate([navUrls.productDetails, { id: selectedProduct.id }]);
+  }
+
+  addToCart(product) {
+    // this.router.navigate([navUrls.cart]);
+    let payload={
+      user_id:this.appService.getUserId(),
+      product_id:product.id,
+      qty:1
+    };
+    this.brokerService.httpPost(httpMessages.addToCart,{params:[payload]});
   }
 
   ngOnDestroy() {

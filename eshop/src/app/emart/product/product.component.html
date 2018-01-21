@@ -16,7 +16,7 @@
         <span class="discounted-price">{{product.offer_price}}</span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>ADD TO CART</button>
+        <button mat-button (click)="addToCart(product)">ADD TO CART</button>
       </mat-card-actions>
     </a>
   </mat-card>

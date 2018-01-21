@@ -16,7 +16,8 @@ let sqls = {
         on b.id = p.brand_id
       where s.isactive and user_id = %s`
 
-  , 'post:query:product:details:on:id': `select *, (select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
+  , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info) as label      
+      --(select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
       from product p where id = %s;
       select q.id, q.content, q.likes, q.product_id, q.is_approved, q.user_id, q.mdate , array_to_json(array_agg(to_json(a))) as answers
       from question q left join lateral (select id, mdate, content, likes, user_id, is_approved from answer a where a.question_id = q.id ) a
@@ -39,7 +40,8 @@ let sqls = {
       )
       select 
       p.id, p.name, list_price, product_code,descr,  offer_price, model, images[1] as image,
-      (select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
+      get_product_label(p.product_info) as label
+      --(select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
       from product p 		  
       where cat_id in (
           select id from cte1 where id not in( select parent_id from cte1 where parent_id is not null)

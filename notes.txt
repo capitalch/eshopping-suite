@@ -226,8 +226,20 @@ create or replace function lipsum( quantity_ integer ) returns character varying
   end;
 $$;
 -----------------------------------------------------------------------------------------------
+//function to get label from product_info
+create or replace function get_product_label( product_info jsonb ) returns character varying
+    language plpgsql
+    as $$
+  declare  
+    returnValue_ text := '';
+  begin
+  	returnValue_ := (select a->'values' from jsonb_array_elements(product_info) as a where a->>'name' = 'label' limit 1 );
+    return returnValue_;
+  end;
+$$;
+--------------------------------------------------------------------------------------------------
 
-//function to create product-----------------------------------------------------------------------
+//function to create dummy product
 BEGIN
     return(SELECT(
     SELECT concat_ws('',name_first, name_middle, name_last) as generated

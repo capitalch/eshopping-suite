@@ -1,5 +1,6 @@
 <div class="name-rating">
   <span class="product-name">{{product.name}}</span> 
+  <span class="product-highlight">{{product.label}}</span>
   <rating class="star-rating" [(ngModel)]="product.scores" readonly="true"></rating>
 </div>
 <div class="image-spec-container">
@@ -13,9 +14,9 @@
   </div>
   <div class="specs">
     <div class="spec-group" *ngFor="let group of product.product_info">
-      <h2>{{group.header}}</h2>
+      <h2>{{group.name}}</h2>
         <table border="1" class="spec-group-details">
-          <tr *ngFor="let feature of group.details">
+          <tr *ngFor="let feature of group.values">
             <td>{{feature.name}}</td>
             <td>{{feature.value}}</td>
           </tr>

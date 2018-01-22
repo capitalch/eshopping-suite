@@ -15,6 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   qa:any=[];
   reviewResponse:any=[];
   displayImage: any;
+  index :any;
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {
@@ -26,6 +27,13 @@ export class ProductDetailsComponent implements OnInit {
     this.subs = this.brokerService.filterOn(httpMessages.productDetailsOnId).subscribe(d => {
       d.error ? console.log(d.error) : (
         this.product = d.data && d.data[0].rows[0],
+
+        //this.product.product_info.shift(),
+
+        this.index = this.product.product_info.findIndex(p=>p.name=="label"),
+        this.product.product_info.splice(this.index,1),
+
+        console.log("product: ",this.product),
         this.displayImage = this.product.images[0],
         this.qa = d.data && d.data[1].rows,
         console.log('qa:',this.qa),

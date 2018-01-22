@@ -20,4 +20,8 @@ export class AppService {
       });
   }
 
+  getUserId(){
+    return(1);
+  }
+
 }

@@ -9,16 +9,16 @@
 {
     .category-container
     {
-        width:27.5em;
+        width:22.5em;
         float:left;
-        height: 84vh;
+        min-height: 84vh;
     }
     .product-container
     {
-        float:left;
+        float: left;
         min-height: 84vh;
-        width: 74%;
-
+        width: 79%;
+        border: 1px solid black;
     }
 }
 

@@ -20,6 +20,8 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 ----------------------------------------------------------------------------------------------
+//typescript
+        ------------------------------
 //Create master rows with details json
 select c1.id, label, array_to_json(array_agg(to_json(p1)))
 	from category c1 left join  lateral (select id, name, list_price, offer_price from product p where p.cat_id = c1.id) p1
@@ -224,8 +226,20 @@ create or replace function lipsum( quantity_ integer ) returns character varying
   end;
 $$;
 -----------------------------------------------------------------------------------------------
+//function to get label from product_info
+create or replace function get_product_label( product_info jsonb ) returns character varying
+    language plpgsql
+    as $$
+  declare  
+    returnValue_ text := '';
+  begin
+  	returnValue_ := (select a->'values' from jsonb_array_elements(product_info) as a where a->>'name' = 'label' limit 1 );
+    return returnValue_;
+  end;
+$$;
+--------------------------------------------------------------------------------------------------
 
-//function to create product-----------------------------------------------------------------------
+//function to create dummy product
 BEGIN
     return(SELECT(
     SELECT concat_ws('',name_first, name_middle, name_last) as generated

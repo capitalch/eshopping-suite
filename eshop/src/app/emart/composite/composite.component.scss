@@ -7,17 +7,18 @@
 
 .body-container
 {
-    min-width:612px;
     .category-container
     {
         width:27.5em;
         float:left;
+        height: 84vh;
     }
     .product-container
     {
         float:left;
-        min-height: 57.5em;
-        width: 77%;
+        min-height: 84vh;
+        width: 74%;
+
     }
 }
 

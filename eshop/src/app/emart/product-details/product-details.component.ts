@@ -28,8 +28,6 @@ export class ProductDetailsComponent implements OnInit {
       d.error ? console.log(d.error) : (
         this.product = d.data && d.data[0].rows[0],
 
-        //this.product.product_info.shift(),
-
         this.index = this.product.product_info.findIndex(p=>p.name=="label"),
         this.product.product_info.splice(this.index,1),
 

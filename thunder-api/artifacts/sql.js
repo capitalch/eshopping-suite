@@ -1,5 +1,10 @@
 let sqls = {
-  'post:add:to:cart': ``
+  'post:add:to:cart': `
+    insert into shopping_cart(user_id,product_id,qty, isactive)
+    select user_id,product_id,qty,isactive 
+      from jsonb_populate_record(null::shopping_cart
+        , %L)
+    `
 
   , 'post:delete:from:cart': ``
 

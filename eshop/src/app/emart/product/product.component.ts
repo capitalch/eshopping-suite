@@ -60,7 +60,13 @@ export class ProductComponent implements OnInit {
         // this.pageChange();
       });
     });
-    this.subs.add(sub1);
+
+    let sub2 = this.brokerService.filterOn(httpMessages.addToCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        console.log(d.data)
+      );
+    });
+    this.subs.add(sub1).add(sub2);
   }
 
   pageChange() {
@@ -91,12 +97,13 @@ export class ProductComponent implements OnInit {
 
   addToCart(product) {
     // this.router.navigate([navUrls.cart]);
-    let payload={
-      user_id:this.appService.getUserId(),
-      product_id:product.id,
-      qty:1
+    let payload = {
+      user_id: this.appService.getUserId(),
+      product_id: product.id,
+      qty: 1,
+      isactive: true
     };
-    this.brokerService.httpPost(httpMessages.addToCart,{params:[payload]});
+    this.brokerService.httpPost(httpMessages.addToCart, { params: [payload] });
   }
 
   ngOnDestroy() {

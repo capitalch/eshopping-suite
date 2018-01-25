@@ -19,6 +19,27 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
+//for json to insert in table
+create or replace function json_add( table_name text, json_data json ) returns character varying
+    language plpgsql
+    as $$
+  declare  
+    returnValue_ text := '';
+	fields text :='';
+	sql text := '';
+  begin
+  fields := (select string_agg(elem,',') from
+	(SELECT json_object_keys('{"user_id":1,"product_id":"6001","qty":1,"isactive":true}'::json) elem) as e);
+	IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'x') THEN
+        CREATE TYPE x AS (user_id int,product_id bigint, qty int, isactive boolean);
+    END IF;
+	sql = 'insert into shopping_cart(' || fields || ') ' ||
+	'select * from json_populate_record(null::x,' || '''' || json_data || '''' || ')';
+	EXECUTE sql;	
+    return returnValue_;
+  end;
+$$;
+
 ----------------------------------------------------------------------------------------------
 //Create master rows with details json
 select c1.id, label, array_to_json(array_agg(to_json(p1)))
@@ -31,11 +52,6 @@ select c1.id, label, array_to_json(array_agg(to_json(p1)))
 select string_agg(elem,',') from
 (SELECT json_object_keys('{"user_id":1,"product_id":"6001","qty":1,"isactive":true}'::json) elem) as e
 ---------------------------------------------------------------------------------------------------
-//insert in a table from json object
-select string_agg(elem,',') from
-(SELECT json_object_keys('{"user_id":1,"product_id":"6001","qty":1,"isactive":true}'::json) elem) as e
----------------------------------------------------------------------------------
-
 // Following sql was used to create question answer tables
 insert into question (content,likes,product_id,is_approved,user_id,mdate)
 select lipsum(15) as content, (random()*200)::int as likes, 6003 as product_id, true as is_approved, 1 as user_id, NOW() - '1 year'::INTERVAL * (RANDOM() * 1.5) as mdate

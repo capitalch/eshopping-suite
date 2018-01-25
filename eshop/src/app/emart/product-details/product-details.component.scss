@@ -1,6 +1,153 @@
-.name-rating
+// .name-rating
+// {
+//     background: white;
+//     border-bottom: 1px solid black;
+//     height:6vh;
+//     .product-name
+//     {
+//         font-size:2.5em;
+//         margin-left: .3em;
+//     }
+    
+//     .star-rating
+//     {
+//         vertical-align: super;
+//         margin-left: .3em;
+//     }
+// }
+
+// .image-spec-container
+// {
+//     width: 100%;
+//     height: 28em;
+//     .image
+//     {
+//         width: 32%;
+//         float: left;
+//         border-right: 1px solid black;
+//         .main-image
+//         {
+//             margin-left: auto;
+//             margin-right: auto;
+//             display: block;
+//             width: 68%;
+//         }
+//         .image-icons
+//         {
+//             height: 25%;
+//             display: -webkit-box;
+//             overflow: hidden;
+//             overflow-x: scroll;
+//             .icons
+//             {
+//                 height: 80px;
+//                 width: 75px;
+//                 float: left;
+//                 border: 1px solid black;
+//             }
+//         }
+//     }  
+// }
+
+// .specs
+// {
+//     width: 67.7%;
+//     height: 28em;
+//     float: left;
+//     overflow-y:scroll;
+//     outline: .5px solid black;
+//     .spec-group
+//     {
+//         margin-left: 1em;
+//         margin-right: 1em;
+//         margin-bottom: 1em;
+//         .spec-group-details
+//         {
+//             font-size: 1.2em;
+//         }
+//     }
+// }
+
+
+// .qa-review-container
+// {
+//     width: 100%;
+//     .qa
+//     {
+//         width: 32%;
+//         border-right: 1px solid black;
+//         height: 15em;
+//         float: left;
+//         overflow-y:scroll;
+//        .question
+//        {
+//             margin-left: 1em;
+//             margin-right:1em;
+//        }
+//     }
+//     .review
+//     {
+//         width: 67.7%;
+//         height: 15em;
+//         float: left;
+//         overflow-y:scroll;
+//         .reviews
+//         {
+//             margin-top: 2px;
+//             margin-left: 1em;
+//             margin-right:1em;
+//             .review-title-container
+//             {
+//                 margin-bottom: 8px;
+//                 .review-title
+//                 {
+//                     float: left;
+//                     font-size: 1.3em;
+//                     margin-right: 8px;
+//                     margin-top: 2px;
+//                 }
+//             }
+//             .review-images
+//             {
+//                 display: -webkit-box;
+//                 overflow-x:auto;
+//                 .icon-container
+//                 {
+//                     margin-left: 2px;
+//                     margin-top: 2px;
+//                     margin-bottom: 6px;
+//                     margin-right: 25px;
+//                     .review-image-icons
+//                     {
+//                         width: 8em;
+//                     }
+//                 }
+//             }
+//             .review-rating
+//             {
+//                 font-size: 8px;
+//             }
+//             .likes
+//             {
+//                 display: -webkit-inline-box;
+//                 float: right;
+//                 font-size: 1.2em;
+//                 margin-top: 4px;
+//                 margin-right: 10px;
+//                 color:red;
+//             }
+//         }
+//     }
+// }
+
+.highlight
 {
-    background: white;
+    color:red;
+}
+
+
+.name-highlight-rating-container
+{
     border-bottom: 1px solid black;
     height:6vh;
     .product-name
@@ -15,135 +162,117 @@
         margin-left: .3em;
     }
 }
-
-.image-spec-container
+.image-dealer-specs-container
 {
     width: 100%;
-    height: 28em;
-    .image
+    height: 86vh;
+    .image-dealer-container
     {
-        width: 32%;
         float: left;
-        border-right: 1px solid black;
-        .main-image
+        width:40%;
+        height:100%;
+        .image-container
         {
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            width: 68%;
-        }
-        .image-icons
-        {
-            height: 25%;
-            display: -webkit-box;
-            overflow: hidden;
-            overflow-x: scroll;
-            .icons
+            background: yellow;
+            height: 70%;
+            .main-image
             {
-                height: 80px;
-                width: 75px;
-                float: left;
-                border: 1px solid black;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 69%;
+            }
+            .image-icons
+            {
+                height: 25%;
+                display: -webkit-box;
+                overflow: hidden;
+                overflow-x: scroll;
+                .icons
+                {
+                    height: 80px;
+                    width: 75px;
+                    float: left;
+                    border: 1px solid black;
+                }
             }
         }
-    }  
-}
-
-.specs
-{
-    width: 67.7%;
-    height: 28em;
-    float: left;
-    overflow-y:scroll;
-    outline: .5px solid black;
-    .spec-group
-    {
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        .spec-group-details
+        .dealer-container
         {
-            font-size: 1.2em;
+            background: green;
+            height:30%;
+        }
+    }
+    .spec-container
+    {
+        background: aliceblue;
+        width: 59%;
+        height: 100%;
+        float: right;
+        overflow-y: scroll;
+        .spec-group
+        {
+            .spec-group-details
+            {
+                font-size: 1.2em;
+            }
         }
     }
 }
-
 
 .qa-review-container
 {
-    width: 100%;
-    .qa
+    width:100%;
+    min-height: 25em;
+    .qa-container
     {
-        width: 32%;
-        border-right: 1px solid black;
-        height: 15em;
-        float: left;
-        overflow-y:scroll;
-       .question
-       {
-            margin-left: 1em;
-            margin-right:1em;
-       }
+        background: antiquewhite;
+        min-height: 12.5em;
     }
-    .review
+    .review-container
     {
-        width: 67.7%;
-        height: 15em;
-        float: left;
-        overflow-y:scroll;
-        .reviews
+        background: aqua;
+        min-height: 12.5em;
+        .review-title-container
         {
-            margin-top: 2px;
-            margin-left: 1em;
-            margin-right:1em;
-            .review-title-container
+            margin-bottom: 8px;
+            .review-title
             {
-                margin-bottom: 8px;
-                .review-title
+                float: left;
+                font-size: 1.3em;
+                margin-right: 8px;
+                margin-top: 2px;
+            }
+        }
+        .review-images
+        {
+            display: -webkit-box;
+            overflow-x:auto;
+            .icon-container
+            {
+                margin-left: 2px;
+                margin-top: 2px;
+                margin-bottom: 6px;
+                margin-right: 25px;
+                .review-image-icons
                 {
-                    float: left;
-                    font-size: 1.3em;
-                    margin-right: 8px;
-                    margin-top: 2px;
+                    width: 8em;
                 }
             }
-            .review-images
-            {
-                display: -webkit-box;
-                overflow-x:auto;
-                .icon-container
-                {
-                    margin-left: 2px;
-                    margin-top: 2px;
-                    margin-bottom: 6px;
-                    margin-right: 25px;
-                    .review-image-icons
-                    {
-                        width: 8em;
-                    }
-                }
-            }
-            .review-rating
-            {
-                font-size: 8px;
-            }
-            .likes
-            {
-                display: -webkit-inline-box;
-                float: right;
-                font-size: 1.2em;
-                margin-top: 4px;
-                margin-right: 10px;
-                color:red;
-            }
+        }
+        .review-rating
+        {
+            font-size: 8px;
+        }
+        .likes
+        {
+            display: -webkit-inline-box;
+            float: right;
+            font-size: 1.2em;
+            margin-top: 12px;
+            margin-right: 10px;
+            color:red;
         }
     }
 }
-
-.highlight
-{
-    color:red;
-}
-
-
 

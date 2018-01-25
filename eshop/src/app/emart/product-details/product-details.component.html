@@ -1,29 +1,4 @@
-<div class="name-rating">
-  <span class="product-name">{{product.name}}</span> 
-  <span class="product-highlight">{{product.label}}</span>
-  <rating class="star-rating" [(ngModel)]="product.scores" readonly="true"></rating>
-</div>
-<div class="image-spec-container">
-  <div class="image">
-    <img class="main-image" src="{{displayImage}}">
-    <div class="image-icons">
-      <div *ngFor="let image of product.images">
-        <a (click)="changeDisplayImage(image)"><img class="icons" src="{{image}}"></a>
-      </div> 
-    </div>
-  </div>
-  <div class="specs">
-    <div class="spec-group" *ngFor="let group of product.product_info">
-      <h2>{{group.name}}</h2>
-        <table border="1" class="spec-group-details">
-          <tr *ngFor="let feature of group.values">
-            <td>{{feature.name}}</td>
-            <td>{{feature.value}}</td>
-          </tr>
-        </table>  
-    </div>
-  </div> 
-</div>
+<!-- 
 <div class="qa-review-container">
   <div class="qa">
     <div class="question" *ngFor="let question of qa">
@@ -50,5 +25,64 @@
           <li><span class="highlight">Reply</span> - {{response.content}}</li>
         </ul> 
       </div>
+  </div>
+</div> -->
+<div class="name-highlight-rating-container">
+  <span class="product-name">{{product.name}}</span> 
+  <span class="product-highlight">{{product.label}}</span>
+  <rating class="star-rating" [(ngModel)]="product.scores" readonly="true"></rating>
+</div>
+<div class="image-dealer-specs-container">
+  <div class="image-dealer-container">
+    <div class="image-container">
+      <img class="main-image" src="{{displayImage}}">
+      <div class="image-icons">
+        <div *ngFor="let image of product.images">
+          <a (click)="changeDisplayImage(image)"><img class="icons" src="{{image}}"></a>
+        </div> 
+      </div>
+    </div>
+    <div class="dealer-container">
+
+    </div>
+  </div>
+  <div class="spec-container">
+    <div class="spec-group" *ngFor="let group of product.product_info">
+      <h2>{{group.name}}</h2>
+        <table border="1" class="spec-group-details">
+          <tr *ngFor="let feature of group.values">
+            <td>{{feature.name}}</td>
+            <td>{{feature.value}}</td>
+          </tr>
+        </table>  
+    </div>
+  </div>
+</div>
+<div class="qa-review-container">
+  <div class="qa-container">
+    <div class="question" *ngFor="let question of qa">
+      <span><span class="highlight">Ques</span> - {{question.content}}</span>
+        <ul class="answer" *ngFor="let answer of question.answers">
+          <li><span class="highlight">Ans</span> - {{answer.content}}</li>
+        </ul> 
+    </div>
+  </div>
+  <div class="review-container">
+    <div class="reviews" *ngFor="let review of reviewResponse">
+      <div class="review-title-container">
+        <span class="review-title"><span class="highlight">{{review.title}}</span></span> 
+        <rating class="review-rating" [(ngModel)]="review.rating" readonly="true"></rating>
+        <i class="likes fa fa-heart fa-lg" aria-hidden="true">{{review.likes}}</i>
+      </div>
+      <div class="review-images">
+        <div class="icon-container" *ngFor="let image of review.images">
+          <a><img class="review-image-icons" src="{{image}}"></a>
+        </div> 
+      </div>
+      <span>{{review.content}}</span>
+      <ul class="response" *ngFor="let response of review.responses">
+        <li><span class="highlight">Reply</span> - {{response.content}}</li>
+      </ul> 
+    </div>
   </div>
 </div>

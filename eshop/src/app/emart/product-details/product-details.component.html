@@ -27,20 +27,28 @@
 <div class="qa-review-container">
   <div class="qa">
     <div class="question" *ngFor="let question of qa">
-      <h2>{{question.content}}</h2>
-        <div class="answer" *ngFor="let answer of question.answers">
-          <span>{{answer.content}}</span>
-        </div> 
+      <span><span class="highlight">Ques</span> - {{question.content}}</span>
+        <ul class="answer" *ngFor="let answer of question.answers">
+          <li><span class="highlight">Ans</span> - {{answer.content}}</li>
+        </ul> 
     </div>
   </div>
   <div class="review">
       <div class="reviews" *ngFor="let review of reviewResponse">
-          <h2>{{review.title}}</h2> 
-          <rating [(ngModel)]="review.rating" readonly="true"></rating>
-          <h4>{{review.content}}</h4>
-            <div class="response" *ngFor="let response of review.responses">
-              <span>{{response.content}}</span>
-            </div> 
+        <div class="review-title-container">
+          <span class="review-title"><span class="highlight">{{review.title}}</span></span> 
+          <rating class="review-rating" [(ngModel)]="review.rating" readonly="true"></rating>
+          <i class="likes fa fa-heart fa-lg" aria-hidden="true">{{review.likes}}</i>
         </div>
+        <div class="review-images">
+          <div class="icon-container" *ngFor="let image of review.images">
+            <a><img class="review-image-icons" src="{{image}}"></a>
+          </div> 
+        </div>
+        <span>{{review.content}}</span>
+        <ul class="response" *ngFor="let response of review.responses">
+          <li><span class="highlight">Reply</span> - {{response.content}}</li>
+        </ul> 
+      </div>
   </div>
 </div>

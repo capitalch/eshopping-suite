@@ -19,6 +19,18 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
+//upsert statement
+insert into shopping_cart (user_id,product_id,qty,isactive)
+  values (
+    1,
+    6003,
+	2,
+    true
+  )
+on conflict (user_id,product_id)
+do update set qty = shopping_cart.qty + 2;
+------------------------------------------------------------------------------------------
+
 //for json to insert in table
 create or replace function json_insert_table( table_name text, json_data json ) returns character varying
     language plpgsql

@@ -20,7 +20,7 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
 //for json to insert in table
-create or replace function json_add( table_name text, json_data json ) returns character varying
+create or replace function json_insert_table( table_name text, json_data json ) returns character varying
     language plpgsql
     as $$
   declare  

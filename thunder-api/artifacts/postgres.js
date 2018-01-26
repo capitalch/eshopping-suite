@@ -38,7 +38,6 @@ router.post('/db/sql/generic', (req, res, next) => {
       .catch(
       e => setImmediate(
         () => {
-          // throw e
           res.status(e.status || 500);
           res.json({ error: e.message })
         })
@@ -49,44 +48,33 @@ router.post('/db/sql/generic', (req, res, next) => {
   }
 })
 
-router.post('/db/sql/insert/table/json', (req, res, next) => {
+router.post('/db/json/insert/generic', (req, res, next) => {
   try {
-    // let sqlObj = req.body;
-    // let sqlString = sql[sqlObj.id];
-    // let params = sqlObj.params;
-    // sqlString = format.withArray(sqlString, params);
-
-    let params = req.body;
-    // let tableName = params.tableName;
-    let jsonData = params.json;
-    let tableName = 'shopping_cart';
+    let jsonData = req.body.json;
+    let tableName = req.body.tableName;
     let idColumnName;
-    idColumnName || (idColumnName = 'id');
-    let obj = { "user_id": 1, "product_id": "6001", "qty": 1, "isactive": true };
-    let fields = Object.keys(obj).join();
-    let valuesArray = Object.values(obj);
+    idColumnName || (idColumnName = 'id');let fields = Object.keys(jsonData).join();
+    let valuesArray = Object.values(jsonData);
     let values = valuesArray.map(x => {
       let quote = typeof x === 'string' ? '\'' : '';
       let ret = quote + x + quote;
       return (ret);
     }).join();
     let sqlString = `insert into ${tableName} (${fields}) values(${values}) returning ${idColumnName};`
-    // console.log(sql);
-
+    
     pool.query(sqlString)
       .then(result => {
         Array.isArray(result) || (result = result.rows);
         res.json(result);
-      }
+        }
       )
       .catch(
       e => setImmediate(
         () => {
-          // throw e
           res.status(e.status || 500);
           res.json({ error: e.message })
         })
-      )
+      );
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);

@@ -11,8 +11,7 @@ let sqls = {
   , 'post:modify:cart': ``
 
   , 'post:query:cart': `select s.id, s.mdate, s.user_id, s.product_id,s.qty, p.name as product_name, b.name, p.descr,
-      get_product_label(p.product_info) as label 
-      --(select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
+      get_product_label(p.product_info) as label       
       from shopping_cart s inner join	"user" u
         on s.user_id = u.id
       inner join product p

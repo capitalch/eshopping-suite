@@ -19,6 +19,24 @@ https://kukuruku.co/post/postgresql-set-of-practices/
 //site for creating fake data in postgres
 https://regilero.github.io/postgresql/english/2017/06/26/postgresql_advanced_generate_series/
 //important sql's
+---------------------------------------------------------------------------------------------
+//inline functions / anonymous code blocks
+do $$
+begin
+  	if exists(select 0 from shopping_cart where user_id = 1 and product_id = 6003) then
+		update shopping_cart set qty = qty + 2 where user_id = 1 and product_id = 6003;
+	end if;
+end $$
+
+//PL/V8 inline functions
+do $$
+  	var o = {};
+	var x = 0;
+    for(var i=0; i<100; i++){
+        x=x+1;
+    }
+$$ LANGUAGE plv8
+----------------------------------------------------------------------------------------------
 //upsert statement
 insert into shopping_cart (user_id,product_id,qty,isactive)
   values (

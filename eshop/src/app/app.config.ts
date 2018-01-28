@@ -9,8 +9,7 @@ export const httpMessages = {
     searchProductsOnCriteria:'post:search:products:on:criteria',
     searchProductsCategoriesOnCriteria: 'post:search:products:categories:on:criteria',
     productDetailsOnId:'post:query:product:details:on:id',
-    addToCart:'post:add:to:cart',
+    addUpdateCart:'post:add:update:cart',
     deleteFromCart:'post:delete:from:cart',
-    modifyCart:'post:modify:cart',
     itemsInCart:'post:query:cart'
 }

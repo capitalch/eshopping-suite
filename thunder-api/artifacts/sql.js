@@ -1,9 +1,21 @@
 let sqls = {
-  'post:add:to:cart': `
-    insert into shopping_cart(user_id,product_id,qty, isactive)
-    select user_id,product_id,qty,isactive 
-      from jsonb_populate_record(null::shopping_cart
-        , %L)
+  'post:query:cart': `
+      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::text as label
+      from shopping_cart s
+        join product p
+          on s.product_id = p.id
+        join brand b
+          on b.id = p.brand_id
+      where user_id = %s`
+  , 'post:add:update:cart': `
+      do $$
+      begin
+          if exists(select 0 from {{tableName}} where user_id = {{user_id}} and product_id = {{product_id}}) then
+          update {{tableName}} set qty = qty + {{qty}} where user_id = {{user_id}} and product_id = {{product_id}};
+        else
+          insert into {{tableName}} ({{fields}}) values({{{values}}});
+        end if;
+      end $$
     `
 
   , 'post:delete:from:cart': ``

@@ -10,6 +10,7 @@ var messages = require('./messages');
 var pg = require('pg');
 var format = require('pg-format');
 var sql = require('./sql');
+var mustache = require('mustache');
 const { Pool } = require('pg');
 
 const dbConfig = {
@@ -23,6 +24,7 @@ const dbConfig = {
 
 const pool = new Pool(dbConfig);
 
+//positional parameters
 router.post('/db/sql/generic', (req, res, next) => {
   try {
     let sqlObj = req.body;
@@ -48,12 +50,74 @@ router.post('/db/sql/generic', (req, res, next) => {
   }
 })
 
+//named parameters
+router.post('/db/sql/generic1', (req, res, next) => {
+  try {
+    let sqlObj = req.body;
+    let sqlString = sql[sqlObj.id];
+    let params = sqlObj.params;
+    // sqlString = format.withArray(sqlString, params);
+
+    pool.query(sqlString)
+      .then(result => {
+        Array.isArray(result) || (result = result.rows);
+        res.json(result);
+      }
+      )
+      .catch(
+      e => setImmediate(
+        () => {
+          res.status(e.status || 500);
+          res.json({ error: e.message })
+        })
+      )
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
+router.post('/db/addupdatecart', (req, res, next) => {
+  try {
+    let jsonData = req.body.json;
+    let sqlId = req.body.id;
+    let fields = Object.keys(jsonData).join();
+    let valuesArray = Object.values(jsonData);
+    let values = valuesArray.map(x => {
+      let quote = typeof x === 'string' ? "'" : '';
+      let ret = quote + x + quote;
+      return (ret);
+    }).join();
+    jsonData.tableName =req.body.tableName;
+    jsonData.fields = fields;
+    jsonData.values = values;
+    let sqlString = mustache.render(sql[sqlId],jsonData);    
+    pool.query(sqlString)
+      .then(result => {
+        Array.isArray(result) || (result = result.rows);
+        res.json(result);
+        }
+      )
+      .catch(
+      e => setImmediate(
+        () => {
+          res.status(e.status || 500);
+          res.json({ error: e.message })
+        })
+      );
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
 router.post('/db/json/insert/generic', (req, res, next) => {
   try {
     let jsonData = req.body.json;
     let tableName = req.body.tableName;
     let idColumnName;
-    idColumnName || (idColumnName = 'id');let fields = Object.keys(jsonData).join();
+    idColumnName || (idColumnName = 'id');
+    let fields = Object.keys(jsonData).join();
     let valuesArray = Object.values(jsonData);
     let values = valuesArray.map(x => {
       let quote = typeof x === 'string' ? '\'' : '';

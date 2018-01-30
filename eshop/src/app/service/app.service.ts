@@ -5,6 +5,7 @@ import { localMessages, httpMessages } from '../app.config';
 @Injectable()
 export class AppService {
   itemsInCart: any[] = [];
+  cartCount:number=0;
   constructor(private httpClient: HttpClient
     , private brokerService: BrokerService
   ) {
@@ -39,6 +40,7 @@ export class AppService {
 
   setItemsInCart(items) {
     this.itemsInCart = items;
+    this.getCartCount();
   }
 
   getCartCount() {
@@ -49,6 +51,7 @@ export class AppService {
         return a + (+b.qty);
       }, 0)
     );
+    this.cartCount=ret;
     return (ret);
   }
 

@@ -37,18 +37,27 @@ export class CategoryComponent implements OnInit {
       );
     });
     let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
-      this.brokerService.httpPost(httpMessages.categoriesWithCount);
+      d.error ? console.log(d.error)
+        : (this.brokerService.httpPost(httpMessages.categoriesWithCount)
+          , this.brokerService.httpPost(httpMessages.itemsInCart, {params: [this.appService.getUserId()] })
+        );
     });
     let sub2 = this.brokerService.filterOn(httpMessages.headerToCategory).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
-        this.searchString = d.carryBag,        
+        this.searchString = d.carryBag,
         this.processLazy(),
         this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }]
-      ));
+        ));
     });
+    let sub3 = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.appService.setItemsInCart(d.data)
+      );
+    })
 
-    this.subs.add(sub1).add(sub2);
+
+    this.subs.add(sub1).add(sub2).add(sub3);
   }
 
   processLazy() {

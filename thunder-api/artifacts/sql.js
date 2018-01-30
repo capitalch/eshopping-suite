@@ -4,9 +4,10 @@ let sqls = {
       from shopping_cart s
         join product p
           on s.product_id = p.id
-        join brand b
+        left join brand b
           on b.id = p.brand_id
       where user_id = %s`
+
   , 'post:add:update:cart': `
       do $$
       begin
@@ -17,7 +18,7 @@ let sqls = {
         end if;
       end $$
     `
-
+    
   , 'post:delete:from:cart': ``
 
   , 'post:modify:cart': ``

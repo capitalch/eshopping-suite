@@ -3,6 +3,7 @@ import { httpMessages, localMessages } from '../../app.config';
 import { BrokerService } from '../../service/broker.service';
 import { Router } from '@angular/router';
 import { navUrls } from '../emart.config';
+import { AppService } from '../../service/app.service';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,12 @@ import { navUrls } from '../emart.config';
 export class HeaderComponent implements OnInit {
   subs: any;
   searchString: string = '';
-  constructor(private brokerService: BrokerService, private router:Router) { 
+  constructor(private brokerService: BrokerService, private router:Router,private appService:AppService) { 
     console.log('header');
   }
 
   ngOnInit() {
+    this.appService.getCartCount();
   }
 
   doSearch() {

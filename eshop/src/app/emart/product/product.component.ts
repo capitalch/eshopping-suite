@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
   products: any;
 
   constructor(private appService: AppService, private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
-    
+
   }
 
   ngOnInit() {
@@ -62,10 +62,10 @@ export class ProductComponent implements OnInit {
     let sub2 = this.brokerService.filterOn(httpMessages.addUpdateCart).subscribe(d => {
       console.log(d);
       d.error ? console.log(d.error) : (
-        console.log(d.data)
+        this.brokerService.httpPost(httpMessages.itemsInCart, { params: [this.appService.getUserId()] })
       );
     });
-    
+
     this.subs.add(sub1).add(sub2);
   }
 
@@ -101,7 +101,7 @@ export class ProductComponent implements OnInit {
       isactive: true
     };
     //this.brokerService.httpPost(httpMessages.addToCart, { tableName:'shopping_cart', json: payload });
-    this.brokerService.httpPost(httpMessages.addUpdateCart,{tableName:'shopping_cart', json: payload});
+    this.brokerService.httpPost(httpMessages.addUpdateCart, { tableName: 'shopping_cart', json: payload });
   }
 
   ngOnDestroy() {

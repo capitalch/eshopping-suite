@@ -197,6 +197,9 @@
                 }
             }
         }
+        .image-container:hover {
+            transform: scale(2);
+        }
         .dealer-container
         {
             background: green;
@@ -228,11 +231,13 @@
     {
         background: antiquewhite;
         min-height: 12.5em;
+        font-size: 1.2em;
     }
     .review-container
     {
         background: aqua;
         min-height: 12.5em;
+        font-size: 1.2em;
         .review-title-container
         {
             margin-bottom: 8px;

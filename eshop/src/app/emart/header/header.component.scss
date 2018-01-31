@@ -5,6 +5,8 @@
     width: 100vw;
     height: 4.3em;
     min-width: 612px;
+    position: fixed;
+    z-index: 1;
     .left-container {
         margin-left: 1vw;
         height: 4.3em;

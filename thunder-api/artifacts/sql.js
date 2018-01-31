@@ -6,7 +6,7 @@ let sqls = {
           on s.product_id = p.id
         left join brand b
           on b.id = p.brand_id
-      where user_id = %s`
+      where s.isactive and user_id = %s`
 
   , 'post:add:update:cart': `
       do $$
@@ -23,15 +23,7 @@ let sqls = {
 
   , 'post:modify:cart': ``
 
-  , 'post:query:cart': `select s.id, s.mdate, s.user_id, s.product_id,s.qty, p.name as product_name, b.name, p.descr,
-      get_product_label(p.product_info) as label       
-      from shopping_cart s inner join	"user" u
-        on s.user_id = u.id
-      inner join product p
-        on p.id = s.product_id
-      inner join brand b
-        on b.id = p.brand_id
-      where s.isactive and user_id = %s`
+  
 
   , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info) as label            
       from product p where id = %s;

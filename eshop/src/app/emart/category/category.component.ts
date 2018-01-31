@@ -39,7 +39,7 @@ export class CategoryComponent implements OnInit {
     let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
       d.error ? console.log(d.error)
         : (this.brokerService.httpPost(httpMessages.categoriesWithCount)
-          , this.brokerService.httpPost(httpMessages.itemsInCart, {params: [this.appService.getUserId()] })
+          // , this.brokerService.httpPost(httpMessages.itemsInCart, {params: [this.appService.getUserId()] })
         );
     });
     let sub2 = this.brokerService.filterOn(httpMessages.headerToCategory).subscribe(d => {
@@ -50,14 +50,14 @@ export class CategoryComponent implements OnInit {
         this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }]
         ));
     });
-    let sub3 = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
-      d.error ? console.log(d.error) : (
-        this.appService.setItemsInCart(d.data)
-      );
-    })
+    // let sub3 = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
+    //   d.error ? console.log(d.error) : (
+    //     this.appService.setItemsInCart(d.data)
+    //   );
+    // })
 
 
-    this.subs.add(sub1).add(sub2).add(sub3);
+    this.subs.add(sub1).add(sub2);
   }
 
   processLazy() {

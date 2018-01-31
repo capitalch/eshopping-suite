@@ -14,17 +14,17 @@ export class CartComponent implements OnInit {
   constructor(private brokerService: BrokerService, private appService:AppService) { }
 
   ngOnInit() {
-    this.subs = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
-      d.error ? console.log(d.error) : (
-        console.log(d.data),
-        this.cart = d.data
-      );
-    });
-    this.brokerService.httpPost(httpMessages.itemsInCart,{params:[this.appService.getUserId()]})
+    // this.subs = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
+    //   d.error ? console.log(d.error) : (
+    //     console.log(d.data),
+    //     this.cart = d.data
+    //   );
+    // });
+    // this.brokerService.httpPost(httpMessages.itemsInCart,{params:[this.appService.getUserId()]})
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    // this.subs.unsubscribe();
   }
 
 }

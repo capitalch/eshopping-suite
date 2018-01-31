@@ -35,7 +35,7 @@
         margin-right: 3vw;
         height: 4.3em;
         line-height: 4.3;
-        width: 25%;
+        width: 26%;
         .round-image {
             border-radius: 50%;
             border: 1px solid $emart-header-background;
@@ -45,12 +45,23 @@
             border: 1px solid $emart-header-font-color;
         }
         .login-controls {
-            width: 24em;
+            width: 26em;
             float:left;
             .header-button {
                 background-color: $emart-header-background;
                 min-width: 0vw;
                 border: 1px solid $emart-header-background;
+                .cart-count
+                {
+                    position: absolute;
+                    background: red;
+                    border-radius: 50px;
+                    width: 16px;
+                    height: 17px;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    font-size: .9em;
+                }
             }
             .header-button:hover {
                 border: 1px solid $emart-header-font-color;

@@ -1,6 +1,6 @@
 let sqls = {
   'post:query:cart': `
-      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::text as label
+      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::json as label
       from shopping_cart s
         join product p
           on s.product_id = p.id
@@ -20,10 +20,6 @@ let sqls = {
     `
     
   , 'post:delete:from:cart': ``
-
-  , 'post:modify:cart': ``
-
-  
 
   , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info) as label            
       from product p where id = %s;
@@ -48,7 +44,7 @@ let sqls = {
       )
       select 
       p.id, p.name, list_price, product_code,descr,  offer_price, model, images[1] as image,
-      get_product_label(p.product_info) as label
+      get_product_label(p.product_info)::json as label
       --(select a->'values' from jsonb_array_elements(p.product_info) as a where a->>'name' = 'label' limit 1 ) as label
       from product p 		  
       where cat_id in (

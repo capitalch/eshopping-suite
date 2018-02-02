@@ -50,7 +50,7 @@
           <a><img class="review-image-icons" src="{{image}}"></a>
         </div> 
       </div>
-      <span>{{review.content}}</span>
+      <div class="review-body">{{review.content}}</div>
       <ul class="response" *ngFor="let response of review.responses">
         <li><span class="highlight">Reply</span> - {{response && response.content}}</li>
       </ul> 

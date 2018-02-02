@@ -29,8 +29,8 @@ export class ProductDetailsComponent implements OnInit {
       d.error ? console.log(d.error) : (
         this.product = d.data && d.data[0] && d.data[0].rows[0],
 
-        index = this.product && this.product.product_info && this.product.product_info.findIndex(p=>p.name=="label"),
-        index && this.product.product_info.splice(index,1),
+        this.product && this.product.product_info && (index = this.product.product_info.findIndex(p=>p.name=="label")),
+        (index >=0) && this.product && this.product.product_info && this.product.product_info.splice(index,1),
 
         this.imageUrl = this.product && this.product.images && this.product.images[0],
         this.qa = d.data && d.data[1] && d.data[1].rows,

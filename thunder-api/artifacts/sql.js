@@ -21,7 +21,7 @@ let sqls = {
     
   , 'post:delete:from:cart': ``
 
-  , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info) as label            
+  , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info)::json as label            
       from product p where id = %s;
       select q.id, q.content, q.likes, q.product_id, q.is_approved, q.user_id, q.mdate , array_to_json(array_agg(to_json(a))) as answers
       from question q left join lateral (select id, mdate, content, likes, user_id, is_approved from answer a where a.question_id = q.id ) a

@@ -1,4 +1,6 @@
-Categories
+<div class="heading">
+  Categories
+</div>
 <div class="category-tree">
   <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)" selectionMode="single" [(selection)] ="selectedFiles"
   (onNodeSelect)="nodeSelect($event)"></p-tree>

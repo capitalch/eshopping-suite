@@ -14,8 +14,8 @@ export class ProductDetailsComponent implements OnInit {
   product: any = {};
   qa:any=[];
   reviewResponse:any=[];
-  displayImage: any;
-  index :any;
+  imageUrl: string;
+  // index :any;
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {
@@ -24,26 +24,25 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    let index = 0;
     this.subs = this.brokerService.filterOn(httpMessages.productDetailsOnId).subscribe(d => {
       d.error ? console.log(d.error) : (
-        this.product = d.data && d.data[0].rows[0],
+        this.product = d.data && d.data[0] && d.data[0].rows[0],
 
-        this.index = this.product.product_info.findIndex(p=>p.name=="label"),
-        this.product.product_info.splice(this.index,1),
+        index = this.product && this.product.product_info && this.product.product_info.findIndex(p=>p.name=="label"),
+        index && this.product.product_info.splice(index,1),
 
-        console.log("product: ",this.product),
-        this.displayImage = this.product.images[0],
-        this.qa = d.data && d.data[1].rows,
-        console.log('qa:',this.qa),
-        this.reviewResponse = d.data && d.data[2].rows,
-        console.log('Review Response:',this.reviewResponse)
+        this.imageUrl = this.product && this.product.images && this.product.images[0],
+        this.qa = d.data && d.data[1] && d.data[1].rows,
+        
+        this.reviewResponse = d.data && d.data[2] && d.data[2].rows
       );
     });
     this.brokerService.httpPost(httpMessages.productDetailsOnId, { id: null, params: [this.product.id,this.product.id, this.product.id] });
   }
 
   changeDisplayImage(url) {
-    this.displayImage = url;
+    this.imageUrl = url;
   }
 
   back() {

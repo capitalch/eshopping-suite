@@ -55,6 +55,4 @@ export class AppService {
     );
     this.cartCount = ret;
   }
-
-
 }

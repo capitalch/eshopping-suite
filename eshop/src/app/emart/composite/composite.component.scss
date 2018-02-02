@@ -7,18 +7,34 @@
 
 .body-container
 {
-    .category-container
+    display: flex;
+    .side-menu
     {
-        width:22.5em;
+        width: 18em;
+        min-height: 84vh;
+        float:left;
+        .side-button
+        {
+            margin-top: 15px;
+            margin-left: 10%;
+        }
+        i.reverse  {
+            -webkit-transform:rotateY(180deg);
+            -moz-transform:rotateY(180deg);
+            -o-transform:rotateY(180deg);
+            -ms-transform:rotateY(180deg);
+          }
+    }
+    .side-bar-container
+    {
         float:left;
         min-height: 84vh;
+        margin-left: 10px;
     }
     .product-container
     {
-        float: left;
         min-height: 84vh;
-        width: 79%;
-        border: 1px solid black;
+        float: left;
     }
 }
 

@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TreeModule } from 'primeng/primeng';
 import {RatingModule} from "ng2-rating";
 import { CartComponent } from './cart/cart.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { CartComponent } from './cart/cart.component';
   declarations: [CompositeComponent, 
     ProductComponent, 
     ProductDetailsComponent,
-    HeaderComponent, CategoryComponent, FooterComponent, CartComponent
+    HeaderComponent, CategoryComponent, FooterComponent, CartComponent, FilterComponent
   ]
 })
 export class EmartModule { }

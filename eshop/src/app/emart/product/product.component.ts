@@ -86,18 +86,19 @@ export class ProductComponent implements OnInit {
     this.router.navigate([navUrls.productDetails, { id: selectedProduct.id }]);
   }
 
-  addToCart(product) {let payload = {
+  addToCart(product) {
+    let payload = {
       user_id: this.appService.getUserId(),
       product_id: product.id,
       qty: 1,
       isactive: true
-    };    
-    this.brokerService.httpPost(httpMessages.addUpdateCart, { tableName: 'shopping_cart', json: payload });
+    };
+    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: 'shopping_cart', json: payload });
   }
 
-  getProductLabel(product){
+  getProductLabel(product) {
     let label = product && product.label && product.label.toString();
-    return(label);
+    return (label);
   }
 
   ngOnDestroy() {

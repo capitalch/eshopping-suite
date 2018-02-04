@@ -14,14 +14,17 @@ export class CartComponent implements OnInit {
   constructor(private brokerService: BrokerService, private appService: AppService) { }
 
   ngOnInit() {
-  }
-
-  addToCart(productId) {
 
   }
 
-  subFromCart(product_id) {
-
+  addSubCart(productId,qty) {
+    let payload = {
+      user_id: this.appService.getUserId(),
+      product_id: productId,
+      qty: qty,
+      isactive: true
+    };
+    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: 'shopping_cart', json: payload });
   }
 
   resetCart() {

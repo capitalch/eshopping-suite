@@ -1,5 +1,5 @@
 {
 	"host":"http://localhost:3002",
 	"defaultEndPoint":"db/sql/generic",
-	"post:add:update:cart":"db/addupdatecart"
+	"post:add:sub:cart":"db/addsubcart"
 }

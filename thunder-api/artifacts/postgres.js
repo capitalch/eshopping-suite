@@ -77,7 +77,7 @@ router.post('/db/sql/generic1', (req, res, next) => {
   }
 })
 
-router.post('/db/addupdatecart', (req, res, next) => {
+router.post('/db/addsubcart', (req, res, next) => {
   try {
     let jsonData = req.body.json;
     let sqlId = req.body.id;

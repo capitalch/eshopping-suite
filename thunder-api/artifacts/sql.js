@@ -8,16 +8,25 @@ let sqls = {
           on b.id = p.brand_id
       where s.isactive and user_id = %s`
 
-  , 'post:add:update:cart': `
+  , 'post:add:sub:cart': `
       do $$
+      declare _qty integer := 0;
       begin
           if exists(select 0 from {{tableName}} where user_id = {{user_id}} and product_id = {{product_id}}) then
-          update {{tableName}} set qty = qty + {{qty}} where user_id = {{user_id}} and product_id = {{product_id}};
-        else
-          insert into {{tableName}} ({{fields}}) values({{{values}}});
-        end if;
-      end $$
-      --select qty from shopping_cart where user_id = {{user_id}} and product_id = {{product_id}};
+            with u as (update {{tableName}} set qty = qty + {{qty}} where user_id = {{user_id}} and product_id = {{product_id}} returning qty) 
+            select qty into _qty from u;
+            if _qty <= 0 then
+              delete from {{tableName}} where user_id = {{user_id}} and product_id = {{product_id}};
+            end if;
+          else
+            _qty := {{qty}};
+            if _qty >= 0 then
+              insert into {{tableName}} ({{fields}}) values({{{values}}});
+            end if;
+          end if;
+      end $$;
+      select qty as productQty from shopping_cart where user_id = {{user_id}} and product_id = {{product_id}};
+      select sum(qty) as totalQty from shopping_cart where user_id = {{user_id}};
     `
     
   , 'post:delete:from:cart': ``

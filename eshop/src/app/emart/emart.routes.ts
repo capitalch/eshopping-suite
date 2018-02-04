@@ -10,7 +10,7 @@ export const routes : Routes =[
     }
     , {
       path: 'composite',
-      component:CompositeComponent
+      component:CompositeComponent,
       children: [
         { path: 'product', component: ProductComponent },
         { path: 'productDetails', component: ProductDetailsComponent },

@@ -1,6 +1,6 @@
 let sqls = {
   'post:query:cart': `
-      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::text as label
+      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::json as label
       from shopping_cart s
         join product p
           on s.product_id = p.id

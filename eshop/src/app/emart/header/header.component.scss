@@ -53,17 +53,7 @@
                 background-color: $emart-header-background;
                 min-width: 0vw;
                 border: 1px solid $emart-header-background;
-                .cart-count
-                {
-                    position: absolute;
-                    background: red;
-                    border-radius: 50px;
-                    width: 16px;
-                    height: 17px;
-                    vertical-align: middle;
-                    line-height: 20px;
-                    font-size: .9em;
-                }
+                
             }
             .header-button:hover {
                 border: 1px solid $emart-header-font-color;

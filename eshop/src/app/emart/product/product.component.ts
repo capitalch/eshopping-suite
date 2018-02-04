@@ -94,7 +94,7 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product) {
-    let item = product.label && (product.label = JSON.parse(product.label)) && product.label.toString();
+    // let item = product.label && (product.label = JSON.parse(product.label)) && product.label.toString();
     let payload = {
       user_id: this.appService.getUserId(),
       product_id: product.id,

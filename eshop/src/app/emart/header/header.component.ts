@@ -4,6 +4,7 @@ import { BrokerService } from '../../service/broker.service';
 import { Router } from '@angular/router';
 import { navUrls } from '../emart.config';
 import { AppService } from '../../service/app.service';
+import { EmartService } from '../emart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,12 @@ import { AppService } from '../../service/app.service';
 export class HeaderComponent implements OnInit {
   subs: any;
   searchString: string = '';
-  constructor(private brokerService: BrokerService, private router:Router,private appService:AppService) { 
-    console.log('header');
+  constructor(private emartService: EmartService, private brokerService: BrokerService, private router: Router, private appService: AppService) {
   }
 
   ngOnInit() {
     // this.appService.getCartCount();
+
   }
 
   doSearch() {
@@ -28,10 +29,10 @@ export class HeaderComponent implements OnInit {
     this.searchString ?
       (artifact = httpMessages.searchProductsCategoriesOnCriteria)
       : (artifact = httpMessages.categoriesWithCount);
-    this.brokerService.httpPost(httpMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] },null, this.searchString);
+    this.brokerService.httpPost(httpMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] }, null, this.searchString);
   }
 
-  showCart(){
+  showCart() {
     this.router.navigate([navUrls.cart]);
   }
 

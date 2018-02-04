@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   resetCart() {
-
+    this.brokerService.httpPost(httpMessages.resetCart,{params:[this.appService.getUserId()]});
   }
 
   placeOrderFromCart() {

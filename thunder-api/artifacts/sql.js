@@ -29,7 +29,9 @@ let sqls = {
       select sum(qty) as totalQty from shopping_cart where user_id = {{user_id}};
     `
     
-  , 'post:delete:from:cart': ``
+  , 'post:reset:cart': `
+      delete from shopping_cart where user_id = %s;
+    `
 
   , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info)::json as label            
       from product p where id = %s;

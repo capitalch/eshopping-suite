@@ -24,7 +24,15 @@ export class CartUnitComponent implements OnInit {
       let count: number;
       d.error ? console.log(d.error) : (
         this.cartCount = d.data && d.data[2] && d.data[2].rows && d.data[2].rows[0] && (+d.data[2].rows[0].totalqty)
-      )
+      );
+    });
+
+    this.brokerService.filterOn(httpMessages.resetCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        console.log(d.data),
+        this.cartCount = 0,
+        this.itemsInCart = []
+      );
     });
 
     this.brokerService.httpPost(httpMessages.itemsInCart, { params: [this.appService.getUserId()] });

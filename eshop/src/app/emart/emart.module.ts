@@ -27,8 +27,13 @@ import { CartUnitComponent } from './sub-components/cart-unit/cart-unit.componen
   declarations: [CompositeComponent, 
     ProductComponent, 
     ProductDetailsComponent,
+<<<<<<< HEAD
     HeaderComponent, CategoryComponent, FooterComponent, CartComponent, CartUnitComponent
   ],
   providers:[EmartService]
+=======
+    HeaderComponent, CategoryComponent, FooterComponent, CartComponent, FilterComponent
+  ]
+>>>>>>> 6dfea9f71f51ae4894db0b9ea13f4bb4b6d6e589
 })
 export class EmartModule { }

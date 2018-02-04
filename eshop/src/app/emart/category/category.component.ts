@@ -15,7 +15,6 @@ import { navUrls } from '../emart.config';
 })
 
 export class CategoryComponent implements OnInit {
-  // @ViewChild('ptree') ptree: ElementRef;
   subs: any;
   categories: any[] = [];
   searchString: any;
@@ -50,13 +49,6 @@ export class CategoryComponent implements OnInit {
         this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }]
         ));
     });
-    // let sub3 = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {
-    //   d.error ? console.log(d.error) : (
-    //     this.appService.setItemsInCart(d.data)
-    //   );
-    // })
-
-
     this.subs.add(sub1).add(sub2);
   }
 

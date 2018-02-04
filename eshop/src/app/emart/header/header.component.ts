@@ -20,8 +20,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.appService.getCartCount();
-
   }
 
   doSearch() {

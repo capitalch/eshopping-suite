@@ -15,7 +15,6 @@ export class ProductDetailsComponent implements OnInit {
   qa:any=[];
   reviewResponse:any=[];
   imageUrl: string;
-  // index :any;
   subs: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private brokerService: BrokerService) {
     this.activatedRoute.params.subscribe(param => {

@@ -59,14 +59,7 @@ export class ProductComponent implements OnInit {
       });
     });
 
-    // let sub2 = this.brokerService.filterOn(httpMessages.addUpdateCart).subscribe(d => {
-    //   console.log(d);
-    //   d.error ? console.log(d.error) : (
-    //     this.brokerService.httpPost(httpMessages.itemsInCart, { params: [this.appService.getUserId()] })
-    //   );
-    // });
-
-    this.subs.add(sub1);//.add(sub2);
+    this.subs.add(sub1);
   }
 
   pageChange() {
@@ -93,9 +86,7 @@ export class ProductComponent implements OnInit {
     this.router.navigate([navUrls.productDetails, { id: selectedProduct.id }]);
   }
 
-  addToCart(product) {
-    // let item = product.label && (product.label = JSON.parse(product.label)) && product.label.toString();
-    let payload = {
+  addToCart(product) {let payload = {
       user_id: this.appService.getUserId(),
       product_id: product.id,
       qty: 1,

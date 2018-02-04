@@ -17,6 +17,7 @@ let sqls = {
           insert into {{tableName}} ({{fields}}) values({{{values}}});
         end if;
       end $$
+      --select qty from shopping_cart where user_id = {{user_id}} and product_id = {{product_id}};
     `
     
   , 'post:delete:from:cart': ``

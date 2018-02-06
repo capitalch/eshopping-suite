@@ -20,7 +20,7 @@
   <div class="spec-container">
     <div class="spec-group" *ngFor="let group of product.product_info">
       <h2>{{group.name}}</h2>
-        <table border="1" class="spec-group-details">
+        <table class="spec-group-details">
           <tr *ngFor="let feature of group.values">
             <td>{{feature.name}}</td>
             <td>{{feature.value}}</td>
@@ -32,14 +32,14 @@
 <div class="qa-review-container">
   <div class="qa-container">
     <div class="question" *ngFor="let question of qa">
-      <span><span class="highlight">Ques</span> - {{question && question.content}}</span>
+      <span><span class="highlight">Question</span> - {{question && question.content}}</span>
         <ul class="answer" *ngFor="let answer of question.answers">
           <li><span class="highlight">Ans</span> - {{answer && answer.content}}</li>
         </ul> 
     </div>
   </div>
   <div class="review-container">
-    <div class="reviews" *ngFor="let review of reviewResponse">
+    <div class="review" *ngFor="let review of reviewResponse">
       <div class="review-title-container">
         <span class="review-title"><span class="highlight">{{review && review.title}}</span></span> 
         <rating class="review-rating" [(ngModel)]="review.rating" readonly="true"></rating>

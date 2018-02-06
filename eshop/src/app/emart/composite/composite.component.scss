@@ -10,7 +10,7 @@
     display: flex;
     .side-menu
     {
-        width: 18em;
+        width: 4em;
         min-height: 84vh;
         float:left;
         .side-button
@@ -38,6 +38,7 @@
         min-height: 84vh;
         float: left;
         margin-left: 10px;
+        width: 100%;
     }
 }
 

@@ -9,7 +9,7 @@
     border-bottom: 1px solid black;
     height:6vh;
     min-height: 39px;
-    margin-left: 15px;
+    margin-left: 2px;
     .product-name
     {
         font-size:2.5em;
@@ -26,7 +26,8 @@
 {
     height: 86vh;
     min-height: 569px;
-    margin-left: 15px;
+    margin-left: 2px;
+    margin-right:18px;
     .image-dealer-container
     {
         float: left;
@@ -34,7 +35,7 @@
         height:100%;
         .image-container
         {
-            background: yellow;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
             height: 70%;
             .main-image
             {
@@ -59,23 +60,27 @@
         }
         .dealer-container
         {
-            background: green;
             height:30%;
         }
     }
     .spec-container
     {
-        background: aliceblue;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
         width: 65%;
         height: 100%;
         float: right;
         overflow-y: scroll;
         .spec-group
         {
-            margin: 5px;
+            padding: 10px;
             .spec-group-details
             {
                 font-size: 1.2em;
+                td:first-child
+                {
+                    color:blue;
+                    padding: 8px 80px 6px 2px;                    
+                }
             }
         }
     }
@@ -84,69 +89,88 @@
 .qa-review-container
 {
     min-height: 25em;
-    margin-left: 15px;
+    margin-left: 2px;
+    margin-top: 10px;
+    margin-right:18px;
     .qa-container
     {
-        background: antiquewhite;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
         min-height: 12.5em;
-        font-size: 1.2em;
+        font-size: 1.4em;
+        padding: 20px;
         .question
         {
-            margin-left: 5px;
-            margin-right: 15px;
+            .answer li
+            {
+                padding-right: 32px;
+            }
+        }
+        .question:nth-child(n+2)
+        {
+            margin-top:42px;
         }
     }
     .review-container
     {
-        background: aqua;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
         min-height: 12.5em;
-        font-size: 1.2em;
-        .review-title-container
+        font-size: 1.3em;
+        padding: 20px;
+        .review
         {
-            margin-left:5px;
-            margin-right:5px;
-            margin-bottom: 8px;
-            .review-title
+
+            .review-title-container
             {
-                float: left;
-                font-size: 1.3em;
-                margin-right: 8px;
-                margin-top: 2px;
-            }
-        }
-        .review-images
-        {
-            display: -webkit-box;
-            overflow-x:auto;
-            .icon-container
-            {
-                margin-left: 2px;
-                margin-top: 2px;
-                margin-bottom: 6px;
-                margin-right: 25px;
-                .review-image-icons
+                .review-title
                 {
-                    width: 8em;
+                    float: left;
+                    font-size: 1.2em;
                 }
             }
+            .review-images
+            {
+                display: -webkit-box;
+                overflow-x:auto;
+                margin-top:20px;
+                margin-bottom:20px;
+                .icon-container
+                {
+                    .review-image-icons
+                    {
+                        width: 8em;
+                    }
+                }
+            }
+            .review-rating
+            {
+                font-size: 8px;
+                margin-left: 26px;
+                line-height: 25px;
+                .star-icon
+                {
+                    font-size: 3em;
+                }
+            }
+            .likes
+            {
+                display: -webkit-inline-box;
+                float: right;
+                font-size: 1.2em;
+                color:red;
+            }
+            .review-body
+            {
+                padding-right: 60px;
+                padding-left: 20px;
+            }
+            .response
+            {
+                padding-right: 60px;
+            }
         }
-        .review-rating
+        .review:nth-child(n+2)
         {
-            font-size: 8px;
-        }
-        .likes
-        {
-            display: -webkit-inline-box;
-            float: right;
-            font-size: 1.2em;
-            margin-top: 12px;
-            margin-right: 20px;
-            color:red;
-        }
-        .review-body
-        {
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-top:75px;
         }
     }
 }

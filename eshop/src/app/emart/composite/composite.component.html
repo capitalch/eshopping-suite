@@ -3,21 +3,8 @@
     <app-header></app-header>
   </div>
   <div class="body-container">
-    <div class="side-menu">
-        <button mat-mini-fab class="side-button" (click)="sideMenuClicked('category')">
-            <i *ngIf="collapseCategory" class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
-            <i *ngIf="!collapseCategory" class="fa fa-sign-in fa-lg reverse" aria-hidden="true"></i>
-        </button>
-        <!-- <button mat-mini-fab class="side-button" (click)="sideMenuClicked('filter')">
-            <i *ngIf="collapseFilter" class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
-            <i *ngIf="!collapseFilter" class="fa fa-sign-in fa-lg reverse" aria-hidden="true"></i>
-        </button> -->
-    </div>
-    <div class="side-bar-container" [hidden]="collapseCategory">
+    <div class="side-bar-container" [hidden]="collapseSidebar">
       <app-category></app-category>
-    </div>
-    <div class="side-bar-container" [hidden]="collapseFilter">
-        <!-- <app-filter></app-filter> -->
     </div>
     <div class="content-container">
       <router-outlet></router-outlet>

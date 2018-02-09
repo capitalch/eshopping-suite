@@ -14,12 +14,19 @@
     {
         font-size:2.5em;
         margin-left: .3em;
+        float: left;
+        line-height: 6vh;
     }
-    
+    .product-highlight
+    {
+        margin-left: 10px;
+        float:left;
+        line-height: 6vh;
+    }
     .star-rating
     {
         vertical-align: super;
-        margin-left: .3em;
+        margin-left: 25px;
     }
 }
 .image-dealer-specs-container
@@ -37,6 +44,7 @@
         {
             box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
             height: 70%;
+            padding-right: 5px;
             .main-image
             {
                 margin-left: auto;
@@ -66,7 +74,7 @@
     .spec-container
     {
         box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-        width: 65%;
+        width: 64%;
         height: 100%;
         float: right;
         overflow-y: scroll;

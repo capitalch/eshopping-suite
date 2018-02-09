@@ -20,6 +20,9 @@ export class CategoryComponent implements OnInit {
   searchString: any;
   lazyTree: any[] = [];
   selectedFiles: any;
+  collapseSidebar = false;
+  dynamicCategoryClass = "collapsible-container";
+  dynamicCategoryOpenerClass = "collapsible-button-container-close";
   constructor(private router: Router, private appService: AppService, private brokerService: BrokerService) {
     console.log('category');
   }
@@ -71,6 +74,13 @@ export class CategoryComponent implements OnInit {
     e.node.expanded ? e.node.expanded = false : e.node.expanded = true;
     let catId = e.node.id;
     this.router.navigate([navUrls.product, { catId: catId, count: e.node.product_cnt, searchString: this.searchString }]);
+  }
+
+  expandSideMenu()
+  {  
+        this.collapseSidebar = !this.collapseSidebar;
+        this.dynamicCategoryClass = this.dynamicCategoryClass == "collapsible-container-close"?"collapsible-container":"collapsible-container-close"; 
+        this.dynamicCategoryOpenerClass = this.dynamicCategoryOpenerClass == "collapsible-button-container-close" ? "collapsible-button-container": "collapsible-button-container-close";
   }
 
   ngOnDestroy() {

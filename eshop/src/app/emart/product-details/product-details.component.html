@@ -1,6 +1,6 @@
 <div class="name-highlight-rating-container">
-  <span class="product-name">{{product.name}}</span> 
-  <span class="product-highlight">{{product.label && product.label.toString()}}</span>
+  <div class="product-name">{{product.name}}</div> 
+  <div class="product-highlight">{{product.label && product.label.toString()}}</div>
   <rating class="star-rating" [(ngModel)]="product.scores" readonly="true"></rating>
 </div>
 <div class="image-dealer-specs-container">

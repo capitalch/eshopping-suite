@@ -1,4 +1,4 @@
-<div class="item" *ngFor="let item of itemsInCart">
+<div class="item" *ngFor="let item of itemsInCart; let i = index">
     <div class="item-image-container">
         <img class="item-image" src="{{item.images[0]}}">
     </div>
@@ -7,13 +7,13 @@
         <div class="item-details">{{item.label && item.label.toString()}}</div>
     </div>
     <div class="item-quantity-container">
-        <button mat-icon-button (click)="addSubCart(item.id,-1)">
+        <button mat-icon-button (click)="addSubCart(i,item.product_id,-1)">
             <mat-icon>
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </mat-icon>
         </button>
         <input class="item-quantity" [(ngModel)]="item.qty" />
-        <button mat-icon-button (click)="addSubCart(item.id,1)">
+        <button mat-icon-button (click)="addSubCart(i,item.product_id,1)">
             <mat-icon>
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </mat-icon>

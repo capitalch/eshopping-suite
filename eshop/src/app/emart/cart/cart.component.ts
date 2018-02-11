@@ -18,10 +18,15 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.itemsInCart=[];
     this.subs = this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
-      let count: number;
+      let itemCount: number;
       d.error ? console.log(d.error) : (
-        this.itemsInCart = d.data
+        (d.data[1].rows.length > 0) ? itemCount = d.data[1].rows[0].productqty : itemCount = 0,
+        this.itemsInCart[d.carryBag.index]
+        && (this.itemsInCart[d.carryBag.index].qty = itemCount),
+        this.grandTotal = (d.data[2].rows.length > 0) ? d.data[2].rows[0].totalqty : 0,
+        console.log(d.data)
       );
     });
 
@@ -35,14 +40,14 @@ export class CartComponent implements OnInit {
 
   }
 
-  addSubCart(productId, qty) {
+  addSubCart(arrayIndex, productId, qty) {
     let payload = {
       user_id: this.appService.getUserId(),
       product_id: productId,
       qty: qty,
       isactive: true
     };
-    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: tables.shoppingCart, json: payload });
+    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: tables.shoppingCart, json: payload }, {}, { index: arrayIndex, productId: productId });
   }
 
   resetCart() {

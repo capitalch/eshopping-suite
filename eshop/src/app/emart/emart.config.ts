@@ -12,7 +12,9 @@ export const httpMessages = {
     productDetailsOnId: 'post:query:product:details:on:id',
     addSubCart: 'post:add:sub:cart',
     resetCart: 'post:reset:cart',
-    itemsInCart: 'post:query:cart'
+    itemsInCart: 'post:query:cart',
+    deleteItemInCart:'post:delete:item:in:cart',
+    placeOrderFromCart:'post:place:order:from:cart'
 }
 
 export const navUrls = {

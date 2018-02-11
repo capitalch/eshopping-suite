@@ -11,33 +11,19 @@ import { tables, httpMessages, localMessages } from '../emart.config';
 export class CartComponent implements OnInit {
   itemsInCart: any;
   subs: any;
-  grandTotal: number = 0;
+  itemsCount: number = 0;
 
   constructor(private brokerService: BrokerService, private appService: AppService) {
 
   }
 
   ngOnInit() {
-    this.itemsInCart=[];
-    this.subs = this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
-      let itemCount: number;
+    this.subs = this.brokerService.behFilterOn(localMessages.itemsInCart).subscribe(d => {
       d.error ? console.log(d.error) : (
-        (d.data[1].rows.length > 0) ? itemCount = d.data[1].rows[0].productqty : itemCount = 0,
-        this.itemsInCart[d.carryBag.index]
-        && (this.itemsInCart[d.carryBag.index].qty = itemCount),
-        this.grandTotal = (d.data[2].rows.length > 0) ? d.data[2].rows[0].totalqty : 0,
-        console.log(d.data)
+        this.itemsInCart = d.data.items,
+        this.itemsCount = d.data.itemsCount
       );
     });
-
-    let sub1 = this.brokerService.behFilterOn(localMessages.itemsInCart).subscribe(d => {
-      d.error ? console.log(d.error) : (
-        this.itemsInCart = d.data
-      )
-    });
-
-    this.subs.add(sub1);
-
   }
 
   addSubCart(arrayIndex, productId, qty) {
@@ -54,8 +40,11 @@ export class CartComponent implements OnInit {
     this.brokerService.httpPost(httpMessages.resetCart, { params: [this.appService.getUserId()] });
   }
 
+  deleteItem(id) {
+    this.brokerService.httpPost(httpMessages.deleteItemInCart, { params: [id, this.appService.getUserId()] });
+  }
   placeOrderFromCart() {
-
+    this.brokerService.httpPost(httpMessages.placeOrderFromCart, { params: [this.appService.getUserId()] });
   }
 
   ngOnDestroy() {

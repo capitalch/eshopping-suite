@@ -12,29 +12,41 @@ import { navUrls, httpMessages, localMessages } from '../../emart.config';
 export class CartUnitComponent implements OnInit {
   cartCount: number = 0;
   itemsInCart: any[] = [];
+  subs: any;
   constructor(private brokerService: BrokerService, private appService: AppService, private router: Router) { }
 
   ngOnInit() {
-    this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => d.error ? console.log(d.error) : (
+    this.subs = this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => d.error ? console.log(d.error) : (
       this.setItemsInCart(d.data)
     ));
 
-    this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
+    let sub1 = this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
       let count: number;
       d.error ? console.log(d.error) : (
-        this.cartCount = d.data && d.data[2] && d.data[2].rows && d.data[2].rows[0] && (+d.data[2].rows[0].totalqty)
+        this.setItemsInCart(d.data[3].rows)
       );
     });
 
-    this.brokerService.filterOn(httpMessages.resetCart).subscribe(d => {
+    let sub2 = this.brokerService.filterOn(httpMessages.resetCart).subscribe(d => {
       d.error ? console.log(d.error) : (
-        console.log(d.data),
-        this.cartCount = 0,
-        this.itemsInCart = []
+        this.setItemsInCart([])
       );
+    });
+
+    let sub3 = this.brokerService.filterOn(httpMessages.deleteItemInCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.setItemsInCart(d.data[1].rows)
+      )
+    });
+
+    let sub4 = this.brokerService.filterOn(httpMessages.placeOrderFromCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.setItemsInCart([])
+      )
     });
 
     this.brokerService.httpPost(httpMessages.itemsInCart, { params: [this.appService.getUserId()] });
+    this.subs.add(sub1).add(sub2).add(sub3).add(sub4);
   }
 
   setItemsInCart(items) {
@@ -46,10 +58,14 @@ export class CartUnitComponent implements OnInit {
       }, 0)
     );
     this.cartCount = ret;
+    this.brokerService.behEmit(localMessages.itemsInCart, { items: this.itemsInCart, itemsCount: ret });
   }
 
   showCart() {
-    this.brokerService.behEmit(localMessages.itemsInCart,this.itemsInCart);
     this.router.navigate([navUrls.cart]);
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

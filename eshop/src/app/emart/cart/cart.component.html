@@ -23,11 +23,13 @@
         {{item.offer_price * item.qty | number : '1.2'}}
     </div>
     <div class="item-delete">
-        <button mat-icon-button (click)="delete(item.id)">
+        <button mat-icon-button (click)="deleteItem(item.id)">
             <mat-icon>
                 <i class="fa fa-times-circle"></i>
             </mat-icon>
         </button>
     </div>
 </div>
-{{grandTotal}}
+<button (click)="resetCart()">Reset cart</button>
+<button (click)="placeOrderFromCart()">Place order</button>
+{{itemsCount}}

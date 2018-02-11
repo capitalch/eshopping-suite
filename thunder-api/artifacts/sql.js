@@ -6,7 +6,30 @@ let sqls = {
           on s.product_id = p.id
         left join brand b
           on b.id = p.brand_id
-      where s.isactive and user_id = %s`
+      where s.isactive and user_id = %s order by s.id;`
+
+  , 'post:place:order:from:cart':`
+      do $$
+      declare morder_id bigint;
+      declare mamount numeric(12,2);
+      declare muser_id integer;
+      begin
+        select %s into muser_id;
+        insert into morder (user_id) values (muser_id) returning id into morder_id;
+        insert into order_details (order_id,product_id,qty,price)
+          select (select morder_id), product_id, qty, offer_price
+            from shopping_cart s join product p
+              on s.product_id = p.id
+                where user_id = muser_id;
+        select sum(qty*price) into mamount 
+          from order_details where order_id = morder_id;
+        update morder
+          set amount = mamount
+            where id = morder_id;
+        delete from shopping_cart
+          where user_id = muser_id;
+      end $$
+  `
 
   , 'post:add:sub:cart': `
       do $$
@@ -27,10 +50,28 @@ let sqls = {
       end $$;
       select qty as productQty from shopping_cart where user_id = {{user_id}} and product_id = {{product_id}};
       select sum(qty) as totalQty from shopping_cart where user_id = {{user_id}};
+      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::json as label
+      from shopping_cart s
+        join product p
+          on s.product_id = p.id
+        left join brand b
+          on b.id = p.brand_id
+      where s.isactive and user_id = {{user_id}} order by s.id;
     `
     
   , 'post:reset:cart': `
       delete from shopping_cart where user_id = %s;
+    `
+
+  , 'post:delete:item:in:cart':`
+      delete from shopping_cart where id = %s;
+      select s.id, product_id, qty, mdate, p.name,model,images,product_info, list_price, offer_price, b.name as brand, get_product_label(p.product_info)::json as label
+      from shopping_cart s
+        join product p
+          on s.product_id = p.id
+        left join brand b
+          on b.id = p.brand_id
+      where s.isactive and user_id = %s order by s.id;
     `
 
   , 'post:query:product:details:on:id': `select *, get_product_label(p.product_info)::json as label            

@@ -2,9 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { TreeNode } from 'primeng/primeng';
 import { AppService } from '../../service/app.service';
-import { localMessages, httpMessages } from '../../app.config';
 import { Router } from '@angular/router';
-import { navUrls } from '../emart.config';
+import { navUrls, httpMessages } from '../emart.config';
+import { localMessages } from '../../app.config';
 
 @Component({
   selector: 'app-category',
@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   collapseSidebar = false;
   dynamicCategoryClass = "collapsible-container";
   dynamicCategoryOpenerClass = "collapsible-button-container-close";
+  
   constructor(private router: Router, private appService: AppService, private brokerService: BrokerService) {
     console.log('category');
   }
@@ -35,15 +36,14 @@ export class CategoryComponent implements OnInit {
         this.categories = d.data,
         d.data && (d.data.length > 0) && (this.selectedFiles = d.data[0])
         && (catId = d.data[0].id) && (this.router.navigate([navUrls.product, { catId: catId, count: d.data[0].product_cnt }])),
-        this.processLazy()
-      );
+        this.processLazy());
     });
+
     let sub1 = this.brokerService.behFilterOn(localMessages.getsettings).subscribe(d => {
       d.error ? console.log(d.error)
-        : (this.brokerService.httpPost(httpMessages.categoriesWithCount)
-          // , this.brokerService.httpPost(httpMessages.itemsInCart, {params: [this.appService.getUserId()] })
-        );
+        : (this.brokerService.httpPost(httpMessages.categoriesWithCount));
     });
+
     let sub2 = this.brokerService.filterOn(httpMessages.headerToCategory).subscribe(d => {
       d.error ? (console.log(d.error)) : (
         this.categories = d.data,
@@ -52,6 +52,7 @@ export class CategoryComponent implements OnInit {
         this.router.navigate([navUrls.product, { catId: 0, count: d.data[0].product_cnt, searchString: this.searchString }]
         ));
     });
+
     this.subs.add(sub1).add(sub2);
   }
 
@@ -76,11 +77,10 @@ export class CategoryComponent implements OnInit {
     this.router.navigate([navUrls.product, { catId: catId, count: e.node.product_cnt, searchString: this.searchString }]);
   }
 
-  expandSideMenu()
-  {  
-        this.collapseSidebar = !this.collapseSidebar;
-        this.dynamicCategoryClass = this.dynamicCategoryClass == "collapsible-container-close"?"collapsible-container":"collapsible-container-close"; 
-        this.dynamicCategoryOpenerClass = this.dynamicCategoryOpenerClass == "collapsible-button-container-close" ? "collapsible-button-container": "collapsible-button-container-close";
+  expandSideMenu() {
+    this.collapseSidebar = !this.collapseSidebar;
+    this.dynamicCategoryClass = this.dynamicCategoryClass == "collapsible-container-close" ? "collapsible-container" : "collapsible-container-close";
+    this.dynamicCategoryOpenerClass = this.dynamicCategoryOpenerClass == "collapsible-button-container-close" ? "collapsible-button-container" : "collapsible-button-container-close";
   }
 
   ngOnDestroy() {

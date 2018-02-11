@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BrokerService } from '../../service/broker.service';
-import { httpMessages, localMessages } from '../../app.config';
-import { settings, navUrls } from '../emart.config';
+import { settings, navUrls, tables, httpMessages } from '../emart.config';
+import { localMessages } from '../../app.config';
 import { AppService } from '../../service/app.service';
 
 @Component({
@@ -93,7 +93,7 @@ export class ProductComponent implements OnInit {
       qty: 1,
       isactive: true
     };
-    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: 'shopping_cart', json: payload });
+    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: tables.shoppingCart, json: payload });
   }
 
   getProductLabel(product) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BrokerService } from './broker.service';
-import { localMessages, httpMessages } from '../app.config';
+import { localMessages} from '../app.config';
 @Injectable()
 export class AppService {
   constructor(private httpClient: HttpClient
@@ -28,5 +28,4 @@ export class AppService {
   getUserId() {
     return (1);
   }
-
 }

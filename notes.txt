@@ -1,18 +1,17 @@
 // To do
-1. Product search and display
-    DB
-        QA setup in database
-        Scores and review setup
-        Indexing and search
-    UI
-        Filter on left side
+1. Shopping cart page
+    Add
+    Subtract
+    Delete
+2. Filter and search
+3. Organize
 
-2. Implement shopping cart
-3. User management
+4. User management
 4. New product entry
 5. Payment gateway
 6. 
-7. 
+7.
+ 
 //postgeres best practises
 https://kukuruku.co/post/postgresql-set-of-practices/
 

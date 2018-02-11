@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BrokerService } from '../../../service/broker.service';
-import { httpMessages } from '../../../app.config';
 import { AppService } from '../../../service/app.service';
 import { Router } from '@angular/router';
-import { navUrls } from '../../emart.config';
+import { navUrls, httpMessages, localMessages } from '../../emart.config';
 
 @Component({
   selector: 'app-cart-unit',
@@ -50,6 +49,7 @@ export class CartUnitComponent implements OnInit {
   }
 
   showCart() {
+    this.brokerService.behEmit(localMessages.itemsInCart,this.itemsInCart);
     this.router.navigate([navUrls.cart]);
   }
 }

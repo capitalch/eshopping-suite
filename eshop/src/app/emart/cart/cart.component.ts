@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
-import { httpMessages } from '../../app.config';
 import { AppService } from '../../service/app.service';
+import { tables, httpMessages, localMessages } from '../emart.config';
 
 @Component({
   selector: 'app-cart',
@@ -9,52 +9,52 @@ import { AppService } from '../../service/app.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cart: any;
-  grandTotal: any;
-  constructor(private brokerService: BrokerService, private appService: AppService) { 
+  itemsInCart: any;
+  subs: any;
+  grandTotal: number = 0;
+
+  constructor(private brokerService: BrokerService, private appService: AppService) {
 
   }
 
   ngOnInit() {
-    this.brokerService.filterOn(httpMessages.itemsInCart).subscribe(d => {d.error ? console.log(d.error) : 
-    (
-       this.cart = d.data,
-       console.log(this.cart)
-    )});
-    this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
+    this.subs = this.brokerService.filterOn(httpMessages.addSubCart).subscribe(d => {
       let count: number;
       d.error ? console.log(d.error) : (
-        this.cart = d.data
+        this.itemsInCart = d.data
       );
     });
-    this.brokerService.httpPost(httpMessages.itemsInCart, { params: [this.appService.getUserId()] });
+
+    let sub1 = this.brokerService.behFilterOn(localMessages.itemsInCart).subscribe(d => {
+      d.error ? console.log(d.error) : (
+        this.itemsInCart = d.data
+      )
+    });
+
+    this.subs.add(sub1);
+
   }
 
-  addSubCart(productId,qty) {
+  addSubCart(productId, qty) {
     let payload = {
       user_id: this.appService.getUserId(),
       product_id: productId,
       qty: qty,
       isactive: true
     };
-    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: 'shopping_cart', json: payload });
+    this.brokerService.httpPost(httpMessages.addSubCart, { tableName: tables.shoppingCart, json: payload });
   }
 
   resetCart() {
-    this.brokerService.httpPost(httpMessages.resetCart,{params:[this.appService.getUserId()]});
+    this.brokerService.httpPost(httpMessages.resetCart, { params: [this.appService.getUserId()] });
   }
 
   placeOrderFromCart() {
 
   }
 
-  removeItem(id)
-  {
-    this.cart.splice(this.cart.map(function(x) {return x.id; }).indexOf(id),1);
-  }
-
   ngOnDestroy() {
-    //this.subs.unsubscribe();
+    this.subs.unsubscribe();
   }
 
 }

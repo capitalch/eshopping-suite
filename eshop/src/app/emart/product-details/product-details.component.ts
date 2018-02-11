@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { navUrls } from '../emart.config';
+import { navUrls, httpMessages } from '../emart.config';
 import { RatingModule } from "ng2-rating";
 import { BrokerService } from '../../service/broker.service';
-import { httpMessages } from '../../app.config';
 
 @Component({
   selector: 'app-product-details',

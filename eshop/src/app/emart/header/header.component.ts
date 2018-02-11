@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { httpMessages, localMessages } from '../../app.config';
 import { BrokerService } from '../../service/broker.service';
-import { navUrls } from '../emart.config';
+import { navUrls, httpMessages, localMessages } from '../emart.config';
 import { AppService } from '../../service/app.service';
 import { EmartService } from '../emart.service';
 

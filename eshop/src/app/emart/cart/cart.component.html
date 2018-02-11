@@ -1,9 +1,4 @@
-<!-- <button (click)="addSubCart(6003,1)">Add</button>
-<button (click)="addSubCart(6003,-1)">Minus</button>
-<button (click)="resetCart()">Reset</button>
-<button (click)="placeOrderFromCart()">Place Order</button> -->
-
-<div class="item" *ngFor="let item of cart">
+<div class="item" *ngFor="let item of itemsInCart">
     <div class="item-image-container">
         <img class="item-image" src="{{item.images[0]}}">
     </div>
@@ -12,20 +7,20 @@
         <div class="item-details">{{item.label && item.label.toString()}}</div>
     </div>
     <div class="item-quantity-container">
-        <button mat-icon-button (click)="addSubCart(item.id,1)">
+        <button mat-icon-button (click)="addSubCart(item.id,-1)">
             <mat-icon>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
+                <i class="fa fa-minus" aria-hidden="true"></i>
             </mat-icon>
         </button>
         <input class="item-quantity" [(ngModel)]="item.qty" />
-        <button mat-icon-button (click)="addSubCart(item.id,-1)">
+        <button mat-icon-button (click)="addSubCart(item.id,1)">
             <mat-icon>
-                    <i class="fa fa-minus" aria-hidden="true"></i>
+                <i class="fa fa-plus" aria-hidden="true"></i>
             </mat-icon>
         </button>
     </div>
     <div class="item-total">
-        {{item.offer_price * item.qty | number : '1.2'}} 
+        {{item.offer_price * item.qty | number : '1.2'}}
     </div>
     <div class="item-delete">
         <button mat-icon-button (click)="delete(item.id)">

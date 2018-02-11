@@ -10,9 +10,10 @@ let sqls = {
 
   , 'post:place:order:from:cart':`
       do $$
-      declare morder_id bigint;
-      declare mamount numeric(12,2);
-      declare muser_id integer;
+      declare 
+        morder_id bigint;
+        mamount numeric(12,2);
+        muser_id integer;
       begin
         select %s into muser_id;
         insert into morder (user_id) values (muser_id) returning id into morder_id;

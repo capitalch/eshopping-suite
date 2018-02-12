@@ -66,7 +66,7 @@ let sqls = {
   , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
       from product p left join brand b 
       on p.brand_id = b.id
-      where cat_id::text LIKE %L and to_tsvector('english', p.name) @@ to_tsquery('english',%L)
+      where cat_id::text LIKE %L and to_tsvector('english', replace(p.name,'-',' ')) @@ to_tsquery('english',%L)
       order by p.id offset %s limit %s;`
 
   , 'post:query:categories:with:count': `with recursive cte1 as(

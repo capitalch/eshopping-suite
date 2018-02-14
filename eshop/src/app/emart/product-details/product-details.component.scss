@@ -9,7 +9,6 @@
     border-bottom: 1px solid black;
     height:6vh;
     min-height: 39px;
-    margin-left: 2px;
     .product-name
     {
         font-size:2.5em;
@@ -19,14 +18,14 @@
     }
     .product-highlight
     {
-        margin-left: 10px;
+        margin-left: 1.5%;
         float:left;
         line-height: 6vh;
     }
     .star-rating
     {
         vertical-align: super;
-        margin-left: 25px;
+        margin-left: 3%;
     }
 }
 .image-dealer-specs-container

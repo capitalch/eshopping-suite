@@ -19,7 +19,7 @@ export class ProductComponent implements OnInit {
     length: number,
     pageIndex: number,
     pageSize: number,
-    pageSizeOptions: [number]
+    pageSizeOptions: number[]
   } = {
       length: 0,
       pageIndex: 0,

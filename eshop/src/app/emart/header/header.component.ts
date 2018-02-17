@@ -3,6 +3,8 @@ import { BrokerService } from '../../service/broker.service';
 import { navUrls, httpMessages, localMessages } from '../emart.config';
 import { AppService } from '../../service/app.service';
 import { EmartService } from '../emart.service';
+import { Pop } from './populate-test-data';
+
 
 @Component({
   selector: 'app-header',
@@ -26,6 +28,10 @@ export class HeaderComponent implements OnInit {
       (artifact = httpMessages.searchProductsCategoriesOnCriteria)
       : (artifact = httpMessages.categoriesWithCount);
     this.brokerService.httpPost(httpMessages.headerToCategory, { id: artifact, params: [this.searchString, this.searchString] }, null, this.searchString);
+  }
+
+  populate() {
+    Pop.doPopulate();
   }
 
   ngOnDestroy() {

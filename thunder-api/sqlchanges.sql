@@ -25,6 +25,16 @@ CREATE SEQUENCE public.order_details_id_seq
 ALTER SEQUENCE public.shopping_cart_id_seq
     OWNER TO postgres;-- Table: public.morder
 
+CREATE SEQUENCE public.morder_order_no_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.shopping_cart_id_seq
+    OWNER TO postgres;
+    
 -- DROP TABLE public.morder;
 
 CREATE TABLE public.morder

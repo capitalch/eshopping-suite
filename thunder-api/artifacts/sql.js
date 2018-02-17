@@ -105,14 +105,6 @@ let sqls = {
           select id from cte1 --where id not in( select parent_id from cte1 where parent_id is not null)
       )  order by p.id offset %s limit %s;`
 
-  , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
-      from product p left join brand b 
-      on p.brand_id = b.id
-      where 
-      cat_id::text LIKE %L and 
-      to_tsvector('english', replace(p.name,'-',' ')) @@ to_tsquery('english',%L)
-      order by p.id offset %s limit %s;`
-
   , 'post:query:categories:with:count': `with recursive cte1 as(
       select c.id,c.label, c.parent_id, count(0) as product_cnt, true as leaf
         from category c inner join product p
@@ -129,10 +121,18 @@ let sqls = {
         select id, label || ' (' || product_cnt || ')' as label, 
           parent_id, product_cnt, leaf from cte2 order by id`
 
+  , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
+      from product p left join brand b 
+      on p.brand_id = b.id
+      where 
+      cat_id::text LIKE %L and 
+      to_tsvector('english', replace(p.name,'-',' ')) @@ plainto_tsquery('english',%L)
+      order by p.id offset %s limit %s;`
+
   , 'post:search:products:categories:on:criteria': `with cte0 as (    
       select id, name as label, cat_id
       from product
-          where to_tsvector('english', replace(name,'-',' ')) @@ to_tsquery('english', %L)    
+          where to_tsvector('english',  replace(name,'-',' ')) @@ plainto_tsquery('english', %L)    
       )
       , cte1 as (
   	  select 0 as id, 'All categories' as label, null::int as parent_id, (select count(0) from cte0)::int as product_cnt, false as leaf

@@ -1,9 +1,6 @@
 // To do
-1. Shopping cart page
-    Add
-    Subtract
-    Delete
-2. Filter and search
+1. Filter and search
+2. Search based on filter
 3. Organize
 
 4. User management
@@ -11,7 +8,22 @@
 5. Payment gateway
 6. 
 7.
- 
+
+CREATE TABLE messages (
+    title       text,
+    body        text,
+    tsv         tsvector
+);
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
+ON messages FOR EACH ROW EXECUTE PROCEDURE
+tsvector_update_trigger(tsv, 'pg_catalog.english', title, body);
+
+INSERT INTO messages VALUES('title here one two three', 'the body text is here four five six');
+
+update messages set title = 'title here and there one two three four' where title = 'title here and there';
+SELECT * FROM messages;
+
 //postgeres best practises
 https://kukuruku.co/post/postgresql-set-of-practices/
 

@@ -126,13 +126,13 @@ let sqls = {
       on p.brand_id = b.id
       where 
       cat_id::text LIKE %L and 
-      to_tsvector('english', replace(p.name,'-',' ')) @@ plainto_tsquery('english',%L)
+      tsv @@ plainto_tsquery('english',%L)
       order by p.id offset %s limit %s;`
 
   , 'post:search:products:categories:on:criteria': `with cte0 as (    
       select id, name as label, cat_id
       from product
-          where to_tsvector('english',  replace(name,'-',' ')) @@ plainto_tsquery('english', %L)    
+          where tsv @@ plainto_tsquery('english', %L)    
       )
       , cte1 as (
   	  select 0 as id, 'All categories' as label, null::int as parent_id, (select count(0) from cte0)::int as product_cnt, false as leaf

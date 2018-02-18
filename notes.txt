@@ -9,6 +9,49 @@
 6. 
 7.
 
+------------------------------------------------------------------------------------
+//plv8
+drop function plv8_test
+CREATE OR REPLACE FUNCTION plv8_test(data jsonb)
+RETURNS jsonb AS $$
+  var f = function removeKeys(obj, keys){
+    var index;
+    for (var prop in obj) {
+        if(obj.hasOwnProperty(prop)){
+            switch(typeof(obj[prop])){
+                case 'string':
+                    index = keys.indexOf(prop);
+                    if(index > -1){
+                        delete obj[prop];
+                    }
+                    break;
+                case 'object':
+                    index = keys.indexOf(prop);
+                    if(index > -1){
+                        delete obj[prop];
+                    }else{
+                        removeKeys(obj[prop], keys);
+                    }
+                    break;
+            }
+        }
+    }
+    return(obj);
+};
+return(f(data,["name"]));
+  
+$$ LANGUAGE plv8 IMMUTABLE STRICT;
+
+SELECT plv8_test(jtest) from json_test;
+
+insert into json_test(jtest) values('
+{
+    "name": "label",
+    "values": ["Lava Red", "8GB RAM", "64GB ROM"]
+
+}')
+------------------------------------------------------------------------------------
+
 CREATE TABLE messages (
     title       text,
     body        text,

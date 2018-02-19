@@ -48,3 +48,7 @@ $$ LANGUAGE plpgsql;
 drop trigger if exists product_tsv_trigger on product;
 CREATE TRIGGER product_tsv_trigger BEFORE INSERT OR UPDATE
     ON product FOR EACH ROW EXECUTE PROCEDURE product_tsv();
+
+CREATE INDEX name ON table USING gin(column);
+update product set descr = lipsum(50);
+update product set name = name;

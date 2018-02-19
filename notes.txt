@@ -51,6 +51,10 @@ insert into json_test(jtest) values('
 
 }')
 ------------------------------------------------------------------------------------
+//regexp_replace
+select regexp_replace('in% $the -!list of -stop words -200', '[-,!#$%]+',' ','g');
+-------------------------------------------------------------------------------------
+
 
 CREATE TABLE messages (
     title       text,

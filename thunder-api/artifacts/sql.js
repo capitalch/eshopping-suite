@@ -121,13 +121,14 @@ let sqls = {
         select id, label || ' (' || product_cnt || ')' as label, 
           parent_id, product_cnt, leaf from cte2 order by id`
 
-  , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
+  , 'post:search:products:on:criteria': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image,
+        ts_rank_cd(tsv,query,32) as rank
       from product p left join brand b 
-      on p.brand_id = b.id
+        on p.brand_id = b.id, plainto_tsquery('english',%L) query
       where 
-      cat_id::text LIKE %L and 
-      tsv @@ plainto_tsquery('english',%L)
-      order by p.id offset %s limit %s;`
+        cat_id::text LIKE %L and 
+        tsv @@ query
+      order by rank DESC,id offset %s limit %s;`
 
   , 'post:search:products:categories:on:criteria': `with cte0 as (    
       select id, name as label, cat_id
@@ -142,7 +143,15 @@ let sqls = {
       		on c1.id = c2.cat_id
       			group by c1.id, c1.label
       ) select id, label || ' (' || product_cnt || ')' as label, parent_id, product_cnt, leaf from cte1
-  	    order by id`
+        order by id`
+  
+  , 'post:search:products:on:criteria1': `select p.id, p.name, list_price, product_code,descr, b.name as brand, offer_price, model, images[1] as image
+        from product p left join brand b 
+          on p.brand_id = b.id
+        where 
+          cat_id::text LIKE %L and 
+          tsv @@ plainto_tsquery('english',%L)
+          order by p.id offset %s limit %s;`
 }
 
 module.exports = sqls;

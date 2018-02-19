@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit {
     (this.catId == 0) && (this.catId = "%")
     this.searchString
       ? (artifact = httpMessages.searchProductsOnCriteria
-        , params = [this.catId, this.searchString, offSet, this.pageObject.pageSize])
+        , params = [this.searchString, this.catId,  offSet, this.pageObject.pageSize])
       : (artifact = httpMessages.productsOnCategory
         , params = [this.catId, offSet, this.pageObject.pageSize]);
     this.brokerService.httpPost(httpMessages.products, {

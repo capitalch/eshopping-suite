@@ -49,6 +49,5 @@ drop trigger if exists product_tsv_trigger on product;
 CREATE TRIGGER product_tsv_trigger BEFORE INSERT OR UPDATE
     ON product FOR EACH ROW EXECUTE PROCEDURE product_tsv();
 
-CREATE INDEX name ON table USING gin(column);
+CREATE INDEX index_product_on_tsv ON product USING gin(tsv);
 update product set descr = lipsum(50);
-update product set name = name;

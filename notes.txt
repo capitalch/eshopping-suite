@@ -1,9 +1,6 @@
 // To do
-1. Shopping cart page
-    Add
-    Subtract
-    Delete
-2. Filter and search
+1. Filter and search
+2. Search based on filter
 3. Organize
 
 4. User management
@@ -11,7 +8,65 @@
 5. Payment gateway
 6. 
 7.
- 
+
+------------------------------------------------------------------------------------
+//plv8
+drop function plv8_test
+CREATE OR REPLACE FUNCTION plv8_test(data jsonb)
+RETURNS jsonb AS $$
+  var f = function removeKeys(obj, keys){
+    var index;
+    for (var prop in obj) {
+        if(obj.hasOwnProperty(prop)){
+            switch(typeof(obj[prop])){
+                case 'string':
+                    index = keys.indexOf(prop);
+                    if(index > -1){
+                        delete obj[prop];
+                    }
+                    break;
+                case 'object':
+                    index = keys.indexOf(prop);
+                    if(index > -1){
+                        delete obj[prop];
+                    }else{
+                        removeKeys(obj[prop], keys);
+                    }
+                    break;
+            }
+        }
+    }
+    return(obj);
+};
+return(f(data,["name"]));
+  
+$$ LANGUAGE plv8 IMMUTABLE STRICT;
+
+SELECT plv8_test(jtest) from json_test;
+
+insert into json_test(jtest) values('
+{
+    "name": "label",
+    "values": ["Lava Red", "8GB RAM", "64GB ROM"]
+
+}')
+------------------------------------------------------------------------------------
+
+CREATE TABLE messages (
+    title       text,
+    body        text,
+    tsv         tsvector
+);
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
+ON messages FOR EACH ROW EXECUTE PROCEDURE
+tsvector_update_trigger(tsv, 'pg_catalog.english', title, body);
+
+INSERT INTO messages VALUES('title here one two three', 'the body text is here four five six');
+
+update messages set title = 'title here and there one two three four' where title = 'title here and there';
+SELECT * FROM messages;
+
 //postgeres best practises
 https://kukuruku.co/post/postgresql-set-of-practices/
 

@@ -1,3 +1,19 @@
+<div class="cart-controls-container">
+    <div class="cart-controls">
+        <button mat-button class="cart-button" (click)="resetCart()">
+            <span class="button-text">Reset cart</span>
+        </button>
+        <button mat-button class="cart-button" (click)="placeOrderFromCart()">
+            <span class="button-text">Place order</span>
+        </button>
+    </div>
+    <div class="cart-info">
+        Total Items - {{itemsCount}}
+    </div>
+    <div class="cart-info">
+        Total Amount  - Value
+    </div>
+</div>
 <div class="item" *ngFor="let item of itemsInCart; let i = index">
     <div class="item-image-container">
         <img class="item-image" src="{{item.images[0]}}">
@@ -30,6 +46,3 @@
         </button>
     </div>
 </div>
-<button (click)="resetCart()">Reset cart</button>
-<button (click)="placeOrderFromCart()">Place order</button>
-{{itemsCount}}

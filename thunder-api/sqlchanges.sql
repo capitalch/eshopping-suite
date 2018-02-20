@@ -35,9 +35,9 @@ $$ LANGUAGE plv8 IMMUTABLE STRICT;
 CREATE or replace FUNCTION product_tsv() RETURNS trigger AS $$
 begin
   new.tsv :=
-     setweight(to_tsvector('pg_catalog.english', coalesce(new.name,'')), 'A') ||
-	 setweight(to_tsvector('pg_catalog.english', coalesce(new.descr,'')), 'C') ||
-	 setweight(array_to_tsvector(coalesce(new.tag,array[]::text[])), 'B') ||
+     setweight(to_tsvector('pg_catalog.english', coalesce(regexp_replace(new.name,'[-,!#$%]+',' ','g'),'')), 'A') ||
+	 setweight(to_tsvector('pg_catalog.english', coalesce(regexp_replace(new.descr,'[-,!#$%]+',' ','g'),'')), 'C') ||
+	 setweight(array_to_tsvector(coalesce(regexp_replace(new.tag,'[-,!#$%]+',' ','g'),  array[]::text[])), 'B') ||
 	 setweight(to_tsvector('pg_catalog.english', coalesce(get_product_label(new.product_info),'')), 'A') ||
 	 setweight(to_tsvector('pg_catalog.english', coalesce(product_trim_product_info_plv8(new.product_info),'{}')), 'A') ||
 	 setweight(to_tsvector('pg_catalog.english',coalesce((select "name" from brand where id = new.brand_id),'')), 'A');

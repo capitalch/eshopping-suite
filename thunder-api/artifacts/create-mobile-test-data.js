@@ -306,18 +306,18 @@ pop.doPopulate = (pool) => {
         };
         return (dataS);
     };
-    let text = '';
-    let sqlString = `update product set product_info='{{{text}}}' where id = {{{id}}}`;
-    for (let i = 6003; i <= 6003; i++) {
+    let text = '', sql = '';
+    let sqlTemplate = `update product set product_info='{{{text}}}' where id = {{{id}}}`;
+    for (let i = 6001; i <= 56000; i++) {
         text = mustache.render(template, getDataS());
         let tObject = { text: text, id: i };
-        sqlString = mustache.render(sqlString, tObject);
-        pool.query(sqlString)
+        sql = mustache.render(sqlTemplate, tObject);
+        pool.query(sql)
             .then(result => {
                 Array.isArray(result) || (result = result.rows);
                 //res.json(result);
                 console.log(result);
-                }
+            }
             )
             .catch(
                 e => setImmediate(

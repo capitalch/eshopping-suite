@@ -53,7 +53,7 @@ CREATE INDEX index_product_on_tsv ON product USING gin(tsv);
 update product set descr = lipsum(50);
 
 //22-02-2018
-drop function get_product_label
+drop function get_product_label;
 CREATE or replace FUNCTION get_product_label(product_info jsonb) RETURNS text AS $$
 declare  
     returnValue_ text := '';

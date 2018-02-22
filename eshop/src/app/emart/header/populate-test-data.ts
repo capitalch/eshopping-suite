@@ -170,98 +170,75 @@ let template = `[{
         "value": "{{{usbConnectivity}}}"
     }, {
         "name": "Audio Jack",
-        "value": {{{audioJack}}}
+        "value": "{{{audioJack}}}"
     }]
 },
 {
     "name": "Other Details",
     "values": [{
         "name": "Smartphone",
-        "value": {{{smartPhone}}}
+        "value": "{{{smartPhone}}}"
     }, {
         "name": "SIM Size",
-        "value": {{{simSize}}}
+        "value": "{{{simSize}}}"
     }, {
         "name": "SMS",
-        "value": {{{sms}}}
+        "value": "{{{sms}}}"
     }, {
         "name": "Sensors",
-        "value": {{{sensors}}}
+        "value": "{{{sensors}}}"
     }, {
         "name": "Other Features",
-        "value": {{{otherFeatures}}}
+        "value": "{{{otherFeatures}}}"
     }, {
         "name": "Important Apps",
-        "value": {{{importantApps}}}
+        "value": "{{{importantApps}}}"
     }]
 },
 {
     "name": "Multimedia Features",
     "values": [{
         "name": "Audio Formats",
-        "value": {{{audioFormats}}}
+        "value": "{{{audioFormats}}}"
     }, {
         "name": "Video Formats",
-        "value": {{{videoFormats}}}
+        "value": "{{{videoFormats}}}"
     }]
 },
 {
     "name": "Battery & Power Features",
     "values": [{
         "name": "Battery Capacity",
-        "value": {{{batteryCapacity}}}
+        "value": "{{{batteryCapacity}}}"
     }, {
         "name": "Battery Type",
-        "value": {{{batteryType}}}
+        "value": "{{{batteryType}}}"
     }]
 },
 {
     "name": "Dimensions",
     "values": [{
         "name": "Width",
-        "value": {{{width}}}
+        "value": "{{{width}}}"
     }, {
         "name": "Height",
-        "value": {{{height}}}
+        "value": "{{{height}}}"
     }, {
         "name": "Depth",
-        "value": {{{depth}}}
+        "value": "{{{depth}}}"
     }]
 },
 {
     "name": "Warranty",
     "values": [{
         "name": "Warranty Summary",
-        "value": {{{warrantySummary}}}
+        "value": "{{{warrantySummary}}}"
     }]
 }
 ]`;
-let data = {
-    label1: [`["Lava Red", "8GB RAM", "64GB ROM"]`, `["Pitch White", "16GB RAM", "128GB ROM"]`]
-    , box1: [`Handset, Earphones Tuned by AKG, USB Type C Cable, Travel Adapter, 
-            USB Connector (C to A), Micro USB Connector (C to B), Ejector Pin, Quick Start and 
-            Smart Switch Leaflet`, `Handset, Earphones Tuned by PHILIPS, USB Type B Cable, 
-            USB Connector (C to D), USB Connector (A to C), Ejector Pin, Quick Start and 
-            Smart Switch Leaflet, Other Features`]
-    , model1: ["SM-G950FZKDINS", "DA-G634356HGRFD"]
-    , model2: ["Galaxy S8", "PU 345"]
-    , color1: ["Midnight Black", "PALE BLUE"]
-    , browse1: ["Smartphones", "Featurephones"]
-    , sim1: ["Dual Sim", "Single Sim"]
-
-}
 
 
 Pop.doPopulate = () => {
-    // let data1 = {
-    //     label1: _.sample(data.label1),
-    //     box1: _.sample(data.box1),
-    //     model1: _.sample(data.model1),
-    //     model2: _.sample(data.model2),
-    //     color1: _.sample(data.color1),
-    //     browse1: _.sample(data.browse1),
-    //     sim1: _.sample(data.sim1)
-    // }
     let dataS = {
         // label: _.sample([`['lava','8GB ram']`,`['mava','6GB RAM']`])
         label: _.sample([`["Lava Red", "8GB RAM", "64GB ROM"]`, `["Black", "4GB RAM", "Optical Sensor"]`, `["Pink", "2GB RAM", "Fingerprint Sensor"]`, `["White", "6GB RAM", "126GB ROM"]`, `["Night Black", "4GB RAM", "Optical Sensor", "Fingerprint Sensor"]`, `["Sapphire Blue", "6GB RAM", "Voice Recognition"]`, `["Coral White", "4GB RAM", "256GB ROM"]`, `["Transparent", "2GB RAM", "VOLTE"]`, `["Blue", "6GB RAM", "128GB ROM", "Carl Zeiss Lens"]`, `["White", "2GB RAM", "256GB ROM"]`])

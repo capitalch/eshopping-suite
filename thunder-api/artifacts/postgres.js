@@ -12,6 +12,7 @@ var format = require('pg-format');
 var sql = require('./sql');
 var mustache = require('mustache');
 const { Pool } = require('pg');
+let pop = require('./create-mobile-test-data');
 
 const dbConfig = {
   user: config.user, // name of the user account
@@ -38,12 +39,22 @@ router.post('/db/sql/generic', (req, res, next) => {
       }
       )
       .catch(
-      e => setImmediate(
-        () => {
-          res.status(e.status || 500);
-          res.json({ error: e.message })
-        })
+        e => setImmediate(
+          () => {
+            res.status(e.status || 500);
+            res.json({ error: e.message })
+          })
       )
+  } catch (error) {
+    let err = new def.NError(500, messages.errInternalServerError, error.message);
+    next(err);
+  }
+})
+
+router.post('/db/create/mobile/testdata', (req, res, next) => {
+  try {
+    pop.doPopulate(pool);
+    res.json({status:'ok'});
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
     next(err);
@@ -65,11 +76,11 @@ router.post('/db/sql/generic1', (req, res, next) => {
       }
       )
       .catch(
-      e => setImmediate(
-        () => {
-          res.status(e.status || 500);
-          res.json({ error: e.message })
-        })
+        e => setImmediate(
+          () => {
+            res.status(e.status || 500);
+            res.json({ error: e.message })
+          })
       )
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
@@ -88,22 +99,22 @@ router.post('/db/addsubcart', (req, res, next) => {
       let ret = quote + x + quote;
       return (ret);
     }).join();
-    jsonData.tableName =req.body.tableName;
+    jsonData.tableName = req.body.tableName;
     jsonData.fields = fields;
     jsonData.values = values;
-    let sqlString = mustache.render(sql[sqlId],jsonData);    
+    let sqlString = mustache.render(sql[sqlId], jsonData);
     pool.query(sqlString)
       .then(result => {
         Array.isArray(result) || (result = result.rows);
         res.json(result);
-        }
+      }
       )
       .catch(
-      e => setImmediate(
-        () => {
-          res.status(e.status || 500);
-          res.json({ error: e.message })
-        })
+        e => setImmediate(
+          () => {
+            res.status(e.status || 500);
+            res.json({ error: e.message })
+          })
       );
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);
@@ -125,19 +136,19 @@ router.post('/db/json/insert/generic', (req, res, next) => {
       return (ret);
     }).join();
     let sqlString = `insert into ${tableName} (${fields}) values(${values}) returning ${idColumnName};`
-    
+
     pool.query(sqlString)
       .then(result => {
         Array.isArray(result) || (result = result.rows);
         res.json(result);
-        }
+      }
       )
       .catch(
-      e => setImmediate(
-        () => {
-          res.status(e.status || 500);
-          res.json({ error: e.message })
-        })
+        e => setImmediate(
+          () => {
+            res.status(e.status || 500);
+            res.json({ error: e.message })
+          })
       );
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);

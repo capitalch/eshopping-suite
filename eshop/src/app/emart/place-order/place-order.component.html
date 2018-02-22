@@ -1,0 +1,6 @@
+<div class="payment-mode">
+    <input class="radio" type="radio" [(ngModel)]="prop" name="prop" value="CashOnDelivery"><label class="radio-label">Cash On Delivery</label>
+    <input class="radio" type="radio" [(ngModel)]="prop" name="prop" value="CardPayment"><label class="radio-label">Credit/Debit Card</label>
+</div>
+<div class="payment-content" *ngIf="prop === 'CashOnDelivery'">Cash On Delivery</div>
+<div class="payment-content" *ngIf="prop === 'CardPayment'">Credit/Debit Card</div>

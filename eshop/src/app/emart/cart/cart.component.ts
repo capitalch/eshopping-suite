@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { AppService } from '../../service/app.service';
-import { tables, httpMessages, localMessages } from '../emart.config';
+import { tables, httpMessages, localMessages, navUrls } from '../emart.config';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,7 @@ export class CartComponent implements OnInit {
   subs: any;
   itemsCount: number = 0;
 
-  constructor(private brokerService: BrokerService, private appService: AppService) {
+  constructor(private brokerService: BrokerService, private appService: AppService, private router: Router) {
 
   }
 
@@ -44,7 +45,8 @@ export class CartComponent implements OnInit {
     this.brokerService.httpPost(httpMessages.deleteItemInCart, { params: [id, this.appService.getUserId()] });
   }
   placeOrderFromCart() {
-    this.brokerService.httpPost(httpMessages.placeOrderFromCart, { params: [this.appService.getUserId()] });
+    //this.brokerService.httpPost(httpMessages.placeOrderFromCart, { params: [this.appService.getUserId()] });
+    this.router.navigate([navUrls.placeOrder]);
   }
 
   ngOnDestroy() {

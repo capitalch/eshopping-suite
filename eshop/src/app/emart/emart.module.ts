@@ -15,6 +15,7 @@ import {RatingModule} from "ng2-rating";
 import { CartComponent } from './cart/cart.component';
 import { EmartService } from './emart.service';
 import { CartUnitComponent } from './sub-components/cart-unit/cart-unit.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { CartUnitComponent } from './sub-components/cart-unit/cart-unit.componen
   declarations: [CompositeComponent, 
     ProductComponent, 
     ProductDetailsComponent,
-    HeaderComponent, CategoryComponent, FooterComponent, CartComponent, CartUnitComponent
+    HeaderComponent, CategoryComponent, FooterComponent, CartComponent, CartUnitComponent, PlaceOrderComponent
   ],
   providers:[EmartService]
 })

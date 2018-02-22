@@ -20,7 +20,8 @@ export const httpMessages = {
 export const navUrls = {
     product: 'emart/composite/product',
     productDetails: 'emart/composite/productDetails',
-    cart: 'emart/composite/cart'
+    cart: 'emart/composite/cart',
+    placeOrder: 'emart/composite/placeOrder'
 };
 
 export const settings = {

@@ -51,9 +51,11 @@ router.post('/db/sql/generic', (req, res, next) => {
   }
 })
 
-router.post('/db/create/mobile/testdata', (req, res, next) => {
+
+
+router.post('/db/create/mobile/brand', (req, res, next) => {
   try {
-    pop.doPopulate(pool);
+    pop.doPopulateBrand(pool);
     res.json({status:'ok'});
   } catch (error) {
     let err = new def.NError(500, messages.errInternalServerError, error.message);

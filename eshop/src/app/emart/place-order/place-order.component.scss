@@ -1,22 +1,113 @@
 .payment-mode
 {
-    font-size: 1.3em;
+    font-size: 1.5em;
     line-height: 60px;
     padding-left: 5px;
     padding-right: 5px;
     margin-top: 12px;
     margin-right: 30px;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    .payment-label-first
+    {
+        margin-right:20px;
+    }
 }
 
-.radio
+.payment-radio
 {
-    margin: 0px 12px 0px 18px;
+    margin: 0px 6px 0px 6px;
 }
 
-.payment-content
+.address-content
 {
     margin-top: 10px;
     margin-right: 30px;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    .new-address
+    {
+        width:68%;
+        float:left;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        .new-address-radio
+        {
+            margin: 10px;
+        }
+        .new-address-label
+        {
+            font-size:1.5em;
+        }
+        .new-address-details
+        {
+            margin: 10px;
+            .full-name
+            {
+                width:390px;
+            }
+            .phone
+            {
+                margin-left: 80px;
+                width: 200px;
+            }
+            .pin-code
+            {
+
+            }
+            .locality
+            {
+                margin-left: 65px;
+            }
+            .city-district-town
+            {
+                margin-left: 65px;
+            }
+            .address
+            {
+                width:100%;
+            }
+            .landmark
+            {
+
+            }
+            .alternate-phone
+            {
+                margin-left: 65px;
+            }
+            .preferable-time
+            {
+                margin-left: 65px;
+            }
+        }
+    }
+    .existing-address
+    {
+        width:31%;
+        float:right;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        .address
+        {
+            margin: 10px;
+            .address-radio
+            {
+                margin-right:20px;
+            }
+            .address-radio-label
+            {
+                font-size:1.5em;
+            }
+        }
+        .first
+        {
+            margin-bottom: 20px;
+        }
+    }
 }
+
+.payment-content
+{
+    margin-top:10px;
+    width:66.1%;
+    float:left;
+    font-size:1.5em;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+

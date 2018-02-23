@@ -132,8 +132,7 @@ $$;
 //Create master rows with details json
 select c1.id, label, array_to_json(array_agg(to_json(p1)))
 	from category c1 left join  lateral (select id, name, list_price, offer_price from product p where p.cat_id = c1.id) p1
-		on true
-			group by c1.id
+		on true	group by c1.id
 			 order by c1.id
 ----------------------------------------------------------------------------------------------
 //create comma separated string of keys from a json object

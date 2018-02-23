@@ -16,6 +16,7 @@ import { CartComponent } from './cart/cart.component';
 import { EmartService } from './emart.service';
 import { CartUnitComponent } from './sub-components/cart-unit/cart-unit.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
   declarations: [CompositeComponent, 
     ProductComponent, 
     ProductDetailsComponent,
-    HeaderComponent, CategoryComponent, FooterComponent, CartComponent, CartUnitComponent, PlaceOrderComponent
+    HeaderComponent, CategoryComponent, 
+    FooterComponent, CartComponent, CartUnitComponent, PlaceOrderComponent,FilterComponent
   ],
   providers:[EmartService]
 })

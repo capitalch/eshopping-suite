@@ -236,7 +236,40 @@ let template = `[{
     }]
 }
 ]`;
+let company = [
+    'nikon', 'canon', 'sony', 'panasonic', 'olympus', 'photron', 'nokia', 'manfrotto', 'hmc', 
+    'powerace', 'gionee', 'apple', 'intex', 'micromax',
+    'oppo', 'samsung', 'vivo', 'karbon', 'syska', 'digitek', 'quickheal', 'philips', 'hp', 'lenovo', 'dell', 'enter', 
+    'iball', 'asus', 'lg', 'logitech',
+    'amkette', 'segate', 'wd', 'clarion', 'frontec', 'foxin', 'tvs', 'micromaxx', 'kingston', 'sandisk', 'transcend', 
+    'micron', 'digisol',    'dlink', 'tplink', 'creative', 'zebronics', 'datawind', 'eyot', 'targus', 'bluestar', 
+    'carrier', 'hitachi', 'llyod', 'mitsubisi', 'voltas', 'ogeneral',
+    'casio', 'purit', 'hevells', 'symphony', 'electrolux', 'heier', 'venus', 'micromax', 'vu', 'tata', 'bajaj', 
+    'glen', 'prestige', 'sunflame', 'zelsa',
+    'agaro', 'bpl', 'videocon', 'texla', 'mi', 'zte', 'huawei', 'tcl', 'yulong', 'redmi'
+];
+pop.doPopulateBrand = (pool) => {
+    let brand = '', sql = '';
+    let sqlTemplate = `insert into brand(name) values('{{{brand}}}')`;
+    for (let i = 0; i < company.length; i++) {
+        brand = company[i];
+        let tObject = { brand: brand};
+        sql = mustache.render(sqlTemplate, tObject);
+        pool.query(sql)
+            .then(result => {
+                Array.isArray(result) || (result = result.rows);
+                //res.json(result);
+                console.log(result);
+            }
+            ).catch(
+                e => setImmediate(
+                    () => {
+                        console.log(e.message);
+                    })
+            );
+    }
 
+}
 
 pop.doPopulate = (pool) => {
     let getDataS = () => {
@@ -306,18 +339,18 @@ pop.doPopulate = (pool) => {
         };
         return (dataS);
     };
-    let text = '';
-    let sqlString = `update product set product_info='{{{text}}}' where id = {{{id}}}`;
-    for (let i = 6003; i <= 6003; i++) {
+    let text = '', sql = '';
+    let sqlTemplate = `update product set product_info='{{{text}}}' where id = {{{id}}}`;
+    for (let i = 6001; i <= 56000; i++) {
         text = mustache.render(template, getDataS());
         let tObject = { text: text, id: i };
-        sqlString = mustache.render(sqlString, tObject);
-        pool.query(sqlString)
+        sql = mustache.render(sqlTemplate, tObject);
+        pool.query(sql)
             .then(result => {
                 Array.isArray(result) || (result = result.rows);
                 //res.json(result);
                 console.log(result);
-                }
+            }
             )
             .catch(
                 e => setImmediate(

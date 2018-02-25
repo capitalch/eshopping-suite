@@ -8,6 +8,13 @@
 5. Payment gateway
 6. 
 7.
+------------------------------------------------------------------------------------
+//Good url for search implementation client side in angular 2
+https://codecraft.tv/courses/angular/forms/reactive-model-form/
+
+//json schema forms
+https://gcanti.github.io/resources/json-schema-to-tcomb/playground/playground.html
+------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------
 //plv8

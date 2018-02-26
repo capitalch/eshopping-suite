@@ -41,24 +41,26 @@
             margin: 10px;
             .full-name
             {
-                width:390px;
+                width:60%;
             }
             .phone
             {
-                margin-left: 80px;
-                width: 200px;
+                margin-left: 5%;
+                width: 34%;
             }
             .pin-code
             {
-
+                width:30%
             }
             .locality
             {
-                margin-left: 65px;
+                margin-left: 5%;
+                width:30%;
             }
             .city-district-town
             {
-                margin-left: 65px;
+                margin-left: 4%;
+                width:30%;
             }
             .address
             {
@@ -66,15 +68,17 @@
             }
             .landmark
             {
-
+                width:30%;
             }
             .alternate-phone
             {
-                margin-left: 65px;
+                margin-left: 5%;
+                width:30%;
             }
             .preferable-time
             {
-                margin-left: 65px;
+                margin-left: 4%;
+                width:30%;
             }
         }
     }
@@ -93,6 +97,11 @@
             .address-radio-label
             {
                 font-size:1.5em;
+            }
+            .existing-address-details
+            {
+                margin-left: 44px;
+                margin-top: 10px;
             }
         }
         .first

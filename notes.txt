@@ -24,6 +24,9 @@ https://libraries.io/github/boban984/angular2-schema-form
 //Formio
 https://github.com/formio/angular-formio
 ------------------------------------------------------------------------------------
+//Good one from basics to create a dynamic form
+https://juristr.com/blog/2017/10/demystify-dynamic-angular-forms/
+------------------------------------------------------------------------------------
 //plv8
 drop function plv8_test
 CREATE OR REPLACE FUNCTION plv8_test(data jsonb)

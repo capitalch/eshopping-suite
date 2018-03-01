@@ -29,6 +29,9 @@ https://juristr.com/blog/2017/10/demystify-dynamic-angular-forms/
 ------------------------------------------------------------------------------------
 // Angular 2 Form Builder
 https://www.concretepage.com/angular-2/angular-2-4-formbuilder-example
+//formly usage in Angular 2
+https://alligator.io/angular/formly/
+
 -----------------------------------------------------------------------------------
 //plv8
 drop function plv8_test

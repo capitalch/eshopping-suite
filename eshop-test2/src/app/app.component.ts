@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { AppService } from './app.service';
+import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -9,17 +11,23 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'app';
   @ViewChild("div1") div1;
-  myDataObject: any = {};
+  mySchema: any = {};
+  myConfig: any = {};
   constructor(private appService: AppService) {
     console.log('app constructor');
-    
+
   }
 
   ngOnInit() {
     console.log('app init');
-    this.myDataObject={
-      firstName:'',
-      lastName:''
+    this.mySchema = {
+      firstName: ['', Validators.required],
+      lastName: ''
+    };
+    this.myConfig = {
+      onSubmit: (d) => {
+        console.log(d);
+      }
     }
   }
 

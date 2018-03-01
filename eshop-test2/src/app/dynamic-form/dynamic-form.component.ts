@@ -7,9 +7,10 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@ang
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() dataObject: any = {};
-  myForm:FormGroup;
-  constructor(private fb: FormBuilder) { 
+  @Input() schema: any = {};
+  @Input() config: any = {};
+  myForm: FormGroup;
+  constructor(private fb: FormBuilder) {
     console.log('form constructor');
   }
 
@@ -19,13 +20,15 @@ export class DynamicFormComponent implements OnInit {
     //   firstName: ''
     // });
 
-    this.myForm = this.fb.group(this.dataObject);
+    this.myForm = this.fb.group(this.schema);
     // console.log(this.dataObject);
   }
 
-  doSubmit(){
+  doSubmit() {
+    this.config.onSubmit(this.myForm.value);
     // console.log('submit');
-    console.log(this.myForm.value);
+    // console.log(this.myForm.valid);
+    // console.log(this.myForm.value);
   }
 
 }

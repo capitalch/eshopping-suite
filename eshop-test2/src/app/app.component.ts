@@ -9,18 +9,27 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'app';
   @ViewChild("div1") div1;
-
-  constructor(private appService:AppService){
-
+  myDataObject: any = {};
+  constructor(private appService: AppService) {
+    console.log('app constructor');
+    
   }
 
-  onResize(e){
+  ngOnInit() {
+    console.log('app init');
+    this.myDataObject={
+      firstName:'',
+      lastName:''
+    }
+  }
+
+  onResize(e) {
     console.log('resize');
     let size = this.div1.nativeElement.getBoundingClientRect();
-    console.log('Size:',size);
+    console.log('Size:', size);
   }
 
-  addToCart(){
+  addToCart() {
     this.appService.addToCart();
   }
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "eshop"
+    "name": "eshop-test1"
   },
   "apps": [
     {
@@ -19,22 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/font-awesome/scss/font-awesome.scss",
-        "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/primeng/resources/themes/omega/theme.css",
-        "styles/styles.scss"
+        "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+        "styles.css"
       ],
       "scripts": [
+        "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      },
-      "stylePreprocessorOptions": {
-        "includePaths": [
-          "styles"
-        ]
       }
     }
   ],
@@ -63,9 +57,9 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "serve": {
-      "port": 4300,
+      "port": 4400,
       "host": "0.0.0.0",
       "liveReload": true
     },

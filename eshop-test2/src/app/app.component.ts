@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { AppService } from './app.service';
+import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -9,18 +11,33 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'app';
   @ViewChild("div1") div1;
-
-  constructor(private appService:AppService){
+  mySchema: any = {};
+  myConfig: any = {};
+  constructor(private appService: AppService) {
+    console.log('app constructor');
 
   }
 
-  onResize(e){
+  ngOnInit() {
+    console.log('app init');
+    this.mySchema = {
+      firstName: ['', Validators.required],
+      lastName: ''
+    };
+    this.myConfig = {
+      onSubmit: (d) => {
+        console.log(d);
+      }
+    }
+  }
+
+  onResize(e) {
     console.log('resize');
     let size = this.div1.nativeElement.getBoundingClientRect();
-    console.log('Size:',size);
+    console.log('Size:', size);
   }
 
-  addToCart(){
+  addToCart() {
     this.appService.addToCart();
   }
 }

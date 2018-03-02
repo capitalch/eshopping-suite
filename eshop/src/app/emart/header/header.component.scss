@@ -18,17 +18,18 @@
             color: $theme-logo-color;
         }
         .search-input {
-            width: 28vw;
-            height: 1.2em;
-            font-size: 2.5em;
+            width:440px;
+            font-size:1.3em;
+            height:3.2em;
         }
-        .search-button {
+        .header-button {
             background-color: $emart-header-background;
-            border: 1px solid $emart-header-font-color;
-            height: 3em;
-            border-radius: 3px;
+            min-width: 0vw;
+            border: 1px solid $emart-header-background;
             vertical-align: super;
-            min-width: 0px;
+        }
+        .header-button:hover {
+            border: 1px solid $emart-header-font-color;
         }
     }
     .right-container {
@@ -58,4 +59,19 @@
             }
         }
     }
+}
+
+.mat-form-field-underline
+{
+    background: white;
+}
+.mat-form-field-ripple
+{
+    background: white;
+}
+.search-clear
+{
+    line-height: 0 !important;
+    min-width: 0 !important;
+    float:right
 }

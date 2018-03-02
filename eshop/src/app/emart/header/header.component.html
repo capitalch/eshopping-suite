@@ -1,12 +1,17 @@
 <div class="em-header">
   <div class='left-container'>
     <span class="logo" (click)="populate()" >eMART</span>
-    <input class="search-input" type="text" [(ngModel)]="searchString" />
-    <button mat-button class="search-button" (click)="doSearch()">
+    <!-- <input class="search-input" type="text" [(ngModel)]="searchString" /> -->
+    <mat-form-field class="search-input">
+      <input matInput style="width:90%" type="text" [(ngModel)]="searchString"/>
+      <button mat-button *ngIf="searchString" aria-label="Clear" (click)="searchString=''" class="search-clear">
+        <i class="fa fa-times-circle"></i>
+      </button>
+    </mat-form-field>
+    <button mat-button class="header-button" (click)="doSearch()">
       <i class="fa fa-search fa-x" aria-hidden="true"></i>
       <span class="button-text">Search</span>
     </button>
-    
   </div>
   <div class="right-container">
     <div class="login-controls">

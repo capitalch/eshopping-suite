@@ -6,11 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 import { DynamicMaterialFormComponent } from './dynamic-material-form/dynamic-material-form.component';
+import { JsonFormComponent } from './json-form/json-form.component';
+import { MatFormComponent } from './mat-form/mat-form.component';
+import { MaterialUnitModule } from './material-unit/material-unit.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DynamicMaterialFormComponent
+    DynamicMaterialFormComponent,
+    JsonFormComponent,
+    MatFormComponent
   ],
   imports: [
     BrowserModule
@@ -18,6 +24,7 @@ import { DynamicMaterialFormComponent } from './dynamic-material-form/dynamic-ma
     , BrowserAnimationsModule
     , DynamicFormsCoreModule.forRoot()
     , DynamicFormsMaterialUIModule
+    , MaterialUnitModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,26 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { AppService } from './service/app.service';
-import { BrokerService } from './service/broker.service';
 import { AppComponent } from './app.component';
-import { routes } from './app.routes';
-// import { CategoryComponent } from './category/category.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
+import { DynamicMaterialFormComponent } from './dynamic-material-form/dynamic-material-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
-    // ,CategoryComponent
+    AppComponent,
+    DynamicMaterialFormComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule,
-    AngularMaterialModule, HttpClientModule
-    // , EmartModule
+    BrowserModule
+    , ReactiveFormsModule
+    , BrowserAnimationsModule
+    , DynamicFormsCoreModule.forRoot()
+    , DynamicFormsMaterialUIModule
   ],
-  providers: [AppService, BrokerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

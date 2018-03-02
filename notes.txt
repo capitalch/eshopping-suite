@@ -31,6 +31,9 @@ https://juristr.com/blog/2017/10/demystify-dynamic-angular-forms/
 https://www.concretepage.com/angular-2/angular-2-4-formbuilder-example
 //formly usage in Angular 2
 https://alligator.io/angular/formly/
+-----------------------------------------------------------------------------------
+//dynamic forms appears good
+https://github.com/udos86/ng-dynamic-forms
 
 -----------------------------------------------------------------------------------
 //plv8

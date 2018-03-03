@@ -26,6 +26,7 @@
     "@ng-dynamic-forms/core": "^5.4.4",
     "@ng-dynamic-forms/ui-material": "^5.4.4",
     "angular2-text-mask": "^8.0.4",
+    "bootstrap": "^4.0.0-beta.3",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "node-sass": "^4.7.2",

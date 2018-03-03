@@ -1,5 +1,15 @@
-<form [formGroup] = "myFormGroup">
-  <div>
-    <p>First name:<input formControlName="firstName"></p>
+<form [formGroup]="myFormGroup" (ngSubmit)="submit()">
+  <div [ngClass]="layout.id" *ngFor="let layout of layouts">
+    <ng-container [ngSwitch]="layout.type">
+      <ng-container *ngSwitchCase="'text'">
+        <ng-container *ngTemplateOutlet="text; context:{$implicit:layout}"></ng-container>
+      </ng-container>
+    </ng-container>
   </div>
+  <button [ngClass]="config.submitClass" type="submit">Submit</button>
 </form>
+
+<ng-template #text>
+  <label for={{layout.id}}>{{layout.label}}</label>
+  <input type="text" id={{layout.id}} placeholder={{layout.placeholder}} formControlName={{layout.id}}>
+</ng-template>

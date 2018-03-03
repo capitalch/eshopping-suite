@@ -9,6 +9,7 @@ import { DynamicMaterialFormComponent } from './dynamic-material-form/dynamic-ma
 import { JsonFormComponent } from './json-form/json-form.component';
 import { MatFormComponent } from './mat-form/mat-form.component';
 import { MaterialUnitModule } from './material-unit/material-unit.module';
+import { Html5FormComponent } from './html5-form/html5-form.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MaterialUnitModule } from './material-unit/material-unit.module';
     AppComponent,
     DynamicMaterialFormComponent,
     JsonFormComponent,
-    MatFormComponent
+    MatFormComponent,
+    Html5FormComponent
   ],
   imports: [
     BrowserModule

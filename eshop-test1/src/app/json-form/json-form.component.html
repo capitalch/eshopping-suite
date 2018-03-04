@@ -1,15 +1,21 @@
-<form [formGroup]="myFormGroup" (ngSubmit)="submit()">
+<form [formGroup]="myForm" (ngSubmit)="submit()">
   <div [ngClass]="layout.id" *ngFor="let layout of layouts">
     <ng-container [ngSwitch]="layout.type">
       <ng-container *ngSwitchCase="'text'">
-        <ng-container *ngTemplateOutlet="text; context:{$implicit:layout}"></ng-container>
+        <ng-container>
+          <label [for]="layout.id">{{layout.label}}:</label>
+          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">          
+          <ng-container *ngIf="checkError(layout)" style="display:inline">
+            <ul style = "display:inline">
+              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
+                {{message}}
+              </li>
+            </ul>
+            <div style="clear:left"></div>            
+          </ng-container>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>
-  <button [ngClass]="config.submitClass" type="submit">Submit</button>
+  <button  [ngClass]="config.submitClass" type="submit">Submit</button>
 </form>
-
-<ng-template #text>
-  <label for={{layout.id}}>{{layout.label}}</label>
-  <input type="text" id={{layout.id}} placeholder={{layout.placeholder}} formControlName={{layout.id}}>
-</ng-template>

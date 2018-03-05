@@ -1,21 +1,55 @@
-<form [formGroup]="myForm" (ngSubmit)="submit()">
+<form [formGroup]="myForm" (ngSubmit)="submit()" novalidate>
   <div [ngClass]="layout.id" *ngFor="let layout of layouts">
     <ng-container [ngSwitch]="layout.type">
       <ng-container *ngSwitchCase="'text'">
         <ng-container>
           <label [for]="layout.id">{{layout.label}}:</label>
-          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">          
+          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
           <ng-container *ngIf="checkError(layout)" style="display:inline">
-            <ul style = "display:inline">
+            <ul style="display:inline">
               <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
                 {{message}}
               </li>
             </ul>
-            <div style="clear:left"></div>            
+            <div style="clear:left"></div>
           </ng-container>
         </ng-container>
       </ng-container>
+
+      <ng-container *ngSwitchCase="'checkbox'">
+        <ng-container>
+          <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value">
+          <label [for]="layout.id">{{layout.label}}:</label>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'radio'">
+        <p>{{layout.label}}</p>
+        <ng-container *ngFor="let option of layout.options">
+          <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value">
+          <label [for]="option.id">{{option.label}}</label>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'select'">
+        <p>{{layout.label}}</p>
+        <select [formControlName]="layout.id">
+          <option *ngFor="let option of layout.options" [value]="option.value" 
+          [label]="option.label"> 
+          </option>
+        </select>        
+      </ng-container>
+
+      <!-- <div *ngSwitchCase="'select'">
+        <select [formControlName]="prop.key">
+          <option *ngFor="let option of prop.options" [value]="option.value" >
+            
+          </option>
+        </select>
+      </div> -->
+
+
     </ng-container>
   </div>
-  <button  [ngClass]="config.submitClass" type="submit">Submit</button>
+  <button [ngClass]="config.submitClass" type="submit">Submit</button>
 </form>

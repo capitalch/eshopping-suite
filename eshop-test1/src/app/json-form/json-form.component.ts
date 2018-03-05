@@ -27,13 +27,44 @@ export class JsonFormComponent implements OnInit {
         // ,email: true
         myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
       }
+    }, {
+      type: "checkbox"
+      , id: "agreed"
+      , label: "Agreed"
+      , value: false
+    }, {
+      type: "radio"
+      , label: "Gender"
+      , value: "M"
+      , id: "gender"
+      , options: [
+        { label: "Male", value: "M", id:"male" }
+        , { label: "Female", value: "F", id:"female" }
+      ]
+    }, {
+      type: "select"
+      , label: "Country"
+      , value: "in"
+      , id: "country"
+      , options: [
+        { label: "USA", value: "us"  }
+        , { label: "India", value: "in" }
+      ]
     }];
     this.config = {
       submitClass: "btn btn-primary"
     };
-    let ctrl = this.layouts[0];
     let formControls = {};
-    let validators = Object.keys(ctrl.validation).map(x => {
+    let validators;
+    this.layouts.forEach(x => {
+      validators = this.getValidators(x);
+      formControls[x.id] = [x.value, validators];
+    });
+    this.myForm = this.fb.group(formControls);
+  }
+
+  getValidators(layout) {
+    let validators = layout.validation && Object.keys(layout.validation).map(x => {
       let ret;
       switch (x) {
         case 'required':
@@ -43,31 +74,20 @@ export class JsonFormComponent implements OnInit {
           ret = Validators.email;
           break;
         case 'minlength':
-          ret = Validators.minLength(ctrl.validation[x].value);
+          ret = Validators.minLength(layout.validation[x].value);
           break;
         case 'maxlength':
-          ret = Validators.maxLength(ctrl.validation[x].value);
+          ret = Validators.maxLength(layout.validation[x].value);
           break;
         case 'pattern':
-          ret = Validators.pattern(ctrl.validation[x].value);
+          ret = Validators.pattern(layout.validation[x].value);
           break;
         default:
-          ret = ctrl.validation[x].value;
-        // ret = this.myValidate('test');
-        // let val = ctrl.validation[x].value;
-        // ret = val ? ctrl.validation[x](val) : ctrl.validation[x](val);
+          ret = layout.validation[x].value;
       }
       return (ret);
     });
-    formControls["firstName"] = ["", validators];
-    // formControls["firstName"] = ["", [Validators["required"],
-    // Validators["minLength"](3), Validators.maxLength(5)]]
-    // this.layouts.forEach(x => {
-    //   formControls[x.id] = [x.value, x.validation ? Validators[x.validation] : null];
-    // });
-
-    // formControls[this.layout.id] = [this.layout.value, this.layout.required ? this.builtinValidators.required : null];
-    this.myForm = this.fb.group(formControls);
+    return (validators);
   }
 
   myValidate(s) {
@@ -76,7 +96,7 @@ export class JsonFormComponent implements OnInit {
     };
     return (func);
   }
-  
+
   checkError(layout) {
     let controlId = layout.id;
     this.errorMessages[controlId] = {};
@@ -84,15 +104,15 @@ export class JsonFormComponent implements OnInit {
     let isError = control.errors && (control.touched || control.dirty);
     isError && Object.keys(control.errors).forEach(x => {
       let errorObject = this.errorMessages[controlId];
-      errorObject[x] = layout.validation[x] && layout.validation[x].message.replace('$',layout.label);
-    });    
+      errorObject[x] = layout.validation[x] && layout.validation[x].message.replace('$', layout.label);
+    });
     return (isError);
   }
 
-  getErrorMessages(layout){
+  getErrorMessages(layout) {
     let errorObject = this.errorMessages[layout.id];
     let messages = Object.values(errorObject);
-    return(messages);
+    return (messages);
   }
 
   stringify(obj) {

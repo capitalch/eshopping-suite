@@ -35,6 +35,10 @@ https://alligator.io/angular/formly/
 //dynamic forms appears good
 https://github.com/udos86/ng-dynamic-forms
 
+//bootstrap
+
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+  "../node_modules/bootstrap/dist/css/bootstrap.min.css",
 -----------------------------------------------------------------------------------
 //plv8
 drop function plv8_test

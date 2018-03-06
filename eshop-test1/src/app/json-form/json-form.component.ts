@@ -38,8 +38,8 @@ export class JsonFormComponent implements OnInit {
       , value: "M"
       , id: "gender"
       , options: [
-        { label: "Male", value: "M", id:"male" }
-        , { label: "Female", value: "F", id:"female" }
+        { label: "Male", value: "M", id: "male" }
+        , { label: "Female", value: "F", id: "female" }
       ]
     }, {
       type: "select"
@@ -47,8 +47,18 @@ export class JsonFormComponent implements OnInit {
       , value: "in"
       , id: "country"
       , options: [
-        { label: "USA", value: "us"  }
+        { label: "USA", value: "us" }
         , { label: "India", value: "in" }
+      ]
+    }, {
+      type: "checkboxGroup"
+      , label: "Food"
+      , value: ""
+      , id: "food"
+      , options: [
+        { label: "Main course", value: false, id: "main" }
+        , { label: "Desert", value: false, id: "desert" }
+        , { label: "beverages", value: false, id: "beverages" }
       ]
     }];
     this.config = {
@@ -57,8 +67,17 @@ export class JsonFormComponent implements OnInit {
     let formControls = {};
     let validators;
     this.layouts.forEach(x => {
-      validators = this.getValidators(x);
-      formControls[x.id] = [x.value, validators];
+      if (x.type == 'checkboxGroup' && x.options) {
+        let childControls = {};
+        x.options.forEach(y => {
+          childControls[y.id] = y.value;
+        });
+        formControls[x.id] = this.fb.group(childControls);
+      } else {
+        validators = this.getValidators(x);
+        formControls[x.id] = [x.value, validators];
+      }
+
     });
     this.myForm = this.fb.group(formControls);
   }

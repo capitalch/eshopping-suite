@@ -4,7 +4,7 @@
     <!-- <input class="search-input" type="text" [(ngModel)]="searchString" /> -->
     <mat-form-field class="search-input">
       <input matInput style="width:90%" type="text" [(ngModel)]="searchString"/>
-      <button mat-button *ngIf="searchString" aria-label="Clear" (click)="searchString=''" class="search-clear">
+      <button mat-button *ngIf="searchString" aria-label="Clear" (click)="clearSearchString()" class="search-clear">
         <i class="fa fa-times-circle"></i>
       </button>
     </mat-form-field>

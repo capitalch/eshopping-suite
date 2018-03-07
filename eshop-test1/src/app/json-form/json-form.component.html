@@ -1,7 +1,7 @@
 <form [formGroup]="myForm" (ngSubmit)="submit()" novalidate>
   <div [ngClass]="layout.id" *ngFor="let layout of layouts">
     <ng-container [ngSwitch]="layout.type">
-      
+
       <ng-container *ngSwitchCase="'text'">
         <ng-container>
           <label [for]="layout.id">{{layout.label}}:</label>
@@ -27,17 +27,17 @@
       <fieldset *ngSwitchCase="'checkboxGroup'">
         <legend>{{layout.label}}</legend>
         <ng-container *ngIf="checkError(layout)" style="display:inline">
-            <ul style="display:inline">
-              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-                {{message}}
-              </li>
-            </ul>
-            <div style="clear:left"></div>
-          </ng-container>
+          <ul style="display:inline">
+            <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
+              {{message}}
+            </li>
+          </ul>
+          <div style="clear:left"></div>
+        </ng-container>
         <ng-container [formGroupName]="layout.id">
           <ng-container *ngFor="let option of layout.options">
             <input type="checkbox" [id]="option.id" [formControlName]="option.id">
-            <label [for]="option.id">{{option.label}}:</label>            
+            <label [for]="option.id">{{option.label}}:</label>
           </ng-container>
         </ng-container>
       </fieldset>
@@ -54,6 +54,14 @@
 
       <ng-container *ngSwitchCase="'select'">
         <p>{{layout.label}}</p>
+        <ng-container *ngIf="checkError(layout)" style="display:inline">
+          <ul style="display:inline">
+            <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
+              {{message}}
+            </li>
+          </ul>
+          <div style="clear:left"></div>
+        </ng-container>
         <select [formControlName]="layout.id">
           <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
           </option>
@@ -61,5 +69,5 @@
       </ng-container>
     </ng-container>
   </div>
-  <button [ngClass]="config.submitClass" type="submit">Submit</button>
+  <button [ngClass]="config.submitClass" type="submit" >Submit</button>
 </form>

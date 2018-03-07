@@ -63,12 +63,19 @@ export class JsonFormComponent implements OnInit {
     {
       type: "select"
       , label: "Country"
-      , value: "in"
+      , value: "0"
       , id: "country"
       , options: [
-        { label: "USA", value: "us" }
+        { label: "---Choose---", value: "0" }
+        , { label: "USA", value: "us" }
         , { label: "India", value: "in" }
       ]
+      , validation: {
+        selectRequired: {
+          value: this.selectRequiredValidator('0')
+          , message: 'You must select a value for $'
+        }
+      }
     },
     {
       type: "checkboxGroup"
@@ -101,7 +108,8 @@ export class JsonFormComponent implements OnInit {
           ctrl.setValidators(this.checkboxGroupRequiredValidator);
         });
         this.subs ? this.subs.add(sub) : (this.subs = sub);
-      } else {
+      }
+      else {
         let validators = this.getValidators(x);
         formControls[x.id] = [x.value, validators];
       }
@@ -111,6 +119,13 @@ export class JsonFormComponent implements OnInit {
 
   }
 
+  selectRequiredValidator(def) {
+    let func = (control: FormControl) => {
+      return ((control.value == def) ? { selectRequired: true } : null);
+    }
+    return (func);
+  }
+
   checkboxGroupRequiredValidator(ctrl: any) {
     let isValid = false, ret = null;
     Object.values(ctrl.controls).forEach((x: any) => {
@@ -118,6 +133,13 @@ export class JsonFormComponent implements OnInit {
     });
     (!isValid) && (ret = { required: true });
     return (ret);
+  }
+
+  myValidate(s) {
+    let func = (control: FormControl) => {
+      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
+    };
+    return (func);
   }
 
   getValidators(layout) {
@@ -147,13 +169,6 @@ export class JsonFormComponent implements OnInit {
     return (validators);
   }
 
-  myValidate(s) {
-    let func = (control: FormControl) => {
-      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-    };
-    return (func);
-  }
-
   checkError(layout) {
     let controlId = layout.id;
     this.errorMessages[controlId] = {};
@@ -179,9 +194,25 @@ export class JsonFormComponent implements OnInit {
   submit() {
     console.log(this.myForm.valid);
     console.log(this.myForm.value);
+    if (this.myForm.valid) {
+      console.log('form submitted');
+    } else {
+      this.validateAllFormFields(this.myForm);
+    }
   }
 
-  ngOnDestroy(){
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+    Object.keys(formGroup.controls).forEach(field => {  //{2}
+      const control = formGroup.get(field);             //{3}
+      if (control instanceof FormControl) {             //{4}
+        control.markAsTouched();
+      } else if (control instanceof FormGroup) {        //{5}
+        this.validateAllFormFields(control);            //{6}
+      }
+    });
+  }
+
+  ngOnDestroy() {
     this.subs && (this.subs.unsubscribe());
     console.log('unsubs done');
   }

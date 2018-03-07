@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+// import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/filter';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -11,9 +13,13 @@ export class JsonFormComponent implements OnInit {
   @Input() config: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  constructor(private fb: FormBuilder) { }
+  ee: EventEmitter<any>;
+  subs;
+  constructor(private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.ee = new EventEmitter();
     this.layouts = [{
       type: "text"
       , id: "firstName"
@@ -42,6 +48,19 @@ export class JsonFormComponent implements OnInit {
         , { label: "Female", value: "F", id: "female" }
       ]
     }, {
+      type: "checkboxGroup"
+      , label: "Food1"
+      , id: "food1"
+      , validation: {
+        required: { message: '$ is required' }
+      }
+      , options: [
+        { label: "Main course", value: false, id: "main" }
+        , { label: "Desert", value: true, id: "desert" }
+        , { label: "beverages", value: false, id: "beverages" }
+      ]
+    },
+    {
       type: "select"
       , label: "Country"
       , value: "in"
@@ -50,14 +69,17 @@ export class JsonFormComponent implements OnInit {
         { label: "USA", value: "us" }
         , { label: "India", value: "in" }
       ]
-    }, {
+    },
+    {
       type: "checkboxGroup"
       , label: "Food"
-      , value: ""
       , id: "food"
+      , validation: {
+        required: { message: '$ is required' }
+      }
       , options: [
         { label: "Main course", value: false, id: "main" }
-        , { label: "Desert", value: false, id: "desert" }
+        , { label: "Desert", value: true, id: "desert" }
         , { label: "beverages", value: false, id: "beverages" }
       ]
     }];
@@ -65,7 +87,6 @@ export class JsonFormComponent implements OnInit {
       submitClass: "btn btn-primary"
     };
     let formControls = {};
-    let validators;
     this.layouts.forEach(x => {
       if (x.type == 'checkboxGroup' && x.options) {
         let childControls = {};
@@ -73,13 +94,30 @@ export class JsonFormComponent implements OnInit {
           childControls[y.id] = y.value;
         });
         formControls[x.id] = this.fb.group(childControls);
+        let sub = this.ee.filter((d) => {
+          return (d == 'checkboxGroup');
+        }).subscribe(f => {
+          let ctrl = this.myForm.controls[x.id];
+          ctrl.setValidators(this.checkboxGroupRequiredValidator);
+        });
+        this.subs ? this.subs.add(sub) : (this.subs = sub);
       } else {
-        validators = this.getValidators(x);
+        let validators = this.getValidators(x);
         formControls[x.id] = [x.value, validators];
       }
-
     });
     this.myForm = this.fb.group(formControls);
+    this.ee.emit('checkboxGroup');
+
+  }
+
+  checkboxGroupRequiredValidator(ctrl: any) {
+    let isValid = false, ret = null;
+    Object.values(ctrl.controls).forEach((x: any) => {
+      isValid = isValid || x.value;
+    });
+    (!isValid) && (ret = { required: true });
+    return (ret);
   }
 
   getValidators(layout) {
@@ -111,7 +149,7 @@ export class JsonFormComponent implements OnInit {
 
   myValidate(s) {
     let func = (control: FormControl) => {
-      return (control.value.indexOf(s) >= 0 ? null : { myValidate: 'true' });
+      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
     };
     return (func);
   }
@@ -141,5 +179,10 @@ export class JsonFormComponent implements OnInit {
   submit() {
     console.log(this.myForm.valid);
     console.log(this.myForm.value);
+  }
+
+  ngOnDestroy(){
+    this.subs && (this.subs.unsubscribe());
+    console.log('unsubs done');
   }
 }

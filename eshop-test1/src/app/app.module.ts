@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
@@ -22,6 +22,7 @@ import { Html5FormComponent } from './html5-form/html5-form.component';
   ],
   imports: [
     BrowserModule
+    , FormsModule
     , ReactiveFormsModule
     , BrowserAnimationsModule
     , DynamicFormsCoreModule.forRoot()

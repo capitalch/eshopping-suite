@@ -2,21 +2,6 @@
   <div [ngClass]="layout.id" *ngFor="let layout of layouts">
     <ng-container [ngSwitch]="layout.type">
 
-      <ng-container *ngSwitchCase="'text'">
-        <ng-container>
-          <label [for]="layout.id">{{layout.label}}:</label>
-          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
-          <ng-container *ngIf="checkError(layout)" style="display:inline">
-            <ul style="display:inline">
-              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-                {{message}}
-              </li>
-            </ul>
-            <div style="clear:left"></div>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
       <ng-container *ngSwitchCase="'checkbox'">
         <ng-container>
           <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value">
@@ -67,7 +52,41 @@
           </option>
         </select>
       </ng-container>
+
+      <ng-container *ngSwitchCase="'textarea'">
+        <ng-container>
+          <label [for]="layout.id">{{layout.label}}:</label>          
+          <textarea [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+          <ng-container *ngIf="checkError(layout)" style="display:inline">
+            <ul style="display:inline">
+              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
+                {{message}}
+              </li>
+            </ul>
+            <div style="clear:left"></div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <ng-container>
+          <label [for]="layout.id">{{layout.label}}:</label>
+          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+          <ng-container *ngIf="checkError(layout)" style="display:inline">
+            <ul style="display:inline">
+              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
+                {{message}}
+              </li>
+            </ul>
+            <div style="clear:left"></div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
     </ng-container>
+
+    
+    
   </div>
   <button [ngClass]="config.submitClass" type="submit" >Submit</button>
 </form>

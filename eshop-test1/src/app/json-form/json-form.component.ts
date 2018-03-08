@@ -33,7 +33,30 @@ export class JsonFormComponent implements OnInit {
         // ,email: true
         myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
       }
-    }, {
+    },
+    {
+      type: "textarea"
+      , id: "address"
+      , label: "Address"
+      , placeholder: "Address"
+      , value: "12345"
+      , validation: {
+        required: { message: '$ is required' },
+        minlength: { value: 5, message: 'Minimum length for $ is 5' },
+        maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+      }
+    },
+    {
+      type: "date"
+      , id: "date"
+      , label: "Date"
+      , placeholder: "Date"
+      , value: ""
+      , validation: {
+        required: { message: '$ is required' }
+      }
+    },
+    {
       type: "checkbox"
       , id: "agreed"
       , label: "Agreed"

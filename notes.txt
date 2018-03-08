@@ -9,6 +9,20 @@
 6. 
 7.
 ------------------------------------------------------------------------------------
+//form template
+1. Organize
+2. custom scss
+3. Material / Bootstrap
+4. Buttons: clickable, reset, submit
+5. Custom Template of controls
+6. Adding controls on the fly in an array on click of plus or minus buttons
+7. Custom events
+8. Grouping with fieldset and legend
+            9. textarea
+10. async validation
+11. file upload
+https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
+------------------------------------------------------------------------------------
 //Good url for search implementation client side in angular 2
 https://codecraft.tv/courses/angular/forms/reactive-model-form/
 
@@ -35,10 +49,6 @@ https://alligator.io/angular/formly/
 //dynamic forms appears good
 https://github.com/udos86/ng-dynamic-forms
 
-//bootstrap
-
-        "../node_modules/bootstrap/scss/bootstrap.scss",
-  "../node_modules/bootstrap/dist/css/bootstrap.min.css",
 -----------------------------------------------------------------------------------
 //plv8
 drop function plv8_test

@@ -8,10 +8,11 @@ import { Validators } from '@angular/forms';
 export class AppComponent {
   title = 'app';
   myLayout: any = {};
-
+  content:string;
   ngOnInit() {
     this.myLayout = {
       firstName: ''
-    }
+    };
+    this.content = "This is code"
   }
 }

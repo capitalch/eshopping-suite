@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ViewEncapsulation } from '@angular/core';
 // import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
@@ -7,6 +7,7 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
   selector: 'json-form',
   templateUrl: './json-form.component.html',
   styleUrls: ['./json-form.component.scss']
+  , encapsulation: ViewEncapsulation.Emulated
 })
 export class JsonFormComponent implements OnInit {
   @Input() layouts: any[] = [];

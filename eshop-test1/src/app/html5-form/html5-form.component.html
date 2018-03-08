@@ -1,11 +1,5 @@
 <form [formGroup]="myForm" (ngSubmit) = "submit(myForm)">
   <input type="text" formControlName="myName">
-  <ng-container formGroupName="food"> 
-      <input type="checkbox"  formControlName="starter">
-      <input type="checkbox"  formControlName="mainCourse" >
-      <input type="checkbox"  formControlName="desert">
-  </ng-container>
-  
-  <button type="submit">Submit</button>
-  <textarea></textarea>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <ng-content></ng-content>
 </form>

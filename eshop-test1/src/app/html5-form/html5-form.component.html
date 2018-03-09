@@ -1,5 +1,5 @@
 <form [formGroup]="myForm" (ngSubmit) = "submit(myForm)">
   <input type="text" formControlName="myName">
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [ngClass]="'myClass'">Submit</button>
   <ng-content></ng-content>
 </form>

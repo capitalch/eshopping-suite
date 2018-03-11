@@ -21,6 +21,8 @@
             9. textarea
 10. async validation
 11. file upload
+12. Provide json and functions as parameters
+13. Work upon the looks. Select between material and bootstrap
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------
 //Good url for search implementation client side in angular 2

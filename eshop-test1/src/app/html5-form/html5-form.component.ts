@@ -9,9 +9,11 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
 })
 export class Html5FormComponent implements OnInit {
   myForm: FormGroup;
+  mat:string;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.mat="mat-raised-button";
     this.myForm = this.fb.group(
       {
         myName: ""
@@ -24,8 +26,11 @@ export class Html5FormComponent implements OnInit {
       });
   }
 
-  submit(f) {
-    console.log(f);
+  submit() {
+    // console.log(f);
   }
-
+  isError:boolean=true;
+  toggle(){
+    this.isError= !this.isError;
+  }
 }

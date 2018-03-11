@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 // import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
@@ -20,6 +20,7 @@ export class JsonFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('init');
     this.ee = new EventEmitter();
     this.layouts = [{
       type: "text"
@@ -79,9 +80,9 @@ export class JsonFormComponent implements OnInit {
         required: { message: '$ is required' }
       }
       , options: [
-        { label: "Main course", value: false, id: "main" }
-        , { label: "Desert", value: true, id: "desert" }
-        , { label: "beverages", value: false, id: "beverages" }
+        { label: "Main course", value: false, id: "main1" }
+        , { label: "Desert", value: true, id: "desert1" }
+        , { label: "beverages", value: false, id: "beverages1" }
       ]
     },
     {
@@ -140,7 +141,33 @@ export class JsonFormComponent implements OnInit {
     });
     this.myForm = this.fb.group(formControls);
     this.ee.emit('checkboxGroup');
+    
+  }
 
+  ngAfterViewInit() {
+    // let formControls = {};
+    // this.layouts.forEach(x => {
+    //   if (x.type == 'checkboxGroup' && x.options) {
+    //     let childControls = {};
+    //     x.options.forEach(y => {
+    //       childControls[y.id] = y.value;
+    //     });
+    //     formControls[x.id] = this.fb.group(childControls);
+    //     let sub = this.ee.filter((d) => {
+    //       return (d == 'checkboxGroup');
+    //     }).subscribe(f => {
+    //       let ctrl = this.myForm.controls[x.id];
+    //       ctrl.setValidators(this.checkboxGroupRequiredValidator);
+    //     });
+    //     this.subs ? this.subs.add(sub) : (this.subs = sub);
+    //   }
+    //   else {
+    //     let validators = this.getValidators(x);
+    //     formControls[x.id] = [x.value, validators];
+    //   }
+    // });
+    // this.myForm = this.fb.group(formControls);
+    // this.ee.emit('checkboxGroup');
   }
 
   selectRequiredValidator(def) {
@@ -206,8 +233,8 @@ export class JsonFormComponent implements OnInit {
   }
 
   getErrorMessages(layout) {
-    let errorObject = this.errorMessages[layout.id];
-    let messages = Object.values(errorObject);
+    let errorObject = this.errorMessages[layout.id] || {};
+    let messages = Object.values(errorObject) || [];
     return (messages);
   }
 

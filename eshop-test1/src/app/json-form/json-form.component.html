@@ -1,92 +1,76 @@
 <form [formGroup]="myForm" (ngSubmit)="submit()" novalidate>
-  <div [ngClass]="layout.id" *ngFor="let layout of layouts">
-    <ng-container [ngSwitch]="layout.type">
-
-      <ng-container *ngSwitchCase="'checkbox'">
-        <ng-container>
-          <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value">
-          <label [for]="layout.id">{{layout.label}}:</label>
+  <ul class="form-style-1">
+    <ng-container *ngFor="let layout of layouts">
+      <ng-container [ngSwitch]="layout.type">
+        <!-- <ul class="form-style-1"> -->
+        <ng-container *ngSwitchCase="'checkbox'">
+          <li>
+            <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value">
+            <label style="display:inline-block" [for]="layout.id">{{layout.label}}</label>
+          </li>
         </ng-container>
+
+        <ng-container *ngSwitchCase="'checkboxGroup'">
+          <li>
+            <fieldset>
+              <legend>{{layout.label}}</legend>
+              <ng-container [formGroupName]="layout.id">
+                <ng-container *ngFor="let option of layout.options">
+                  <input type="checkbox" [id]="option.id" [formControlName]="option.id">
+                  <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
+                </ng-container>
+              </ng-container>
+              <error-message [form]="myForm" [layout]="layout"></error-message>
+            </fieldset>
+          </li>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'radio'">
+          <li>
+            <fieldset>
+              <legend>{{layout.label}}</legend>
+              <ng-container *ngFor="let option of layout.options">
+                <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
+                <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
+              </ng-container>
+            </fieldset>
+          </li>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'select'">
+          <li>
+            <p>{{layout.label}}</p>
+            <select [formControlName]="layout.id" class="field-select">
+              <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
+              </option>
+            </select>
+            <error-message [form]="myForm" [layout]="layout"></error-message>
+          </li>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'textarea'">
+          <li>
+            <ng-container>
+              <label [for]="layout.id">{{layout.label}}</label>
+              <textarea [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+              <error-message [form]="myForm" [layout]="layout"></error-message>
+            </ng-container>
+          </li>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <li>
+            <div class="form-group">
+              <label [for]="layout.id">{{layout.label}}</label>
+              <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+              <error-message [form]="myForm" [layout]="layout"></error-message>
+            </div>
+          </li>
+        </ng-container>
+        <!-- </ul> -->
       </ng-container>
-
-      <fieldset *ngSwitchCase="'checkboxGroup'">
-        <legend>{{layout.label}}</legend>
-        <ng-container *ngIf="checkError(layout)" style="display:inline">
-          <ul style="display:inline">
-            <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-              {{message}}
-            </li>
-          </ul>
-          <div style="clear:left"></div>
-        </ng-container>
-        <ng-container [formGroupName]="layout.id">
-          <ng-container *ngFor="let option of layout.options">
-            <input type="checkbox" [id]="option.id" [formControlName]="option.id">
-            <label [for]="option.id">{{option.label}}:</label>
-          </ng-container>
-        </ng-container>
-      </fieldset>
-
-      <ng-container *ngSwitchCase="'radio'">
-        <fieldset>
-          <legend>{{layout.label}}</legend>
-          <ng-container *ngFor="let option of layout.options">
-            <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
-            <label [for]="option.id">{{option.label}}</label>
-          </ng-container>
-        </fieldset>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'select'">
-        <p>{{layout.label}}</p>
-        <ng-container *ngIf="checkError(layout)" style="display:inline">
-          <ul style="display:inline">
-            <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-              {{message}}
-            </li>
-          </ul>
-          <div style="clear:left"></div>
-        </ng-container>
-        <select [formControlName]="layout.id">
-          <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
-          </option>
-        </select>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'textarea'">
-        <ng-container>
-          <label [for]="layout.id">{{layout.label}}:</label>          
-          <textarea [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-          <ng-container *ngIf="checkError(layout)" style="display:inline">
-            <ul style="display:inline">
-              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-                {{message}}
-              </li>
-            </ul>
-            <div style="clear:left"></div>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
-      <ng-container *ngSwitchDefault>
-        <ng-container>
-          <label [for]="layout.id">{{layout.label}}:</label>
-          <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
-          <ng-container *ngIf="checkError(layout)" style="display:inline">
-            <ul style="display:inline">
-              <li style="float:right;padding-right:30px;" *ngFor="let message of getErrorMessages(layout)">
-                {{message}}
-              </li>
-            </ul>
-            <div style="clear:left"></div>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
     </ng-container>
+  </ul>
 
-    
-    
-  </div>
-  <button [ngClass]="config.submitClass" type="submit" >Submit</button>
+  <button [ngClass]="config.submitClass" type="submit">Submit</button>
 </form>

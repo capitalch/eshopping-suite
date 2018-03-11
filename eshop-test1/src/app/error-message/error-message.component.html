@@ -1,12 +1,12 @@
-<div >
-  <ul style="display:inline-block" *ngIf="checkError(); else elseBlock">
-    <li style="float:left;padding-right:30px;" *ngFor="let message of getErrorMessages()">
+<!-- <ng-container> -->
+  <ul *ngIf="checkError();then ifBlock; else elseBlock">
+  </ul>
+  <ng-template #ifBlock>
+    <li class="error"  *ngFor="let message of getErrorMessages()">
       {{message}}
     </li>
-  </ul>
+  </ng-template>
   <ng-template #elseBlock>
-      <label>&nbsp;</label>
-      <!-- <span>test</span> -->
-    </ng-template>
-    
-</div>
+    <li>&nbsp;</li>
+  </ng-template>
+<!-- </ng-container> -->

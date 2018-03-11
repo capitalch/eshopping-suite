@@ -2,7 +2,6 @@
   <ul class="form-style-1">
     <ng-container *ngFor="let layout of layouts">
       <ng-container [ngSwitch]="layout.type">
-        <!-- <ul class="form-style-1"> -->
         <ng-container *ngSwitchCase="'checkbox'">
           <li>
             <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value">
@@ -52,7 +51,7 @@
           <li>
             <ng-container>
               <label [for]="layout.id">{{layout.label}}</label>
-              <textarea [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+              <textarea  class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
               <error-message [form]="myForm" [layout]="layout"></error-message>
             </ng-container>
           </li>
@@ -62,12 +61,11 @@
           <li>
             <div class="form-group">
               <label [for]="layout.id">{{layout.label}}</label>
-              <input [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+              <input class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
               <error-message [form]="myForm" [layout]="layout"></error-message>
             </div>
           </li>
         </ng-container>
-        <!-- </ul> -->
       </ng-container>
     </ng-container>
   </ul>

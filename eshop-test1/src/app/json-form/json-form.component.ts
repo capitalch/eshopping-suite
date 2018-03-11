@@ -37,6 +37,18 @@ export class JsonFormComponent implements OnInit {
       }
     },
     {
+      type: "text"
+      , id: "lasttName"
+      , label: "Last name"
+      , placeholder: "Last name"
+      , value: ""
+      , validation: {
+        required: { message: '$ is required' },
+        minlength: { value: 3, message: 'Minimum length for $ is 3' },
+        maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+      }
+    },
+    {
       type: "textarea"
       , id: "address"
       , label: "Address"

@@ -10,6 +10,9 @@ import { JsonFormComponent } from './json-form/json-form.component';
 import { MatFormComponent } from './mat-form/mat-form.component';
 import { MaterialUnitModule } from './material-unit/material-unit.module';
 import { Html5FormComponent } from './html5-form/html5-form.component';
+import { MatDirective } from './mat/mat.directive';
+import { MatButtonComponent } from './mat-button/mat-button.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 
 
@@ -19,7 +22,10 @@ import { Html5FormComponent } from './html5-form/html5-form.component';
     DynamicMaterialFormComponent,
     JsonFormComponent,
     MatFormComponent,
-    Html5FormComponent
+    Html5FormComponent,
+    MatDirective,
+    MatButtonComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule

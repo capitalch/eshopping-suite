@@ -22,4 +22,9 @@ export class LoginComponent implements OnInit {
   {
     alert('Cancel Logic');
   }
+
+  forgotPassword()
+  {
+    alert("Forgot Password");
+  }
 }

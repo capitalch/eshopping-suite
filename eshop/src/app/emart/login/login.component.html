@@ -1,4 +1,7 @@
 <div class="login">
+    <div class="title-container">
+        <span class="title">Login</span>
+    </div>
     <mat-form-field class="user-name">
         <input matInput placeholder="Username">
     </mat-form-field>
@@ -7,7 +10,7 @@
     </mat-form-field>
     <div>
       <div class="left-container">
-          <a href="#">Forgot Password</a>
+          <button class="forgot-password" (click)="forgotPassword()">Forgot Password</button>
       </div>
       <div class="right-controls">
           <button mat-button class="button" (click)="cancel()">

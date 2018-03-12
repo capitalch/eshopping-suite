@@ -65,6 +65,11 @@ export class CartUnitComponent implements OnInit {
     this.router.navigate([navUrls.cart]);
   }
 
+  showLogin()
+  {
+    this.router.navigate([navUrls.login]);
+  }
+
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

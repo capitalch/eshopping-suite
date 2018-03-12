@@ -1,0 +1,23 @@
+<div class="login">
+    <mat-form-field class="user-name">
+        <input matInput placeholder="Username">
+    </mat-form-field>
+    <mat-form-field class="password">
+        <input matInput type="password" placeholder="Password" (keyup.enter)="login()">
+    </mat-form-field>
+    <div>
+      <div class="left-container">
+          <a href="#">Forgot Password</a>
+      </div>
+      <div class="right-controls">
+          <button mat-button class="button" (click)="cancel()">
+            <i class="fa fa-window-close fa-x" aria-hidden="true"></i>
+            <span class="button-text">Cancel</span>
+          </button>
+          <button mat-button class="button" (click)="login()">
+            <i class="fa fa-sign-in fa-x" aria-hidden="true"></i>
+            <span class="button-text">Login</span>
+          </button>
+      </div>
+    </div>
+</div>

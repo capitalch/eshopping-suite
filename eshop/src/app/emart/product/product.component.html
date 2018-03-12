@@ -1,4 +1,4 @@
-<div *ngIf="pageObject.length !== '0'">
+<div *ngIf="pageObject.length !== 0">
   <div class="pagination">
     <mat-paginator class="pagination" [length]="pageObject.length" [pageIndex]="pageObject.pageIndex" [pageSize]="pageObject.pageSize"
       [pageSizeOptions]="pageObject.pageSizeOptions" (page)="pageSelected($event)"></mat-paginator>
@@ -29,6 +29,6 @@
       [pageSizeOptions]="pageObject.pageSizeOptions" (page)="pageSelected($event)"></mat-paginator>
   </div>  
 </div>
-<div class="no-matching-product" *ngIf="pageObject.length === '0'">
+<div class="no-matching-product" *ngIf="pageObject.length === 0">
   No Product matches you requirement
 </div>

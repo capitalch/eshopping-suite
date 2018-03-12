@@ -17,10 +17,14 @@
             margin-right: 1em;
             color: $theme-logo-color;
         }
-        .search-input {
+        .search-input-container {
             width:440px;
             font-size:1.3em;
             height:3.2em;
+            .search-input
+            {
+                width:90%;
+            }
         }
         .header-button {
             background-color: $emart-header-background;

@@ -35,6 +35,13 @@ export class JsonFormComponent implements OnInit {
         // ,email: true
         myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
       }
+      , asyncValidation:{
+        async1:{
+          url:""
+          , value:""
+          , message:""
+        }
+      }
     },
     {
       type: "text"

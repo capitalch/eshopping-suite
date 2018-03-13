@@ -19,20 +19,24 @@ fieldset {
     max-width: 600px;
     padding: 20px 12px 10px 20px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    border:2px solid green
+    border: 2px solid green
 }
 
 .form-style-1 li {
     padding: 0;
     display: block;
     list-style: none;
-    margin: 0px 0 0 0;
+    margin: 0 0 0 0;
 }
 
 .form-style-1 label {
     margin: 0 0 3px 0;
     padding: 0px;
     display: block;
+    font-weight: bold;
+}
+
+.form-style-1 legend {
     font-weight: bold;
 }
 
@@ -109,4 +113,17 @@ select {
 
 .form-style-1 .required {
     color: red;
+}
+
+.form-style-1 .submit {
+    margin: 10px auto;
+    float: right;
+}
+
+.form-style-1 .clear {
+    clear: both;
+}
+
+.form-style-1 fieldset{
+    margin: 10px auto;
 }

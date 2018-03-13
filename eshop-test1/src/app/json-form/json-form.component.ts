@@ -126,7 +126,15 @@ export class JsonFormComponent implements OnInit {
         , { label: "Desert", value: true, id: "desert" }
         , { label: "beverages", value: false, id: "beverages" }
       ]
-    }];
+    },
+    {
+      type: 'submit'
+      , label: 'Submit'
+      , class:'btn btn-primary submit'
+      , submit: () => { console.log("submit clicked") }
+    }
+
+    ];
     this.config = {
       submitClass: "btn btn-primary"
     };
@@ -153,7 +161,7 @@ export class JsonFormComponent implements OnInit {
     });
     this.myForm = this.fb.group(formControls);
     this.ee.emit('checkboxGroup');
-    
+
   }
 
   ngAfterViewInit() {

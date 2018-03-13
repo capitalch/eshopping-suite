@@ -4,7 +4,7 @@ import { navUrls, httpMessages, localMessages } from '../emart.config';
 import { AppService } from '../../service/app.service';
 import { EmartService } from '../emart.service';
 import { Pop } from './populate-test-data';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   subs: any;
   searchString: string = '';
   artifact = '';
-  constructor(private emartService: EmartService, private brokerService: BrokerService, private appService: AppService) {
+  constructor(private emartService: EmartService, private brokerService: BrokerService, private appService: AppService, private router: Router) {
   }
 
   ngOnInit() {

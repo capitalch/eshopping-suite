@@ -1,8 +1,8 @@
 <div class="em-header">
   <div class='left-container'>
     <span class="logo" (click)="populate()" >eMART</span>
-    <mat-form-field class="search-input">
-      <input matInput style="width:90%" type="text" [(ngModel)]="searchString" (keyup.enter)="doSearch()"/>
+    <mat-form-field class="search-input-container">
+      <input matInput class="search-input" type="text" [(ngModel)]="searchString" (keyup.enter)="doSearch()"/>
       <button mat-button *ngIf="searchString" aria-label="Clear" (click)="clearSearchString()" class="search-clear">
         <i class="fa fa-times-circle"></i>
       </button>
@@ -14,20 +14,10 @@
   </div>
   <div class="right-container">
     <div class="login-controls">
-      <button mat-button class="header-button">
-        <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
-        <span class="button-text">Login</span>
-      </button>
-      
-      <button mat-button class="header-button">
-        <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>
-        <span class="button-text">SignUp</span>
-      </button>
       <app-cart-unit></app-cart-unit>
     </div>
     <a>
       <img class="round-image" src="../../../assets/temp/person.PNG" width="40em" height="40em" />
     </a>
-    
   </div>
 </div>

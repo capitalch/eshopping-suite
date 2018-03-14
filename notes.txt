@@ -11,7 +11,7 @@
 ------------------------------------------------------------------------------------
 //form template
 1. Organize
-2. custom scss
+        2. custom scss
 3. Material / Bootstrap
 4. Buttons: clickable, reset, submit
 5. Custom Template of controls

@@ -7,11 +7,11 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
   selector: 'json-form',
   templateUrl: './json-form.component.html',
   styleUrls: ['./json-form.component.scss']
-  , encapsulation: ViewEncapsulation.Emulated
+  // , encapsulation: ViewEncapsulation.None
 })
 export class JsonFormComponent implements OnInit {
   @Input() layouts: any[] = [];
-  @Input() config: any = {};
+  @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
   ee: EventEmitter<any>;
@@ -23,9 +23,10 @@ export class JsonFormComponent implements OnInit {
     console.log('init');
     this.ee = new EventEmitter();
     
-    this.config = {
-      submitClass: "btn btn-primary"
-    };
+    // this.config = {
+    //   submitClass: "btn btn-primary"
+    // };
+
     let formControls = {};
     this.layouts.forEach(x => {
       if (x.type == 'checkboxGroup' && x.options) {

@@ -8,9 +8,14 @@ import { Validators, FormControl } from '@angular/forms';
 export class AppComponent {
   title = 'app';
   myLayout: any = {};
+  options:any={};
   content:string;
  
   ngOnInit() {
+    this.options={
+      wrapperClass:"form-style-1"
+      , methods:{}
+    }
     this.myLayout = [{
       type: "text"
       , id: "firstName"
@@ -126,7 +131,8 @@ export class AppComponent {
     {
       type: 'submit'
       , label: 'Submit'
-      , class:'btn btn-primary submit'
+      // , id:'submit-right btn btn-primary '
+      // , class:'my-submit'
       , submit: () => { console.log("submit clicked") }
     }];
     this.content = "This is code"

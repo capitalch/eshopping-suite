@@ -12,6 +12,7 @@ legend {
 fieldset {
     border: 2px groove threedface;
     padding: 5px;
+    margin: 10px auto;
 }
 
 .form-style-1 {
@@ -115,15 +116,10 @@ select {
     color: red;
 }
 
-.form-style-1 .submit {
-    margin: 10px auto;
+.form-style-1 .submit-right {
+    margin: 20px auto;
     float: right;
-}
-
-.form-style-1 .clear {
-    clear: both;
-}
-
-.form-style-1 fieldset{
-    margin: 10px auto;
+    div {
+        clear: both;
+    }
 }

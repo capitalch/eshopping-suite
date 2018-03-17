@@ -8,13 +8,25 @@ import { Validators, FormControl } from '@angular/forms';
 export class AppComponent {
   title = 'app';
   myLayout: any = {};
-  options:any={};
-  content:string;
- 
+  options: any = {};
+  content: string;
+
+  /*
+  class property
+  class:{group:"class for group", label:"class for label", element:"class for element"}
+  */
+
   ngOnInit() {
-    this.options={
-      wrapperClass:"form-style-1"
-      , methods:{}
+    this.options = {
+      wrapperClass: "form-style-1"
+      , methods: {
+        submit: (form) => {
+          console.log(form.value);
+        },
+        reset: (form) => {
+          console.log("Form reset is done");
+        }
+      }
     }
     this.myLayout = [{
       type: "text"
@@ -22,6 +34,7 @@ export class AppComponent {
       , label: "First name"
       , placeholder: "First name"
       , value: ""
+
       , validation: {
         required: { message: '$ is required' },
         minlength: { value: 3, message: 'Minimum length for $ is 3' },
@@ -29,11 +42,11 @@ export class AppComponent {
         // ,email: true
         myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
       }
-      , asyncValidation:{
-        async1:{
-          url:""
-          , value:""
-          , message:""
+      , asyncValidation: {
+        async1: {
+          url: ""
+          , value: ""
+          , message: ""
         }
       }
     },
@@ -131,9 +144,22 @@ export class AppComponent {
     {
       type: 'submit'
       , label: 'Submit'
+      , id: 'submitForm1'
+      , class: { group: 'submit-right', element: 'btn btn-primary' }
       // , id:'submit-right btn btn-primary '
       // , class:'my-submit'
-      , submit: () => { console.log("submit clicked") }
+      , method: (form) => {
+        console.log(form.value);
+      }
+    },
+    {
+      type: 'button'
+      , label: "Reset"
+      , id: 'resetForm1'
+      , class: { group: 'submit-right', element: 'btn btn-primary' }
+      , method: (form) => {
+        console.log("Form is done reset");
+      }
     }];
     this.content = "This is code"
   }

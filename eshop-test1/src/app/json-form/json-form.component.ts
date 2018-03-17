@@ -22,10 +22,6 @@ export class JsonFormComponent implements OnInit {
   ngOnInit() {
     console.log('init');
     this.ee = new EventEmitter();
-    
-    // this.config = {
-    //   submitClass: "btn btn-primary"
-    // };
 
     let formControls = {};
     this.layouts.forEach(x => {
@@ -127,11 +123,13 @@ export class JsonFormComponent implements OnInit {
 
   submit() {
     console.log(this.myForm.valid);
-    console.log(this.myForm.value);
+    // console.log(this.myForm.value);
+    this.validateAllFormFields(this.myForm);
     if (this.myForm.valid) {
-      console.log('form submitted');
+      console.log('form submitting');      
+      this.options && this.options.methods && this.options.methods.submit && this.options.methods.submit(this.myForm);
     } else {
-      this.validateAllFormFields(this.myForm);
+      console.log("Invalid form");
     }
   }
 

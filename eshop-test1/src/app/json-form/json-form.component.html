@@ -1,61 +1,67 @@
 <form [formGroup]="myForm" (ngSubmit)="submit()" novalidate>
-  <!-- class="form-style-1" -->
+
   <ul [ngClass]="options.wrapperClass">
     <ng-container *ngFor="let layout of layouts">
       <ng-container [ngSwitch]="layout.type">
 
-        <li *ngSwitchCase="'checkbox'" [ngClass]="layout.class" [ngStyle]="layout.style">
-          <label>
-            <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
+        <li *ngSwitchCase="'checkbox'" [ngClass]="layout.class && layout.class.group">
+          <label [ngClass]="layout.class && layout.class.label">
+            <input type="checkbox" [ngClass]="layout.class && layout.class.element" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
           </label>
         </li>
 
-        <li *ngSwitchCase="'checkboxGroup'" [ngClass]="layout.class" [ngStyle]="layout.style">
+        <li *ngSwitchCase="'checkboxGroup'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <fieldset>
             <legend>{{layout.label}}</legend>
             <ng-container [formGroupName]="layout.id">
               <ng-container *ngFor="let option of layout.options">
-                <input type="checkbox" [id]="option.id" [formControlName]="option.id">
-                <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
+                <input type="checkbox" [ngClass]="layout.class && layout.class.element" [id]="option.id" [formControlName]="option.id">
+                <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
               </ng-container>
             </ng-container>
             <error-message [form]="myForm" [layout]="layout"></error-message>
           </fieldset>
         </li>
 
-        <li *ngSwitchCase="'radio'" [ngClass]="layout.class" [ngStyle]="layout.style">
+        <li *ngSwitchCase="'radio'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <fieldset>
-            <legend>{{layout.label}}</legend>
+            <legend [ngClass]="layout.class && layout.class.label">{{layout.label}}</legend>
             <ng-container *ngFor="let option of layout.options">
-              <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
-              <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
+              <input type="radio" [ngClass]="layout.class && layout.class.element" [id]="option.id" [formControlName]="layout.id" [value]="option.value"
+                [name]="layout.id">
+              <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
             </ng-container>
           </fieldset>
         </li>
 
         <li *ngSwitchCase="'select'" [ngClass]="layout.class" [ngStyle]="layout.style">
           <label>{{layout.label}}</label>
-          <select [formControlName]="layout.id" class="field-select">
+          <select [ngClass]="layout.id" [formControlName]="layout.id" class="field-select">
             <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
           <error-message [form]="myForm" [layout]="layout"></error-message>
         </li>
 
-        <li *ngSwitchCase="'textarea'" [ngClass]="layout.class" [ngStyle]="layout.style">
-          <label [for]="layout.id">{{layout.label}}</label>
-          <textarea class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+        <li *ngSwitchCase="'textarea'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+          <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
+          <textarea [ngClass]="layout.class && layout.class.element" class="field-long" [id]="layout.id" [placeholder]="layout.placeholder"
+            [formControlName]="layout.id">{{layout.value}}</textarea>
           <error-message [form]="myForm" [layout]="layout"></error-message>
         </li>
 
-        <li *ngSwitchCase="'submit'"  [ngStyle]="layout.style" [ngClass]="layout.class" >
-          <button [ngClass]="layout.id" class="submit-right btn btn-primary" type="submit">{{layout.label}}</button>
-          <div class="clear"></div>
+        <li *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
+          <button [ngClass]="layout.class && layout.class.element" type="submit">{{layout.label}}</button>
         </li>
 
-        <li *ngSwitchDefault [ngClass]="layout.class" [ngStyle]="layout.style">
-          <label [for]="layout.id">{{layout.label}}</label>
-          <input class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+        <li *ngSwitchCase="'button'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
+          <button [id]="layout.id" (click)="layout.method(myForm)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
+        </li>
+
+        <li *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+          <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
+          <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
+            [formControlName]="layout.id">
           <error-message [form]="myForm" [layout]="layout"></error-message>
         </li>
 
@@ -63,5 +69,4 @@
     </ng-container>
   </ul>
 
-  <!-- <button [ngClass]="config.submitClass" type="submit">Submit</button> -->
 </form>

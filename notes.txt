@@ -8,12 +8,13 @@
 5. Payment gateway
 6. 
 7.
+https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 ------------------------------------------------------------------------------------
 //form template
 1. Organize
         2. custom scss
 3. Material / Bootstrap
-4. Buttons: clickable, reset, submit
+            4. Buttons: clickable, reset, submit
 5. Custom Template of controls
 6. Adding controls on the fly in an array on click of plus or minus buttons
 7. Custom events
@@ -21,8 +22,11 @@
             9. textarea
 10. async validation
 11. file upload
-12. Provide json and functions as parameters
+            12. Provide json and functions as parameters
 13. Work upon the looks. Select between material and bootstrap
+14. Populate drop down from url
+15. Button group
+16. Required symbol
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------
 //Good url for search implementation client side in angular 2

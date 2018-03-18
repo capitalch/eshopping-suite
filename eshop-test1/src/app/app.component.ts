@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { form1 } from './app.config';
+import { JsonFormService } from './json-form/json-form.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +12,10 @@ export class AppComponent {
   myLayout: any = {};
   options: any = {};
   content: string;
+  
+  constructor(private jsonFormService:JsonFormService) { 
+
+  }
 
   /*
   class property
@@ -19,148 +25,140 @@ export class AppComponent {
   ngOnInit() {
     this.options = {
       wrapperClass: "form-style-1"
-      , methods: {
-        submit: (form) => {
-          console.log(form.value);
-        },
-        reset: (form) => {
-          console.log("Form reset is done");
-        }
-      }
-    }
-    this.myLayout = [{
-      type: "text"
-      , id: "firstName"
-      , label: "First name"
-      , placeholder: "First name"
-      , value: ""
+    };
+    // let form = JSON.parse(form1);
+      this.myLayout = form1;
+      // [{
+      //   type: "text"
+      //   , id: "firstName"
+      //   , label: "First name"
+      //   , placeholder: "First name"
+      //   , value: ""
 
-      , validation: {
-        required: { message: '$ is required' },
-        minlength: { value: 3, message: 'Minimum length for $ is 3' },
-        maxlength: { value: 10, message: 'Maximum length for $ is 10' },
-        // ,email: true
-        myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
-      }
-      , asyncValidation: {
-        async1: {
-          url: ""
-          , value: ""
-          , message: ""
-        }
-      }
-    },
-    {
-      type: "text"
-      , id: "lasttName"
-      , label: "Last name"
-      , placeholder: "Last name"
-      , value: ""
-      , validation: {
-        required: { message: '$ is required' },
-        minlength: { value: 3, message: 'Minimum length for $ is 3' },
-        maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-      }
-    },
-    {
-      type: "textarea"
-      , id: "address"
-      , label: "Address"
-      , placeholder: "Address"
-      , value: "12345"
-      , validation: {
-        required: { message: '$ is required' },
-        minlength: { value: 5, message: 'Minimum length for $ is 5' },
-        maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-      }
-    },
-    {
-      type: "date"
-      , id: "date"
-      , label: "Date"
-      , placeholder: "Date"
-      , value: ""
-      , validation: {
-        required: { message: '$ is required' }
-      }
-    },
-    {
-      type: "checkbox"
-      , id: "agreed"
-      , label: "Agreed"
-      , value: false
-    }, {
-      type: "radio"
-      , label: "Gender"
-      , value: "M"
-      , id: "gender"
-      , options: [
-        { label: "Male", value: "M", id: "male" }
-        , { label: "Female", value: "F", id: "female" }
-      ]
-    }, {
-      type: "checkboxGroup"
-      , label: "Food1"
-      , id: "food1"
-      , validation: {
-        required: { message: '$ is required' }
-      }
-      , options: [
-        { label: "Main course", value: false, id: "main1" }
-        , { label: "Desert", value: true, id: "desert1" }
-        , { label: "beverages", value: false, id: "beverages1" }
-      ]
-    },
-    {
-      type: "select"
-      , label: "Country"
-      , value: "0"
-      , id: "country"
-      , options: [
-        { label: "---Choose---", value: "0" }
-        , { label: "USA", value: "us" }
-        , { label: "India", value: "in" }
-      ]
-      , validation: {
-        selectRequired: {
-          value: this.selectRequiredValidator('0')
-          , message: 'You must select a value for $'
-        }
-      }
-    },
-    {
-      type: "checkboxGroup"
-      , label: "Food"
-      , id: "food"
-      , validation: {
-        required: { message: '$ is required' }
-      }
-      , options: [
-        { label: "Main course", value: false, id: "main" }
-        , { label: "Desert", value: true, id: "desert" }
-        , { label: "beverages", value: false, id: "beverages" }
-      ]
-    },
-    {
-      type: 'submit'
-      , label: 'Submit'
-      , id: 'submitForm1'
-      , class: { group: 'submit-right', element: 'btn btn-primary' }
-      // , id:'submit-right btn btn-primary '
-      // , class:'my-submit'
-      , method: (form) => {
-        console.log(form.value);
-      }
-    },
-    {
-      type: 'button'
-      , label: "Reset"
-      , id: 'resetForm1'
-      , class: { group: 'submit-right', element: 'btn btn-primary' }
-      , method: (form) => {
-        console.log("Form is done reset");
-      }
-    }];
+      //   , validation: {
+      //     required: { message: '$ is required' },
+      //     minlength: { value: 3, message: 'Minimum length for $ is 3' },
+      //     maxlength: { value: 10, message: 'Maximum length for $ is 10' },
+      //     // ,email: true
+      //     myValidate: { value: this.myValidate('test'), message: 'My validation fails' }
+      //   }
+      //   , asyncValidation: {
+      //     async1: {
+      //       url: ""
+      //       , value: ""
+      //       , message: ""
+      //     }
+      //   }
+      // },
+      // {
+      //   type: "text"
+      //   , id: "lasttName"
+      //   , label: "Last name"
+      //   , placeholder: "Last name"
+      //   , value: ""
+      //   , validation: {
+      //     required: { message: '$ is required' },
+      //     minlength: { value: 3, message: 'Minimum length for $ is 3' },
+      //     maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+      //   }
+      // },
+      // {
+      //   type: "textarea"
+      //   , id: "address"
+      //   , label: "Address"
+      //   , placeholder: "Address"
+      //   , value: "12345"
+      //   , validation: {
+      //     required: { message: '$ is required' },
+      //     minlength: { value: 5, message: 'Minimum length for $ is 5' },
+      //     maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+      //   }
+      // },
+      // {
+      //   type: "date"
+      //   , id: "date"
+      //   , label: "Date"
+      //   , placeholder: "Date"
+      //   , value: ""
+      //   , validation: {
+      //     required: { message: '$ is required' }
+      //   }
+      // },
+      // {
+      //   type: "checkbox"
+      //   , id: "agreed"
+      //   , label: "Agreed"
+      //   , value: false
+      // }, {
+      //   type: "radio"
+      //   , label: "Gender"
+      //   , value: "M"
+      //   , id: "gender"
+      //   , options: [
+      //     { label: "Male", value: "M", id: "male" }
+      //     , { label: "Female", value: "F", id: "female" }
+      //   ]
+      // }, {
+      //   type: "checkboxGroup"
+      //   , label: "Food1"
+      //   , id: "food1"
+      //   , validation: {
+      //     required: { message: '$ is required' }
+      //   }
+      //   , options: [
+      //     { label: "Main course", value: false, id: "main1" }
+      //     , { label: "Desert", value: true, id: "desert1" }
+      //     , { label: "beverages", value: false, id: "beverages1" }
+      //   ]
+      // },
+      // {
+      //   type: "select"
+      //   , label: "Country"
+      //   , value: "0"
+      //   , id: "country"
+      //   , options: [
+      //     { label: "---Choose---", value: "0" }
+      //     , { label: "USA", value: "us" }
+      //     , { label: "India", value: "in" }
+      //   ]
+      //   , validation: {
+      //     selectRequired: {
+      //       value: this.selectRequiredValidator('0')
+      //       , message: 'You must select a value for $'
+      //     }
+      //   }
+      // },
+      // {
+      //   type: "checkboxGroup"
+      //   , label: "Food"
+      //   , id: "food"
+      //   , validation: {
+      //     required: { message: '$ is required' }
+      //   }
+      //   , options: [
+      //     { label: "Main course", value: false, id: "main" }
+      //     , { label: "Desert", value: true, id: "desert" }
+      //     , { label: "beverages", value: false, id: "beverages" }
+      //   ]
+      // },
+      // {
+      //   type: 'submit'
+      //   , label: 'Submit'
+      //   , id: 'submitForm1'
+      //   , class: { group: 'submit-right', element: 'btn btn-primary' }
+      //   , method: (form) => {
+      //     console.log(form.value);
+      //   }
+      // },
+      // {
+      //   type: 'button'
+      //   , label: "Reset"
+      //   , id: 'resetForm1'
+      //   , class: { group: 'submit-right', element: 'btn btn-primary' }
+      //   , method: (form) => {
+      //     console.log("Form is done reset");
+      //   }
+      // }];
     this.content = "This is code"
   }
 

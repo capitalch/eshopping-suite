@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { UserService } from './user.service';
 
 
 @Component({
@@ -8,29 +9,40 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
   styleUrls: ['./html5-form.component.scss']
 })
 export class Html5FormComponent implements OnInit {
-  myForm: FormGroup;
-  mat:string;
-  constructor(private fb: FormBuilder) { }
+  form: FormGroup;
+  constructor(private userService:UserService, private fb: FormBuilder) {
+    this.buildForm();
+   }
+
+   buildForm(): void {
+    this.form = this.fb.group({
+      "email": ["", [
+             Validators.required,
+             Validators.minLength(3)
+           ],
+           this.isEmailUnique.bind(this) // async Validator passed as 3rd parameter 
+      ]
+    });
+  }
+
+  isEmailUnique(control: FormControl) {
+    const q = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this.userService.isEmailRegisterd(control.value).subscribe(() => {
+          resolve(null);
+        }, () => { resolve({ 'isEmailUnique': true }); });
+      }, 1000);
+    });
+    return q;
+  }
+ 
+ 
+  onSubmit() {
+  
+  }
 
   ngOnInit() {
-    this.mat="mat-raised-button";
-    this.myForm = this.fb.group(
-      {
-        myName: ""
-        , food: this.fb.group(
-          {
-            starter: false
-            , mainCourse: false
-            , desert: false
-          })
-      });
+   
   }
 
-  submit() {
-    // console.log(f);
-  }
-  isError:boolean=true;
-  toggle(){
-    this.isError= !this.isError;
-  }
 }

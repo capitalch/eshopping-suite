@@ -1,43 +1,15 @@
-<form (ngSubmit)="submit()">
-  <ul class="form-style-1">
-    <li>
-      <label>Full Name
-        <span class="required">*</span>
-      </label>
-      <input type="text" name="field1" class="field-divided" placeholder="First" required/>
-      <input type="text" name="field2" class="field-divided" placeholder="Last" />
-      
-        <label *ngIf="isError; else elseBlock" style = "margin: 0;padding:0">
-          There is error in name
-        </label>
-        
-    </li>
-    <li>
-      <label>Email
-        <span class="required">*</span>
-      </label>
-      <input type="email" name="field3" class="field-long" />
-    </li>
-    <li>
-      <label>Subject</label>
-      <select name="field4" class="field-select">
-        <option value="Advertise">Advertise</option>
-        <option value="Partnership">Partnership</option>
-        <option value="General Question">General</option>
-      </select>
-    </li>
-    <li>
-      <label>Your Message
-        <span class="required">*</span>
-      </label>
-      <textarea name="field5" id="field5" class="field-long field-textarea"></textarea>
-    </li>
-    <li>
-      <input type="submit" value="Submit" />
-    </li>
-  </ul>
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()" name="signupForm">
+  <div class="form-group">
+  <label for="login">Email Address<span class="requiredSymbol">*</span></label>
+  <input autofocus pInputText type="email" id="username" formControlName="email" name="email" class="form-control form-control-lg"
+      placeholder="Enter Your Email Address">
+      <span *ngIf="form.get('email').dirty || formSubmitclicked">
+      <small class="error" *ngIf="form.get('email').hasError('isEmailUnique')">This email has been registered already</small>
+      <small class="error" *ngIf="form.get('email').hasError('required')">The Email field is required.</small>
+      <small class="error" *ngIf="form.get('email').hasError('pattern')">The Email field must contain a valid email address.</small>
+  </span>
+  </div>
+  <div class="form-group text-center">
+  <button type="submit" pButton class="btn btn-success btn-lg btn-block" label="Singup"></button>
+  </div>
 </form>
-<button (click)="toggle()">Toggle</button>
-<ng-template #elseBlock>
-  <label>&nbsp;</label>
-</ng-template>

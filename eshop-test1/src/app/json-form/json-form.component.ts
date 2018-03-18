@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, ViewEncapsulation, ChangeDetect
 // import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { JsonFormService } from './json-form.service';
 
 @Component({
   selector: 'json-form',
@@ -16,11 +17,10 @@ export class JsonFormComponent implements OnInit {
   errorMessages: any[] = [];
   ee: EventEmitter<any>;
   subs;
-  constructor(private fb: FormBuilder
+  constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
   ngOnInit() {
-    console.log('init');
     this.ee = new EventEmitter();
 
     let formControls = {};
@@ -46,15 +46,7 @@ export class JsonFormComponent implements OnInit {
     });
     this.myForm = this.fb.group(formControls);
     this.ee.emit('checkboxGroup');
-
   }
-
-  // selectRequiredValidator(def) {
-  //   let func = (control: FormControl) => {
-  //     return ((control.value == def) ? { selectRequired: true } : null);
-  //   }
-  //   return (func);
-  // }
 
   checkboxGroupRequiredValidator(ctrl: any) {
     let isValid = false, ret = null;
@@ -64,13 +56,6 @@ export class JsonFormComponent implements OnInit {
     (!isValid) && (ret = { required: true });
     return (ret);
   }
-
-  // myValidate(s) {
-  //   let func = (control: FormControl) => {
-  //     return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-  //   };
-  //   return (func);
-  // }
 
   getValidators(layout) {
     let validators = layout.validation && Object.keys(layout.validation).map(x => {
@@ -92,7 +77,9 @@ export class JsonFormComponent implements OnInit {
           ret = Validators.pattern(layout.validation[x].value);
           break;
         default:
-          ret = layout.validation[x].value;
+          let validatorName = layout.validation[x].name;
+          let arg = layout.validation[x].arg;
+          ret = this.jsonFormService.executeCustomValidation(validatorName, arg);
       }
       return (ret);
     });
@@ -121,25 +108,24 @@ export class JsonFormComponent implements OnInit {
     return (JSON.stringify(obj));
   }
 
-  submit() {
+  submit(actionName) {
     console.log(this.myForm.valid);
-    // console.log(this.myForm.value);
     this.validateAllFormFields(this.myForm);
     if (this.myForm.valid) {
-      console.log('form submitting');      
-      this.options && this.options.methods && this.options.methods.submit && this.options.methods.submit(this.myForm);
+      console.log('form submitting');
+      this.jsonFormService.executeAction(actionName, this.myForm);
     } else {
       console.log("Invalid form");
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-    Object.keys(formGroup.controls).forEach(field => {  //{2}
-      const control = formGroup.get(field);             //{3}
-      if (control instanceof FormControl) {             //{4}
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
         control.markAsTouched();
-      } else if (control instanceof FormGroup) {        //{5}
-        this.validateAllFormFields(control);            //{6}
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
       }
     });
   }

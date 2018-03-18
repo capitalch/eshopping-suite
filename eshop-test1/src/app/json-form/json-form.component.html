@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (ngSubmit)="submit()" novalidate>
+<form #f="ngForm" [formGroup]="myForm"  novalidate>
 
   <ul [ngClass]="options.wrapperClass">
     <ng-container *ngFor="let layout of layouts">
@@ -51,11 +51,12 @@
         </li>
 
         <li *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [ngClass]="layout.class && layout.class.element" type="submit">{{layout.label}}</button>
+          <button [ngClass]="layout.class && layout.class.element" 
+          (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
         </li>
 
         <li *ngSwitchCase="'button'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [id]="layout.id" (click)="layout.method(myForm)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
+          <button [id]="layout.id" (click)="this.jsonFormService.executeAction(layout.actionName,f)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
         </li>
 
         <li *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

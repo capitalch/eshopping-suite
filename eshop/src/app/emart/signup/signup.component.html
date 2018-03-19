@@ -1,0 +1,32 @@
+<div class="sign-up">
+  <div class="title-container">
+      <span class="title">Signup</span>
+  </div>
+  <mat-form-field class="email">
+    <input matInput placeholder="Email">
+  </mat-form-field>
+  <mat-form-field class="mobile">
+    <input matInput placeholder="Mobile No.">
+  </mat-form-field>
+  <mat-form-field class="user-name">
+      <input matInput placeholder="Username">
+  </mat-form-field>
+  <mat-form-field class="password">
+      <input matInput type="password" placeholder="Password">
+  </mat-form-field>
+  <mat-form-field class="confirm-password">
+    <input matInput type="password" placeholder="Confirm Password">
+  </mat-form-field>
+  <div>
+    <div class="right-controls">
+        <button mat-button class="button" (click)="cancel()">
+          <i class="fa fa-window-close fa-x" aria-hidden="true"></i>
+          <span class="button-text">Cancel</span>
+        </button>
+        <button mat-button class="button" (click)="signup()">
+          <i class="fa fa-sign-in fa-x" aria-hidden="true"></i>
+          <span class="button-text">Signup</span>
+        </button>
+    </div>
+  </div>
+</div>

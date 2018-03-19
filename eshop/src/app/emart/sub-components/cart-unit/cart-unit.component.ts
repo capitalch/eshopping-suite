@@ -70,6 +70,11 @@ export class CartUnitComponent implements OnInit {
     this.router.navigate([navUrls.login]);
   }
 
+  showSignup()
+  {
+    this.router.navigate([navUrls.signup]);
+  }
+
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

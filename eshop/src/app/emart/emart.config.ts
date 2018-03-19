@@ -22,7 +22,8 @@ export const navUrls = {
     productDetails: 'emart/composite/productDetails',
     cart: 'emart/composite/cart',
     placeOrder: 'emart/composite/placeOrder',
-    login: 'emart/composite/login'
+    login: 'emart/composite/login',
+    signup: 'emart/composite/signup'
 };
 
 export const settings = {

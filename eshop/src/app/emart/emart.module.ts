@@ -18,6 +18,7 @@ import { CartUnitComponent } from './sub-components/cart-unit/cart-unit.componen
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { FilterComponent } from './filter/filter.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { LoginComponent } from './login/login.component';
     ProductComponent, 
     ProductDetailsComponent,
     HeaderComponent, CategoryComponent, 
-    FooterComponent, CartComponent, CartUnitComponent, PlaceOrderComponent,FilterComponent, LoginComponent
+    FooterComponent, CartComponent, CartUnitComponent, PlaceOrderComponent,FilterComponent, LoginComponent, SignupComponent
   ],
   providers:[EmartService]
 })

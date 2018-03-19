@@ -19,7 +19,7 @@ router.get('/api/test', (req, res, next) => {
     }
 });
 
-router.post('/email', (req, res, next) => {
+router.post('/test', (req, res, next) => {
     try {
         // res.json({
         //     "statusCode": 400,

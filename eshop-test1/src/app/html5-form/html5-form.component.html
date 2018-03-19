@@ -1,15 +1,22 @@
-<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()" name="signupForm">
-  <div class="form-group">
-  <label for="login">Email Address<span class="requiredSymbol">*</span></label>
-  <input autofocus pInputText type="email" id="username" formControlName="email" name="email" class="form-control form-control-lg"
-      placeholder="Enter Your Email Address">
-      <span *ngIf="form.get('email').dirty || formSubmitclicked">
-      <small class="error" *ngIf="form.get('email').hasError('isEmailUnique')">This email has been registered already</small>
-      <small class="error" *ngIf="form.get('email').hasError('required')">The Email field is required.</small>
-      <small class="error" *ngIf="form.get('email').hasError('pattern')">The Email field must contain a valid email address.</small>
-  </span>
+<form [formGroup]="myForm">
+  <input type="text" formControlName="name">
+  <input type="email" formControlName="email">
+
+  <div *ngIf="myForm.get('email').status === 'PENDING'">
+    Checking...
   </div>
-  <div class="form-group text-center">
-  <button type="submit" pButton class="btn btn-success btn-lg btn-block" label="Singup"></button>
+  <div *ngIf="myForm.get('email').status === 'VALID'">
+    😺 Email is available!
   </div>
+
+  <div *ngIf="myForm.get('email').errors && myForm.get('email').errors.emailTaken">
+    😢 Oh noes, this email is already taken!
+  </div>
+  <div>
+    <label> Address:
+      <input type="text" formControlName="address">
+    </label>
+    <div *ngIf="myForm.get('address').errors && myForm.get('address').errors.required">Required</div>
+  </div>
+  <button type="submit" (click)="submit(myForm)">Submit</button>
 </form>

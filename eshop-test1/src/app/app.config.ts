@@ -22,8 +22,9 @@ let form1 = [{
     , asyncValidation: {
         async1: {
             url: ""
-            , value: ""
+            , name: ""
             , message: ""
+            , arg: 'test'
         }
     }
 },

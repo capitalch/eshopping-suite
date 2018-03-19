@@ -9,40 +9,51 @@ import { UserService } from './user.service';
   styleUrls: ['./html5-form.component.scss']
 })
 export class Html5FormComponent implements OnInit {
-  form: FormGroup;
-  constructor(private userService:UserService, private fb: FormBuilder) {
-    this.buildForm();
-   }
+  myForm: FormGroup;
+  constructor(private userService: UserService, private fb: FormBuilder) {
 
-   buildForm(): void {
-    this.form = this.fb.group({
-      "email": ["", [
-             Validators.required,
-             Validators.minLength(3)
-           ],
-           this.isEmailUnique.bind(this) // async Validator passed as 3rd parameter 
-      ]
-    });
   }
 
-  isEmailUnique(control: FormControl) {
-    const q = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.userService.isEmailRegisterd(control.value).subscribe(() => {
-          resolve(null);
-        }, () => { resolve({ 'isEmailUnique': true }); });
-      }, 1000);
-    });
-    return q;
-  }
- 
- 
+
   onSubmit() {
-  
+
   }
 
   ngOnInit() {
-   
+    this.myForm = this.fb.group({
+      name: ['', Validators.required],
+      email: [
+        '',
+        [Validators.required, Validators.email],
+        this.validateEmailNotTaken.bind(this)
+      ]
+      , address: ['', [Validators.required, this.userService.myValidator1()]
+        , [this.userService.myAsyncValidator1()]]
+      }
+    );
+  }
+
+  validateEmailNotTaken(control: AbstractControl) {
+    return this.userService.checkEmailNotTaken(control.value).map(res => {
+      return res ? null : { emailTaken: true };
+    });
+  }
+
+  // myValidator1() {
+  //   let f = (control: AbstractControl) => {
+  //     let s = control.value;
+  //     if (s.length > 3) { 
+  //       return (null) ;
+  //     } else {
+  //       return ({ myValidator1: true });
+  //     }
+  //   };
+  //   return (f);
+  // }
+
+  submit(f) {
+    console.log(f.valid);
+    console.log(f.value);
   }
 
 }

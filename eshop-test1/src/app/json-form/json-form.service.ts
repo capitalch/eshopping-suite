@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-
+import { Http, Response, Headers } from '@angular/http';
 @Injectable()
 export class JsonFormService {
 
-  constructor() { }
+  constructor(private http: Http) { }
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
@@ -15,6 +15,17 @@ export class JsonFormService {
       let func = (control) => {
         return ((control.value == def) ? { selectRequired: true } : null);
       }
+      return (func);
+    }
+  }
+
+  asyncValidators = {
+    email1: () => {
+      let func = (control) => {
+        let obs = this.http.post("http://localhost:3002/email", "test")
+          .map(res => res.json());
+        return (obs);
+      };
       return (func);
     }
   }
@@ -33,8 +44,13 @@ export class JsonFormService {
     return (f);
   }
 
-  executeAction(actionName:string, arg:{}){
-    this.actions[actionName].call(this,arg);
+  executeAction(actionName: string, arg: {}) {
+    this.actions[actionName].call(this, arg);
+  }
+
+  executeAsyncValidation(name: string, arg: {}) {
+    let f = this.asyncValidators[name].call(this, arg);
+    return (f);
   }
 
 }

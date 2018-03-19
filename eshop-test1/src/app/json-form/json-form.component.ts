@@ -41,11 +41,22 @@ export class JsonFormComponent implements OnInit {
       }
       else {
         let validators = this.getValidators(x);
-        formControls[x.id] = [x.value, validators];
+        let asyncValidator = this.getAsyncValidator(x);
+        formControls[x.id] = [x.value, validators, asyncValidator];
       }
     });
     this.myForm = this.fb.group(formControls);
     this.ee.emit('checkboxGroup');
+  }
+
+  getAsyncValidator(layout) {
+    let ret = null;
+    if (layout.asyncValidation) {
+      let asyncValidatorName = layout.asyncValidation.async1.name;
+      let arg = layout.asyncValidation.async1.arg;
+      ret = this.jsonFormService.executeAsyncValidation(asyncValidatorName, arg);
+    }
+    return (ret);
   }
 
   checkboxGroupRequiredValidator(ctrl: any) {

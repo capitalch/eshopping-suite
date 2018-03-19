@@ -19,14 +19,6 @@ let form1 = [{
             , arg: 'test'
         }
     }
-    , asyncValidation: {
-        async1: {
-            url: ""
-            , name: ""
-            , message: ""
-            , arg: 'test'
-        }
-    }
 },
 {
     type: "text"
@@ -38,6 +30,24 @@ let form1 = [{
         required: { message: '$ is required' },
         minlength: { value: 3, message: 'Minimum length for $ is 3' },
         maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+    }
+},
+{
+    type: "text"
+    , id: "email1"
+    , label: "email1"
+    , placeholder: "email"
+    , value: ""
+    , validation: {
+        required: { message: '$ is required' }
+    }
+    , asyncValidation: {
+        async1: {
+            url: "http://localhost:3002/email"
+            , name: "email1"
+            , message: "Your email is invalid"
+            , arg: 'test'
+        }
     }
 },
 {

@@ -39,16 +39,20 @@ let form1 = [{
     , placeholder: "email"
     , value: ""
     , validation: {
-        required: { message: '$ is required' }
-    }
-    , asyncValidation: {
-        async1: {
+        required: { message: '$ is required' },
+        async1:{
             url: "http://localhost:3002/email"
             , name: "email1"
             , message: "Your email is invalid"
             , arg: 'test'
+            , async:true
+        },
+        email2:{
+            name:"email2"
+            , message:"Sync email invalid"
+            , arg:"test"
         }
-    }
+    }    
 },
 {
     type: "textarea"

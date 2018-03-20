@@ -40,24 +40,31 @@ export class JsonFormComponent implements OnInit {
         this.subs ? this.subs.add(sub) : (this.subs = sub);
       }
       else {
-        let validators = this.getValidators(x);
-        let asyncValidator = this.getAsyncValidator(x);
-        formControls[x.id] = [x.value, validators, asyncValidator];
+        // let validators, asyncValidators;
+        // if (x.validation && x.validation.async) {
+        //   asyncValidators = this.getValidators(x);
+        // } else {
+        //   validators = this.getValidators(x);
+        // }
+        // let validators = this.getValidators(x);
+        // let asyncValidator = this.getAsyncValidator(x);
+        let allValidators = this.getValidators(x);
+        formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
       }
     });
     this.myForm = this.fb.group(formControls);
     this.ee.emit('checkboxGroup');
   }
 
-  getAsyncValidator(layout) {
-    let ret = null;
-    if (layout.asyncValidation) {
-      let asyncValidatorName = layout.asyncValidation.async1.name;
-      let arg = layout.asyncValidation.async1.arg;
-      ret = this.jsonFormService.executeAsyncValidation(asyncValidatorName, arg);
-    }
-    return (ret);
-  }
+  // getAsyncValidator(layout) {
+  //   let ret = null;
+  //   if (layout.asyncValidation) {
+  //     let asyncValidatorName = layout.asyncValidation.async1.name;
+  //     let arg = layout.asyncValidation.async1.arg;
+  //     ret = this.jsonFormService.executeAsyncValidation(asyncValidatorName, arg);
+  //   }
+  //   return (ret);
+  // }
 
   checkboxGroupRequiredValidator(ctrl: any) {
     let isValid = false, ret = null;
@@ -68,33 +75,58 @@ export class JsonFormComponent implements OnInit {
     return (ret);
   }
 
+  // let caseObject = {
+  //   required:Validators.required
+  //   , email:Validators.email
+  //   , minlength:Validators.minLength(layout.validation[x].value)
+  //   , maxlength:Validators.maxLength
+  // }
+
   getValidators(layout) {
-    let validators = layout.validation && Object.keys(layout.validation).map(x => {
-      let ret;
+    let allValidators = {
+      validators: [],
+      asyncValidators: []
+    };
+
+    // layout.validation && Object.keys(layout.validation).forEach(x=>{
+
+    // });
+    layout.validation && Object.keys(layout.validation).map(x => {
+      // let ret;
       switch (x) {
         case 'required':
-          ret = Validators.required;
+          allValidators.validators.push(Validators.required);
+          // ret = Validators.required;
           break;
         case 'email':
-          ret = Validators.email;
+          allValidators.validators.push(Validators.email);
+          // ret = Validators.email;
           break;
         case 'minlength':
-          ret = Validators.minLength(layout.validation[x].value);
+          allValidators.validators.push(Validators.minLength(layout.validation[x].value));
+          // ret = Validators.minLength(layout.validation[x].value);
           break;
         case 'maxlength':
-          ret = Validators.maxLength(layout.validation[x].value);
+          allValidators.validators.push(Validators.maxLength(layout.validation[x].value));
+          // ret = Validators.maxLength(layout.validation[x].value);
           break;
         case 'pattern':
-          ret = Validators.pattern(layout.validation[x].value);
+          allValidators.validators.push(Validators.pattern(layout.validation[x].value));
+          // ret = Validators.pattern(layout.validation[x].value);
           break;
         default:
           let validatorName = layout.validation[x].name;
           let arg = layout.validation[x].arg;
-          ret = this.jsonFormService.executeCustomValidation(validatorName, arg);
+          if (layout.validation[x].async) {
+            allValidators.asyncValidators.push(this.jsonFormService.executeCustomValidation(validatorName, arg));
+          } else {
+            allValidators.validators.push(this.jsonFormService.executeCustomValidation(validatorName, arg));
+          }
+        // ret = this.jsonFormService.executeCustomValidation(validatorName, arg);
       }
-      return (ret);
+      // return (ret);
     });
-    return (validators);
+    return (allValidators);
   }
 
   checkError(layout) {

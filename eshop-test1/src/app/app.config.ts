@@ -1,7 +1,3 @@
-// let func = (control: FormControl) => {
-//     return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-//   };
-//   return (func);
 let form1 = [
     {
         type: "text"
@@ -21,6 +17,28 @@ let form1 = [
         }
     }
     , {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "text"
+                , id: "password"
+                , label: "Password"
+                , placeholder: "password"
+                , value: ""
+            }
+            , {
+                type: "text"
+                , id: "confirmPassword"
+                , label: "Confirm password"
+                , placeHolder: "Confirm password"
+                , value: ""
+            }
+        ]
+
+    }
+    , {
         type: "text"
         , id: "lastName"
         , label: "Last name"
@@ -32,7 +50,7 @@ let form1 = [
             maxlength: { value: 10, message: 'Maximum length for $ is 10' }
         }
     }
-    ,{
+    , {
         type: "text"
         , id: "email1"
         , label: "email1"
@@ -41,9 +59,10 @@ let form1 = [
         , validation: {
             required: { message: '$ is required' },
             email1: {
-                url: "http://localhost:3002/email"
-                , message: "Your email is invalid"
-                , arg: 'test'
+                message: "Your email is invalid"
+                , arg: {
+                    url: "http://localhost:3002/email"
+                }
                 , async: true
             },
             email2: {
@@ -52,7 +71,7 @@ let form1 = [
             }
         }
     }
-    ,{
+    , {
         type: "textarea"
         , id: "address"
         , label: "Address"
@@ -64,7 +83,7 @@ let form1 = [
             maxlength: { value: 200, message: 'Maximum length for $ is 200' }
         }
     }
-    ,{
+    , {
         type: "date"
         , id: "date"
         , label: "Date"
@@ -74,7 +93,7 @@ let form1 = [
             required: { message: '$ is required' }
         }
     }
-    ,{
+    , {
         type: "checkbox"
         , id: "agreed"
         , label: "Agreed"
@@ -120,7 +139,7 @@ let form1 = [
             }
         }
     }
-    ,{
+    , {
         type: "checkboxGroup"
         , label: "Food"
         , id: "food"

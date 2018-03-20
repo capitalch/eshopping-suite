@@ -14,8 +14,8 @@ import { MatDirective } from './mat/mat.directive';
 import { MatButtonComponent } from './mat-button/mat-button.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { JsonFormService } from './json-form/json-form.service';
-import { HttpModule } from '@angular/http';
 import { UserService } from './html5-form/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -38,7 +38,7 @@ import { UserService } from './html5-form/user.service';
     , DynamicFormsCoreModule.forRoot()
     , DynamicFormsMaterialUIModule
     , MaterialUnitModule
-    , HttpModule
+    , HttpClientModule
   ],
   providers: [JsonFormService, UserService],
   bootstrap: [AppComponent]

@@ -1,12 +1,11 @@
-<!-- <ng-container> -->
-  <ul *ngIf="checkError();then ifBlock; else elseBlock">
+
+  <ul *ngIf="control.errors && (control.touched || control.dirty);then ifBlock; else elseBlock">
   </ul>
   <ng-template #ifBlock>
-    <li class="error"  *ngFor="let message of getErrorMessages()">
+    <li class="error" *ngFor="let message of getMessages()" >
       {{message}}
     </li>
   </ng-template>
   <ng-template #elseBlock>
     <li>&nbsp;</li>
   </ng-template>
-<!-- </ng-container> -->

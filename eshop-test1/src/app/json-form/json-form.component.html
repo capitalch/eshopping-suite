@@ -19,7 +19,7 @@
                 <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
               </ng-container>
             </ng-container>
-            <error-message [form]="myForm" [layout]="layout"></error-message>
+            <error-message [layout]="layout"  [control] = "myForm.get(layout.id)"></error-message>
           </fieldset>
         </li>
 
@@ -40,14 +40,14 @@
             <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
-          <error-message [form]="myForm" [layout]="layout"></error-message>
+          <error-message [layout]="layout"  [control] = "myForm.get(layout.id)"></error-message>
         </li>
 
         <li *ngSwitchCase="'textarea'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
           <textarea [ngClass]="layout.class && layout.class.element" class="field-long" [id]="layout.id" [placeholder]="layout.placeholder"
             [formControlName]="layout.id">{{layout.value}}</textarea>
-          <error-message [form]="myForm" [layout]="layout"></error-message>
+            <error-message [layout]="layout"  [control] = "myForm.get(layout.id)"></error-message>
         </li>
 
         <li *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
@@ -63,7 +63,7 @@
           <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
           <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
             [formControlName]="layout.id">
-          <error-message [form]="myForm" [layout]="layout"></error-message>
+          <error-message [layout]="layout"  [control] = "myForm.get(layout.id)"></error-message>
         </li>
 
       </ng-container>

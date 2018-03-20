@@ -8,29 +8,18 @@ import { FormGroup } from '@angular/forms';
 })
 export class ErrorMessageComponent implements OnInit {
   @Input() layout: any={};
-  @Input() form: FormGroup;
-  errorMessages: any[] = [];
+  @Input() control:any;
+  
   constructor() { }
 
   ngOnInit() {
   }
-  
-  checkError() {
-    let controlId = this.layout.id;
-    this.errorMessages[controlId] = {};
-    let control = this.form.controls[controlId];
-    let isError = control.errors && (control.touched || control.dirty);
-    isError && Object.keys(control.errors).forEach(x => {
-      let errorObject = this.errorMessages[controlId];
-      errorObject[x] = this.layout.validation[x] && this.layout.validation[x].message.replace('$', this.layout.label);
+
+  getMessages(){
+    let messages=[];
+    Object.keys(this.control.errors).forEach(x=>{
+      messages.push(this.layout.validation[x] && this.layout.validation[x].message.replace('$', this.layout.label))
     });
-    return (isError);
+    return(messages);
   }
-
-  getErrorMessages() {
-    let errorObject = this.errorMessages[this.layout.id] || {};
-    let messages = Object.values(errorObject) || [];
-    return (messages);
-  }
-
 }

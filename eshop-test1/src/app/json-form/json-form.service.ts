@@ -13,7 +13,7 @@ export class JsonFormService {
       };
       return (func);
     },
-    selectRequiredValidator: (def) => {
+    selectRequired: (def) => {
       let func = (control) => {
         return ((control.value == def) ? { selectRequired: true } : null);
       }
@@ -34,24 +34,13 @@ export class JsonFormService {
       let func = (control) => {
         let obs = this.http.post("http://localhost:3002/email", "test")
           .map(res => res.json());
-        let obs1 = Observable.of({email1:true});
-        return (obs1);
+        // let obs1 = Observable.of({email1:true});
+        return (obs);
       };
       return (func);
-    dm}
+    }
     
   }
-
-  // asyncValidators = {
-  //   email1: () => {
-  //     let func = (control) => {
-  //       let obs = this.http.post("http://localhost:3002/email", "test")
-  //         .map(res => res.json());
-  //       return (obs);
-  //     };
-  //     return (func);
-  //   }
-  // }
 
   actions = {
     submitForm: (form) => {

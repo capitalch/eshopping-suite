@@ -1,0 +1,13 @@
+<fieldset [formGroup] = "myForm">
+  <legend>{{layout.label}}</legend>
+  <ng-container [formGroupName]="layout.id">
+    <ng-container *ngFor="let control of layout.controls">
+      <label [for]="control.id">{{control.label}}</label>
+      <input [type]="control.type" [id]="control.id" 
+      [placeholder]="control.placeholder" 
+      [formControlName]="control.id">
+      <label *ngIf="myForm.get(layout.id).get(control.id).errors">Error</label>
+      <!-- <error-message [layout]="layout.controls" [control]="myForm.get(layout.id)"></error-message> -->
+    </ng-container>
+  </ng-container>
+</fieldset>

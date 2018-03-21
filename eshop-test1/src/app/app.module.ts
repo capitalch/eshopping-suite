@@ -16,6 +16,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { JsonFormService } from './json-form/json-form.service';
 import { UserService } from './html5-form/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GroupChildComponent } from './group-child/group-child.component';
 
 
 
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     Html5FormComponent,
     MatDirective,
     MatButtonComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    GroupChildComponent
   ],
   imports: [
     BrowserModule

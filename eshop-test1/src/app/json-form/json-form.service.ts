@@ -35,10 +35,7 @@ export class JsonFormService {
       let func = (control) => {
         // const headers = new HttpHeaders().set('content-type', 'application/json');
         let body = { value: control.value };
-        let obs = this.http.post(arg.url, body);
-        // .map(res => res.json()
-        // );
-        // let obs1 = Observable.of({email1:true});
+        let obs = this.http.post(arg.url, body);        
         return (obs);
       };
       return (func);

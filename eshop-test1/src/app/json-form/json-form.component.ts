@@ -35,7 +35,8 @@ export class JsonFormComponent implements OnInit {
           ctrl.setValidators(this.checkboxGroupRequiredValidator);
         });
         this.subs ? this.subs.add(sub) : (this.subs = sub);
-      } else if(x.type=="group"){
+      } 
+      else if(x.type=="group"){
         let childControls = {};
         x.controls && x.controls.forEach(c=>{
           childControls[c.id] = c.value;

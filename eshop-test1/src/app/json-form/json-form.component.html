@@ -63,7 +63,9 @@
             <legend>{{layout.label}}</legend>
             <ng-container [formGroupName]="layout.id">
               <ng-container *ngFor="let control of layout.controls">
-                <ng-container *ngTemplateOutlet="textBox;context:layout"></ng-container>
+                <label [for]="control.id">{{control.label}}</label>
+                <input [type]="control.type" [id]="control.id" [placeholder]="control.placeholder" [formControlName]="control.id">
+                <!-- <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message> -->
               </ng-container>
             </ng-container>
           </fieldset>
@@ -81,7 +83,18 @@
   </ul>
 
 </form>
-<ng-template #textBox let-layoutId="id">
-  <input type="text">
-  <label>{{layoutId}}</label>
+
+<ng-template #textBox let-layout="layout">
+  <ng-container>
+    <ng-container *ngFor="let control of layout.controls">
+      <!-- <ng-container *ngTemplateOutlet="textBox;context:{control:control}"></ng-container> -->
+      <label>{{control.label}}
+        <input type="text" [placeholder]="layout.placeholder">
+      </label>
+    </ng-container>
+  </ng-container>
+
+
+
+
 </ng-template>

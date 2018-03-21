@@ -32,7 +32,7 @@ let form1 = [
                 type: "text"
                 , id: "confirmPassword"
                 , label: "Confirm password"
-                , placeHolder: "Confirm password"
+                , placeholder: "Confirm password"
                 , value: ""
             }
         ]

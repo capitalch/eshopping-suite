@@ -58,18 +58,8 @@
           </fieldset>
         </li>
 
-        <li *ngSwitchCase="'group'">
-          <!-- <fieldset> -->
-            <!-- <legend>{{layout.label}}</legend> -->
-            <group-child [layout]="layout" [fb]="fb" [myForm] ="myForm"></group-child>
-            <!-- <ng-container [formGroupName]="layout.id">
-              <ng-container *ngFor="let control of layout.controls">
-                <label [for]="control.id">{{control.label}}</label>
-                <input [type]="control.type" [id]="control.id" [placeholder]="control.placeholder" [formControlName]="control.id">
-                <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
-              </ng-container>
-            </ng-container> -->
-          <!-- </fieldset> -->
+        <li *ngSwitchCase="'group'">          
+            <group-child [layout]="layout" [fb]="fb" [myForm] ="myForm"></group-child>            
         </li>
 
         <li *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

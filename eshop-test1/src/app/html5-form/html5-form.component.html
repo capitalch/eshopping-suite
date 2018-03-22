@@ -1,22 +1,14 @@
 <form [formGroup]="myForm">
-  <input type="text" formControlName="name">
-  <input type="email" formControlName="email">
-
-  <div *ngIf="myForm.get('email').status === 'PENDING'">
-    Checking...
-  </div>
-  <div *ngIf="myForm.get('email').status === 'VALID'">
-    😺 Email is available!
-  </div>
-
-  <div *ngIf="myForm.get('email').errors && myForm.get('email').errors.emailTaken">
-    😢 Oh noes, this email is already taken!
-  </div>
-  <div>
-    <label> Address:
-      <input type="text" formControlName="address">
-    </label>
-    <div *ngIf="myForm.get('address').errors && myForm.get('address').errors.required">Required</div>
-  </div>
+  <input type="text" formControlName="firstName">
+  <input type="text" formControlName="lastName">
+  <!-- <ng-container formGroupName = "homeAddressGroup">
+      <input type="text" formControlName="address1">
+      <input type="text" formControlName="address2">
+  </ng-container> -->
+  <ng-container formArrayName="intrests">
+    <ng-container *ngFor="let intrest of myForm.controls.intrests.controls;let i = index">
+      <input type="text" [formControlName]="intrest[i]">
+    </ng-container>
+  </ng-container>
   <button type="submit" (click)="submit(myForm)">Submit</button>
 </form>

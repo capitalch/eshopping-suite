@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { UserService } from './user.service';
+// import { UserService } from './user.service';
 
 
 @Component({
@@ -10,7 +10,8 @@ import { UserService } from './user.service';
 })
 export class Html5FormComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  myFormArray: FormArray;
+  constructor(private fb: FormBuilder) {
 
   }
 
@@ -20,36 +21,26 @@ export class Html5FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.myFormArray = this.fb.array([
+      { address: ['12'] }
+    ]);
     this.myForm = this.fb.group({
-      name: ['', Validators.required],
-      email: [
-        '',
-        [Validators.required, Validators.email],
-        this.validateEmailNotTaken.bind(this)
-      ]
-      , address: ['', [Validators.required, this.userService.myValidator1()]
-        , [this.userService.myAsyncValidator1()]]
-      }
-    );
-  }
-
-  validateEmailNotTaken(control: AbstractControl) {
-    return this.userService.checkEmailNotTaken(control.value).map(res => {
-      return res ? null : { emailTaken: true };
+      firstName: ['', Validators.required]
+      , lastName:['last']
+      , homeAddressGroup:this.fb.group(
+        {
+          address1:['address1']
+          , address2:['address2']
+        }
+      )
+      , intrests:this.fb.array([
+        {
+          tag1:["tag1"]
+        }
+      ])
     });
-  }
 
-  // myValidator1() {
-  //   let f = (control: AbstractControl) => {
-  //     let s = control.value;
-  //     if (s.length > 3) { 
-  //       return (null) ;
-  //     } else {
-  //       return ({ myValidator1: true });
-  //     }
-  //   };
-  //   return (f);
-  // }
+  }
 
   submit(f) {
     console.log(f.valid);

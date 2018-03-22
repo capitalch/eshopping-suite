@@ -13,7 +13,6 @@ export class GroupChildComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let i = 9;
   }
 
   ngAfterViewInit() {

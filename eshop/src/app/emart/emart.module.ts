@@ -6,7 +6,7 @@ import { routes } from './emart.routes';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { CategoryComponent } from './category/category.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,14 +19,17 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
 import { FilterComponent } from './filter/filter.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   imports: [
     CommonModule, RouterModule.forChild(routes), 
     FormsModule, 
+    ReactiveFormsModule,
     AngularMaterialModule,
     TreeModule,
-    RatingModule
+    RatingModule,
+    NgxStripeModule.forRoot('pk_test_uEMw3BrgY65tm3LXQNVfWfUq')
   ],
   declarations: [CompositeComponent, 
     ProductComponent, 

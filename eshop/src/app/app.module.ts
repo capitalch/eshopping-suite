@@ -8,7 +8,6 @@ import { routes } from './app.routes';
 import { AppService } from './service/app.service';
 import { BrokerService } from './service/broker.service';
 
-
 @NgModule({
   declarations: [
     AppComponent

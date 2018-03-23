@@ -9,42 +9,96 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
   styleUrls: ['./html5-form.component.scss']
 })
 export class Html5FormComponent implements OnInit {
-  myForm: FormGroup;
-  myFormArray: FormArray;
-  constructor(private fb: FormBuilder) {
-
+  private _form: FormGroup;
+  title:string;
+  
+  constructor(
+    private _fb: FormBuilder
+    ) {
+    this.title = 'Deep Nested Fields in Nested Array (Model Driven)! '
   }
-
-
-  onSubmit() {
-
-  }
-
   ngOnInit() {
-    this.myFormArray = this.fb.array([
-      { address: ['12'] }
-    ]);
-    this.myForm = this.fb.group({
-      firstName: ['', Validators.required]
-      , lastName:['last']
-      , homeAddressGroup:this.fb.group(
-        {
-          address1:['address1']
-          , address2:['address2']
-        }
-      )
-      , intrests:this.fb.array([
-        {
-          tag1:["tag1"]
-        }
+    this._form = this._fb.group({
+      'teacher': ['', Validators.required],
+      'schools': this._fb.array([
+          this._fb.group({
+            'school_name': ['', Validators.required],
+            'school_description': [''],
+            'events': this._fb.array([
+              this._fb.group({
+                'event_name': ['']
+              })
+            ])
+          })
       ])
     });
-
+  }
+  onSubmit() {
+    console.log(this._form.value)
+  }
+  initSchool() {
+    return this._fb.group({
+        'school_name': ['', Validators.required],
+        'school_description': [''],
+        'events': this._fb.array([
+          this._fb.group({
+            'event_name': ['', Validators.required]
+          })
+        ])
+    });
   }
 
-  submit(f) {
-    console.log(f.valid);
-    console.log(f.value);
+  addSchool() {
+    const control = <FormArray>this._form.controls['schools'];
+    control.push(this.initSchool());
   }
+  removeSchool(i: number) {
+    const control = <FormArray>this._form.controls['schools'];
+    control.removeAt(i);
+  }
+
+  initEvents() {
+    return this._fb.group({
+      'event_name': ['', Validators.required]
+    });
+  }
+
+  addEvent(i: number) {
+    const control = (<FormArray>this._form.controls['schools']).at(i).get('events') as FormArray;
+    control.push(this.initEvents());
+  }
+
+  removeEvent(i: number) {
+    const control = (<FormArray>this._form.controls['schools']).at(i).get('events') as FormArray;
+    control.removeAt(i);
+  }
+  // myForm: FormGroup;
+  // myFormArray: FormArray;
+  // constructor(private fb: FormBuilder) {
+
+  // }
+
+
+  // onSubmit() {
+
+  // }
+
+  // ngOnInit() {
+  //   this.myForm = this.fb.group({
+  //     firstName: ['', Validators.required]
+  //     , lastName: ['last']
+  //     , users: this.fb.array([
+  //       new FormControl('Mahesh'),
+  //       new FormControl('Krishna'),
+  //       new FormControl()
+  //     ])
+  //   });
+
+  // }
+
+  // submit(f) {
+  //   console.log(f.valid);
+  //   console.log(f.value);
+  // }
 
 }

@@ -36,6 +36,15 @@ export class JsonFormComponent implements OnInit {
         });
         this.subs ? this.subs.add(sub) : (this.subs = sub);
       }
+      else if (x.type == "group") {
+        let childControls = {};
+        x.controls && x.controls.forEach(c => {
+          let allValidators = this.getValidators(c);
+          childControls[c.id] = [c.value, allValidators.validators];
+        });
+
+        formControls[x.id] = this.fb.group(childControls);
+      }
       else {
         let allValidators = this.getValidators(x);
         formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
@@ -61,7 +70,7 @@ export class JsonFormComponent implements OnInit {
     };
 
     layout.validation && Object.keys(layout.validation).map(x => {
-      
+
       switch (x) {
         case 'required':
           allValidators.validators.push(Validators.required);
@@ -86,7 +95,7 @@ export class JsonFormComponent implements OnInit {
           } else {
             allValidators.validators.push(this.jsonFormService.executeCustomValidation(validatorName, arg));
           }
-        }
+      }
     });
     return (allValidators);
   }

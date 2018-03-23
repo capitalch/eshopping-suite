@@ -35,12 +35,8 @@ router.post('/test', (req, res, next) => {
 
 router.post('/email', (req, res, next) => {
     try {
-        // res.json({
-        //     "statusCode": 400,
-        //     "error": "Bad Request",
-        //     "message": "Email address already registerd"
-        // });
-        res.json({email1:true});
+        // res.json({email1:true});
+        res.json(null);
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);

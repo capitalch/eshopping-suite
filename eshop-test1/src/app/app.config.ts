@@ -1,7 +1,3 @@
-// let func = (control: FormControl) => {
-//     return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-//   };
-//   return (func);
 let form1 = [
     {
         type: "text"
@@ -9,7 +5,7 @@ let form1 = [
         , label: "First name"
         , placeholder: "First name"
         , value: ""
-
+        , class:{label:"redClass"}
         , validation: {
             required: { message: '$ is required' },
             minlength: { value: 3, message: 'Minimum length for $ is 3' },
@@ -19,6 +15,60 @@ let form1 = [
                 , arg: 'test'
             }
         }
+    }
+    , 
+    {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "password"
+                , id: "password"
+                , label: "Password"
+                , placeholder: "password"
+                , value: ""
+                , validation: {
+                    required: { message: '$ is a required field' }
+                }
+            }
+            , {
+                type: "text"
+                , id: "confirmPassword"
+                , label: "Confirm password"
+                , placeholder: "Confirm password"
+                , value: ""
+            }
+            // , {
+            //     type: "checkboxGroup"
+            //     , label: "Food1"
+            //     , id: "food2"
+            //     , validation: {
+            //         required: { message: '$ is required' }
+            //     }
+            //     , options: [
+            //         { label: "Main course", value: false, id: "main1" }
+            //         , { label: "Desert", value: true, id: "desert1" }
+            //         , { label: "beverages", value: false, id: "beverages1" }
+            //     ]
+            // }
+            , {
+                type: "checkbox"
+                , id: "agreed1"
+                , label: "Agreed"
+                , value: false
+            }
+            , {
+                type: "radio"
+                , label: "Gender"
+                , value: "M"
+                , id: "gender123"
+                , options: [
+                    { label: "Male", value: "M", id: "male1" }
+                    , { label: "Female", value: "F", id: "female1" }
+                ]
+            }
+        ]
     }
     , {
         type: "text"
@@ -32,7 +82,7 @@ let form1 = [
             maxlength: { value: 10, message: 'Maximum length for $ is 10' }
         }
     }
-    ,{
+    , {
         type: "text"
         , id: "email1"
         , label: "email1"
@@ -41,9 +91,10 @@ let form1 = [
         , validation: {
             required: { message: '$ is required' },
             email1: {
-                url: "http://localhost:3002/email"
-                , message: "Your email is invalid"
-                , arg: 'test'
+                message: "Your email is invalid"
+                , arg: {
+                    url: "http://localhost:3002/email"
+                }
                 , async: true
             },
             email2: {
@@ -52,7 +103,7 @@ let form1 = [
             }
         }
     }
-    ,{
+    , {
         type: "textarea"
         , id: "address"
         , label: "Address"
@@ -64,7 +115,7 @@ let form1 = [
             maxlength: { value: 200, message: 'Maximum length for $ is 200' }
         }
     }
-    ,{
+    , {
         type: "date"
         , id: "date"
         , label: "Date"
@@ -74,7 +125,7 @@ let form1 = [
             required: { message: '$ is required' }
         }
     }
-    ,{
+    , {
         type: "checkbox"
         , id: "agreed"
         , label: "Agreed"
@@ -90,19 +141,19 @@ let form1 = [
             , { label: "Female", value: "F", id: "female" }
         ]
     }
-    , {
-        type: "checkboxGroup"
-        , label: "Food1"
-        , id: "food1"
-        , validation: {
-            required: { message: '$ is required' }
-        }
-        , options: [
-            { label: "Main course", value: false, id: "main1" }
-            , { label: "Desert", value: true, id: "desert1" }
-            , { label: "beverages", value: false, id: "beverages1" }
-        ]
-    }
+    // , {
+    //     type: "checkboxGroup"
+    //     , label: "Food1"
+    //     , id: "food1"
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    //     , options: [
+    //         { label: "Main course", value: false, id: "main1" }
+    //         , { label: "Desert", value: true, id: "desert1" }
+    //         , { label: "beverages", value: false, id: "beverages1" }
+    //     ]
+    // }
     , {
         type: "select"
         , label: "Country"
@@ -120,7 +171,7 @@ let form1 = [
             }
         }
     }
-    ,{
+    , {
         type: "checkboxGroup"
         , label: "Food"
         , id: "food"
@@ -140,12 +191,12 @@ let form1 = [
         , class: { group: 'submit-right', element: 'btn btn-primary' }
         , actionName: 'submitForm'
     }
-    // ,{
-    //     type: 'button'
-    //     , label: "Reset"
-    //     , id: 'resetForm1'
-    //     , class: { group: 'submit-right', element: 'btn btn-primary' }
-    //     , actionName: 'resetForm'
-    // }
+    ,{
+        type: 'button'
+        , label: "Reset"
+        , id: 'resetForm1'
+        , class: { group: 'submit-right', element: 'btn btn-primary' }
+        , actionName: 'resetForm'
+    }
 ];
 export { form1 };

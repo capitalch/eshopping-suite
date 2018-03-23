@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class JsonFormService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
@@ -19,27 +20,27 @@ export class JsonFormService {
       }
       return (func);
     },
-    email2:()=>{
-      let func = (control)=>{
+    email2: () => {
+      let func = (control) => {
         let val = control.value;
-        if(val.indexOf('@') == -1){
-          return({email2:true});
-        } else{
-          return(null);
+        if (val.indexOf('@') == -1) {
+          return ({ email2: true });
+        } else {
+          return (null);
         }
       };
-      return(func);
+      return (func);
     },
-    email1: () => {
+    email1: (arg) => {
       let func = (control) => {
-        let obs = this.http.post("http://localhost:3002/email", "test")
-          .map(res => res.json());
-        // let obs1 = Observable.of({email1:true});
+        // const headers = new HttpHeaders().set('content-type', 'application/json');
+        let body = { value: control.value };
+        let obs = this.http.post(arg.url, body);        
         return (obs);
       };
       return (func);
     }
-    
+
   }
 
   actions = {

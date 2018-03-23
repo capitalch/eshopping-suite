@@ -8,25 +8,31 @@
 5. Payment gateway
 6. 
 7.
+
+// for formgroup
+https://www.concretepage.com/angular-2/angular-2-formgroup-example
 https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 ------------------------------------------------------------------------------------
 //form template
-1. Organize
-        2. custom scss
-3. Material / Bootstrap
-            4. Buttons: clickable, reset, submit
-5. Custom Template of controls
-6. Adding controls on the fly in an array on click of plus or minus buttons
-7. Custom events
-8. Grouping with fieldset and legend
-            9. textarea
-10. async validation
-11. file upload
-            12. Provide json and functions as parameters
-13. Work upon the looks. Select between material and bootstrap
-14. Populate drop down from url
-15. Button group
-16. Required symbol
+
+1. Provide seamless class/ css structure      
+            2. Buttons: clickable, reset, submit
+2.5. Checkboxgroup simplify and provide in group
+3. Custom Template of controls
+4. Adding controls on the fly in an array on click of plus or minus buttons
+
+            5. Grouping with fieldset and legend
+            6. textarea
+            7. async validation
+8. file upload
+            9. Provide json and functions as parameters
+
+10. Populate drop down from url
+11. Button group
+12. Required symbol
+            13. Provide group / formgroup
+
+
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------
 //Good url for search implementation client side in angular 2

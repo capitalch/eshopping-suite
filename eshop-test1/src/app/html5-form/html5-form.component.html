@@ -1,3 +1,20 @@
+<div>
+  <button (click)="addTag()">Add tag</button>
+  <div>
+    <form [formGroup] = "myForm" novalidate>
+        <div formArrayName="tagsArray">
+          <div *ngFor = "let tag of myForm.get('tagsArray').controls; let j=index">
+            <div formGroupName="{{j}}">
+                <input type="text" placeholder="tag name" formControlName="tagName">
+                <input type="text" placeholder="tag value" formControlName="tagValue">
+                <button (click) = "removeTag(j)">Remove</button>
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
 <div class="container">
   <div class="col-md-8 col-xs-12">
     <form [formGroup]="_form" novalidate (ngSubmit)="onSubmit()">
@@ -11,7 +28,8 @@
               <div class="form-group">
                 <label class="form-control-label">Teacher Name:</label>
                 <input type="text" class="form-control" placeholder="Teacher" formControlName="teacher" />
-                <small [hidden]="_form.controls.teacher.valid" class="text-danger">
+                <!-- <small [hidden]="_form.controls.teacher.valid" class="text-danger"> -->
+                    <small [hidden]="_form.get('teacher').valid" class="text-danger">
                   Teacher Name is required!
                 </small>
               </div>
@@ -21,8 +39,8 @@
       </div>
       <div class="row">
         <div class="col-xs-12" formArrayName="schools">
-          <div *ngFor="let school of _form.controls['schools'].controls; let i=index">
-              <!-- <div *ngFor="let school of _form.get('schools').controls; let i=index"> -->
+          <!-- <div *ngFor="let school of _form.controls['schools'].controls; let i=index"> -->
+              <div *ngFor="let school of _form.get('schools').controls; let i=index">
             <div class="card">
               <div class="card-header text-primary">
                 <span style="font-weight: 500;">{{i + 1}} -</span>
@@ -35,7 +53,8 @@
                 <div class="form-group">
                   <label class="form-control-label">School Name</label>
                   <input type="text" class="form-control" placeholder="School Name" formControlName="school_name" />
-                  <small [hidden]="_form.controls.schools.controls[i].controls.school_name.valid" class="text-danger">
+                  <small [hidden]="_form.get('schools').controls[i].get('school_name').valid" class="text-danger">
+                      <!-- <small [hidden]="_form.controls.schools.controls[i].controls.school_name.valid" class="text-danger"> -->
                     School Name is required!
                   </small>
                 </div>

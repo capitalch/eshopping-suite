@@ -10,41 +10,71 @@ import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractCon
 })
 export class Html5FormComponent implements OnInit {
   private _form: FormGroup;
-  title:string;
-  
+  private myForm: FormGroup;
+  title: string;
+
   constructor(
     private _fb: FormBuilder
-    ) {
+    , private fb: FormBuilder
+  ) {
     this.title = 'Deep Nested Fields in Nested Array (Model Driven)! '
   }
   ngOnInit() {
+    this.myForm = this.fb.group({
+      tagsArray: this.fb.array([
+        this.fb.group(
+          {
+            tagName: ['', Validators.required]
+            , tagValue: ['', Validators.required]
+          }
+        )
+      ])
+    });
+
+
     this._form = this._fb.group({
       'teacher': ['', Validators.required],
       'schools': this._fb.array([
-          this._fb.group({
-            'school_name': ['', Validators.required],
-            'school_description': [''],
-            'events': this._fb.array([
-              this._fb.group({
-                'event_name': ['']
-              })
-            ])
-          })
+        this._fb.group({
+          'school_name': ['', Validators.required],
+          'school_description': [''],
+          'events': this._fb.array([
+            this._fb.group({
+              'event_name': ['']
+            })
+          ])
+        })
       ])
     });
   }
+
+  addTag() {
+    const newTag = this._fb.group({
+      'tagName': ['', Validators.required],
+      'tagValue': ['', Validators.required]
+    });
+    const tagsArray = <FormArray>this.myForm.get('tagsArray');
+    tagsArray.push(newTag);
+  }
+
+  removeTag(j) {
+    const tagsArray = <FormArray>this.myForm.get('tagsArray');
+    tagsArray.removeAt(j);
+  }
+
+
   onSubmit() {
     console.log(this._form.value)
   }
   initSchool() {
     return this._fb.group({
-        'school_name': ['', Validators.required],
-        'school_description': [''],
-        'events': this._fb.array([
-          this._fb.group({
-            'event_name': ['', Validators.required]
-          })
-        ])
+      'school_name': ['', Validators.required],
+      'school_description': [''],
+      'events': this._fb.array([
+        this._fb.group({
+          'event_name': ['', Validators.required]
+        })
+      ])
     });
   }
 

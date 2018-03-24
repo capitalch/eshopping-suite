@@ -36,6 +36,28 @@ export class JsonFormComponent implements OnInit {
         });
         this.subs ? this.subs.add(sub) : (this.subs = sub);
       }
+      else if (x.type == 'groupArray') {
+        formControls[x.id] =this.fb.array([
+          this.fb.group(
+            {
+              tagName: ['', Validators.required]
+              , tagValue: ['', Validators.required]
+            }
+          )
+        ])
+
+        // let obj = {
+        //   tagsArray:this.fb.array([
+        //     this.fb.group(
+        //       {
+        //         tagName: ['', Validators.required]
+        //         , tagValue: ['', Validators.required]
+        //       }
+        //     )
+        //   ])
+        // };
+        // formControls[x.id] = obj;
+      }
       else if (x.type == "group") {
         let childControls = {};
         x.controls && x.controls.forEach(c => {
@@ -61,6 +83,10 @@ export class JsonFormComponent implements OnInit {
     });
     (!isValid) && (ret = { required: true });
     return (ret);
+  }
+
+  removeTag(){
+
   }
 
   getValidators(layout) {

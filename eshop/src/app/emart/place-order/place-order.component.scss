@@ -1,5 +1,6 @@
 .payment-mode
 {
+    width:96%;
     font-size: 1.5em;
     line-height: 60px;
     padding-left: 5px;
@@ -18,108 +19,187 @@
     margin: 0px 6px 0px 6px;
 }
 
-.address-content
+.container
 {
-    .mat-form-field-underline 
+    width:100%;
+    .left-container
     {
-        background: black;
-    }
-    margin-top: 10px;
-    margin-right: 30px;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    .new-address
-    {
-        width:68%;
+        width:65%;
         float:left;
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-        .new-address-radio
+        margin-right: 10px;
+        .address-content
         {
-            margin: 10px;
+            margin-top: 10px;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+            .mat-form-field-underline 
+            {
+                background: black;
+            }
+            .new-address
+            {
+                width:100%;
+                float:left;
+                box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+                .new-address-radio
+                {
+                    margin: 10px;
+                }
+                .new-address-label
+                {
+                    font-size:1.5em;
+                }
+                .new-address-details
+                {
+                    margin: 10px;
+                    .full-name
+                    {
+                        width:60%;
+                    }
+                    .phone
+                    {
+                        margin-left: 5%;
+                        width: 34%;
+                    }
+                    .pin-code
+                    {
+                        width:30%
+                    }
+                    .locality
+                    {
+                        margin-left: 5%;
+                        width:30%;
+                    }
+                    .city-district-town
+                    {
+                        margin-left: 4%;
+                        width:30%;
+                    }
+                    .address
+                    {
+                        width:100%;
+                    }
+                    .landmark
+                    {
+                        width:30%;
+                    }
+                    .alternate-phone
+                    {
+                        margin-left: 5%;
+                        width:30%;
+                    }
+                    .preferable-time
+                    {
+                        margin-left: 4%;
+                        width:30%;
+                    }
+                }
+            }
         }
-        .new-address-label
+        .cash-on-delivery-content
         {
+            margin-top:10px;
+            width:100%;
+            float:left;
             font-size:1.5em;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
         }
-        .new-address-details
+        .card-payment-content
         {
-            margin: 10px;
-            .full-name
+            margin-top:10px;
+            width:100%;
+            float:left;
+            font-size:1.5em;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+            .card-payment-header
             {
-                width:60%;
+                font-size: .9em;
+                margin-left: 10px;
             }
-            .phone
+            .StripeElement 
             {
-                margin-left: 5%;
-                width: 34%;
+                margin-top: 17px;
+                margin-bottom: 10px;
+                background-color: white;
+                padding: 9px 12px;
+                border-radius: 4px;
+                border: 1px solid transparent;
+                box-shadow: 0 1px 3px 0 black;
+                transition: box-shadow 150ms ease;
+                width: 90%;
+                float: left;
+                margin-left: 2%;
+                font-size: 1.1em;
             }
-            .pin-code
-            {
-                width:30%
+              
+            .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
             }
-            .locality
-            {
-                margin-left: 5%;
-                width:30%;
+            
+            .StripeElement--invalid {
+            border-color: #fa755a;
             }
-            .city-district-town
-            {
-                margin-left: 4%;
-                width:30%;
+            
+            .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
             }
-            .address
+        
+            .card-entry
             {
                 width:100%;
             }
-            .landmark
+            .name-entry
             {
-                width:30%;
+                width:100%;
             }
-            .alternate-phone
+        
+            .submit-button
             {
-                margin-left: 5%;
-                width:30%;
+            margin-top: .5%;
+            float: right;
+            margin-right: 4%;
+            margin-bottom: .5%;
             }
-            .preferable-time
-            {
-                margin-left: 4%;
-                width:30%;
-            }
-        }
+        }  
     }
-    .existing-address
+    .right-container
     {
-        width:31%;
-        float:right;
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-        .address
+        width: 31%;
+        float: left;
+        margin-top: 10px;
+        .total-payable
         {
-            margin: 10px;
-            .address-radio
-            {
-                margin-right:20px;
-            }
-            .address-radio-label
-            {
-                font-size:1.5em;
-            }
-            .existing-address-details
-            {
-                margin-left: 44px;
-                margin-top: 10px;
-            }
+            width:100%;
+            font-size:1.5em;
+            text-align: center;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
         }
-        .first
+        .existing-address
         {
-            margin-bottom: 20px;
+            width:100%;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+            .address
+            {
+                margin: 10px;
+                .address-radio
+                {
+                    margin-right:20px;
+                }
+                .address-radio-label
+                {
+                    font-size:1.5em;
+                }
+                .existing-address-details
+                {
+                    margin-left: 44px;
+                    margin-top: 10px;
+                }
+            }
+            .first
+            {
+                margin-bottom: 20px;
+            }
         }
     }
 }
 
-.payment-content
-{
-    margin-top:10px;
-    width:66.1%;
-    float:left;
-    font-size:1.5em;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-}
+ 

@@ -4,78 +4,11 @@
     <input id="CardPayment" class="payment-radio" type="radio" [(ngModel)]="prop" name="prop" value="CardPayment">
     <label for="CardPayment">Credit/Debit Card</label>
 </div>
-<div class="cash-on-delivery-content" *ngIf="prop === 'CashOnDelivery'">
-    <div class="address-content">
-        <div class="new-address">
-            <input id="NewAddress" name="address" type="radio" class="new-address-radio" checked="checked">
-            <label class="new-address-label" for="NewAddress">Deliver to this address</label>
-            <div class="new-address-details">
-                <mat-form-field class="full-name">
-                    <input matInput placeholder="Full Name">
-                </mat-form-field>
-                <mat-form-field class="phone">
-                    <input matInput placeholder="Phone">
-                </mat-form-field>
-                <mat-form-field class="pin-code">
-                    <input matInput placeholder="Pin Code">
-                </mat-form-field>
-                <mat-form-field class="locality">
-                    <input matInput placeholder="Locality">
-                </mat-form-field>
-                <mat-form-field class="city-district-town">
-                    <input matInput placeholder="City/District/Town">
-                </mat-form-field>
-                <mat-form-field class="address">
-                    <textarea matInput placeholder="Address (Area & Street)"></textarea>
-                </mat-form-field>
-                <mat-form-field class="landmark">
-                    <input matInput placeholder="Landmark">
-                </mat-form-field>
-                <mat-form-field class="alternate-phone">
-                    <input matInput placeholder="Alternate Phone">
-                </mat-form-field>
-                <mat-form-field class="preferable-time">
-                    <input matInput placeholder="Preferable Time">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="existing-address"> 
-            <div class="address first">
-                <input id="Home" name="address" type="radio" class="address-radio">
-                <label for="Home" class="address-radio-label">HOME</label>
-                <div class="existing-address-details">
-                    <span>Locality</span>
-                    <br />
-                    <span>Address</span>
-                    <br />
-                    <span>City, Pin Code</span>
-                    <br />
-                    <span>Phone</span>
-                </div>
-            </div>
-            <div class="address">
-                <input id="Work" name="address" type="radio" class="address-radio">
-                <label for="Work" class="address-radio-label">WORK</label>
-                <div class="existing-address-details">
-                    <span>Locality</span>
-                    <br />
-                    <span>Address</span>
-                    <br />
-                    <span>City, Pin Code</span>
-                    <br />
-                    <span>Phone</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="payment-content">
-        Cash on Delivery Payment Details
-    </div>
-</div>
-<div class="card-payment-content" *ngIf="prop === 'CardPayment'">
-    <div class="address-content">
-        <div class="new-address">
-                <input id="NewAddress" type="radio" class="new-address-radio" checked="checked">
+<div class="container">
+    <div class="left-container">
+        <div class="address-content">
+            <div class="new-address">
+                <input id="NewAddress" name="address" type="radio" class="new-address-radio" checked="checked">
                 <label class="new-address-label" for="NewAddress">Deliver to this address</label>
                 <div class="new-address-details">
                     <mat-form-field class="full-name">
@@ -106,10 +39,34 @@
                         <input matInput placeholder="Preferable Time">
                     </mat-form-field>
                 </div>
+            </div>
+        </div>
+        <div class="cash-on-delivery-content" *ngIf="prop === 'CashOnDelivery'">
+            Cash on Delivery Payment Details
+        </div>
+        <div class="card-payment-content" *ngIf="prop === 'CardPayment'">
+            <span class="card-payment-header">Card Details</span>
+            <form novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest">
+                <div class="card-entry">
+                    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" ></ngx-stripe-card>
+                </div>
+                <div class="name-entry">
+                    <input class= "StripeElement" type="text" formControlName="name" placeholder="Full Name">
+                </div>
+                <button mat-button type="submit" class="submit-button">
+                    <i class="fa fa-credit-card fa-x" aria-hidden="true"></i>
+                    <span class="button-text">Buy</span>
+                </button>
+            </form>   
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="total-payable">
+            Total - Value
         </div>
         <div class="existing-address"> 
             <div class="address first">
-                <input id="Home" type="radio" class="address-radio">
+                <input id="Home" name="address" type="radio" class="address-radio">
                 <label for="Home" class="address-radio-label">HOME</label>
                 <div class="existing-address-details">
                     <span>Locality</span>
@@ -122,7 +79,7 @@
                 </div>
             </div>
             <div class="address">
-                <input id="Work" type="radio" class="address-radio">
+                <input id="Work" name="address" type="radio" class="address-radio">
                 <label for="Work" class="address-radio-label">WORK</label>
                 <div class="existing-address-details">
                     <span>Locality</span>
@@ -135,8 +92,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="payment-content">
-        Card Payment Details   
     </div>
 </div>

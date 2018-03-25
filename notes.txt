@@ -31,7 +31,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 11. Button group
 12. Required symbol
             13. Provide group / formgroup
-
+14. 
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

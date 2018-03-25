@@ -10,6 +10,7 @@ export class GroupChildComponent implements OnInit {
   @Input() layout:any;
   @Input() fb:FormBuilder;
   @Input() myForm:any;
+  @Input() idx:string;
   constructor() { }
 
   ngOnInit() {

@@ -20,7 +20,7 @@ export class Html5FormComponent implements OnInit {
     this.title = 'Deep Nested Fields in Nested Array (Model Driven)! '
   }
   ngOnInit() {
-    this.myForm = this.fb.group({
+    let obj = {
       tagsArray: this.fb.array([
         this.fb.group(
           {
@@ -29,7 +29,8 @@ export class Html5FormComponent implements OnInit {
           }
         )
       ])
-    });
+    };
+    this.myForm = this.fb.group(obj);
 
 
     this._form = this._fb.group({

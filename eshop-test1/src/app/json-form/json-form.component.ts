@@ -13,6 +13,7 @@ export class JsonFormComponent implements OnInit {
   myForm: FormGroup;
   errorMessages: any[] = [];
   ee: EventEmitter<any>;
+  obj: any;
   subs;
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
@@ -37,26 +38,14 @@ export class JsonFormComponent implements OnInit {
         this.subs ? this.subs.add(sub) : (this.subs = sub);
       }
       else if (x.type == 'groupArray') {
-        formControls[x.id] =this.fb.array([
+        formControls['tags'] = this.fb.array([
           this.fb.group(
             {
               tagName: ['', Validators.required]
-              , tagValue: ['', Validators.required]
+              // , tagValue: ['', Validators.required]
             }
           )
         ])
-
-        // let obj = {
-        //   tagsArray:this.fb.array([
-        //     this.fb.group(
-        //       {
-        //         tagName: ['', Validators.required]
-        //         , tagValue: ['', Validators.required]
-        //       }
-        //     )
-        //   ])
-        // };
-        // formControls[x.id] = obj;
       }
       else if (x.type == "group") {
         let childControls = {};
@@ -73,6 +62,20 @@ export class JsonFormComponent implements OnInit {
       }
     });
     this.myForm = this.fb.group(formControls);
+
+
+    // let obj = {
+    //   tags: this.fb.array([
+    //     this.fb.group(
+    //       {
+    //         tagName: ['', Validators.required]
+    //         , tagValue: ['', Validators.required]
+    //       }
+    //     )
+    //   ])
+    // };
+    // this.myForm = this.fb.group(obj);
+
     this.ee.emit('checkboxGroup');
   }
 
@@ -85,8 +88,19 @@ export class JsonFormComponent implements OnInit {
     return (ret);
   }
 
-  removeTag(){
-
+  addTag() {
+    let obj = this.fb.group(
+      {
+        tagName: ['', Validators.required]
+        , tagValue: ['', Validators.required]
+      }
+    )
+    let tags = <FormArray>this.myForm.get("tags");
+    tags.push(obj);
+  }
+  removeTag(j) {
+    let tags = <FormArray>this.myForm.get("tags");
+    tags.removeAt(j);
   }
 
   getValidators(layout) {

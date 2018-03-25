@@ -1,29 +1,39 @@
 let form1 = [
-    // {
-    //     type: "text"
-    //     , id: "firstName"
-    //     , label: "First name"
-    //     , placeholder: "First name"
-    //     , value: ""
-    //     , class:{label:"redClass"}
-    //     , validation: {
-    //         required: { message: '$ is required' },
-    //         minlength: { value: 3, message: 'Minimum length for $ is 3' },
-    //         maxlength: { value: 10, message: 'Maximum length for $ is 10' },
-    //         myValidate: {
-    //             message: 'My validation fails'
-    //             , arg: 'test'
-    //         }
-    //     }
-    // }
-    // ,
     {
-        type:"groupArray"
-        , label:"Tags"
+        type: "text"
+        , id: "firstName"
+        , label: "First name"
+        , placeholder: "First name"
+        , value: ""
+        , class:{label:"redClass"}
+        , validation: {
+            required: { message: '$ is required' },
+            minlength: { value: 3, message: 'Minimum length for $ is 3' },
+            maxlength: { value: 10, message: 'Maximum length for $ is 10' },
+            myValidate: {
+                message: 'My validation fails'
+                , arg: 'test'
+            }
+        }
+    }
+    ,
+    {
+        type: "groupArray"
+        , label: "Tags"
         , id: "tags"
-        , controls:[
-
-        ]
+        , group: {
+            label: "Tag"
+            , id: "tag"
+            , controls: [
+                {
+                    type: "text"
+                    , id:"tagName"
+                    , label:"Tag name"
+                    , placeholder:"Tag name"
+                    , value: ""
+                }
+            ]
+        }
     }
 
     // , {
@@ -180,13 +190,13 @@ let form1 = [
     //         , { label: "beverages", value: false, id: "beverages" }
     //     ]
     // }
-    // , {
-    //     type: 'submit'
-    //     , label: 'Submit'
-    //     , id: 'submitForm1'
-    //     , class: { group: 'submit-right', element: 'btn btn-primary' }
-    //     , actionName: 'submitForm'
-    // }
+    , {
+        type: 'submit'
+        , label: 'Submit'
+        , id: 'submitForm1'
+        , class: { group: 'submit-right', element: 'btn btn-primary' }
+        , actionName: 'submitForm'
+    }
     // ,{
     //     type: 'button'
     //     , label: "Reset"

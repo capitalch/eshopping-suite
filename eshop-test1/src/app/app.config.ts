@@ -5,7 +5,7 @@ let form1 = [
         , label: "First name"
         , placeholder: "First name"
         , value: ""
-        , class:{label:"redClass"}
+        , class: { label: "redClass" }
         , validation: {
             required: { message: '$ is required' },
             minlength: { value: 3, message: 'Minimum length for $ is 3' },
@@ -27,11 +27,35 @@ let form1 = [
             , controls: [
                 {
                     type: "text"
-                    , id:"tagName"
-                    , label:"Tag name"
-                    , placeholder:"Tag name"
+                    , id: "tagName"
+                    , label: "Tag name"
+                    , placeholder: "Tag name"
                     , value: ""
+                    , validation: {
+                        required: { message: '$ is a required field' }
+                        , myValidate: {
+                            message: 'My validation for $ fails'
+                            , arg: 'sus'
+                        }
+                    }
+
                 }
+                , {
+                    type: "text"
+                    , id: "tagValue"
+                    , label: "Tag value"
+                    , placeholder: "Tag value"
+                    , value: ""
+                    , validation: {
+                        required: { message: '$ is a required field' }
+                    }
+                }
+                // , {
+                //     type: "checkbox"
+                //     , id: "agreed"
+                //     , label: "Agreed"
+                //     , value: false
+                // }
             ]
         }
     }

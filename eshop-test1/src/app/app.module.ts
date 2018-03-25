@@ -17,6 +17,7 @@ import { JsonFormService } from './json-form/json-form.service';
 import { UserService } from './html5-form/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GroupChildComponent } from './group-child/group-child.component';
+import { GroupArrayComponent } from './group-array/group-array.component';
 
 
 
@@ -30,7 +31,8 @@ import { GroupChildComponent } from './group-child/group-child.component';
     MatDirective,
     MatButtonComponent,
     ErrorMessageComponent,
-    GroupChildComponent
+    GroupChildComponent,
+    GroupArrayComponent
   ],
   imports: [
     BrowserModule

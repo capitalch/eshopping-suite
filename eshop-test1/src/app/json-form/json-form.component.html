@@ -64,17 +64,8 @@
         </li>
 
         <li *ngSwitchCase="'groupArray'">
-          <button (click) =  "addTag()">Add</button>
-          <div [formArrayName]="layout.id">
-            <div *ngFor="let group of myForm.get(layout.id).controls;let j= index">
-              <group-child [layout]= "layout.group" [fb]="fb" [myForm] = "myForm" [idx]="j"></group-child>
-              <!-- <div formGroupName="{{j}}">
-                <input type="text" placeholder="Tag Name" formControlName="tagName">
-                <input type="text" placeholder="Tag Value" formControlName="tagValue">
-                <button (click)="removeTag(j)">Remove</button>
-              </div> -->
-            </div>
-          </div>
+          <button (click)="addGroupInArray(layout)">Add</button>
+          <group-array [myForm]="myForm" [fb]="fb" [layout]="layout"></group-array>
         </li>
 
         <li *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

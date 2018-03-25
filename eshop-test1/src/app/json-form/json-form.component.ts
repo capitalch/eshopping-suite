@@ -38,20 +38,20 @@ export class JsonFormComponent implements OnInit {
         this.subs ? this.subs.add(sub) : (this.subs = sub);
       }
       else if (x.type == 'groupArray') {
-        formControls['tags'] = this.fb.array([
-          this.fb.group(
-            {
-              tagName: ['', Validators.required]
-              // , tagValue: ['', Validators.required]
-            }
-          )
-        ])
+        let childControls = {};
+        x.group.controls && x.group.controls.forEach(c => {
+          let allValidators = this.getValidators(c);
+          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+        });
+        formControls[x.id] = <FormArray>this.fb.array([
+          this.fb.group(childControls)
+        ]);
       }
       else if (x.type == "group") {
         let childControls = {};
         x.controls && x.controls.forEach(c => {
           let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators];
+          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
         });
 
         formControls[x.id] = this.fb.group(childControls);
@@ -62,19 +62,6 @@ export class JsonFormComponent implements OnInit {
       }
     });
     this.myForm = this.fb.group(formControls);
-
-
-    // let obj = {
-    //   tags: this.fb.array([
-    //     this.fb.group(
-    //       {
-    //         tagName: ['', Validators.required]
-    //         , tagValue: ['', Validators.required]
-    //       }
-    //     )
-    //   ])
-    // };
-    // this.myForm = this.fb.group(obj);
 
     this.ee.emit('checkboxGroup');
   }
@@ -88,15 +75,16 @@ export class JsonFormComponent implements OnInit {
     return (ret);
   }
 
-  addTag() {
-    let obj = this.fb.group(
-      {
-        tagName: ['', Validators.required]
-        , tagValue: ['', Validators.required]
-      }
-    )
-    let tags = <FormArray>this.myForm.get("tags");
-    tags.push(obj);
+  addGroupInArray(layout) {
+
+    let childControls = {};
+        layout.group.controls && layout.group.controls.forEach(c => {
+          let allValidators = this.getValidators(c);
+          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+        });
+        let groupArray = <FormArray>this.myForm.get(layout.id);
+        let group = this.fb.group(childControls);
+        groupArray.push(group);
   }
   removeTag(j) {
     let tags = <FormArray>this.myForm.get("tags");

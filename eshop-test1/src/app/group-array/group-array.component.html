@@ -2,7 +2,8 @@
   <legend>{{layout.label}}</legend>
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of myForm.get(layout.id).controls;let j= index">        
-      <ng-container [formGroupName]="j">
+      <div 
+      style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
         <button (click)="removeGroupFromArray(j)">Remove</button>
         <ng-container *ngFor="let control of layout.group.controls">
           <ng-container [ngSwitch]="control.type">
@@ -58,7 +59,7 @@
 
           </ng-container>
         </ng-container>
-      </ng-container>
+      </div>
     </ng-container>
   </ng-container>
 </fieldset>

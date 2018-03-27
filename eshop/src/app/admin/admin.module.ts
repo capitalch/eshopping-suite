@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CompositeComponent } from './composite/composite.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './admin.routes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forChild(routes)
+    CommonModule, RouterModule.forChild(routes),AngularMaterialModule,FormsModule,ReactiveFormsModule
   ],
-  declarations: [CompositeComponent]
+  declarations: [CompositeComponent, LoginComponent, HeaderComponent, FooterComponent, CategoryComponent]
 })
 export class AdminModule { }

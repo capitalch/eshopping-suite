@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { navUrls, httpMessages, localMessages } from '../emart.config';
 import { AppService } from '../../service/app.service';
@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./header.component.scss']
 })
 
 export class HeaderComponent implements OnInit {

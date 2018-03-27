@@ -1,4 +1,16 @@
-<p>
-  Admin composite works!
-</p>
-<router-outlet></router-outlet>
+<div>
+  <div class="header-container">
+    <app-header></app-header>
+  </div>
+  <div class="body-container">
+    <div class="side-bar-container">
+      <app-category></app-category>
+    </div>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="footer-container">
+    <app-footer></app-footer>
+  </div>
+</div>  

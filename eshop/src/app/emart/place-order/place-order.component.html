@@ -42,7 +42,10 @@
             </div>
         </div>
         <div class="cash-on-delivery-content" *ngIf="prop === 'CashOnDelivery'">
-            Cash on Delivery Payment Details
+            <button mat-button type="submit" class="submit-button">
+                <i class="fa fa-credit-card fa-x" aria-hidden="true"></i>
+                <span class="button-text">Confirm Buy</span>
+            </button>
         </div>
         <div class="card-payment-content" *ngIf="prop === 'CardPayment'">
             <span class="card-payment-header">Card Details</span>

@@ -50,56 +50,94 @@ let form1 = [
                         required: { message: '$ is a required field' }
                     }
                 }
-                // , {
-                //     type: "checkbox"
-                //     , id: "agreed"
-                //     , label: "Agreed"
-                //     , value: false
-                // }
+                , {
+                    type: "checkbox"
+                    , id: "agreed"
+                    , label: "Agreed"
+                    , value: false
+                }
             ]
         }
     }
 
-    // , {
-    //     type: "group"
-    //     , label: "Passwords"
-    //     , id: "pwd"
-    //     , controls: [
-    //         {
-    //             type: "password"
-    //             , id: "password"
-    //             , label: "Password"
-    //             , placeholder: "password"
-    //             , value: ""
-    //             , validation: {
-    //                 required: { message: '$ is a required field' }
-    //             }
-    //         }
-    //         , {
-    //             type: "text"
-    //             , id: "confirmPassword"
-    //             , label: "Confirm password"
-    //             , placeholder: "Confirm password"
-    //             , value: ""
-    //         }
-    //         , {
-    //             type: "checkbox"
-    //             , id: "agreed1"
-    //             , label: "Agreed"
-    //             , value: false
-    //         }
-    //         , {
-    //             type: "radio"
-    //             , label: "Gender"
-    //             , value: "M"
-    //             , id: "gender123"
-    //             , options: [
-    //                 { label: "Male", value: "M", id: "male1" }
-    //                 , { label: "Female", value: "F", id: "female1" }
-    //             ]
-    //         }
-    //     ]
-    // }
+    , 
+    {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "password"
+                , id: "password"
+                , label: "Password"
+                , placeholder: "password"
+                , value: ""
+                , validation: {
+                    required: { message: '$ is a required field' }
+                }
+            }
+            , {
+                type: "text"
+                , id: "confirmPassword"
+                , label: "Confirm password"
+                , placeholder: "Confirm password"
+                , value: ""
+            }
+            , {
+                type: "checkbox"
+                , id: "agreed1"
+                , label: "Agreed"
+                , value: false
+            }
+            , {
+                type: "radio"
+                , label: "Gender"
+                , value: "M"
+                , id: "gender123"
+                , options: [
+                    { label: "Male", value: "M", id: "male1" }
+                    , { label: "Female", value: "F", id: "female1" }
+                ]
+            }
+            // ,
+            // {
+            //     type: "groupArray"
+            //     , label: "Tags"
+            //     , id: "tags"
+            //     , group: {
+            //         label: "Tag"
+            //         , id: "tag"
+            //         , controls: [
+            //             {
+            //                 type: "text"
+            //                 , id: "tagName"
+            //                 , label: "Tag name"
+            //                 , placeholder: "Tag name"
+            //                 , value: ""
+            //                 , validation: {
+            //                     required: { message: '$ is a required field' }
+            //                     , myValidate: {
+            //                         message: 'My validation for $ fails'
+            //                         , arg: 'sus'
+            //                     }
+            //                 }
+
+            //             }
+            //             , {
+            //                 type: "text"
+            //                 , id: "tagValue"
+            //                 , label: "Tag value"
+            //                 , placeholder: "Tag value"
+            //                 , value: ""
+            //                 , validation: {
+            //                     required: { message: '$ is a required field' }
+            //                 }
+            //             }
+            //         ]
+            //     }
+            // }
+        ]
+    }
     // , {
     //     type: "text"
     //     , id: "lastName"
@@ -214,13 +252,13 @@ let form1 = [
     //         , { label: "beverages", value: false, id: "beverages" }
     //     ]
     // }
-    , {
-        type: 'submit'
-        , label: 'Submit'
-        , id: 'submitForm1'
-        , class: { group: 'submit-right', element: 'btn btn-primary' }
-        , actionName: 'submitForm'
-    }
+    // , {
+    //     type: 'submit'
+    //     , label: 'Submit'
+    //     , id: 'submitForm1'
+    //     , class: { group: 'submit-right', element: 'btn btn-primary' }
+    //     , actionName: 'submitForm'
+    // }
     // ,{
     //     type: 'button'
     //     , label: "Reset"

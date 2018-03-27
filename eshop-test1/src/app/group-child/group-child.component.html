@@ -56,9 +56,10 @@
           </fieldset>
         </li>
 
-        <!-- <li *ngSwitchCase="'group'">
-          <group-child [layout]="layout" [fb]="fb" [myForm]="myForm"></group-child>
-        </li> -->
+        <li *ngSwitchCase="'groupArray'">
+          <!-- <button (click)="addGroupInArray(control)">Add</button> -->
+          <group-array [myForm]="myForm" [fb]="fb" [layout]="layout"></group-array>
+        </li>
 
         <li *ngSwitchDefault>
           <label [for]="control.id">{{control.label}}</label>

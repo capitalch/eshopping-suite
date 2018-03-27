@@ -11,6 +11,7 @@ export class JsonFormComponent implements OnInit {
   @Input() layouts: any[] = [];
   @Input() options: any = {};
   myForm: FormGroup;
+  isNested:boolean=false;
   errorMessages: any[] = [];
   ee: EventEmitter<any>;
   obj: any;
@@ -48,13 +49,22 @@ export class JsonFormComponent implements OnInit {
         ]);
       }
       else if (x.type == "group") {
-        let childControls = {};
+        let childCtrls = {};
         x.controls && x.controls.forEach(c => {
           let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
+          if (c.type != 'groupArray') {
+            childCtrls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
+          } else {
+            let childControls1 = {};
+            c.group.controls && c.group.controls.forEach(d => {
+              childControls1[d.id] = [d.value];
+            });
+            let group1 = this.fb.group(childControls1);
+            childCtrls[c.id] = <FormArray>this.fb.array([
+              group1]);
+          }
         });
-
-        formControls[x.id] = this.fb.group(childControls);
+        formControls[x.id] = this.fb.group(childCtrls);
       }
       else {
         let allValidators = this.getValidators(x);
@@ -78,13 +88,13 @@ export class JsonFormComponent implements OnInit {
   addGroupInArray(layout) {
 
     let childControls = {};
-        layout.group.controls && layout.group.controls.forEach(c => {
-          let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
-        });
-        let groupArray = <FormArray>this.myForm.get(layout.id);
-        let group = this.fb.group(childControls);
-        groupArray.push(group);
+    layout.group.controls && layout.group.controls.forEach(c => {
+      let allValidators = this.getValidators(c);
+      childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+    });
+    let groupArray = <FormArray>this.myForm.get(layout.id);
+    let group = this.fb.group(childControls);
+    groupArray.push(group);
   }
   removeTag(j) {
     let tags = <FormArray>this.myForm.get("tags");

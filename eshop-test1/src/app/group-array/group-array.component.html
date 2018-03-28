@@ -1,5 +1,5 @@
 <fieldset [formGroup]="myForm">
-  <legend>{{layout.label}}  <button >Test</button></legend>
+  <legend>{{layout.label}}</legend>
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of myForm.get(layout.id).controls;let j= index">        
     <!-- <ng-container *ngFor="let group of myForm.get(layout.id).get('tags').controls;let j= index"> -->

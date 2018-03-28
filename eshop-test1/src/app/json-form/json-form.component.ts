@@ -11,7 +11,7 @@ export class JsonFormComponent implements OnInit {
   @Input() layouts: any[] = [];
   @Input() options: any = {};
   myForm: FormGroup;
-  isNested:boolean=false;
+  // isNested:boolean=false;
   errorMessages: any[] = [];
   ee: EventEmitter<any>;
   obj: any;

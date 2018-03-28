@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GroupChildComponent } from './group-child/group-child.component';
 import { GroupArrayComponent } from './group-array/group-array.component';
 import { JsonxFormComponent } from './jsonx-form/jsonx-form.component';
+import { GroupxChildComponent } from './groupx-child/groupx-child.component';
+import { GroupxArrayComponent } from './groupx-array/groupx-array.component';
 
 
 
@@ -34,7 +36,9 @@ import { JsonxFormComponent } from './jsonx-form/jsonx-form.component';
     ErrorMessageComponent,
     GroupChildComponent,
     GroupArrayComponent,
-    JsonxFormComponent
+    JsonxFormComponent,
+    GroupxChildComponent,
+    GroupxArrayComponent
   ],
   imports: [
     BrowserModule

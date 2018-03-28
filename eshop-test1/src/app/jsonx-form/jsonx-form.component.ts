@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { JsonFormService } from '../json-form/json-form.service';
 // import { JsonFormService } from './json-form.service';
 
 @Component({
@@ -11,9 +12,18 @@ export class JsonxFormComponent implements OnInit {
   @Input() layouts: any[] = [];
   @Input() options: any = {};
   myForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private formService: JsonFormService) {
+    console.log('constructor form');
+  }
+
+  ngOnChanges() {
+  }
 
   ngOnInit() {
+    this.init();
+  }
+
+  init() {
     let formControls = {};
     this.layouts.forEach(x => {
 
@@ -37,6 +47,9 @@ export class JsonxFormComponent implements OnInit {
       }
     })
     this.myForm = this.fb.group(formControls);
+  }
+
+  ngAfterViewInit() {
   }
 
   addGroupInArray(layout, controlInGroup) {

@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class JsonFormService {
-
-  constructor(private http: HttpClient) { }
+  ee: EventEmitter<any>;
+  Event
+  constructor(private http: HttpClient) { 
+    this.ee = new EventEmitter();
+  }
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
@@ -35,7 +38,7 @@ export class JsonFormService {
       let func = (control) => {
         // const headers = new HttpHeaders().set('content-type', 'application/json');
         let body = { value: control.value };
-        let obs = this.http.post(arg.url, body);        
+        let obs = this.http.post(arg.url, body);
         return (obs);
       };
       return (func);

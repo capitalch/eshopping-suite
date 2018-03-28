@@ -3,7 +3,8 @@
     <ng-container *ngFor="let layout of layouts">
       <ng-container [ngSwitch]="layout.type">
         <li *ngSwitchCase="'group'">
-          <ul [formGroupName]="layout.id">
+          <groupx-child [layout] ="layout" [myForm] ="myForm"></groupx-child>
+          <!-- <ul [formGroupName]="layout.id">
             <ng-container *ngFor="let controlInGroup of layout.controls">
               <ng-container [ngSwitch]="controlInGroup.type">
                 <li *ngSwitchCase="'groupArray'">
@@ -26,16 +27,13 @@
                     </ng-container>
                   </ng-container>
                 </li>
-
                 <li *ngSwitchDefault>
                   <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
-                  <input [type]="controlInGroup.type" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">
-                  <!-- <error-message [layout]="control" [control]="myForm.get(layout.id).get(control.id)"></error-message> -->
-
+                  <input [type]="controlInGroup.type" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">                  
                 </li>
               </ng-container>
             </ng-container>
-          </ul>
+          </ul> -->
         </li>
       </ng-container>
     </ng-container>

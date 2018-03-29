@@ -11,12 +11,9 @@ export class GroupxChildComponent implements OnInit {
 @Input() layout:any;
 @Input() myForm:any;
   constructor(private formService:JsonFormService) { 
-    console.log('constructor group')
   }
 
   ngOnInit() {
-    console.log('init group');
-    // this.formService.ee.emit("load");
   }
 
 }

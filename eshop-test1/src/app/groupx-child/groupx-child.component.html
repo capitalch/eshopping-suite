@@ -4,7 +4,6 @@
     <ng-container *ngFor="let controlInGroup of layout.controls">
       <ng-container [ngSwitch]="controlInGroup.type">
         <li *ngSwitchCase="'groupArray'">
-          <!-- <groupx-array [layout]="layout" [myForm]="myForm" [controlInGroup]= "controlInGroup"></groupx-array> -->
           <button>Add</button>
           <legend>{{controlInGroup.label}}</legend>
           <ng-container [formArrayName]="controlInGroup.id">

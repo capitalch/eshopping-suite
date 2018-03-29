@@ -133,6 +133,12 @@ let form1 = [
                                 required: { message: '$ is a required field' }
                             }
                         }
+                        , {
+                            type: "checkbox"
+                            , id: "agreed1"
+                            , label: "Agreed"
+                            , value: false
+                        }
                     ]
                 }
             }

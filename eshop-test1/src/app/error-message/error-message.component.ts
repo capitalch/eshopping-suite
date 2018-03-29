@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 export class ErrorMessageComponent implements OnInit {
   @Input() layout: any={};
   @Input() control:any;
-  
   constructor() { }
 
   ngOnInit() {

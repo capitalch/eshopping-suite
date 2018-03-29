@@ -65,17 +65,31 @@
                 <button (click)="removeGroupFromArray(layout,controlInGroup,j)">Remove</button>
                 <ng-container *ngFor="let controlInGroupOfArray of controlInGroup.group.controls">
                   <ng-container [ngSwitch]="controlInGroupOfArray.type">
+                    
+                    <li *ngSwitchCase="'radio'">
+                      <fieldset>
+                        <legend>{{controlInGroupOfArray.label}}</legend>
+                        <ng-container *ngFor="let option of controlInGroupOfArray.options">
+                          <input type="radio" [id]="option.id+j" [formControlName]="controlInGroupOfArray.id" [value]="option.value" [name]="controlInGroupOfArray.id">
+                          <label [for]="option.id+j">{{option.label}}</label>
+                        </ng-container>
+                      </fieldset>
+                    </li>
+                    
                     <div *ngSwitchCase="'checkbox'">
                       <label>
-                        <input type="checkbox" [id]="controlInGroupOfArray.id" [formControlName]="controlInGroupOfArray.id" [value]="controlInGroupOfArray.value"> {{controlInGroupOfArray.label}}
+                        <input type="checkbox" [id]="controlInGroupOfArray.id+j" [formControlName]="controlInGroupOfArray.id" [value]="controlInGroupOfArray.value"> {{controlInGroupOfArray.label}}
                       </label>
                     </div>
-                    <ng-container *ngTemplateOutlet="textBox;context:{control:controlInGroupOfArray,layout:layout,j:j}"></ng-container>
-                    <!-- <div *ngSwitchCase="'text'">
-                      <label [for]="controlInGroupOfArray.id">{{controlInGroupOfArray.label}}</label>
+
+                    <!-- <ng-container *ngTemplateOutlet="textBox;context:{control:controlInGroupOfArray,layout:layout,j:j}"></ng-container> -->
+                    <div *ngSwitchCase="'text'">
+                      <label [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>
                       <input type="controlInGroupOfArray.type" [id]="controlInGroupOfArray.id + j" [placeholder]="controlInGroupOfArray.placeholder"
                         [formControlName]="controlInGroupOfArray.id">
-                    </div> -->
+                        <!-- <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>                         -->
+                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j]"></error-message>
+                    </div>
                   </ng-container>
                 </ng-container>
               </div>
@@ -94,7 +108,7 @@
 </fieldset>
 
 <ng-template #textBox let-control="control" let-layout="layout" let-j="j">
-  <div [formGroupName] = "j">
+  <div [formGroupName]="j">
     <label [for]="control.id">{{control.label}}</label>
     <input type="control.type" [id]="control.id + j" [placeholder]="control.placeholder" [formControlName]="control.id">
   </div>

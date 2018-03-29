@@ -66,23 +66,23 @@ let form1 = [
         , label: "Passwords"
         , id: "pwd"
         , controls: [
-            {
-                type: "password"
-                , id: "password"
-                , label: "Password"
-                , placeholder: "password"
-                , value: ""
-                , validation: {
-                    required: { message: '$ is a required field' }
-                }
-            }
-            , {
-                type: "text"
-                , id: "confirmPassword"
-                , label: "Confirm password"
-                , placeholder: "Confirm password"
-                , value: ""
-            }
+            // {
+            //     type: "password"
+            //     , id: "password"
+            //     , label: "Password"
+            //     , placeholder: "password"
+            //     , value: ""
+            //     , validation: {
+            //         required: { message: '$ is a required field' }
+            //     }
+            // }
+        //     , {
+        //         type: "text"
+        //         , id: "confirmPassword"
+        //         , label: "Confirm password"
+        //         , placeholder: "Confirm password"
+        //         , value: ""
+        //     }
             // , {
             //     type: "checkbox"
             //     , id: "agreed1"
@@ -99,7 +99,7 @@ let form1 = [
             //         , { label: "Female", value: "F", id: "female1" }
             //     ]
             // }
-            ,
+            // ,
             {
                 type: "groupArray"
                 , label: "Tags"
@@ -139,6 +139,16 @@ let form1 = [
                             , label: "Agreed"
                             , value: false
                         }
+                        , {
+                                type: "radio"
+                                , label: "Gender"
+                                , value: "M"
+                                , id: "gender123"
+                                , options: [
+                                    { label: "Male", value: "M", id: "male1" }
+                                    , { label: "Female", value: "F", id: "female1" }
+                                ]
+                            }
                     ]
                 }
             }

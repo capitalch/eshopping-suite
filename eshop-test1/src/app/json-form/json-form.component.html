@@ -11,6 +11,19 @@
           </label>
         </li>
 
+        <li *ngSwitchCase="'checkboxGroup'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+          <fieldset>
+            <legend>{{layout.label}}</legend>
+            <ng-container [formGroupName]="layout.id">
+              <ng-container *ngFor="let option of layout.options">
+                <input type="checkbox" [ngClass]="layout.class && layout.class.element" [id]="option.id" [formControlName]="option.id">
+                <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
+              </ng-container>
+            </ng-container>
+            <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          </fieldset>
+        </li>
+
         <li *ngSwitchCase="'radio'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <fieldset>
             <legend [ngClass]="layout.class && layout.class.label">{{layout.label}}</legend>
@@ -44,19 +57,6 @@
 
         <li *ngSwitchCase="'button'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
           <button [id]="layout.id" (click)="this.jsonFormService.executeAction(layout.actionName,f)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
-        </li>
-
-        <li *ngSwitchCase="'checkboxGroup'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
-          <fieldset>
-            <legend>{{layout.label}}</legend>
-            <ng-container [formGroupName]="layout.id">
-              <ng-container *ngFor="let option of layout.options">
-                <input type="checkbox" [ngClass]="layout.class && layout.class.element" [id]="option.id" [formControlName]="option.id">
-                <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
-              </ng-container>
-            </ng-container>
-            <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
-          </fieldset>
         </li>
 
         <li *ngSwitchCase="'group'">

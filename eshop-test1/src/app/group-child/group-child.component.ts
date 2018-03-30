@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
+import { JsonFormService } from '../json-form/json-form.service';
 
 @Component({
   selector: 'group-child',
@@ -9,15 +10,20 @@ import { FormBuilder, FormArray } from '@angular/forms';
 export class GroupChildComponent implements OnInit {
   @Input() layout: any;
   @Input() myForm: any;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb:FormBuilder, private jsonFormService:JsonFormService) { }
 
   ngOnInit() {
+
   }
-  
+  test(controlInGroup, controlInGroupOfArray) {
+    let v = this.myForm.get(this.layout.id).get(controlInGroup.id).controls[0].get(controlInGroupOfArray.id).valid
+  }
   addGroupInArray(layout, controlInGroup) {
     let childControls = {};
+    
     controlInGroup.group.controls && controlInGroup.group.controls.forEach(d => {
-      childControls[d.id] = [d.value];
+      let validators = this.jsonFormService.getValidators(d);
+      childControls[d.id] = [d.value, validators.validators, validators.asyncValidators];
     });
     let group1 = this.fb.group(childControls);
     let groupArray = <FormArray>this.myForm.get(layout.id).get(controlInGroup.id);

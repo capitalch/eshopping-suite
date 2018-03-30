@@ -4,7 +4,6 @@
     <ng-container *ngFor="let group of myForm.get(layout.id).controls;let j= index">        
     <!-- <ng-container *ngFor="let group of myForm.get(layout.id).get('tags').controls;let j= index"> -->
       <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
-        <button (click)="removeGroupFromArray(j)">Remove</button>
         <ng-container *ngFor="let control of layout.group.controls">
             <!-- <ng-container *ngFor="let control of layout.controls['4'].group.controls"> -->
           <ng-container [ngSwitch]="control.type">

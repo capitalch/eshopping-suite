@@ -35,14 +35,6 @@
           <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>
         </li>
 
-        <!-- <li *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
-        </li>
-
-        <li *ngSwitchCase="'button'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [id]="layout.id" (click)="this.jsonFormService.executeAction(layout.actionName,f)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
-        </li> -->
-
         <li *ngSwitchCase="'checkboxGroup'">
           <fieldset>
             <legend>{{controlInGroup.label}}</legend>
@@ -66,7 +58,23 @@
                 <ng-container *ngFor="let controlInGroupOfArray of controlInGroup.group.controls">
                   <ng-container [ngSwitch]="controlInGroupOfArray.type">
                     
-                    <li *ngSwitchCase="'radio'">
+                    <div *ngSwitchCase="'textarea'">
+                      <label  [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>
+                      <textarea class="field-long" [id]="controlInGroupOfArray.id+j" [placeholder]="controlInGroupOfArray.placeholder"
+                        [formControlName]="controlInGroupOfArray.id">{{controlInGroupOfArray.value}}</textarea>
+                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                    </div>
+
+                    <div *ngSwitchCase="'select'">
+                      <label>{{controlInGroupOfArray.label}}</label>
+                      <select [formControlName]="controlInGroupOfArray.id" class="field-select">
+                        <option *ngFor="let option of controlInGroupOfArray.options" [value]="option.value" [label]="option.label">
+                        </option>
+                      </select>
+                      <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                    </div>
+
+                    <div *ngSwitchCase="'radio'">
                       <fieldset>
                         <legend>{{controlInGroupOfArray.label}}</legend>
                         <ng-container *ngFor="let option of controlInGroupOfArray.options">
@@ -74,21 +82,19 @@
                           <label [for]="option.id+j">{{option.label}}</label>
                         </ng-container>
                       </fieldset>
-                    </li>
+                    </div>
                     
                     <div *ngSwitchCase="'checkbox'">
                       <label>
                         <input type="checkbox" [id]="controlInGroupOfArray.id+j" [formControlName]="controlInGroupOfArray.id" [value]="controlInGroupOfArray.value"> {{controlInGroupOfArray.label}}
                       </label>
                     </div>
-
-                    <!-- <ng-container *ngTemplateOutlet="textBox;context:{control:controlInGroupOfArray,layout:layout,j:j}"></ng-container> -->
-                    <div *ngSwitchCase="'text'">
+                                      
+                    <div *ngSwitchDefault>
                       <label [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>
                       <input type="controlInGroupOfArray.type" [id]="controlInGroupOfArray.id + j" [placeholder]="controlInGroupOfArray.placeholder"
-                        [formControlName]="controlInGroupOfArray.id">
-                        <!-- <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>                         -->
-                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j]"></error-message>
+                        [formControlName]="controlInGroupOfArray.id">                        
+                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
                     </div>
                   </ng-container>
                 </ng-container>

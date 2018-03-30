@@ -29,50 +29,65 @@ let form1 = [
             , { label: "beverages", value: false, id: "beverages" }
         ]
     }
-    // , {
-    //     type: "groupArray"
-    //     , label: "Tags"
-    //     , id: "tags"
-    //     , group: {
-    //         label: "Tag"
-    //         , id: "tag"
-    //         , controls: [
-    //             {
-    //                 type: "text"
-    //                 , id: "tagName"
-    //                 , label: "Tag name"
-    //                 , placeholder: "Tag name"
-    //                 , value: ""
-    //                 , validation: {
-    //                     required: { message: '$ is a required field' }
-    //                     , myValidate: {
-    //                         message: 'My validation for $ fails'
-    //                         , arg: 'sus'
-    //                     }
-    //                 }
+    , {
+        type: "groupArray"
+        , label: "Tags"
+        , id: "tags"
+        , group: {
+            label: "Tag"
+            , id: "tag"
+            , controls: [
+                {
+                    type: "text"
+                    , id: "tagName"
+                    , label: "Tag name"
+                    , placeholder: "Tag name"
+                    , value: ""
+                    , validation: {
+                        required: { message: '$ is a required field' }
+                        , myValidate: {
+                            message: 'My validation for $ fails'
+                            , arg: 'sus'
+                        }
+                    }
 
-    //             }
-    //             , {
-    //                 type: "text"
-    //                 , id: "tagValue"
-    //                 , label: "Tag value"
-    //                 , placeholder: "Tag value"
-    //                 , value: ""
-    //                 , validation: {
-    //                     required: { message: '$ is a required field' }
-    //                 }
-    //             }
-    //             , {
-    //                 type: "checkbox"
-    //                 , id: "agreed"
-    //                 , label: "Agreed"
-    //                 , value: false
-    //             }
-    //         ]
-    //     }
-    // }
+                }
 
-    // , 
+                , {
+                    type: "checkboxGroup"
+                    , label: "Food1"
+                    , id: "food1"
+                    , validation: {
+                        required: { message: '$ is required' }
+                    }
+                    , options: [
+                        { label: "Main course", value: false, id: "main1" }
+                        , { label: "Desert", value: true, id: "desert1" }
+                        , { label: "beverages", value: false, id: "beverages1" }
+                    ]
+                }
+
+                , {
+                    type: "text"
+                    , id: "tagValue"
+                    , label: "Tag value"
+                    , placeholder: "Tag value"
+                    , value: ""
+                    , validation: {
+                        required: { message: '$ is a required field' }
+                    }
+                }
+                , {
+                    type: "checkbox"
+                    , id: "agreed"
+                    , label: "Agreed"
+                    , value: false
+                }
+            ]
+        }
+    }
+
+    , 
     {
         type: "group"
         , label: "Passwords"

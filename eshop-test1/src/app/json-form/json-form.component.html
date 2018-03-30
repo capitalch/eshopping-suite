@@ -65,7 +65,7 @@
 
         <li *ngSwitchCase="'groupArray'">
           <button (click)="addGroupInArray(layout)">Add</button>
-          <group-array [myForm]="myForm" [fb]="fb" [layout]="layout"></group-array>
+          <group-array [myForm]="myForm" [layout]="layout"></group-array>
         </li>
 
         <li *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

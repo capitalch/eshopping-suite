@@ -12,45 +12,37 @@ export class JsonFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  ee: EventEmitter<any>;
-  obj: any;
-  subs;
+  // ee: EventEmitter<any>;
+  // obj: any;
+  // subs;
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
   ngOnInit() {
-    this.ee = new EventEmitter();
+    // this.ee = new EventEmitter();
 
     let formControls = {};
     this.layouts.forEach(x => {
-      // if (x.type == 'checkboxGroup' && x.options) {
-      //   let childControls = {};
-      //   x.options.forEach(y => {
-      //     childControls[y.id] = y.value;
-      //   });
-      //   formControls[x.id] = this.fb.group(childControls);
-
-      //   // let sub = this.ee.filter((d) => {
-      //   //   return (d == 'checkboxGroup');
-      //   // }).subscribe(f => {
-      //   //   let ctrl = this.myForm.controls[x.id];
-      //   //   ctrl.setValidators(this.checkboxGroupRequiredValidator);
-      //   // });
-      //   // this.subs ? this.subs.add(sub) : (this.subs = sub);
-      // }
-      // else 
       if (x.type == 'checkboxGroup' && x.options) {
         let childControls = {};
         x.options.forEach(y => {
           childControls[y.id] = y.value;
         });
-        formControls[x.id] = this.fb.group(childControls, { validator: this.matcher });
+        formControls[x.id] = this.fb.group(childControls, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
       } else
         if (x.type == 'groupArray') {
           let childControls = {};
           x.group.controls && x.group.controls.forEach(c => {
-            let allValidators = this.jsonFormService.getValidators(c);
-            childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+            if (c.type == 'checkboxGroup' && c.options) {   
+              let childControls1 = {};           
+              c.options.forEach(y => {
+                childControls1[y.id] = y.value;
+              });
+              childControls[c.id] = this.fb.group(childControls1, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+            } else {
+              let allValidators = this.jsonFormService.getValidators(c);
+              childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+            }
           });
           formControls[x.id] = <FormArray>this.fb.array([
             this.fb.group(childControls)
@@ -82,27 +74,18 @@ export class JsonFormComponent implements OnInit {
     });
     this.myForm = this.fb.group(formControls);
 
-    this.ee.emit('checkboxGroup');
+    // this.ee.emit('checkboxGroup');
   }
 
-  matcher(c) {
-    console.log(c.controls);
-    let valid = false;
-    Object.values(c.controls).forEach((x: any) => {
-      valid = x.value || valid;
-    });
+  // matcher(c) {
+  //   console.log(c.controls);
+  //   let valid = false;
+  //   Object.values(c.controls).forEach((x: any) => {
+  //     valid = x.value || valid;
+  //   });
 
-    return (valid ? null : { matcher: false });
-  }
-
-  checkboxGroupRequiredValidator(ctrl: any) {
-    let isValid = false, ret = null;
-    Object.values(ctrl.controls).forEach((x: any) => {
-      isValid = isValid || x.value;
-    });
-    (!isValid) && (ret = { required: true });
-    return (ret);
-  }
+  //   return (valid ? null : { matcher: false });
+  // }
 
   addGroupInArray(layout) {
 
@@ -115,10 +98,11 @@ export class JsonFormComponent implements OnInit {
     let group = this.fb.group(childControls);
     groupArray.push(group);
   }
-  removeTag(j) {
-    let tags = <FormArray>this.myForm.get("tags");
-    tags.removeAt(j);
-  }
+
+  // removeTag(j) {
+  //   let tags = <FormArray>this.myForm.get("tags");
+  //   tags.removeAt(j);
+  // }
 
   submit(actionName) {
     console.log(this.myForm.valid);
@@ -143,7 +127,7 @@ export class JsonFormComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subs && (this.subs.unsubscribe());
-    console.log('unsubs done');
+    // this.subs && (this.subs.unsubscribe());
+    // console.log('unsubs done');
   }
 }

@@ -1,16 +1,16 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators } from '@angular/forms';
 @Injectable()
 export class JsonFormService {
-  ee: EventEmitter<any>;
+  // ee: EventEmitter<any>;
   Event
-  constructor(private http: HttpClient) { 
-    this.ee = new EventEmitter();
+  constructor(private http: HttpClient) {
+    // this.ee = new EventEmitter();
   }
+
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
@@ -61,8 +61,20 @@ export class JsonFormService {
     return (f);
   }
 
+  checkboxGroupRequiredValidator(group) {
+    let valid = false;
+    Object.values(group.controls).forEach((x: any) => {
+      valid = x.value || valid;
+    });
+    return (valid ? null : { required: true });
+  }
+
   executeAction(actionName: string, arg: {}) {
     this.actions[actionName].call(this, arg);
+  }
+
+  getGroupValidators(group){
+
   }
 
   getValidators(layout) {

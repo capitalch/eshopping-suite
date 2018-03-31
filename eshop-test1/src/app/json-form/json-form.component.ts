@@ -12,6 +12,7 @@ export class JsonFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
+
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
@@ -33,7 +34,7 @@ export class JsonFormComponent implements OnInit {
               c.options.forEach(y => {
                 childControls1[y.id] = y.value;
               });
-              childControls[c.id] = this.fb.group(childControls1, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+              childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
             } else {
               let allValidators = this.jsonFormService.getValidators(c);
               childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
@@ -85,14 +86,22 @@ export class JsonFormComponent implements OnInit {
   }
 
   addGroupInArray(layout) {
-
     let childControls = {};
     layout.group.controls && layout.group.controls.forEach(c => {
-      let allValidators = this.jsonFormService.getValidators(c);
-      childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+
+      if (c.type == 'checkboxGroup' && c.options) {
+        let childControls1 = {};
+        c.options.forEach(y => {
+          childControls1[y.id] = y.value;
+        });
+        childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+      } else {
+        let allValidators = this.jsonFormService.getValidators(c);
+        childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+      }
     });
-    let groupArray = <FormArray>this.myForm.get(layout.id);
     let group = this.fb.group(childControls);
+    let groupArray = <FormArray>this.myForm.get(layout.id);
     groupArray.push(group);
   }
 

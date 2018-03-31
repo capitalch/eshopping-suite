@@ -17,7 +17,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
 1. Provide seamless class/ css structure      
             2. Buttons: clickable, reset, submit
-2.5. Checkboxgroup simplify and provide in group
+            2.5. Checkboxgroup simplify and provide in group
             3. Custom Template of controls
             4. Adding controls on the fly in an array on click of plus or minus buttons
 
@@ -28,10 +28,13 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             9. Provide json and functions as parameters
 
 10. Populate drop down from url
-11. Button group
 12. Required symbol
             13. Provide group / formgroup
-14. 
+             14. Checkboxgroup bug fix groupArray
+15. Checkboxgroup in group and groupArray implement and check
+16. Populate drop down lists from service
+17. Populate drop down list from web
+18. Validation in radio buttons
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

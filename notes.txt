@@ -27,11 +27,10 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 8. file upload
             9. Provide json and functions as parameters
 
-10. Populate drop down from url
 12. Required symbol
             13. Provide group / formgroup
-             14. Checkboxgroup bug fix groupArray
-15. Checkboxgroup in group and groupArray implement and check
+            14. Checkboxgroup bug fix groupArray
+            15. Checkboxgroup in group and groupArray implement and check
 16. Populate drop down lists from service
 17. Populate drop down list from web
 18. Validation in radio buttons

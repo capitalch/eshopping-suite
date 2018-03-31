@@ -89,6 +89,19 @@
                         <input type="checkbox" [id]="controlInGroupOfArray.id+j" [formControlName]="controlInGroupOfArray.id" [value]="controlInGroupOfArray.value"> {{controlInGroupOfArray.label}}
                       </label>
                     </div>
+
+                    <li *ngSwitchCase="'checkboxGroup'">
+                      <fieldset>
+                        <legend>{{controlInGroupOfArray.label}}</legend>
+                        <ng-container [formGroupName]="controlInGroupOfArray.id">
+                          <ng-container *ngFor="let option of controlInGroupOfArray.options">
+                            <input type="checkbox" [id]="option.id+j" [formControlName]="option.id">
+                            <label style="display:inline-block" [for]="option.id+j">{{option.label}}</label>
+                          </ng-container>
+                        </ng-container>
+                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                      </fieldset>
+                    </li>
                                       
                     <div *ngSwitchDefault>
                       <label [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>

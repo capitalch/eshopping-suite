@@ -16,78 +16,78 @@ let form1 = [
     //         }
     //     }
     // }
-    {
-        type: "checkboxGroup"
-        , label: "Food"
-        , id: "food"
-        , validation: {
-            required: { message: '$ is required' }
-        }
-        , options: [
-            { label: "Main course", value: false, id: "main" }
-            , { label: "Desert", value: true, id: "desert" }
-            , { label: "beverages", value: false, id: "beverages" }
-        ]
-    }
-    , {
-        type: "groupArray"
-        , label: "Tags"
-        , id: "tags"
-        , group: {
-            label: "Tag"
-            , id: "tag"
-            , controls: [
-                {
-                    type: "text"
-                    , id: "tagName"
-                    , label: "Tag name"
-                    , placeholder: "Tag name"
-                    , value: ""
-                    , validation: {
-                        required: { message: '$ is a required field' }
-                        , myValidate: {
-                            message: 'My validation for $ fails'
-                            , arg: 'sus'
-                        }
-                    }
+    // {
+    //     type: "checkboxGroup"
+    //     , label: "Food"
+    //     , id: "food"
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    //     , options: [
+    //         { label: "Main course", value: false, id: "main" }
+    //         , { label: "Desert", value: true, id: "desert" }
+    //         , { label: "beverages", value: false, id: "beverages" }
+    //     ]
+    // }
+    // , {
+    //     type: "groupArray"
+    //     , label: "Tags"
+    //     , id: "tags"
+    //     , group: {
+    //         label: "Tag"
+    //         , id: "tag"
+    //         , controls: [
+    //             {
+    //                 type: "text"
+    //                 , id: "tagName"
+    //                 , label: "Tag name"
+    //                 , placeholder: "Tag name"
+    //                 , value: ""
+    //                 , validation: {
+    //                     required: { message: '$ is a required field' }
+    //                     , myValidate: {
+    //                         message: 'My validation for $ fails'
+    //                         , arg: 'sus'
+    //                     }
+    //                 }
 
-                }
+    //             }
 
-                , {
-                    type: "checkboxGroup"
-                    , label: "Food1"
-                    , id: "food1"
-                    , validation: {
-                        required: { message: '$ is required' }
-                    }
-                    , options: [
-                        { label: "Main course", value: false, id: "main1" }
-                        , { label: "Desert", value: true, id: "desert1" }
-                        , { label: "beverages", value: false, id: "beverages1" }
-                    ]
-                }
+    //             , {
+    //                 type: "checkboxGroup"
+    //                 , label: "Food1"
+    //                 , id: "food1"
+    //                 , validation: {
+    //                     required: { message: '$ is required' }
+    //                 }
+    //                 , options: [
+    //                     { label: "Main course", value: false, id: "main1" }
+    //                     , { label: "Desert", value: true, id: "desert1" }
+    //                     , { label: "beverages", value: false, id: "beverages1" }
+    //                 ]
+    //             }
 
-                , {
-                    type: "text"
-                    , id: "tagValue"
-                    , label: "Tag value"
-                    , placeholder: "Tag value"
-                    , value: ""
-                    , validation: {
-                        required: { message: '$ is a required field' }
-                    }
-                }
-                , {
-                    type: "checkbox"
-                    , id: "agreed"
-                    , label: "Agreed"
-                    , value: false
-                }
-            ]
-        }
-    }
+    //             , {
+    //                 type: "text"
+    //                 , id: "tagValue"
+    //                 , label: "Tag value"
+    //                 , placeholder: "Tag value"
+    //                 , value: ""
+    //                 , validation: {
+    //                     required: { message: '$ is a required field' }
+    //                 }
+    //             }
+    //             , {
+    //                 type: "checkbox"
+    //                 , id: "agreed"
+    //                 , label: "Agreed"
+    //                 , value: false
+    //             }
+    //         ]
+    //     }
+    // }
 
-    , 
+    // , 
     {
         type: "group"
         , label: "Passwords"
@@ -103,26 +103,26 @@ let form1 = [
                     required: { message: '$ is a required field' }
                 }
             }
-            // , {
-            //     type: "checkboxGroup"
-            //     , label: "Food2"
-            //     , id: "food2"
-            //     , validation: {
-            //         required: { message: '$ is required' }
-            //     }
-            //     , options: [
-            //         { label: "Main course", value: false, id: "main1" }
-            //         , { label: "Desert", value: true, id: "desert1" }
-            //         , { label: "beverages", value: false, id: "beverages1" }
-            //     ]
-            // }
-            //     , {
-            //         type: "text"
-            //         , id: "confirmPassword"
-            //         , label: "Confirm password"
-            //         , placeholder: "Confirm password"
-            //         , value: ""
-            //     }
+            , {
+                type: "checkboxGroup"
+                , label: "Food3"
+                , id: "food3"
+                , validation: {
+                    required: { message: '$ is required' }
+                }
+                , options: [
+                    { label: "Main course", value: false, id: "main3" }
+                    , { label: "Desert", value: true, id: "desert3" }
+                    , { label: "beverages", value: false, id: "beverages3" }
+                ]
+            }
+                , {
+                    type: "text"
+                    , id: "confirmPassword"
+                    , label: "Confirm password"
+                    , placeholder: "Confirm password"
+                    , value: ""
+                }
             // , {
             //     type: "checkbox"
             //     , id: "agreed1"
@@ -140,87 +140,101 @@ let form1 = [
             //     ]
             // }
             // ,
-            // , {
-            //     type: "groupArray"
-            //     , label: "Tags"
-            //     , id: "tags"
-            //     , group: {
-            //         label: "Tag"
-            //         , id: "tag"
-            //         , controls: [
-            //             {
-            //                 type: "text"
-            //                 , id: "tagName"
-            //                 , label: "Tag name"
-            //                 , placeholder: "Tag name"
-            //                 , value: ""
-            //                 , validation: {
-            //                     required: { message: '$ is a required field' }
-            //                     , myValidate: {
-            //                         message: 'My validation for $ fails'
-            //                         , arg: 'sus'
-            //                     }
-            //                 }
+            , {
+                type: "groupArray"
+                , label: "Tags"
+                , id: "tags"
+                , group: {
+                    label: "Tag"
+                    , id: "tag"
+                    , controls: [
+                        {
+                            type: "text"
+                            , id: "tagName"
+                            , label: "Tag name"
+                            , placeholder: "Tag name"
+                            , value: ""
+                            , validation: {
+                                required: { message: '$ is a required field' }
+                                , myValidate: {
+                                    message: 'My validation for $ fails'
+                                    , arg: 'sus'
+                                }
+                            }
 
-            //             }
-            //             , {
-            //                 type: "text"
-            //                 , id: "tagValue"
-            //                 , label: "Tag value"
-            //                 , placeholder: "Tag value"
-            //                 , value: ""
-            //                 , validation: {
-            //                     required: { message: '$ is a required field' }
-            //                 }
-            //             }
-            //             , {
-            //                 type: "checkbox"
-            //                 , id: "agreed1"
-            //                 , label: "Agreed"
-            //                 , value: false
-            //             }
-            //             , {
-            //                 type: "radio"
-            //                 , label: "Gender"
-            //                 , value: "M"
-            //                 , id: "gender123"
-            //                 , options: [
-            //                     { label: "Male", value: "M", id: "male1" }
-            //                     , { label: "Female", value: "F", id: "female1" }
-            //                 ]
-            //             }
-            //             , {
-            //                 type: "select"
-            //                 , label: "Country"
-            //                 , value: "0"
-            //                 , id: "country"
-            //                 , options: [
-            //                     { label: "---Choose---", value: "0" }
-            //                     , { label: "USA", value: "us" }
-            //                     , { label: "India", value: "in" }
-            //                 ]
-            //                 , validation: {
-            //                     selectRequired: {
-            //                         message: 'You must select a value for $'
-            //                         , arg: 0
-            //                     }
-            //                 }
-            //             }
-            //             , {
-            //                 type: "textarea"
-            //                 , id: "address"
-            //                 , label: "Address"
-            //                 , placeholder: "Address"
-            //                 , value: "12345"
-            //                 , validation: {
-            //                     required: { message: '$ is required' },
-            //                     minlength: { value: 5, message: 'Minimum length for $ is 5' },
-            //                     maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-            //                 }
-            //             }
-            //         ]
-            //     }
-            // }
+                        }
+
+                        , {
+                            type: "text"
+                            , id: "tagValue"
+                            , label: "Tag value"
+                            , placeholder: "Tag value"
+                            , value: ""
+                            , validation: {
+                                required: { message: '$ is a required field' }
+                            }
+                        }
+                        , {
+                            type: "checkboxGroup"
+                            , label: "Food2"
+                            , id: "food2"
+                            , validation: {
+                                required: { message: '$ is required' }
+                            }
+                            , options: [
+                                { label: "Main course", value: false, id: "main2" }
+                                , { label: "Desert", value: true, id: "desert2" }
+                                , { label: "beverages", value: false, id: "beverages2" }
+                            ]
+                        }
+                        // , {
+                        //     type: "checkbox"
+                        //     , id: "agreed1"
+                        //     , label: "Agreed"
+                        //     , value: false
+                        // }
+                        // , {
+                        //     type: "radio"
+                        //     , label: "Gender"
+                        //     , value: "M"
+                        //     , id: "gender123"
+                        //     , options: [
+                        //         { label: "Male", value: "M", id: "male1" }
+                        //         , { label: "Female", value: "F", id: "female1" }
+                        //     ]
+                        // }
+                        // , {
+                        //     type: "select"
+                        //     , label: "Country"
+                        //     , value: "0"
+                        //     , id: "country"
+                        //     , options: [
+                        //         { label: "---Choose---", value: "0" }
+                        //         , { label: "USA", value: "us" }
+                        //         , { label: "India", value: "in" }
+                        //     ]
+                        //     , validation: {
+                        //         selectRequired: {
+                        //             message: 'You must select a value for $'
+                        //             , arg: 0
+                        //         }
+                        //     }
+                        // }
+                        // , {
+                        //     type: "textarea"
+                        //     , id: "address"
+                        //     , label: "Address"
+                        //     , placeholder: "Address"
+                        //     , value: "12345"
+                        //     , validation: {
+                        //         required: { message: '$ is required' },
+                        //         minlength: { value: 5, message: 'Minimum length for $ is 5' },
+                        //         maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+                        //     }
+                        // }
+                    ]
+                }
+            }
         ]
     }
     // , {

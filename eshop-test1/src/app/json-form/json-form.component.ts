@@ -12,15 +12,10 @@ export class JsonFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  // ee: EventEmitter<any>;
-  // obj: any;
-  // subs;
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
   ngOnInit() {
-    // this.ee = new EventEmitter();
-
     let formControls = {};
     this.layouts.forEach(x => {
       if (x.type == 'checkboxGroup' && x.options) {
@@ -33,8 +28,8 @@ export class JsonFormComponent implements OnInit {
         if (x.type == 'groupArray') {
           let childControls = {};
           x.group.controls && x.group.controls.forEach(c => {
-            if (c.type == 'checkboxGroup' && c.options) {   
-              let childControls1 = {};           
+            if ((c.type == 'checkboxGroup') && c.options) {
+              let childControls1 = {};
               c.options.forEach(y => {
                 childControls1[y.id] = y.value;
               });
@@ -52,17 +47,31 @@ export class JsonFormComponent implements OnInit {
           let childCtrls = {};
           x.controls && x.controls.forEach(c => {
             let allValidators = this.jsonFormService.getValidators(c);
-            if (c.type != 'groupArray') {
-              childCtrls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
-            } else {
+            if ((c.type == 'checkboxGroup') && c.options) {
+              let childControls = {};
+              c.options.forEach(y => {
+                childControls[y.id] = y.value;
+              });
+              childCtrls[c.id] = this.fb.group(childControls, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+            } else if (c.type == 'groupArray') {
               let childControls1 = {};
               c.group.controls && c.group.controls.forEach(d => {
-                let allValidators1 = this.jsonFormService.getValidators(d);
-                childControls1[d.id] = [d.value, allValidators1.validators, allValidators1.asyncValidators];
+                if (d.type == 'checkboxGroup' && d.options) {
+                  let childControls2 = {};
+                  d.options.forEach(y => {
+                    childControls2[y.id] = y.value;
+                  });
+                  childControls1[d.id] = this.fb.group(childControls2, { validator: d.validation && d.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+                } else {
+                  let allValidators1 = this.jsonFormService.getValidators(d);
+                  childControls1[d.id] = [d.value, allValidators1.validators, allValidators1.asyncValidators];
+                }
               });
               let group1 = this.fb.group(childControls1);
               childCtrls[c.id] = <FormArray>this.fb.array([
                 group1]);
+            } else {
+              childCtrls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
             }
           });
           formControls[x.id] = this.fb.group(childCtrls);
@@ -73,19 +82,7 @@ export class JsonFormComponent implements OnInit {
         }
     });
     this.myForm = this.fb.group(formControls);
-
-    // this.ee.emit('checkboxGroup');
   }
-
-  // matcher(c) {
-  //   console.log(c.controls);
-  //   let valid = false;
-  //   Object.values(c.controls).forEach((x: any) => {
-  //     valid = x.value || valid;
-  //   });
-
-  //   return (valid ? null : { matcher: false });
-  // }
 
   addGroupInArray(layout) {
 
@@ -98,11 +95,6 @@ export class JsonFormComponent implements OnInit {
     let group = this.fb.group(childControls);
     groupArray.push(group);
   }
-
-  // removeTag(j) {
-  //   let tags = <FormArray>this.myForm.get("tags");
-  //   tags.removeAt(j);
-  // }
 
   submit(actionName) {
     console.log(this.myForm.valid);
@@ -127,7 +119,5 @@ export class JsonFormComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // this.subs && (this.subs.unsubscribe());
-    // console.log('unsubs done');
   }
 }

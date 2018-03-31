@@ -34,6 +34,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 15. Checkboxgroup in group and groupArray implement and check
 16. Populate drop down lists from service
 17. Populate drop down list from web
+18. Validation in radio buttons
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

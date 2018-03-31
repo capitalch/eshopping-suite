@@ -12,15 +12,11 @@ export class JsonFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  // ee: EventEmitter<any>;
-  // obj: any;
-  // subs;
+
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
   ngOnInit() {
-    // this.ee = new EventEmitter();
-
     let formControls = {};
     this.layouts.forEach(x => {
       if (x.type == 'checkboxGroup' && x.options) {
@@ -33,12 +29,12 @@ export class JsonFormComponent implements OnInit {
         if (x.type == 'groupArray') {
           let childControls = {};
           x.group.controls && x.group.controls.forEach(c => {
-            if (c.type == 'checkboxGroup' && c.options) {   
-              let childControls1 = {};           
+            if (c.type == 'checkboxGroup' && c.options) {
+              let childControls1 = {};
               c.options.forEach(y => {
                 childControls1[y.id] = y.value;
               });
-              childControls[c.id] = this.fb.group(childControls1, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+              childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
             } else {
               let allValidators = this.jsonFormService.getValidators(c);
               childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
@@ -73,36 +69,27 @@ export class JsonFormComponent implements OnInit {
         }
     });
     this.myForm = this.fb.group(formControls);
-
-    // this.ee.emit('checkboxGroup');
   }
-
-  // matcher(c) {
-  //   console.log(c.controls);
-  //   let valid = false;
-  //   Object.values(c.controls).forEach((x: any) => {
-  //     valid = x.value || valid;
-  //   });
-
-  //   return (valid ? null : { matcher: false });
-  // }
 
   addGroupInArray(layout) {
-
     let childControls = {};
     layout.group.controls && layout.group.controls.forEach(c => {
-      let allValidators = this.jsonFormService.getValidators(c);
-      childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+
+      if (c.type == 'checkboxGroup' && c.options) {
+        let childControls1 = {};
+        c.options.forEach(y => {
+          childControls1[y.id] = y.value;
+        });
+        childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+      } else {
+        let allValidators = this.jsonFormService.getValidators(c);
+        childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+      }
     });
-    let groupArray = <FormArray>this.myForm.get(layout.id);
     let group = this.fb.group(childControls);
+    let groupArray = <FormArray>this.myForm.get(layout.id);
     groupArray.push(group);
   }
-
-  // removeTag(j) {
-  //   let tags = <FormArray>this.myForm.get("tags");
-  //   tags.removeAt(j);
-  // }
 
   submit(actionName) {
     console.log(this.myForm.valid);
@@ -127,7 +114,5 @@ export class JsonFormComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // this.subs && (this.subs.unsubscribe());
-    // console.log('unsubs done');
   }
 }

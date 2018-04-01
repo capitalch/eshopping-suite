@@ -21,6 +21,11 @@ import { GroupArrayComponent } from './group-array/group-array.component';
 import { JsonxFormComponent } from './jsonx-form/jsonx-form.component';
 import { GroupxChildComponent } from './groupx-child/groupx-child.component';
 import { GroupxArrayComponent } from './groupx-array/groupx-array.component';
+import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+import { Child1NestComponent } from './child1-nest/child1-nest.component';
+import { Child2NestComponent } from './child2-nest/child2-nest.component';
+import { Child3NestComponent } from './child3-nest/child3-nest.component';
+import { Child4NestComponent } from './child4-nest/child4-nest.component';
 
 
 
@@ -38,7 +43,12 @@ import { GroupxArrayComponent } from './groupx-array/groupx-array.component';
     GroupArrayComponent,
     JsonxFormComponent,
     GroupxChildComponent,
-    GroupxArrayComponent
+    GroupxArrayComponent,
+    CheckboxGroupComponent,
+    Child1NestComponent,
+    Child2NestComponent,
+    Child3NestComponent,
+    Child4NestComponent
   ],
   imports: [
     BrowserModule

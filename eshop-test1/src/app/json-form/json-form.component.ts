@@ -19,13 +19,13 @@ export class JsonFormComponent implements OnInit {
   ngOnInit() {
     let formControls = {};
     this.layouts.forEach(x => {
-      if (x.type == 'checkboxGroup' && x.options) {
-        let childControls = {};
-        x.options.forEach(y => {
-          childControls[y.id] = y.value;
-        });
-        formControls[x.id] = this.fb.group(childControls, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
-      } else
+      // if (x.type == 'checkboxGroup' && x.options) {
+      //   let childControls = {};
+      //   x.options.forEach(y => {
+      //     childControls[y.id] = y.value;
+      //   });
+      //   formControls[x.id] = this.fb.group(childControls, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+      // } else
         if (x.type == 'groupArray') {
           let childControls = {};
           x.group.controls && x.group.controls.forEach(c => {
@@ -54,7 +54,8 @@ export class JsonFormComponent implements OnInit {
                 childControls[y.id] = y.value;
               });
               childCtrls[c.id] = this.fb.group(childControls, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
-            } else if (c.type == 'groupArray') {
+            } else 
+            if (c.type == 'groupArray') {
               let childControls1 = {};
               c.group.controls && c.group.controls.forEach(d => {
                 if (d.type == 'checkboxGroup' && d.options) {

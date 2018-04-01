@@ -12,7 +12,7 @@
         </li>
 
         <li *ngSwitchCase="'checkboxGroup'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
-          <fieldset>
+          <!-- <fieldset>
             <legend>{{layout.label}}</legend>
             <ng-container [formGroupName]="layout.id">
               <ng-container *ngFor="let option of layout.options">
@@ -21,7 +21,8 @@
               </ng-container>
             </ng-container>
             <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
-          </fieldset>
+          </fieldset> -->
+          <checkbox-group [myForm]="myForm" [parent] = "myForm" [layout] = "layout" [control]="myForm.get(layout.id)" [j]="1"></checkbox-group>
         </li>
 
         <li *ngSwitchCase="'radio'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

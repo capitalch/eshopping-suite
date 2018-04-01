@@ -30,7 +30,8 @@ export class GroupChildComponent implements OnInit {
           childControls1[y.id] = y.value;
         });
         childControls[d.id] = this.fb.group(childControls1, { validator: d.validation && d.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
-      } else {
+      } else 
+      {
         let allValidators = this.jsonFormService.getValidators(d);
         childControls[d.id] = [d.value, allValidators.validators, allValidators.asyncValidators];
       }

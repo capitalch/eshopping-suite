@@ -1,21 +1,21 @@
 let form1 = [
-    // {
-    //     type: "text"
-    //     , id: "firstName"
-    //     , label: "First name"
-    //     , placeholder: "First name"
-    //     , value: ""
-    //     , class: { label: "redClass" }
-    //     , validation: {
-    //         required: { message: '$ is required' },
-    //         minlength: { value: 3, message: 'Minimum length for $ is 3' },
-    //         maxlength: { value: 10, message: 'Maximum length for $ is 10' },
-    //         myValidate: {
-    //             message: 'My validation fails'
-    //             , arg: 'test'
-    //         }
-    //     }
-    // }
+    {
+        type: "text"
+        , id: "firstName"
+        , label: "First name"
+        , placeholder: "First name"
+        , value: ""
+        , class: { label: "redClass" }
+        , validation: {
+            required: { message: '$ is required' },
+            minlength: { value: 3, message: 'Minimum length for $ is 3' },
+            maxlength: { value: 10, message: 'Maximum length for $ is 10' },
+            myValidate: {
+                message: 'My validation fails'
+                , arg: 'test'
+            }
+        }
+    }
     // {
     //     type: "checkboxGroup"
     //     , label: "Food"
@@ -87,7 +87,7 @@ let form1 = [
     //     }
     // }
 
-    // , 
+    , 
     {
         type: "group"
         , label: "Passwords"

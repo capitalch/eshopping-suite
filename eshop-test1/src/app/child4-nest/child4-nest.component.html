@@ -1,0 +1,14 @@
+<ng-container [formGroup]="parentControl">
+    <ng-container [formArrayName]="'myArray'">
+      <ng-container *ngFor = "let group of parentControl.get('myArray').controls; let j = index">
+        <div [formGroupName]="j">
+          <input type="checkbox" [formControlName] = "check1">
+          <input type="checkbox" [formControlName] = "check2">
+          <!-- <ng-container *ngFor = "let control of group.controls">
+
+          </ng-container> -->
+        </div>
+
+      </ng-container>
+    </ng-container>
+  </ng-container>

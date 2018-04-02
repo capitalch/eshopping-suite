@@ -9,11 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class Child1NestComponent implements OnInit {
   @Input() myForm: FormGroup;
   constructor(
-    private fb:FormBuilder
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    // let formControls = {};
     let group1 = this.fb.group(
       {
         child1: ["12345"]

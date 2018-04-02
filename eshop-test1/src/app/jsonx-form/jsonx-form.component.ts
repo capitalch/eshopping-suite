@@ -17,10 +17,6 @@ export class JsonxFormComponent implements OnInit {
   ngOnInit() {
     let formControls = {};
     formControls["child0"] = [""];
-    // formControls["group1"] = this.fb.group(
-    //   {
-    //     child1: ["12345"]
-    //   });
     this.myForm = this.fb.group(formControls);
   }
 

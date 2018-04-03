@@ -292,12 +292,13 @@ let form1 = [
     //         required: { message: '$ is required' }
     //     }
     // }
-    // , {
-    //     type: "checkbox"
-    //     , id: "agreed"
-    //     , label: "Agreed"
-    //     , value: false
-    // }
+    ,
+     {
+        type: "checkbox"
+        , id: "agreed"
+        , label: "Agreed"
+        , value: false
+    }
     // , {
     //     type: "radio"
     //     , label: "Gender"

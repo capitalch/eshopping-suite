@@ -1,0 +1,16 @@
+<form [formGroup]="myForm" novalidate>
+  <div [ngClass]="options.wrapperClass">
+    <ng-container *ngFor="let layout of layouts">
+      <div [ngSwitch]="layout.type">
+        <div *ngSwitchCase="'checkbox'">
+          <label>
+            <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
+          </label>
+        </div>
+        <div *ngSwitchCase="'checkboxGroup'">
+          <checkbox-group [parentControl] = "myForm"></checkbox-group>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</form>

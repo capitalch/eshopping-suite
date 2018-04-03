@@ -1,5 +1,11 @@
 <form [formGroup]="myForm" novalidate>
-  <input type="text" placeholder="child 0" [formControlName]="'child0'">
-  <child1-nest [myForm]="myForm" ></child1-nest>
-  <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+  <mat-form-field>
+    <input matInput placeholder="child 0" [formControlName]="'child0'">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="child 00" [formControlName]="'child00'">
+  </mat-form-field>
+  <child1-nest [myForm]="myForm"></child1-nest>
+
+  <button type="submit" mat-button mat-raised-button (click)="submit()">Submit</button>
 </form>

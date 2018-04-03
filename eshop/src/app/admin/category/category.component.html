@@ -1,3 +1,23 @@
-<p>
-  category works!
-</p>
+<div class="{{dynamicCategoryClass}}">
+  <div class="heading">
+    <div class="header">Categories</div>
+    <div class="collapse-button-container">
+      <button mat-icon-button (click)="expandSideMenu()">
+        <mat-icon>          
+          <i class="fa fa-sign-in fa-lg fa-flip-horizontal" aria-hidden="true"></i>
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="category-tree">
+    <p-tree [value]="lazyTree" (onNodeExpand)="loadNode($event)" selectionMode="single" [(selection)] ="selectedFiles"
+    (onNodeSelect)="nodeSelect($event)"></p-tree>
+  </div>
+</div>
+<div class="{{dynamicCategoryOpenerClass}}">
+  <button mat-icon-button (click)="expandSideMenu()">
+    <mat-icon>
+        <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+    </mat-icon>
+  </button>
+</div>

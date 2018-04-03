@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-composite',
   templateUrl: './composite.component.html',
-  styleUrls: ['./composite.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./composite.component.scss']
 })
 export class CompositeComponent implements OnInit {
 

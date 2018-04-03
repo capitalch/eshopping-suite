@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { StripeService, StripeCardComponent, ElementOptions, ElementsOptions } from "ngx-stripe";
@@ -6,8 +6,7 @@ import { StripeService, StripeCardComponent, ElementOptions, ElementsOptions } f
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
-  styleUrls: ['./place-order.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./place-order.component.scss']
 })
 export class PlaceOrderComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;

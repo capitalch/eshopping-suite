@@ -93,6 +93,10 @@
                         width:30%;
                     }
                 }
+                ::ng-deep .mat-form-field-underline 
+                {
+                    background: black;
+                }
             }
         }
         .cash-on-delivery-content
@@ -119,7 +123,7 @@
                 font-size: .9em;
                 margin-left: 10px;
             }
-            .StripeElement 
+            ::ng-deep .StripeElement 
             {
                 margin-top: 17px;
                 margin-bottom: 10px;
@@ -135,15 +139,15 @@
                 font-size: 1.1em;
             }
               
-            .StripeElement--focus {
+            ::ng-deep .StripeElement--focus {
             box-shadow: 0 1px 3px 0 #cfd7df;
             }
             
-            .StripeElement--invalid {
-            border-color: #fa755a;
+            ::ng-deep .StripeElement--invalid {
+             border-color: #fa755a;
             }
             
-            .StripeElement--webkit-autofill {
+            ::ng-deep .StripeElement--webkit-autofill {
             background-color: #fefde5 !important;
             }
         

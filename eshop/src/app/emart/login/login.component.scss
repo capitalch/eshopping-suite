@@ -53,7 +53,7 @@
         float:right;
         margin-right:27px;
     }
-    .mat-form-field-underline 
+    ::ng-deep .mat-form-field-underline 
     {
         background: black;
     }

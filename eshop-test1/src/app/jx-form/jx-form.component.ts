@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { JsonFormService } from '../json-form/json-form.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class JxFormComponent implements OnInit {
       if (x.type == 'groupArray') {
 
       }  else if(x.type == "checkboxGroup"){
-        
+
       }
       else {
         let allValidators = this.jsonFormService.getValidators(x);
@@ -28,5 +28,27 @@ export class JxFormComponent implements OnInit {
       }
     });
     this.myForm = this.fb.group(formControls);
+  }
+
+  submit(actionName) {
+    console.log(this.myForm.valid);
+    this.validateAllFormFields(this.myForm);
+    if (this.myForm.valid) {
+      console.log('form submitting');
+      this.jsonFormService.executeAction(actionName, this.myForm);
+    } else {
+      console.log("Invalid form");
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched();
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
   }
 }

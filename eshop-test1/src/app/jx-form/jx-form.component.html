@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" novalidate>
+<form [formGroup]="myForm" novalidate (ngSubmit) = "submit('submitForm')">
   <div [ngClass]="options.wrapperClass">
     <ng-container *ngFor="let layout of layouts">
       <div [ngSwitch]="layout.type">
@@ -8,7 +8,28 @@
           </label>
         </div>
         <div *ngSwitchCase="'checkboxGroup'">
-          <checkbox-group [layout] = "layout" [parent] = "myForm"></checkbox-group>
+          <checkbox-group [layout]="layout" [parent]="myForm"></checkbox-group>
+        </div>
+        <div *ngSwitchCase="'radio'">
+          <fieldset>
+            <legend>{{layout.label}}</legend>
+            <ng-container *ngFor="let option of layout.options">
+              <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
+              <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
+            </ng-container>
+          </fieldset>
+        </div>
+
+
+        <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+          <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
+          <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
+            [formControlName]="layout.id">
+          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+        </div>
+
+        <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
+          <button [ngClass]="layout.class && layout.class.element"  type="submit">{{layout.label}}</button>
         </div>
       </div>
     </ng-container>

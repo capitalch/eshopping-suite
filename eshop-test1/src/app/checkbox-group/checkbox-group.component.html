@@ -1,10 +1,12 @@
-<fieldset>
-  <legend>{{layout.label}}</legend>
-  <ng-container [formGroupName]="layout.id">
-    <ng-container *ngFor="let option of layout.options">
+<ng-container [formGroup]="parent">
+  <fieldset>
+    <legend>{{layout.label}}</legend>
+    <div [formGroupName]="layout.id">
+      <ng-container *ngFor="let option of layout.options">
       <input type="checkbox"  [id]="option.id" [formControlName]="option.id">
       <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
     </ng-container>
-  </ng-container>
-  <!-- <error-message [layout]="layout" [control]="control"></error-message> -->
-</fieldset>
+    </div>
+    <error-message [layout]="layout" [control]="parent.get(layout.id)"></error-message>
+  </fieldset>
+</ng-container>

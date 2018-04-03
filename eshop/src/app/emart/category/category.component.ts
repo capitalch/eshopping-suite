@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BrokerService } from '../../service/broker.service';
 import { TreeNode } from 'primeng/primeng';
 import { AppService } from '../../service/app.service';
@@ -10,8 +10,7 @@ import { localMessages } from '../../app.config';
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'
-  ],
-  encapsulation: ViewEncapsulation.None
+  ]
 })
 
 export class CategoryComponent implements OnInit {

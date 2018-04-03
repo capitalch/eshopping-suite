@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { navUrls, httpMessages } from '../emart.config';
 import { RatingModule } from "ng2-rating";
@@ -7,8 +7,7 @@ import { BrokerService } from '../../service/broker.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
   product: any = {};

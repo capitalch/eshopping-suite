@@ -8,15 +8,19 @@ import { JsonFormService } from '../json-form/json-form.service';
   styleUrls: ['./checkbox-group.component.scss']
 })
 export class CheckboxGroupComponent implements OnInit {
-  @Input() parentControl: FormGroup;
+  @Input() parent: FormGroup;
+  @Input() layout: any;
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) {
 
   }
 
   ngOnInit() {
     let childControls = {};
-  }
-  ngAfterViewInit() {
-
+    this.layout.options && this.layout.options.forEach(e => {
+      childControls[e.id] = e.value;
+    });
+    let group1  = this.fb.group(childControls);
+    this.parent.setControl(this.layout.id,group1);
+    // this.parent.setControl(this.layout.id, this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.jsonFormService.checkboxGroupRequiredValidator }));
   }
 }

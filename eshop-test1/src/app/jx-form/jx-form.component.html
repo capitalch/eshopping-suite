@@ -8,7 +8,7 @@
           </label>
         </div>
         <div *ngSwitchCase="'checkboxGroup'">
-          <checkbox-group [parentControl] = "myForm"></checkbox-group>
+          <checkbox-group [layout] = "layout" [parent] = "myForm"></checkbox-group>
         </div>
       </div>
     </ng-container>

@@ -22,7 +22,7 @@
             </ng-container>
             <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
           </fieldset> -->
-          <checkbox-group [myForm]="myForm" [parent] = "myForm" [layout] = "layout" [control]="myForm.get(layout.id)" [j]="1"></checkbox-group>
+          <checkbox-group  [parent] = "myForm" [layout] = "layout"></checkbox-group>
         </li>
 
         <li *ngSwitchCase="'radio'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

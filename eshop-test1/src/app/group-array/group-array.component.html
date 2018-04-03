@@ -39,7 +39,7 @@
             </li>
 
             <li *ngSwitchCase="'checkboxGroup'">
-              <fieldset>
+              <!-- <fieldset>
                 <legend>{{control.label}}</legend>
                 <ng-container [formGroupName]="control.id">
                   <ng-container *ngFor="let option of control.options">
@@ -48,7 +48,7 @@
                   </ng-container>
                 </ng-container>
                 <error-message [layout]="control" [control]="myForm.get(layout.id).controls[j].get(control.id)"></error-message>
-              </fieldset>
+              </fieldset> -->
             </li>
 
             <div *ngSwitchDefault>

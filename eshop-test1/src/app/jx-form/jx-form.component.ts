@@ -19,7 +19,10 @@ export class JxFormComponent implements OnInit {
     this.layouts.forEach(x => {
       if (x.type == 'groupArray') {
 
-      } else {
+      }  else if(x.type == "checkboxGroup"){
+        
+      }
+      else {
         let allValidators = this.jsonFormService.getValidators(x);
         formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
       }

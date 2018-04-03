@@ -16,19 +16,19 @@ let form1 = [
             }
         }
     }
-    // {
-    //     type: "checkboxGroup"
-    //     , label: "Food"
-    //     , id: "food"
-    //     , validation: {
-    //         required: { message: '$ is required' }
-    //     }
-    //     , options: [
-    //         { label: "Main course", value: false, id: "main" }
-    //         , { label: "Desert", value: true, id: "desert" }
-    //         , { label: "beverages", value: false, id: "beverages" }
-    //     ]
-    // }
+    , {
+        type: "checkboxGroup"
+        , label: "Food"
+        , id: "food"
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: [
+            { label: "Main course", value: false, id: "main" }
+            , { label: "Desert", value: true, id: "desert" }
+            , { label: "beverages", value: false, id: "beverages" }
+        ]
+    }
     // , {
     //     type: "groupArray"
     //     , label: "Tags"
@@ -87,7 +87,7 @@ let form1 = [
     //     }
     // }
 
-    , 
+    ,
     {
         type: "group"
         , label: "Passwords"
@@ -103,26 +103,26 @@ let form1 = [
                     required: { message: '$ is a required field' }
                 }
             }
+            // , {
+            //     type: "checkboxGroup"
+            //     , label: "Food3"
+            //     , id: "food3"
+            //     , validation: {
+            //         required: { message: '$ is required' }
+            //     }
+            //     , options: [
+            //         { label: "Main course", value: false, id: "main3" }
+            //         , { label: "Desert", value: true, id: "desert3" }
+            //         , { label: "beverages", value: false, id: "beverages3" }
+            //     ]
+            // }
             , {
-                type: "checkboxGroup"
-                , label: "Food3"
-                , id: "food3"
-                , validation: {
-                    required: { message: '$ is required' }
-                }
-                , options: [
-                    { label: "Main course", value: false, id: "main3" }
-                    , { label: "Desert", value: true, id: "desert3" }
-                    , { label: "beverages", value: false, id: "beverages3" }
-                ]
+                type: "text"
+                , id: "confirmPassword"
+                , label: "Confirm password"
+                , placeholder: "Confirm password"
+                , value: ""
             }
-                , {
-                    type: "text"
-                    , id: "confirmPassword"
-                    , label: "Confirm password"
-                    , placeholder: "Confirm password"
-                    , value: ""
-                }
             // , {
             //     type: "checkbox"
             //     , id: "agreed1"
@@ -174,19 +174,19 @@ let form1 = [
                                 required: { message: '$ is a required field' }
                             }
                         }
-                        , {
-                            type: "checkboxGroup"
-                            , label: "Food2"
-                            , id: "food2"
-                            , validation: {
-                                required: { message: '$ is required' }
-                            }
-                            , options: [
-                                { label: "Main course", value: false, id: "main2" }
-                                , { label: "Desert", value: true, id: "desert2" }
-                                , { label: "beverages", value: false, id: "beverages2" }
-                            ]
-                        }
+                        // , {
+                        //     type: "checkboxGroup"
+                        //     , label: "Food2"
+                        //     , id: "food2"
+                        //     , validation: {
+                        //         required: { message: '$ is required' }
+                        //     }
+                        //     , options: [
+                        //         { label: "Main course", value: false, id: "main2" }
+                        //         , { label: "Desert", value: true, id: "desert2" }
+                        //         , { label: "beverages", value: false, id: "beverages2" }
+                        //     ]
+                        // }
                         // , {
                         //     type: "checkbox"
                         //     , id: "agreed1"
@@ -293,7 +293,7 @@ let form1 = [
     //     }
     // }
     ,
-     {
+    {
         type: "checkbox"
         , id: "agreed"
         , label: "Agreed"

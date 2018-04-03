@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Form, FormGroup  } from '@angular/forms';
 
 @Component({
   selector: 'group-array',
@@ -8,11 +8,13 @@ import { FormBuilder, FormArray } from '@angular/forms';
 })
 export class GroupArrayComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb:FormBuilder) { }
   @Input() layout:any;
-  @Input() fb:FormBuilder;
-  @Input() myForm:any;
+  // @Input() fb:FormBuilder;
+  @Input() myForm:FormGroup;
+  // @Input() isNested:boolean;
   ngOnInit() {
+    
   }
 
   removeGroupFromArray(j){

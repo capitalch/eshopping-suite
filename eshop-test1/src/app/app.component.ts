@@ -12,8 +12,8 @@ export class AppComponent {
   myLayout: any = {};
   options: any = {};
   content: string;
-  
-  constructor(private jsonFormService:JsonFormService) { 
+
+  constructor(private jsonFormService: JsonFormService) {
 
   }
 
@@ -26,7 +26,7 @@ export class AppComponent {
     this.options = {
       wrapperClass: "form-style-1"
     };
-      this.myLayout = form1;
+    this.myLayout = form1;
     this.content = "This is code"
   }
 

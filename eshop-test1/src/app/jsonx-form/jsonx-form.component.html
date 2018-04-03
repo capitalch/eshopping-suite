@@ -1,0 +1,5 @@
+<form [formGroup]="myForm" novalidate>
+  <input type="text" placeholder="child 0" [formControlName]="'child0'">
+  <child1-nest [myForm]="myForm" ></child1-nest>
+  <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+</form>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatFormComponent } from './mat-form.component';
+import { Child2NestComponent } from './child2-nest.component';
 
-describe('MatFormComponent', () => {
-  let component: MatFormComponent;
-  let fixture: ComponentFixture<MatFormComponent>;
+describe('Child2NestComponent', () => {
+  let component: Child2NestComponent;
+  let fixture: ComponentFixture<Child2NestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatFormComponent ]
+      declarations: [ Child2NestComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatFormComponent);
+    fixture = TestBed.createComponent(Child2NestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

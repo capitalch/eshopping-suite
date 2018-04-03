@@ -12,120 +12,98 @@ export class JsonFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  ee: EventEmitter<any>;
-  obj: any;
-  subs;
+
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService
   ) { }
 
   ngOnInit() {
-    this.ee = new EventEmitter();
-
     let formControls = {};
     this.layouts.forEach(x => {
-      if (x.type == 'checkboxGroup' && x.options) {
-        let childControls = {};
-        x.options.forEach(y => {
-          childControls[y.id] = y.value;
-        });
-        formControls[x.id] = this.fb.group(childControls);
-        let sub = this.ee.filter((d) => {
-          return (d == 'checkboxGroup');
-        }).subscribe(f => {
-          let ctrl = this.myForm.controls[x.id];
-          ctrl.setValidators(this.checkboxGroupRequiredValidator);
-        });
-        this.subs ? this.subs.add(sub) : (this.subs = sub);
-      }
-      else if (x.type == 'groupArray') {
-        let childControls = {};
-        x.group.controls && x.group.controls.forEach(c => {
-          let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
-        });
-        formControls[x.id] = <FormArray>this.fb.array([
-          this.fb.group(childControls)
-        ]);
-      }
-      else if (x.type == "group") {
-        let childControls = {};
-        x.controls && x.controls.forEach(c => {
-          let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
-        });
-
-        formControls[x.id] = this.fb.group(childControls);
-      }
-      else {
-        let allValidators = this.getValidators(x);
-        formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
-      }
+      // if (x.type == 'checkboxGroup' && x.options) {
+      //   let childControls = {};
+      //   x.options.forEach(y => {
+      //     childControls[y.id] = y.value;
+      //   });
+      //   formControls[x.id] = this.fb.group(childControls, { validator: x.validation && x.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+      // } else
+        if (x.type == 'groupArray') {
+          let childControls = {};
+          x.group.controls && x.group.controls.forEach(c => {
+            if ((c.type == 'checkboxGroup') && c.options) {
+              let childControls1 = {};
+              c.options.forEach(y => {
+                childControls1[y.id] = y.value;
+              });
+              childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+            } else {
+              let allValidators = this.jsonFormService.getValidators(c);
+              childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+            }
+          });
+          formControls[x.id] = <FormArray>this.fb.array([
+            this.fb.group(childControls)
+          ]);
+        }
+        else if (x.type == "group") {
+          let childCtrls = {};
+          x.controls && x.controls.forEach(c => {
+            let allValidators = this.jsonFormService.getValidators(c);
+            if ((c.type == 'checkboxGroup') && c.options) {
+              let childControls = {};
+              c.options.forEach(y => {
+                childControls[y.id] = y.value;
+              });
+              childCtrls[c.id] = this.fb.group(childControls, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+            } else 
+            if (c.type == 'groupArray') {
+              let childControls1 = {};
+              c.group.controls && c.group.controls.forEach(d => {
+                if (d.type == 'checkboxGroup' && d.options) {
+                  let childControls2 = {};
+                  d.options.forEach(y => {
+                    childControls2[y.id] = y.value;
+                  });
+                  childControls1[d.id] = this.fb.group(childControls2, { validator: d.validation && d.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+                } else {
+                  let allValidators1 = this.jsonFormService.getValidators(d);
+                  childControls1[d.id] = [d.value, allValidators1.validators, allValidators1.asyncValidators];
+                }
+              });
+              let group1 = this.fb.group(childControls1);
+              childCtrls[c.id] = <FormArray>this.fb.array([
+                group1]);
+            } else {
+              childCtrls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators];
+            }
+          });
+          formControls[x.id] = this.fb.group(childCtrls);
+        }
+        else {
+          let allValidators = this.jsonFormService.getValidators(x);
+          formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
+        }
     });
     this.myForm = this.fb.group(formControls);
-
-    this.ee.emit('checkboxGroup');
-  }
-
-  checkboxGroupRequiredValidator(ctrl: any) {
-    let isValid = false, ret = null;
-    Object.values(ctrl.controls).forEach((x: any) => {
-      isValid = isValid || x.value;
-    });
-    (!isValid) && (ret = { required: true });
-    return (ret);
   }
 
   addGroupInArray(layout) {
-
     let childControls = {};
-        layout.group.controls && layout.group.controls.forEach(c => {
-          let allValidators = this.getValidators(c);
-          childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
+    layout.group.controls && layout.group.controls.forEach(c => {
+
+      if (c.type == 'checkboxGroup' && c.options) {
+        let childControls1 = {};
+        c.options.forEach(y => {
+          childControls1[y.id] = y.value;
         });
-        let groupArray = <FormArray>this.myForm.get(layout.id);
-        let group = this.fb.group(childControls);
-        groupArray.push(group);
-  }
-  removeTag(j) {
-    let tags = <FormArray>this.myForm.get("tags");
-    tags.removeAt(j);
-  }
-
-  getValidators(layout) {
-    let allValidators = {
-      validators: [],
-      asyncValidators: []
-    };
-
-    layout.validation && Object.keys(layout.validation).map(x => {
-
-      switch (x) {
-        case 'required':
-          allValidators.validators.push(Validators.required);
-          break;
-        case 'email':
-          allValidators.validators.push(Validators.email);
-          break;
-        case 'minlength':
-          allValidators.validators.push(Validators.minLength(layout.validation[x].value));
-          break;
-        case 'maxlength':
-          allValidators.validators.push(Validators.maxLength(layout.validation[x].value));
-          break;
-        case 'pattern':
-          allValidators.validators.push(Validators.pattern(layout.validation[x].value));
-          break;
-        default:
-          let validatorName = x;
-          let arg = layout.validation[x].arg;
-          if (layout.validation[x].async) {
-            allValidators.asyncValidators.push(this.jsonFormService.executeCustomValidation(validatorName, arg));
-          } else {
-            allValidators.validators.push(this.jsonFormService.executeCustomValidation(validatorName, arg));
-          }
+        childControls[c.id] = this.fb.group(childControls1, { validator: c.validation && c.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+      } else {
+        let allValidators = this.jsonFormService.getValidators(c);
+        childControls[c.id] = [c.value, allValidators.validators, allValidators.asyncValidators]
       }
     });
-    return (allValidators);
+    let group = this.fb.group(childControls);
+    let groupArray = <FormArray>this.myForm.get(layout.id);
+    groupArray.push(group);
   }
 
   submit(actionName) {
@@ -151,7 +129,5 @@ export class JsonFormComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subs && (this.subs.unsubscribe());
-    console.log('unsubs done');
   }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatButtonComponent } from './mat-button.component';
+import { GroupxChildComponent } from './groupx-child.component';
 
-describe('MatButtonComponent', () => {
-  let component: MatButtonComponent;
-  let fixture: ComponentFixture<MatButtonComponent>;
+describe('GroupxChildComponent', () => {
+  let component: GroupxChildComponent;
+  let fixture: ComponentFixture<GroupxChildComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatButtonComponent ]
+      declarations: [ GroupxChildComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatButtonComponent);
+    fixture = TestBed.createComponent(GroupxChildComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

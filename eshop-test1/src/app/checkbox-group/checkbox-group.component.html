@@ -1,0 +1,10 @@
+<fieldset  [formGroup]="myForm">
+  <legend>{{layout.label}}</legend>
+  <ng-container [formGroupName]="layout.id">
+    <!-- <ng-container *ngFor="let option of layout.options">
+      <input type="checkbox" [ngClass]="layout.class && layout.class.element" [id]="option.id+j" [formControlName]="option.id">
+      <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id+j">{{option.label}}</label>
+    </ng-container> -->
+  </ng-container>
+  <error-message [layout]="layout" [control]="control"></error-message>
+</fieldset>

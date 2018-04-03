@@ -29,7 +29,8 @@
         </div>
 
         <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [ngClass]="layout.class && layout.class.element"  type="submit">{{layout.label}}</button>
+          <!-- <button [ngClass]="layout.class && layout.class.element"  type="submit">{{layout.label}}</button> -->
+          <input type="submit">
         </div>
       </div>
     </ng-container>

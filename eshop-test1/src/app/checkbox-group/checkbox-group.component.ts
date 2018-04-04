@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { JsonFormService } from '../json-form/json-form.service';
+import { JxFormService } from '../jx-form.service';
 
 @Component({
   selector: 'checkbox-group',
@@ -10,7 +10,7 @@ import { JsonFormService } from '../json-form/json-form.service';
 export class CheckboxGroupComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() layout: any;
-  constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) {
+  constructor(private fb: FormBuilder, private JxFormService: JxFormService) {
 
   }
 
@@ -19,6 +19,6 @@ export class CheckboxGroupComponent implements OnInit {
     this.layout.options && this.layout.options.forEach(e => {
       childControls[e.id] = e.value;
     });
-    this.parent.setControl(this.layout.id, this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.jsonFormService.checkboxGroupRequiredValidator }));    
+    this.parent.setControl(this.layout.id, this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.JxFormService.checkboxGroupRequiredValidator }));    
   }
 }

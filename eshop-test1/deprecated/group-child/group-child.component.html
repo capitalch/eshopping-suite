@@ -26,13 +26,13 @@
             <option *ngFor="let option of controlInGroup.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
-          <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>
+          <jx-error [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></jx-error>
         </li>
 
         <li *ngSwitchCase="'textarea'">
           <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
           <textarea class="field-long" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">{{controlInGroup.value}}</textarea>
-          <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>
+          <jx-error [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></jx-error>
         </li>
 
         <li *ngSwitchCase="'checkboxGroup'">
@@ -46,7 +46,7 @@
                 <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
               </ng-container>
             </ng-container>
-            <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>
+            <jx-error [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></jx-error>
           </fieldset> -->
         </li>
 
@@ -64,7 +64,7 @@
                       <label  [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>
                       <textarea class="field-long" [id]="controlInGroupOfArray.id+j" [placeholder]="controlInGroupOfArray.placeholder"
                         [formControlName]="controlInGroupOfArray.id">{{controlInGroupOfArray.value}}</textarea>
-                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                        <jx-error [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></jx-error>
                     </div>
 
                     <div *ngSwitchCase="'select'">
@@ -73,7 +73,7 @@
                         <option *ngFor="let option of controlInGroupOfArray.options" [value]="option.value" [label]="option.label">
                         </option>
                       </select>
-                      <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                      <jx-error [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></jx-error>
                     </div>
 
                     <div *ngSwitchCase="'radio'">
@@ -101,7 +101,7 @@
                             <label style="display:inline-block" [for]="option.id+j">{{option.label}}</label>
                           </ng-container>
                         </ng-container>
-                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                        <jx-error [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></jx-error>
                       </fieldset>
                     </li>
                                       
@@ -109,7 +109,7 @@
                       <label [for]="controlInGroupOfArray.id+j">{{controlInGroupOfArray.label}}</label>
                       <input type="controlInGroupOfArray.type" [id]="controlInGroupOfArray.id + j" [placeholder]="controlInGroupOfArray.placeholder"
                         [formControlName]="controlInGroupOfArray.id">                        
-                        <error-message [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></error-message>
+                        <jx-error [layout]="controlInGroupOfArray" [control]="myForm.get(layout.id).get(controlInGroup.id).controls[j].get(controlInGroupOfArray.id)"></jx-error>
                     </div>
                   </ng-container>
                 </ng-container>
@@ -121,7 +121,7 @@
         <li *ngSwitchDefault>
           <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
           <input [type]="controlInGroup.type" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">
-          <error-message [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></error-message>
+          <jx-error [layout]="controlInGroup" [control]="myForm.get(layout.id).get(controlInGroup.id)"></jx-error>
         </li>
       </ng-container>
     </ng-container>

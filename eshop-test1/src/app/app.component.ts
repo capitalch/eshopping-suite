@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { form1 } from './app.config';
-import { JsonFormService } from './json-form/json-form.service';
+import { JxFormService } from './jx-form.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +13,7 @@ export class AppComponent {
   options: any = {};
   content: string;
 
-  constructor(private jsonFormService: JsonFormService) {
+  constructor(private JxFormService: JxFormService) {
 
   }
 

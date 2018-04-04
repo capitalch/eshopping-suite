@@ -3,14 +3,16 @@
     <ng-container *ngFor="let layout of layouts">
       <div [ngSwitch]="layout.type">
 
+        <div *ngSwitchCase="'textarea'">
+          <label [for]="layout.id">{{layout.label}}</label>
+          <textarea class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
+        </div>
+
         <div *ngSwitchCase="'checkbox'">
           <label>
             <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
           </label>
-        </div>
-
-        <div *ngSwitchCase="'checkboxGroup'">
-          <checkbox-group [layout]="layout" [parent]="myForm"></checkbox-group>
         </div>
 
         <div *ngSwitchCase="'radio'">
@@ -29,13 +31,11 @@
             <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
         </div>
 
-        <div *ngSwitchCase="'textarea'">
-          <label [for]="layout.id">{{layout.label}}</label>
-          <textarea class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+        <div *ngSwitchCase="'checkboxGroup'">
+          <checkbox-group [layout]="layout" [parent]="myForm"></checkbox-group>
         </div>
 
         <div *ngSwitchCase="'group'">
@@ -56,7 +56,7 @@
           <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
           <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
             [formControlName]="layout.id">
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
         </div>
 
 

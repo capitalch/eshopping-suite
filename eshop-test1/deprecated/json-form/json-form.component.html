@@ -20,7 +20,7 @@
                 <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id">{{option.label}}</label>
               </ng-container>
             </ng-container>
-            <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+            <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
           </fieldset> -->
           <checkbox-group  [parent] = "myForm" [layout] = "layout"></checkbox-group>
         </li>
@@ -42,14 +42,14 @@
             <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
         </li>
 
         <li *ngSwitchCase="'textarea'" [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
           <textarea [ngClass]="layout.class && layout.class.element" class="field-long" [id]="layout.id" [placeholder]="layout.placeholder"
             [formControlName]="layout.id">{{layout.value}}</textarea>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
         </li>
 
         <li *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
@@ -57,7 +57,7 @@
         </li>
 
         <li *ngSwitchCase="'button'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-          <button [id]="layout.id" (click)="this.jsonFormService.executeAction(layout.actionName,f)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
+          <button [id]="layout.id" (click)="this.JxFormService.executeAction(layout.actionName,f)" [ngClass]="layout.class && layout.class.element">{{layout.label}}</button>
         </li>
 
         <li *ngSwitchCase="'group'">
@@ -73,7 +73,7 @@
           <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
           <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
             [formControlName]="layout.id">
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-error [layout]="layout" [control]="myForm.get(layout.id)"></jx-error>
         </li>
 
       </ng-container>

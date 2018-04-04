@@ -4,7 +4,7 @@ import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators } from '@angular/forms';
 @Injectable()
-export class JsonFormService {
+export class JxFormService {
   // ee: EventEmitter<any>;
   Event
   constructor(private http: HttpClient) {

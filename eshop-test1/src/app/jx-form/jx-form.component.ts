@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
-import { JsonFormService } from '../json-form/json-form.service';
+import { JxFormService } from '../jx-form.service';
 
 @Component({
   selector: 'jx-form',
@@ -12,7 +12,7 @@ export class JxFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) { }
+  constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
     let formControls = {};
@@ -25,7 +25,7 @@ export class JxFormComponent implements OnInit {
 
       }
       else {
-        let allValidators = this.jsonFormService.getValidators(x);
+        let allValidators = this.JxFormService.getValidators(x);
         formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
       }
     });
@@ -37,7 +37,7 @@ export class JxFormComponent implements OnInit {
     this.validateAllFormFields(this.myForm);
     if (this.myForm.valid) {
       console.log('form submitting');
-      this.jsonFormService.executeAction(actionName, this.myForm);
+      this.JxFormService.executeAction(actionName, this.myForm);
     } else {
       console.log("Invalid form");
     }
@@ -62,7 +62,7 @@ export class JxFormComponent implements OnInit {
       } else if (e.type == "group") {
 
       } else {
-        let allValidators = this.jsonFormService.getValidators(e);
+        let allValidators = this.JxFormService.getValidators(e);
         childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
       }
     });

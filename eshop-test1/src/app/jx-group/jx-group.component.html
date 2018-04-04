@@ -4,6 +4,12 @@
     <ng-container *ngFor="let controlInGroup of layout.controls">
       <ng-container [ngSwitch]="controlInGroup.type">
 
+        <div *ngSwitchCase="'textarea'">
+          <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
+          <textarea class="field-long" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">{{controlInGroup.value}}</textarea>
+          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
+        </div>
+
         <div *ngSwitchCase="'checkbox'">
           <label>
             <input type="checkbox" [id]="controlInGroup.id" [formControlName]="controlInGroup.id" [value]="controlInGroup.value"> {{controlInGroup.label}}
@@ -26,13 +32,7 @@
             <option *ngFor="let option of controlInGroup.options" [value]="option.value" [label]="option.label">
             </option>
           </select>
-          <error-message [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></error-message>
-        </div>
-
-        <div *ngSwitchCase="'textarea'">
-          <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
-          <textarea class="field-long" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">{{controlInGroup.value}}</textarea>
-          <error-message [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></error-message>
+          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
         </div>
 
         <div *ngSwitchCase="'checkboxGroup'">
@@ -46,7 +46,7 @@
         <div *ngSwitchDefault>
           <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
           <input [type]="controlInGroup.type" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">
-          <error-message [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></error-message>
+          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
         </div>
 
       </ng-container>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { JsonFormService } from '../json-form/json-form.service';
+import { JxFormService } from '../json-form/json-form.service';
 
 @Component({
   selector: 'group-child',
@@ -10,7 +10,7 @@ import { JsonFormService } from '../json-form/json-form.service';
 export class GroupChildComponent implements OnInit {
   @Input() layout: any;
   @Input() myForm: any;
-  constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) { }
+  constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
 
@@ -29,10 +29,10 @@ export class GroupChildComponent implements OnInit {
         d.options.forEach(y => {
           childControls1[y.id] = y.value;
         });
-        childControls[d.id] = this.fb.group(childControls1, { validator: d.validation && d.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
+        childControls[d.id] = this.fb.group(childControls1, { validator: d.validation && d.validation.required && this.JxFormService.checkboxGroupRequiredValidator });
       } else 
       {
-        let allValidators = this.jsonFormService.getValidators(d);
+        let allValidators = this.JxFormService.getValidators(d);
         childControls[d.id] = [d.value, allValidators.validators, allValidators.asyncValidators];
       }
     });

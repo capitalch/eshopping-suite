@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { JsonFormService } from '../json-form/json-form.service';
+import { JxFormService } from '../jx-form.service';
 
 @Component({
   selector: 'jx-array',
@@ -10,7 +10,7 @@ import { JsonFormService } from '../json-form/json-form.service';
 export class JxArrayComponent implements OnInit {
   @Input() layout: any;
   @Input() parent: FormGroup;
-  constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) { }
+  constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
 
@@ -20,7 +20,7 @@ export class JxArrayComponent implements OnInit {
         if ((e.type == "checkboxGroup") && e.options) {
 
         } else {
-          let allValidators = this.jsonFormService.getValidators(e);
+          let allValidators = this.JxFormService.getValidators(e);
           childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
         }
 

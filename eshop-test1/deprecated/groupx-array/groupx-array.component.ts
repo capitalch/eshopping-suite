@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { JsonFormService } from '../json-form/json-form.service';
+import { JxFormService } from '../json-form/json-form.service';
 import { FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ export class GroupxArrayComponent implements OnInit {
   @Input() layout: any;
   @Input() myForm: any;
   @Input() controlInGroup: any;
-  constructor(private formService: JsonFormService, private fb:FormBuilder) {
+  constructor(private formService: JxFormService, private fb:FormBuilder) {
     console.log('constructor array');
   }
 

@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'error-message',
-  templateUrl: './error-message.component.html',
-  styleUrls: ['./error-message.component.scss']
+  selector: 'jx-error',
+  templateUrl: './jx-error.component.html',
+  styleUrls: ['./jx-error.component.scss']
 })
 export class ErrorMessageComponent implements OnInit {
   @Input() layout: any={};
@@ -12,7 +12,6 @@ export class ErrorMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let i=0;
   }
 
   getMessages(){

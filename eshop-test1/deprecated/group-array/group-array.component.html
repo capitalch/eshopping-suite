@@ -29,13 +29,13 @@
                 <option *ngFor="let option of control.options" [value]="option.value" [label]="option.label">
                 </option>
               </select>
-              <error-message [layout]="control" [control]="myForm.get(layout.id).get(control.id)"></error-message>
+              <jx-error [layout]="control" [control]="myForm.get(layout.id).get(control.id)"></jx-error>
             </li>
 
             <li *ngSwitchCase="'textarea'">
               <label [for]="control.id+j">{{control.label}}</label>
               <textarea class="field-long" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">{{control.value}}</textarea>
-              <error-message [layout]="control" [control]="myForm.get(layout.id).get(control.id)"></error-message>
+              <jx-error [layout]="control" [control]="myForm.get(layout.id).get(control.id)"></jx-error>
             </li>
 
             <li *ngSwitchCase="'checkboxGroup'">
@@ -47,14 +47,14 @@
                     <label style="display:inline-block" [for]="option.id+j">{{option.label}}</label>
                   </ng-container>
                 </ng-container>
-                <error-message [layout]="control" [control]="myForm.get(layout.id).controls[j].get(control.id)"></error-message>
+                <jx-error [layout]="control" [control]="myForm.get(layout.id).controls[j].get(control.id)"></jx-error>
               </fieldset> -->
             </li>
 
             <div *ngSwitchDefault>
               <label [for]="control.id+j">{{control.label}}</label>
               <input [type]="control.type" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">
-              <error-message [layout]="control" [control]="myForm.get(layout.id).controls[j].get(control.id)"></error-message>
+              <jx-error [layout]="control" [control]="myForm.get(layout.id).controls[j].get(control.id)"></jx-error>
             </div>
 
           </ng-container>

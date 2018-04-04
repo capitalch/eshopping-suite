@@ -31,6 +31,18 @@ let form1 = [
                     , id: "tag3"
                     , controls: [
                         {
+                            type: "textarea"
+                            , id: "address"
+                            , label: "Address"
+                            , placeholder: "Address"
+                            , value: "12345"
+                            , validation: {
+                                required: { message: '$ is required' },
+                                minlength: { value: 5, message: 'Minimum length for $ is 5' },
+                                maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+                            }
+                        }
+                        , {
                             type: "checkbox"
                             , id: "agreed3"
                             , label: "Agreed"

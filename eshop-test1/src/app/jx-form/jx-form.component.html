@@ -13,6 +13,7 @@
           <label>
             <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
           </label>
+          <!-- <jx-checkbox ></jx-checkbox> -->
         </div>
 
         <div *ngSwitchCase="'radio'">
@@ -35,7 +36,7 @@
         </div>
 
         <div *ngSwitchCase="'checkboxGroup'">
-          <checkbox-group [layout]="layout" [parent]="myForm"></checkbox-group>
+          <jx-checkbox-group [layout]="layout" [parent]="myForm"></jx-checkbox-group>
         </div>
 
         <div *ngSwitchCase="'group'">

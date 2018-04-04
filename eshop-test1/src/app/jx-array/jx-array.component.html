@@ -8,15 +8,14 @@
           <ng-container [ngSwitch]="control.type">
 
             <div *ngSwitchCase="'textarea'">
-              <label [for]="control.id+j">{{control.label}}</label>
-              <textarea class="field-long" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">{{control.value}}</textarea>
-              <jx-error [layout]="control" [control]="group.get(control.id)"></jx-error>
+              <jx-textarea [layout]="control" [parent]="group" [idx]="j" ></jx-textarea>              
             </div>
 
             <div *ngSwitchCase="'checkbox'">
-              <label>
+              <jx-checkbox [layout]="control" [parent]="group" [idx]="j" ></jx-checkbox>
+              <!-- <label>
                 <input type="checkbox" [id]="control.id+j" [formControlName]="control.id" [value]="control.value"> {{control.label}}
-              </label>
+              </label> -->
             </div>
 
             <div *ngSwitchCase="'radio'">
@@ -36,10 +35,10 @@
                 </option>
               </select>
               <jx-error [layout]="control" [control]="group.get(control.id)"></jx-error>
-            </div>           
+            </div>
 
             <div *ngSwitchCase="'checkboxGroup'">
-              <checkbox-group [layout]="control" [parent]="group"></checkbox-group>
+              <jx-checkbox-group [layout]="control" [parent]="group" [idx]="j"></jx-checkbox-group>
             </div>
 
             <div *ngSwitchDefault>

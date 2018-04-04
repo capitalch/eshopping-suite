@@ -26,7 +26,12 @@ export class JxArrayComponent implements OnInit {
 
       });
     let group1 = this.fb.group(childControls);
-    this.parent.setControl(this.layout.id, this.fb.array([group1]));    
+    this.parent.setControl(this.layout.id, this.fb.array([group1]));
+  }
+
+  removeFromArray(j) {
+    let groupArray = <FormArray>this.parent.get(this.layout.id);
+    groupArray.removeAt(j);
   }
 
 }

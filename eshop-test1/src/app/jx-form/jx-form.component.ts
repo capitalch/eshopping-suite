@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JsonFormService } from '../json-form/json-form.service';
 
 @Component({
@@ -19,10 +19,10 @@ export class JxFormComponent implements OnInit {
     this.layouts.forEach(x => {
       if (x.type == 'groupArray') {
 
-      }  else if(x.type == "checkboxGroup"){
+      } else if (x.type == "checkboxGroup") {
 
-      } else if(x.type == "group"){
-        
+      } else if (x.type == "group") {
+
       }
       else {
         let allValidators = this.jsonFormService.getValidators(x);
@@ -52,5 +52,22 @@ export class JxFormComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     });
+  }
+
+  addGroupInArray(layout) {
+    let childControls = {};
+    layout.group.controls && layout.group.controls.forEach(e => {
+      if (e.type == "checkboxGroup") {
+
+      } else if (e.type == "group") {
+
+      } else {
+        let allValidators = this.jsonFormService.getValidators(e);
+        childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
+      }
+    });
+    let group = this.fb.group(childControls);
+    let groupArray = <FormArray>this.myForm.get(layout.id);
+    groupArray.push(group);
   }
 }

@@ -3,7 +3,7 @@
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
       <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
-        <button (click)="removeGroupFromArray(layout,controlInGroup,j)">Remove</button>
+        <button (click)="removeFromArray(j)">Remove</button>
         <ng-container *ngFor="let control of layout.group.controls">
           <ng-container [ngSwitch]="control.type">
 

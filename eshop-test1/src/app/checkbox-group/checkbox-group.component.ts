@@ -8,29 +8,17 @@ import { JsonFormService } from '../json-form/json-form.service';
   styleUrls: ['./checkbox-group.component.scss']
 })
 export class CheckboxGroupComponent implements OnInit {
-  @Input() myForm: FormGroup;
-  @Input() layout;
-  @Input() control;
-  @Input() parent;
-  @Input() j;
+  @Input() parent: FormGroup;
+  @Input() layout: any;
   constructor(private fb: FormBuilder, private jsonFormService: JsonFormService) {
-    // let childControls = {};
-    // this.layout.options.forEach(y => {
-    //   childControls[y.id] = y.value;
-    // });
-    // this.parent.controls[this.layout.id] = this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
 
   }
 
   ngOnInit() {
-    let i = 0;
-    // let childControls = {};
-    // this.layout.options.forEach(y => {
-    //   childControls[y.id] = y.value;
-    // });
-    // this.parent.controls[this.layout.id] = this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.jsonFormService.checkboxGroupRequiredValidator });
-  }
-  ngAfterViewInit() {
-
+    let childControls = {};
+    this.layout.options && this.layout.options.forEach(e => {
+      childControls[e.id] = e.value;
+    });
+    this.parent.setControl(this.layout.id, this.fb.group(childControls, { validator: this.layout.validation && this.layout.validation.required && this.jsonFormService.checkboxGroupRequiredValidator }));    
   }
 }

@@ -49,6 +49,7 @@ export class JsonFormService {
 
   actions = {
     submitForm: (form) => {
+      delete form.value.undefined;
       console.log(form.value);
     }
     , resetForm: (form) => {

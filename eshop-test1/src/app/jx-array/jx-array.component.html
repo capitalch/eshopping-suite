@@ -1,0 +1,56 @@
+<fieldset [formGroup]="parent">
+  <legend>{{layout.label}}</legend>
+  <ng-container [formArrayName]="layout.id">
+    <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
+      <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
+        <button (click)="removeGroupFromArray(layout,controlInGroup,j)">Remove</button>
+        <ng-container *ngFor="let control of layout.group.controls">
+          <ng-container [ngSwitch]="control.type">
+
+            <div *ngSwitchCase="'checkbox'">
+              <label>
+                <input type="checkbox" [id]="control.id+j" [formControlName]="control.id" [value]="control.value"> {{control.label}}
+              </label>
+            </div>
+
+            <div *ngSwitchCase="'radio'">
+              <fieldset>
+                <legend>{{control.label}}</legend>
+                <ng-container *ngFor="let option of control.options">
+                  <input type="radio" [id]="option.id+j" [formControlName]="control.id" [value]="option.value" [name]="control.id">
+                  <label [for]="option.id+j">{{option.label}}</label>
+                </ng-container>
+              </fieldset>
+            </div>
+
+            <div *ngSwitchCase="'select'">
+              <label>{{control.label}}</label>
+              <select [formControlName]="control.id" class="field-select">
+                <option *ngFor="let option of control.options" [value]="option.value" [label]="option.label">
+                </option>
+              </select>
+              <error-message [layout]="control" [control]="group.get(control.id)"></error-message>
+            </div>
+
+            <div *ngSwitchCase="'textarea'">
+              <label [for]="control.id+j">{{control.label}}</label>
+              <textarea class="field-long" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">{{control.value}}</textarea>
+              <error-message [layout]="control" [control]="group.get(control.id)"></error-message>
+            </div>
+
+            <div *ngSwitchCase="'checkboxGroup'">
+              <checkbox-group [layout]="control" [parent]="group"></checkbox-group>
+            </div>
+
+            <div *ngSwitchDefault>
+              <label [for]="control.id+j">{{control.label}}</label>
+              <input [type]="control.type" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">
+              <error-message [layout]="control" [control]="group.get(control.id)"></error-message>
+            </div>
+
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</fieldset>

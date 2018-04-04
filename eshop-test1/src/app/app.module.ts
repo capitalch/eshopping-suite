@@ -28,6 +28,8 @@ import { Child3NestComponent } from './child3-nest/child3-nest.component';
 import { Child4NestComponent } from './child4-nest/child4-nest.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { JxFormComponent } from './jx-form/jx-form.component';
+import { JxGroupComponent } from './jx-group/jx-group.component';
+import { JxArrayComponent } from './jx-array/jx-array.component';
 
 
 
@@ -51,7 +53,9 @@ import { JxFormComponent } from './jx-form/jx-form.component';
     Child2NestComponent,
     Child3NestComponent,
     Child4NestComponent,
-    JxFormComponent
+    JxFormComponent,
+    JxGroupComponent,
+    JxArrayComponent
   ],
   imports: [
     BrowserModule

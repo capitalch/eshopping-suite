@@ -21,6 +21,8 @@ export class JxFormComponent implements OnInit {
 
       }  else if(x.type == "checkboxGroup"){
 
+      } else if(x.type == "group"){
+        
       }
       else {
         let allValidators = this.jsonFormService.getValidators(x);

@@ -1,20 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxFormService } from '../jx-form.service';
+import { BrokerService } from '../broker.service';
 
 @Component({
   selector: 'jx-form',
   templateUrl: './jx-form.component.html',
   styleUrls: ['./jx-form.component.scss']
+  , changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JxFormComponent implements OnInit {
   @Input() layouts: any[] = [];
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
+  constructor(private fb: FormBuilder, private JxFormService: JxFormService, private brokerService: BrokerService) { }
 
   ngOnInit() {
+
+    console.log("init called");
+    // setTimeout(() => {
+    //   this.init();
+    // }, 0);
+    this.init();
+  }
+
+  init() {
     let formControls = {};
     this.layouts.forEach(x => {
       if (x.type == 'groupArray') {

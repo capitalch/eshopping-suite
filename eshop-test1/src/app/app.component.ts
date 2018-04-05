@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { form1 } from './app.config';
 import { JxFormService } from './jx-form.service';
+import { BrokerService } from './broker.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,8 +14,8 @@ export class AppComponent {
   options: any = {};
   content: string;
 
-  constructor(private JxFormService: JxFormService) {
-
+  constructor(private JxFormService: JxFormService, private brokerService: BrokerService) {
+    
   }
 
   /*
@@ -26,6 +27,9 @@ export class AppComponent {
     this.options = {
       wrapperClass: "form-style-1"
     };
+    // this.brokerService.behFilterOn("config").subscribe(d => {
+    //   this.myLayout = d.data;
+    // });
     this.myLayout = form1;
     this.content = "This is code"
   }

@@ -10,19 +10,37 @@ import { JxGroupComponent } from './jx-group/jx-group.component';
 import { JxArrayComponent } from './jx-array/jx-array.component';
 import { JxErrorComponent } from './jx-error/jx-error.component';
 import { JxCheckboxGroupComponent } from './jx-checkbox-group/jx-checkbox-group.component';
-import { TextareaComponent, CheckboxComponent } from './jx-controls/core/textarea.component';
+import {
+  JxTextareaComponent
+  , JxCheckboxComponent
+  , JxRadioComponent
+  , JxSelectComponent
+  , JxDefaultComponent
+
+} from './jx-controls/core.component';
+// import { JxTextareaComponent } from './jx-controls/core/textarea.component';
+// import { JxCheckboxComponent } from './jx-controls/core/checkbox.component';
+// import { JxRadioComponent } from './jx-controls/core/radio.component';
+// import { JxSelectComponent } from './jx-controls/core/select.component';
+// import { JxDefaultComponent } from './jx-controls/core/default.component';
+import { BrokerService } from './broker.service';
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    JxFormComponent,
-    JxGroupComponent,
-    JxArrayComponent,
-    JxErrorComponent,
-    JxCheckboxGroupComponent,
-    TextareaComponent
+    AppComponent
+    , JxFormComponent
+    , JxGroupComponent
+    , JxArrayComponent
+    , JxErrorComponent
+    , JxCheckboxGroupComponent
+    , JxTextareaComponent
+    , JxCheckboxComponent
+    , JxRadioComponent
+    , JxSelectComponent
+    , JxDefaultComponent
   ],
   imports: [
     BrowserModule
@@ -31,7 +49,7 @@ import { TextareaComponent, CheckboxComponent } from './jx-controls/core/textare
     , HttpClientModule
     , AngularMaterialModule
   ],
-  providers: [JxFormService],
+  providers: [JxFormService, BrokerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

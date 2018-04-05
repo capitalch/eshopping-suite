@@ -10,25 +10,11 @@ import { FormGroup } from '@angular/forms';
     <jx-error [layout]="layout" [control]="parent.get(layout.id)"></jx-error>
   </ng-container>`
 })
-export class TextareaComponent {
-  @Input() layout: any;
-  @Input() idx: string;
-  @Input() parent: FormGroup;
-  constructor() { }
-}
 
-@Component({
-  selector: 'jx-checkbox',
-  template: `
-  <ng-container [formGroup]="parent">
-    <label>
-      <input type="checkbox" [id]="layout.id+idx" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
-    </label>
-  </ng-container>`
-})
-export class CheckboxComponent {
+export class JxTextareaComponent {
   @Input() layout: any;
   @Input() idx: string;
   @Input() parent: FormGroup;
   constructor() { }
+  ngOnInit() {}
 }

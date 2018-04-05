@@ -7,13 +7,13 @@ import { JxFormService } from '../jx-form.service';
   templateUrl: './jx-checkbox-group.component.html',
   styleUrls: ['./jx-checkbox-group.component.scss']
 })
-export class JxCheckboxGroupComponent implements OnInit {
+export class JxCheckboxGroupComponent {
   @Input() parent: FormGroup;
   @Input() layout: any;
-  @Input() idx:string;
+  @Input() idx: string;
   constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
-
-  ngOnInit() {
+  // ngAfterViewInit() {
+    ngOnInit() {
     let childControls = {};
     this.layout.options && this.layout.options.forEach(e => {
       childControls[e.id] = e.value;

@@ -3,11 +3,22 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators } from '@angular/forms';
+import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxFormService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
+    console.log('service called');
+
+    // httpClient
+    //   .get('assets/config.json')
+    //   .subscribe(d => {
+    //     this.brokerService.behEmit("config", d);
+    //   }, err => {
+    //     console.log(err);
+    //   });
+  }
 
   customValidators = {
     myValidate: (s) => {
@@ -36,7 +47,7 @@ export class JxFormService {
     email1: (arg) => {
       let func = (control) => {
         let body = { value: control.value };
-        let obs = this.http.post(arg.url, body);
+        let obs = this.httpClient.post(arg.url, body);
         return (obs);
       };
       return (func);
@@ -71,7 +82,7 @@ export class JxFormService {
     this.actions[actionName].call(this, arg);
   }
 
-  getGroupValidators(group){
+  getGroupValidators(group) {
 
   }
 

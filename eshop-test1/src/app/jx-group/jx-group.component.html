@@ -5,34 +5,19 @@
       <ng-container [ngSwitch]="controlInGroup.type">
 
         <div *ngSwitchCase="'textarea'">
-          <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
-          <textarea class="field-long" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">{{controlInGroup.value}}</textarea>
-          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
+          <jx-textarea [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-textarea>          
         </div>
 
         <div *ngSwitchCase="'checkbox'">
-          <label>
-            <input type="checkbox" [id]="controlInGroup.id" [formControlName]="controlInGroup.id" [value]="controlInGroup.value"> {{controlInGroup.label}}
-          </label>
+          <jx-checkbox [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-checkbox>          
         </div>
 
         <div *ngSwitchCase="'radio'">
-          <fieldset>
-            <legend>{{controlInGroup.label}}</legend>
-            <ng-container *ngFor="let option of controlInGroup.options">
-              <input type="radio" [id]="option.id" [formControlName]="controlInGroup.id" [value]="option.value" [name]="controlInGroup.id">
-              <label [for]="option.id">{{option.label}}</label>
-            </ng-container>
-          </fieldset>
+          <jx-radio [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-radio>          
         </div>
 
         <div *ngSwitchCase="'select'">
-          <label>{{controlInGroup.label}}</label>
-          <select [formControlName]="controlInGroup.id" class="field-select">
-            <option *ngFor="let option of controlInGroup.options" [value]="option.value" [label]="option.label">
-            </option>
-          </select>
-          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
+          <jx-select [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-select>          
         </div>
 
         <div *ngSwitchCase="'checkboxGroup'">
@@ -44,9 +29,7 @@
         </div>
 
         <div *ngSwitchDefault>
-          <label [for]="controlInGroup.id">{{controlInGroup.label}}</label>
-          <input [type]="controlInGroup.type" [id]="controlInGroup.id" [placeholder]="controlInGroup.placeholder" [formControlName]="controlInGroup.id">
-          <jx-error [layout]="controlInGroup" [control]="parent.get(layout.id).get(controlInGroup.id)"></jx-error>
+          <jx-default [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-default>          
         </div>
 
       </ng-container>

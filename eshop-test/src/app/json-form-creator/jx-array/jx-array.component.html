@@ -1,0 +1,42 @@
+<fieldset [formGroup]="parent">
+  <legend>{{layout.label}}</legend>
+  <ng-container [formArrayName]="layout.id">
+    <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
+      <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
+        <button (click)="removeFromArray(j)">Remove</button>
+        <ng-container *ngFor="let control of layout.group.controls">
+          <ng-container [ngSwitch]="control.type">
+
+            <div *ngSwitchCase="'textarea'">
+              <jx-textarea [layout]="control" [parent]="group" [idx]="j"></jx-textarea>
+            </div>
+
+            <div *ngSwitchCase="'checkbox'">
+              <jx-checkbox [layout]="control" [parent]="group" [idx]="j"></jx-checkbox>
+            </div>
+
+            <div *ngSwitchCase="'radio'">
+              <jx-radio [layout]="control" [parent]="group" [idx]="j"></jx-radio>
+            </div>
+
+            <div *ngSwitchCase="'select'">
+              <jx-select [layout]="control" [parent]="group"></jx-select>
+            </div>
+
+            <div *ngSwitchCase="'checkboxGroup'">
+              <jx-checkbox-group [layout]="control" [parent]="group" [idx]="j"></jx-checkbox-group>
+            </div>
+
+            <div *ngSwitchDefault>
+              
+              <label [for]="control.id+j">{{control.label}}</label>
+              <input [type]="control.type" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">
+              <jx-error [layout]="control" [control]="group.get(control.id)"></jx-error>
+            </div>
+
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</fieldset>

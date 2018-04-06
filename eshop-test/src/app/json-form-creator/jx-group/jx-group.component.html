@@ -1,3 +1,38 @@
-<p>
-  jx-group works!
-</p>
+<fieldset [formGroup]="parent">
+  <legend>{{layout.label}}</legend>
+  <div [formGroupName]="layout.id">
+    <ng-container *ngFor="let controlInGroup of layout.controls">
+      <ng-container [ngSwitch]="controlInGroup.type">
+
+        <div *ngSwitchCase="'textarea'">
+          <jx-textarea [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-textarea>          
+        </div>
+
+        <div *ngSwitchCase="'checkbox'">
+          <jx-checkbox [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-checkbox>          
+        </div>
+
+        <div *ngSwitchCase="'radio'">
+          <jx-radio [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-radio>          
+        </div>
+
+        <div *ngSwitchCase="'select'">
+          <jx-select [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-select>          
+        </div>
+
+        <div *ngSwitchCase="'checkboxGroup'">
+            <jx-checkbox-group [layout]= "controlInGroup" [parent] = "parent.get(layout.id)"></jx-checkbox-group>
+        </div>
+
+        <div *ngSwitchCase="'groupArray'">
+          <jx-array [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-array>
+        </div>
+
+        <div *ngSwitchDefault>
+          <jx-default [layout] = "controlInGroup" [parent] = "parent.get(layout.id)"></jx-default>          
+        </div>
+
+      </ng-container>
+    </ng-container>
+  </div>
+</fieldset>

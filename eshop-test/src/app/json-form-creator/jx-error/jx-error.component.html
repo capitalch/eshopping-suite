@@ -1,0 +1,10 @@
+<div *ngIf="control.errors && (control.touched || control.dirty);then ifBlock; else elseBlock">
+</div>
+<ng-template #ifBlock>
+  <small style="display:inline-block;" class="error" *ngFor="let message of getMessages()" >
+      &bull;&nbsp;{{message}}
+  </small>
+</ng-template>
+<ng-template #elseBlock>
+  <small>&nbsp;</small>
+</ng-template>

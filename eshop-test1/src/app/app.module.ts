@@ -23,6 +23,7 @@ import { JxMatCheckboxComponent } from './jx-controls/mat.components';
 import { BrokerService } from './broker.service';
 import { JxChildrenComponent } from './jx-children/jx-children.component';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
+import { JxStubGroupComponent } from './jx-stub-group/jx-stub-group.component';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxSelectComponent
     , JxDefaultComponent
     , JxMatCheckboxComponent
-    , JxChildrenComponent, JxStubComponent
+    , JxChildrenComponent, JxStubComponent, JxStubGroupComponent
   ],
   imports: [
     BrowserModule

@@ -1,8 +1,9 @@
 <form [formGroup]="myForm" novalidate>
   <div [ngClass]="options.wrapperClass">
-    <ng-container *ngFor="let layout of layouts">      
-      <jx-stub [layout] = "layout" [parent] = "myForm" [parentType] = "'form'"></jx-stub>
-      <!-- <div [ngSwitch]="layout.type">
+    <jx-stub [layouts]="layouts" [parent]="myForm" [parentType]="'form'"></jx-stub>
+    <!-- <ng-container *ngFor="let layout of layouts">      
+      
+      <div [ngSwitch]="layout.type">
 
         <div *ngSwitchCase="'textarea'">
           <jx-textarea [layout] = "layout" [parent] = "myForm"></jx-textarea>          
@@ -45,7 +46,7 @@
           <jx-default [layout] = "layout" [parent] = "myForm"></jx-default>         
         </div>
 
-      </div> -->
-    </ng-container>
+      </div>
+    </ng-container> -->
   </div>
 </form>

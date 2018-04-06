@@ -5,8 +5,8 @@ import { FormGroup } from '@angular/forms';
     selector: 'jx-textarea',
     template: `
     <ng-container [formGroup]="parent">
-      <label [for]="layout.id+idx">{{layout.label}}</label>
-      <textarea class="field-long" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+      <label [for]="layout.id">{{layout.label}}</label>
+      <textarea class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
   })
@@ -24,7 +24,7 @@ import { FormGroup } from '@angular/forms';
     template: `
     <ng-container [formGroup]="parent">
       <label>
-        <input type="checkbox" [id]="layout.id+idx" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
+        <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
       </label>
     </ng-container>`
   })

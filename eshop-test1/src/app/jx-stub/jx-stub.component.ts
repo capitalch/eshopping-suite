@@ -8,30 +8,52 @@ import { JxFormService } from '../jx-form.service';
   styleUrls: ['./jx-stub.component.scss']
 })
 export class JxStubComponent implements OnInit {
-  @Input() layout: any;
-  @Input() parent: FormGroup;
+  @Input() layouts: any;
+  @Input() layout:any;
+  @Input() parent: any;
   @Input() parentType: string;
   constructor(private fb: FormBuilder, private jxFormService: JxFormService) { }
 
   ngOnInit() {
-    let formControls = {};
-    // if (this.layout.type == 'groupArray') {
+    this.init();
+    // let childControls = {};
 
-    // } else if (this.layout.type == "checkboxGroup") {
+    // let allValidators = this.jxFormService.getValidators(this.layout);
+    // childControls[this.layout.id] = [this.layout.value, allValidators.validators, allValidators.asyncValidators];
 
-    // } else if (this.layout.type == "group") {
-
+    // if (this.parentType == "form") {
+    //   this.parent = this.fb.group(formControls);
+    // } else if (this.parentType == "group") {
+    // let group1 = this.fb.group(childControls);
+    // this.parent.setControl(this.layout.id, group1)
     // }
-    // else {
-      let allValidators = this.jxFormService.getValidators(this.layout);
-      formControls[this.layout.id] = [this.layout.value, allValidators.validators, allValidators.asyncValidators];
-    // }
+
+  }
+  init() {
+    let childControls = {};
     if (this.parentType == "form") {
-      this.parent = this.fb.group(formControls);
-    } else if (this.parentType == "group") {
-      let group1 = this.fb.group(formControls);
+      
+      this.layouts.forEach(x => {
+        let allValidators = this.jxFormService.getValidators(x);
+        childControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
+      });
+      this.parent = this.fb.group(childControls);
+    } else {
+      this.layout.controls && this.layout.controls.forEach(e => {
+        let allValidators = this.jxFormService.getValidators(e);
+        childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
+      });
+
+      let group1 = this.fb.group(childControls);
+      this.parent = <FormGroup> this.parent;
       this.parent.setControl(this.layout.id, group1)
     }
 
+    // this.layout.controls && this.layout.controls.forEach(e => {
+    //   let allValidators = this.jxFormService.getValidators(e);
+    //   childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
+    // });
+    // let group1 = this.fb.group(childControls);
+    // this.parent.setControl(this.layout.id, group1)
   }
 }

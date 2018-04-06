@@ -1,8 +1,7 @@
-<fieldset [formGroup]="parent">
-  <legend>{{layout.label}}</legend>
-  <div [formGroupName]="layout.id">
-    <jx-stub [layouts]="layout.controls" [parent]="parent" [layout]="layout" [parentType]="'group'"></jx-stub>
-    <!-- <ng-container *ngFor="let controlInGroup of layout.controls">
+<div [formGroup]="parent">
+  <!-- <legend>{{layout.label}}</legend> -->
+  <!-- <div [formGroupName]="layout.id">     -->
+    <ng-container *ngFor="let controlInGroup of layout.controls">
 
       <ng-container [ngSwitch]="controlInGroup.type">
 
@@ -40,6 +39,6 @@
         </div>
 
       </ng-container>
-    </ng-container> -->
-  </div>
-</fieldset>
+    </ng-container>
+  <!-- </div> -->
+</div>

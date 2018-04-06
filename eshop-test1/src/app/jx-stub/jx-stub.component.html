@@ -1,46 +1,50 @@
 <div [formGroup]="parent">
-  <ng-container [ngSwitch]="layout.type">
+  <ng-container *ngFor="let layout of layouts">
 
-    <div *ngSwitchCase="'textarea'">
-      <jx-textarea [layout]="layout" [parent]="parent"></jx-textarea>
-    </div>
+    <ng-container [ngSwitch]="layout.type">
+      <div *ngSwitchCase="'textarea'">
+        <jx-textarea [layout]="layout" [parent]="parent"></jx-textarea>
+      </div>
 
-    <div *ngSwitchCase="'checkbox'">
-      <jx-checkbox [layout]="layout" [parent]="parent"></jx-checkbox>
-    </div>
+      <div *ngSwitchCase="'checkbox'">
+        <jx-checkbox [layout]="layout" [parent]="parent"></jx-checkbox>
+      </div>
 
-    <div *ngSwitchCase="'radio'">
-      <jx-radio [layout]="layout" [parent]="parent"></jx-radio>
-    </div>
+      <div *ngSwitchCase="'radio'">
+        <jx-radio [layout]="layout" [parent]="parent"></jx-radio>
+      </div>
 
-    <div *ngSwitchCase="'select'">
-      <jx-select [layout]="layout" [parent]="parent"></jx-select>
-    </div>
+      <div *ngSwitchCase="'select'">
+        <jx-select [layout]="layout" [parent]="parent"></jx-select>
+      </div>
 
-    <div *ngSwitchCase="'checkboxGroup'">
-      <jx-checkbox-group [layout]="layout" [parent]="parent"></jx-checkbox-group>
-    </div>
+      <div *ngSwitchCase="'checkboxGroup'">
+        <jx-checkbox-group [layout]="layout" [parent]="parent"></jx-checkbox-group>
+      </div>
 
-    <div *ngSwitchCase="'group'">
-      <jx-group [layout]="layout" [parent]="parent"></jx-group>
-    </div>
+      <div *ngSwitchCase="'group'">
+        <jx-group [layout]="layout" [parent]="parent"></jx-group>
+      </div>
 
-    <div *ngSwitchCase="'groupArray'">
-      <button (click)="addGroupInArray(layout)">Add</button>
-      <jx-array [layout]="layout" [parent]="parent"></jx-array>
-    </div>
+      <div *ngSwitchCase="'groupArray'">
+        <button (click)="addGroupInArray(layout)">Add</button>
+        <jx-array [layout]="layout" [parent]="parent"></jx-array>
+      </div>
 
-    <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-      <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
-    </div>
+      <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
+        <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
+      </div>
 
-    <div *ngSwitchCase="'mat-checkbox'">
-      <jxmat-checkbox [layout]="layout" [parent]="parent"></jxmat-checkbox>
-    </div>
+      <div *ngSwitchCase="'mat-checkbox'">
+        <jxmat-checkbox [layout]="layout" [parent]="parent"></jxmat-checkbox>
+      </div>
 
-    <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
-      <jx-default [layout]="layout" [parent]="parent"></jx-default>
-    </div>
+      <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+        <jx-default [layout]="layout" [parent]="parent"></jx-default>
+      </div>
+
+    </ng-container>
+
 
   </ng-container>
 </div>

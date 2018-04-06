@@ -13,7 +13,12 @@ export class JxGroupComponent implements OnInit {
   constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
-    
+    // let childControls = {};
+    // let allValidators = this.JxFormService.getValidators(this.layout);
+    // childControls[this.layout.id] = [this.layout.value, allValidators.validators, allValidators.asyncValidators]
+    // let group1 = this.fb.group(childControls);
+    // this.parent.setControl(this.layout.id, group1)
+    this.init();
   }
 
   init() {

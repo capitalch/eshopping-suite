@@ -15,17 +15,17 @@ export class JxStubComponent implements OnInit {
 
   ngOnInit() {
     let formControls = {};
-    if (this.layout.type == 'groupArray') {
+    // if (this.layout.type == 'groupArray') {
 
-    } else if (this.layout.type == "checkboxGroup") {
+    // } else if (this.layout.type == "checkboxGroup") {
 
-    } else if (this.layout.type == "group") {
+    // } else if (this.layout.type == "group") {
 
-    }
-    else {
+    // }
+    // else {
       let allValidators = this.jxFormService.getValidators(this.layout);
       formControls[this.layout.id] = [this.layout.value, allValidators.validators, allValidators.asyncValidators];
-    }
+    // }
     if (this.parentType == "form") {
       this.parent = this.fb.group(formControls);
     } else if (this.parentType == "group") {

@@ -2,8 +2,8 @@
   <legend>{{layout.label}}</legend>
   <div [formGroupName]="layout.id">
     <ng-container *ngFor="let controlInGroup of layout.controls">
-        <jx-stub [layout] = "controlInGroup" [parent] = "parent.get(layout.id)" parentType = "group"></jx-stub>
-      <!-- <ng-container [ngSwitch]="controlInGroup.type">
+        <!-- <jx-stub [layout] = "controlInGroup" [parent] = "parent.get(layout.id)" [parentType] = "'group'"></jx-stub> -->
+      <ng-container [ngSwitch]="controlInGroup.type">
 
         <div *ngSwitchCase="'textarea'">
           <jx-textarea [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-textarea>
@@ -38,7 +38,7 @@
           <jx-default [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-default>
         </div>
 
-      </ng-container> -->
+      </ng-container>
     </ng-container>
   </div>
 </fieldset>

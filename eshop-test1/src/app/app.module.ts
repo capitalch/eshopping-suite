@@ -8,8 +8,8 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { JxFormComponent } from './jx-form/jx-form.component';
 import { JxGroupComponent } from './jx-group/jx-group.component';
 import { JxArrayComponent } from './jx-array/jx-array.component';
-import { JxErrorComponent } from './jx-error/jx-error.component';
-import { JxCheckboxGroupComponent } from './jx-checkbox-group/jx-checkbox-group.component';
+import { JxErrorComponent } from './jx-controls/jx-error/jx-error.component';
+import { JxCheckboxGroupComponent } from './jx-controls/jx-checkbox-group/jx-checkbox-group.component';
 import {
   JxTextareaComponent
   , JxCheckboxComponent
@@ -17,15 +17,12 @@ import {
   , JxSelectComponent
   , JxDefaultComponent
 
-} from './jx-controls/core.component';
-// import { JxTextareaComponent } from './jx-controls/core/textarea.component';
-// import { JxCheckboxComponent } from './jx-controls/core/checkbox.component';
-// import { JxRadioComponent } from './jx-controls/core/radio.component';
-// import { JxSelectComponent } from './jx-controls/core/select.component';
-// import { JxDefaultComponent } from './jx-controls/core/default.component';
+} from './jx-controls/core.components';
+import { JxMatCheckboxComponent } from './jx-controls/mat.components';
+
 import { BrokerService } from './broker.service';
-
-
+import { JxChildrenComponent } from './jx-children/jx-children.component';
+import { JxStubComponent } from './jx-stub/jx-stub.component';
 
 
 @NgModule({
@@ -41,6 +38,8 @@ import { BrokerService } from './broker.service';
     , JxRadioComponent
     , JxSelectComponent
     , JxDefaultComponent
+    , JxMatCheckboxComponent
+    , JxChildrenComponent, JxStubComponent
   ],
   imports: [
     BrowserModule

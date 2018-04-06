@@ -13,6 +13,10 @@ export class JxGroupComponent implements OnInit {
   constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
+    
+  }
+
+  init() {
     let childControls = {};
     this.layout.controls && this.layout.controls.forEach(e => {
       let allValidators = this.JxFormService.getValidators(e);
@@ -20,14 +24,12 @@ export class JxGroupComponent implements OnInit {
     });
     if (this.layout.type == "checkboxGroup") {
 
-    } else if(this.layout.type == "groupArray"){
+    } else if (this.layout.type == "groupArray") {
 
     }
-     else {
+    else {
       let group1 = this.fb.group(childControls);
       this.parent.setControl(this.layout.id, group1)
     }
-
   }
-
 }

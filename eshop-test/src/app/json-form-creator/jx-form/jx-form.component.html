@@ -3,39 +3,24 @@
     <ng-container *ngFor="let layout of layouts">
       <div [ngSwitch]="layout.type">
 
-        <div *ngSwitchCase="'checkbox'">
-          <label>
-            <input type="checkbox" [id]="layout.id" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
-          </label>
+        <div *ngSwitchCase="'textarea'">
+          <jx-textarea [layout] = "layout" [parent] = "myForm"></jx-textarea>          
         </div>
 
-        <div *ngSwitchCase="'checkboxGroup'">
-          <checkbox-group [layout]="layout" [parent]="myForm"></checkbox-group>
+        <div *ngSwitchCase="'checkbox'">
+          <jx-checkbox [layout] = "layout" [parent] = "myForm"></jx-checkbox>          
         </div>
 
         <div *ngSwitchCase="'radio'">
-          <fieldset>
-            <legend>{{layout.label}}</legend>
-            <ng-container *ngFor="let option of layout.options">
-              <input type="radio" [id]="option.id" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
-              <label style="display:inline-block" [for]="option.id">{{option.label}}</label>
-            </ng-container>
-          </fieldset>
+          <jx-radio [layout] = "layout" [parent] = "myForm"></jx-radio>          
         </div>
 
         <div *ngSwitchCase="'select'">
-          <label>{{layout.label}}</label>
-          <select [ngClass]="layout.id" [formControlName]="layout.id" class="field-select">
-            <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
-            </option>
-          </select>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-select [layout] = "layout" [parent] = "myForm"></jx-select>          
         </div>
 
-        <div *ngSwitchCase="'textarea'">
-          <label [for]="layout.id">{{layout.label}}</label>
-          <textarea class="field-long" [id]="layout.id" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+        <div *ngSwitchCase="'checkboxGroup'">
+          <jx-checkbox-group [layout]="layout" [parent]="myForm"></jx-checkbox-group>
         </div>
 
         <div *ngSwitchCase="'group'">
@@ -53,12 +38,8 @@
         </div>
 
         <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
-          <label [ngClass]="layout.class && layout.class.label" [for]="layout.id">{{layout.label}}</label>
-          <input [ngClass]="layout.class && layout.class.element" class="field-long" [type]="layout.type" [id]="layout.id" [placeholder]="layout.placeholder"
-            [formControlName]="layout.id">
-          <error-message [layout]="layout" [control]="myForm.get(layout.id)"></error-message>
+          <jx-default [layout] = "layout" [parent] = "myForm"></jx-default>         
         </div>
-
 
       </div>
     </ng-container>

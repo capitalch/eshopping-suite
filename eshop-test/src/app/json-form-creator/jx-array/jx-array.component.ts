@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { JxFormService } from '../jx-form.service';
 
 @Component({
-  selector: 'app-jx-array',
+  selector: 'jx-array',
   templateUrl: './jx-array.component.html',
   styleUrls: ['./jx-array.component.scss']
 })

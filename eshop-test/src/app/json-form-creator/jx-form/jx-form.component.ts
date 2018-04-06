@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxFormService } from '../jx-form.service';
 
 @Component({
-  selector: 'app-jx-form',
+  selector: 'jx-form',
   templateUrl: './jx-form.component.html',
   styleUrls: ['./jx-form.component.scss']
 })
@@ -18,6 +18,9 @@ export class JxFormComponent implements OnInit {
   ngOnInit() {
 
     console.log("init called");
+    // setTimeout(() => {
+    //   this.init();
+    // }, 0);
     this.init();
   }
 

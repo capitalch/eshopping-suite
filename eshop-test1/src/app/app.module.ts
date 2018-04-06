@@ -21,8 +21,8 @@ import {
 import { JxMatCheckboxComponent } from './jx-controls/mat.components';
 
 import { BrokerService } from './broker.service';
-
-
+import { JxChildrenComponent } from './jx-children/jx-children.component';
+import { JxStubComponent } from './jx-stub/jx-stub.component';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import { BrokerService } from './broker.service';
     , JxSelectComponent
     , JxDefaultComponent
     , JxMatCheckboxComponent
+    , JxChildrenComponent, JxStubComponent
   ],
   imports: [
     BrowserModule

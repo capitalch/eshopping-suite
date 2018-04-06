@@ -14,15 +14,11 @@ export class JxFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  constructor(private fb: FormBuilder, private JxFormService: JxFormService, private brokerService: BrokerService) { }
+  constructor(private fb: FormBuilder, private jxFormService: JxFormService, private brokerService: BrokerService) { }
 
   ngOnInit() {
-
-    console.log("init called");
-    // setTimeout(() => {
-    //   this.init();
-    // }, 0);
-    this.init();
+    // this.init();
+    this.myForm = this.fb.group({});
   }
 
   init() {
@@ -36,7 +32,7 @@ export class JxFormComponent implements OnInit {
 
       }
       else {
-        let allValidators = this.JxFormService.getValidators(x);
+        let allValidators = this.jxFormService.getValidators(x);
         formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
       }
     });
@@ -48,7 +44,7 @@ export class JxFormComponent implements OnInit {
     this.validateAllFormFields(this.myForm);
     if (this.myForm.valid) {
       console.log('form submitting');
-      this.JxFormService.executeAction(actionName, this.myForm);
+      this.jxFormService.executeAction(actionName, this.myForm);
     } else {
       console.log("Invalid form");
     }
@@ -73,7 +69,7 @@ export class JxFormComponent implements OnInit {
       } else if (e.type == "group") {
 
       } else {
-        let allValidators = this.JxFormService.getValidators(e);
+        let allValidators = this.jxFormService.getValidators(e);
         childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
       }
     });

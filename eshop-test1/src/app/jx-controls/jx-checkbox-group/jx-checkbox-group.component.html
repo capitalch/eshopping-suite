@@ -7,6 +7,6 @@
         <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id+idx">{{option.label}}</label>
       </ng-container>
     </ng-container>
-    <jx-error [layout]="layout" [control]="parent.get(layout.id)"></jx-error>
+    <jx-error [layout]="layout" [parent]="parent"></jx-error>
   </fieldset>
 </ng-container>

@@ -1,4 +1,11 @@
 let form1 = [
+    {
+        type: "mat-checkbox"
+        , id: "agreed3"
+        , label: "Agreed"
+        , value: false
+    }
+
     // {
     //     type: "textarea"
     //     , id: "address"
@@ -41,12 +48,7 @@ let form1 = [
     //         , { label: "beverages", value: false, id: "beverages3" }
     //     ]
     // }
-    // , {
-    //     type: "checkbox"
-    //     , id: "agreed3"
-    //     , label: "Agreed"
-    //     , value: true
-    // }
+
     // , {
     //     type: "radio"
     //     , label: "Gender"
@@ -57,12 +59,18 @@ let form1 = [
     //         , { label: "Female", value: "F", id: "female1" }
     //     ]
     // }
-    // ,
+    ,
     {
         type: "group"
         , label: "Passwords"
         , id: "pwd"
         , controls: [
+            {
+                type: "mat-checkbox"
+                , id: "agreed4"
+                , label: "Agreed"
+                , value: false
+            },
             {
                 type: "textarea"
                 , id: "address"
@@ -107,7 +115,7 @@ let form1 = [
             }
             , {
                 type: "checkbox"
-                , id: "agreed3"
+                , id: "agreed5"
                 , label: "Agreed"
                 , value: true
             }
@@ -131,6 +139,12 @@ let form1 = [
                     , id: "tag3"
                     , controls: [
                         {
+                            type: "mat-checkbox"
+                            , id: "agreed6"
+                            , label: "Agreed"
+                            , value: false
+                        },
+                        {
                             type: "textarea"
                             , id: "address"
                             , label: "Address"
@@ -144,7 +158,7 @@ let form1 = [
                         }
                         , {
                             type: "checkbox"
-                            , id: "agreed3"
+                            , id: "agreed7"
                             , label: "Agreed"
                             , value: true
                         }
@@ -177,6 +191,12 @@ let form1 = [
             , id: "tag"
             , controls: [
                 {
+                    type: "mat-checkbox"
+                    , id: "agreed8"
+                    , label: "Agreed"
+                    , value: false
+                }
+                , {
                     type: "textarea"
                     , id: "firstName"
                     , label: "First name"
@@ -195,7 +215,7 @@ let form1 = [
                 }
                 , {
                     type: "checkbox"
-                    , id: "agreed2"
+                    , id: "agreed9"
                     , label: "Agreed"
                     , value: true
                 }

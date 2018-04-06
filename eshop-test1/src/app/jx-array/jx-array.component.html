@@ -27,11 +27,12 @@
               <jx-checkbox-group [layout]="control" [parent]="group" [idx]="j"></jx-checkbox-group>
             </div>
 
+            <div *ngSwitchCase="'mat-checkbox'">
+              <jxmat-checkbox [layout]="control" [parent]="group" [idx]="j"></jxmat-checkbox>
+            </div>
+
             <div *ngSwitchDefault>
-              
-              <label [for]="control.id+j">{{control.label}}</label>
-              <input [type]="control.type" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">
-              <jx-error [layout]="control" [control]="group.get(control.id)"></jx-error>
+              <jx-default [layout]="control" [parent]="group" [idx]="j"></jx-default>
             </div>
 
           </ng-container>

@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
     <ng-container [formGroup]="parent">
       <label [for]="layout.id+idx">{{layout.label}}</label>
       <textarea class="field-long" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-      <jx-error [layout]="layout" [control]="parent.get(layout.id)"></jx-error>
+      <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
   })
   
@@ -64,7 +64,7 @@ import { FormGroup } from '@angular/forms';
         <option *ngFor="let option of layout.options" [value]="option.value" [label]="option.label">
         </option>
       </select>
-      <jx-error [layout]="layout" [control]="parent.get(layout.id)"></jx-error>
+      <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>
     `
   })
@@ -82,7 +82,7 @@ import { FormGroup } from '@angular/forms';
     <ng-container [formGroup]="parent">
       <label [for]="layout.id+idx">{{layout.label}}</label>
       <input [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">
-      <jx-error [layout]="layout" [control]="parent.get(layout.id)"></jx-error>
+      <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
   })
   export class JxDefaultComponent {

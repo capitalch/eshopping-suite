@@ -29,12 +29,15 @@
 
         <div *ngSwitchCase="'groupArray'">
           <button (click)="addGroupInArray(layout)">Add</button>
-          <jx-array [layout]="layout" [parent]="myForm">
-          </jx-array>
+          <jx-array [layout]="layout" [parent]="myForm"></jx-array>
         </div>
 
         <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
           <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
+        </div>
+
+        <div *ngSwitchCase="'mat-checkbox'">
+          <jxmat-checkbox [layout]="layout" [parent]="myForm"></jxmat-checkbox>
         </div>
 
         <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">

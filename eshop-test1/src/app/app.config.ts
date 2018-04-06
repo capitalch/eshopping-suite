@@ -1,10 +1,10 @@
 let form1 = [
-    {
-        type: "checkbox"
-        , id: "agreed3"
-        , label: "Agreed"
-        , value: false
-    }
+    // {
+    //     type: "checkbox"
+    //     , id: "agreed3"
+    //     , label: "Agreed"
+    //     , value: false
+    // }
 
     // , {
     //     type: "textarea"
@@ -35,19 +35,19 @@ let form1 = [
     //         }
     //     }
     // }
-    , {
-        type: "checkboxGroup"
-        , label: "Food3"
-        , id: "food3"
-        , validation: {
-            required: { message: '$ is required' }
-        }
-        , options: [
-            { label: "Main course", value: false, id: "main3" }
-            , { label: "Desert", value: true, id: "desert3" }
-            , { label: "beverages", value: false, id: "beverages3" }
-        ]
-    }
+    // , {
+    //     type: "checkboxGroup"
+    //     , label: "Food3"
+    //     , id: "food3"
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    //     , options: [
+    //         { label: "Main course", value: false, id: "main3" }
+    //         , { label: "Desert", value: true, id: "desert3" }
+    //         , { label: "beverages", value: false, id: "beverages3" }
+    //     ]
+    // }
 
     // , {
     //     type: "radio"
@@ -60,19 +60,19 @@ let form1 = [
     //     ]
     // }
     // ,
-    // {
-    //     type: "group"
-    //     , label: "Passwords"
-    //     , id: "pwd"
-    //     , controls: [
-    //         {
-    //             type: "mat-checkbox"
-    //             , id: "agreed4"
-    //             , label: "Agreed"
-    //             , value: false
-    //         }
-    //     ]
-    // }
+    {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "mat-checkbox"
+                , id: "agreed4"
+                , label: "Agreed"
+                , value: false
+            }
+        ]
+    }
     // ,
     //         {
     //             type: "textarea"

@@ -2,7 +2,7 @@
   <legend>{{layout.label}}</legend>
   <div [formGroupName]="layout.id">
     <ng-container *ngFor="let controlInGroup of layout.controls">
-        <jx-stub [layout] = "controlInGroup" [parent] = "parent.get(layout.id)" parentType = "group"></jx-stub>
+        <jx-stub [layout] = "controlInGroup" [parent] = "parent.get(layout.id)" [parentType] = "'group'"></jx-stub>
       <!-- <ng-container [ngSwitch]="controlInGroup.type">
 
         <div *ngSwitchCase="'textarea'">

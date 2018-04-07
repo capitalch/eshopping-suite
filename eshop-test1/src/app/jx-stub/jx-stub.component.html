@@ -11,19 +11,19 @@
       </div>
       
       <div *ngSwitchCase="'textarea'">
-        <jx-textarea [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-textarea>
+        <jx-textarea [layout]="jControl" [parent]="container"></jx-textarea>
       </div>
 
       <div *ngSwitchCase="'radio'">
-        <jx-radio [layout]="layout" [parent]="parent"></jx-radio>
+        <jx-radio [layout]="jControl" [parent]="container"></jx-radio>
       </div>
 
       <div *ngSwitchCase="'select'">
-        <jx-select [layout]="layout" [parent]="parent"></jx-select>
+        <jx-select [layout]="jControl" [parent]="container"></jx-select>
       </div>
 
       <div *ngSwitchCase="'checkboxGroup'">
-        <jx-checkbox-group [layout]="layout" [parent]="parent"></jx-checkbox-group>
+        <jx-checkbox-group [layout]="jControl" [parent]="container"></jx-checkbox-group>
       </div>
 
       <div *ngSwitchCase="'group'">
@@ -32,7 +32,7 @@
 
       <div *ngSwitchCase="'groupArray'">
         <button (click)="addGroupInArray(layout)">Add</button>
-        <jx-array [layout]="layout" [parent]="parent"></jx-array>
+        <jx-array [layout]="jControl" [parent]="container"></jx-array>
       </div>
 
       <div *ngSwitchCase="'submit'" [ngStyle]="jControl.style" [ngClass]="jControl.class &&jControl.class.group">
@@ -40,11 +40,11 @@
       </div>
 
       <div *ngSwitchCase="'mat-checkbox'">
-        <jxmat-checkbox [layout]="layout" [parent]="parent"></jxmat-checkbox>
+        <jxmat-checkbox [layout]="jControl" [parent]="container"></jxmat-checkbox>
       </div>
 
       <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
-        <jx-default [layout]="layout" [parent]="parent"></jx-default>
+        <jx-default [layout]="jControl" [parent]="container"></jx-default>
       </div>
 
     </ng-container>

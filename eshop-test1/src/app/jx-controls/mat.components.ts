@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-// <label>
-//         <input type="checkbox" [id]="layout.id+idx" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
-//       </label>
+
 @Component({
     selector: 'jxmat-checkbox',
     template: `

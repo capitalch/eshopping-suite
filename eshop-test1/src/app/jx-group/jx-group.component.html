@@ -3,7 +3,7 @@
   <div [formGroupName]="layout.id">
 
     <ng-container *ngFor="let jControl of layout.controls">
-      <jx-stub-group [layouts]="layout.controls" [jControl]="jControl" [parent]="parent" [parentGroup]="parent.get(layout.id)" [layout]="layout" [parentType]="'group'"></jx-stub-group>
+      <jx-stub [layouts]="layout.controls" [jControl]="jControl" [parent]="parent" [parentGroup]="parent.get(layout.id)" [layout]="layout" [parentType]="'group'"></jx-stub>
       <!-- <ng-container [ngSwitch]="controlInGroup.type">
 
         <div *ngSwitchCase="'checkbox'">

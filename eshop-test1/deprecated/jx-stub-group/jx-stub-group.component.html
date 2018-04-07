@@ -6,7 +6,8 @@
       <ng-container [ngSwitch]="jControl.type">
 
         <div *ngSwitchCase="'checkbox'">
-          <jx-checkbox [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-checkbox>
+          <!-- <jx-checkbox [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-checkbox>           -->
+          <jx-checkbox [layout]="jControl" [parent]="container"></jx-checkbox>          
         </div>
 
         <div *ngSwitchCase="'textarea'">

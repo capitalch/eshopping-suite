@@ -14,7 +14,7 @@ export class JxStubComponent implements OnInit {
   @Input() parentType: string;
   @Input() parentGroup: any;
   @Input() jControl: any;
-  @Input() container: any;
+  container: any;
   constructor(private fb: FormBuilder, private jxFormService: JxFormService) { }
 
   ngOnInit() {
@@ -33,6 +33,7 @@ export class JxStubComponent implements OnInit {
 
   }
   init() {
+    
     let childControls = {};
     if (this.parentType == "form") {
 
@@ -51,7 +52,7 @@ export class JxStubComponent implements OnInit {
       // this.parent = <FormGroup> this.parent;
       this.parent.setControl(this.layout.id, group1)
     }
-
+    this.container = this.parentType == 'form' ? this.parent : this.parent.get(this.layout.id)
     // this.layout.controls && this.layout.controls.forEach(e => {
     //   let allValidators = this.jxFormService.getValidators(e);
     //   childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]

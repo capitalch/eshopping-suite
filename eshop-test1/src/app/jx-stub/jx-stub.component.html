@@ -1,13 +1,17 @@
 <div [formGroup]="parent">
-  <ng-container *ngFor="let layout of layouts">
+  
+  
+  <!-- <ng-container *ngFor="let jControl of layouts"> -->
 
-    <ng-container [ngSwitch]="layout.type">
-      <div *ngSwitchCase="'textarea'">
-        <jx-textarea [layout]="layout" [parent]="parent"></jx-textarea>
-      </div>
-
+    <ng-container [ngSwitch]="jControl.type">
+      
       <div *ngSwitchCase="'checkbox'">
-        <jx-checkbox [layout]="layout" [parent]="parent"></jx-checkbox>
+        <!-- <jx-checkbox [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-checkbox> -->
+        <jx-checkbox [layout]="jControl" [parent]="container"></jx-checkbox>
+      </div>
+      
+      <div *ngSwitchCase="'textarea'">
+        <jx-textarea [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-textarea>
       </div>
 
       <div *ngSwitchCase="'radio'">
@@ -23,7 +27,7 @@
       </div>
 
       <div *ngSwitchCase="'group'">
-        <jx-group [layout]="layout" [parent]="parent"></jx-group>
+        <jx-group [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-group>
       </div>
 
       <div *ngSwitchCase="'groupArray'">
@@ -31,8 +35,8 @@
         <jx-array [layout]="layout" [parent]="parent"></jx-array>
       </div>
 
-      <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
-        <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
+      <div *ngSwitchCase="'submit'" [ngStyle]="jControl.style" [ngClass]="jControl.class &&jControl.class.group">
+        <button [ngClass]="jControl.class && jControl.class.element" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
       </div>
 
       <div *ngSwitchCase="'mat-checkbox'">
@@ -46,5 +50,5 @@
     </ng-container>
 
 
-  </ng-container>
+  <!-- </ng-container> -->
 </div>

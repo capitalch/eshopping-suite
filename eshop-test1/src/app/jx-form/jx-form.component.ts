@@ -17,24 +17,16 @@ export class JxFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private jxFormService: JxFormService, private brokerService: BrokerService) { }
 
   ngOnInit() {
-    // this.init();
-    this.myForm = this.fb.group({});    
+    this.init();
+    // this.myForm = this.fb.group({});
   }
 
   init() {
     let formControls = {};
     this.layouts.forEach(x => {
-      // if (x.type == 'groupArray') {
+      let allValidators = this.jxFormService.getValidators(x);
+      formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
 
-      // } else if (x.type == "checkboxGroup") {
-
-      // } else if (x.type == "group") {
-
-      // }
-      // else {
-        let allValidators = this.jxFormService.getValidators(x);
-        formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
-      // }
     });
     this.myForm = this.fb.group(formControls);
   }

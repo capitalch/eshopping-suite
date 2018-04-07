@@ -1,10 +1,10 @@
 <fieldset [formGroup]="parent">
   <legend>{{layout.label}}</legend>
   <div [formGroupName]="layout.id">
-    <jx-stub [layouts]="layout.controls" [parent]="parent" [layout]="layout" [parentType]="'group'"></jx-stub>
-    <!-- <ng-container *ngFor="let controlInGroup of layout.controls">
 
-      <ng-container [ngSwitch]="controlInGroup.type">
+    <ng-container *ngFor="let jControl of layout.controls">
+      <jx-stub-group [layouts]="layout.controls" [jControl]="jControl" [parent]="parent" [parentGroup]="parent.get(layout.id)" [layout]="layout" [parentType]="'group'"></jx-stub-group>
+      <!-- <ng-container [ngSwitch]="controlInGroup.type">
 
         <div *ngSwitchCase="'checkbox'">
           <jx-checkbox [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-checkbox>
@@ -39,7 +39,7 @@
           <jx-default [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-default>
         </div>
 
-      </ng-container>
-    </ng-container> -->
+      </ng-container> -->
+    </ng-container>
   </div>
 </fieldset>

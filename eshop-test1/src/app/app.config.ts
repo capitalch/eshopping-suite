@@ -59,7 +59,7 @@ let form1 = [
     //         , { label: "Female", value: "F", id: "female1" }
     //     ]
     // }
-    // ,
+    ,
     {
         type: "group"
         , label: "Passwords"
@@ -72,17 +72,44 @@ let form1 = [
                 , value: false
             }
             , {
-                type: "textarea"
-                , id: "address"
-                , label: "Address"
-                , placeholder: "Address"
-                , value: "12345"
-                , validation: {
-                    required: { message: '$ is required' },
-                    minlength: { value: 5, message: 'Minimum length for $ is 5' },
-                    maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-                }
+                type: "group"
+                , id: "Agreement1"
+                , label: "Agreement"
+                , controls: [
+                    {
+                        type: "checkbox"
+                        , id: "agreed11"
+                        , label: "Agreed"
+                        , value: true
+                    }
+                    , {
+                        type: "group"
+                        , id: "Agreement1"
+                        , label: "Agreement"
+                        , controls: [
+                            {
+                                type: "checkbox"
+                                , id: "agreed111"
+                                , label: "Agreed11"
+                                , value: true
+                            }
+                        ]
+                    }
+                ]
             }
+            // , 
+            // {
+            //     type: "textarea"
+            //     , id: "address"
+            //     , label: "Address"
+            //     , placeholder: "Address"
+            //     , value: "12345"
+            //     , validation: {
+            //         required: { message: '$ is required' },
+            //         minlength: { value: 5, message: 'Minimum length for $ is 5' },
+            //         maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+            //     }
+            // }
         ]
     }
 

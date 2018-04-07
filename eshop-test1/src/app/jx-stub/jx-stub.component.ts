@@ -9,9 +9,12 @@ import { JxFormService } from '../jx-form.service';
 })
 export class JxStubComponent implements OnInit {
   @Input() layouts: any;
-  @Input() layout:any;
+  @Input() layout: any;
   @Input() parent: any;
   @Input() parentType: string;
+  @Input() parentGroup: any;
+  @Input() jControl: any;
+  @Input() container: any;
   constructor(private fb: FormBuilder, private jxFormService: JxFormService) { }
 
   ngOnInit() {
@@ -32,20 +35,20 @@ export class JxStubComponent implements OnInit {
   init() {
     let childControls = {};
     if (this.parentType == "form") {
-      
-      this.layouts.forEach(x => {
-        let allValidators = this.jxFormService.getValidators(x);
-        childControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
-      });
-      this.parent = this.fb.group(childControls);
-    } else {
+
+      // this.layouts.forEach(x => {
+      //   let allValidators = this.jxFormService.getValidators(x);
+      //   childControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
+      // });
+      // this.parent = this.parentGroup = this.fb.group(childControls);
+    } else if (this.parentType == 'group') {
       this.layout.controls && this.layout.controls.forEach(e => {
         let allValidators = this.jxFormService.getValidators(e);
         childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
       });
 
       let group1 = this.fb.group(childControls);
-      this.parent = <FormGroup> this.parent;
+      // this.parent = <FormGroup> this.parent;
       this.parent.setControl(this.layout.id, group1)
     }
 

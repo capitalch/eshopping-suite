@@ -13,6 +13,8 @@ export class JxStubGroupComponent implements OnInit {
   @Input() layout:any;
   @Input() parent: any;
   @Input() parentType: string;
+  @Input() parentGroup:any;
+  @Input() jControl:any;
   constructor(private fb: FormBuilder, private jxFormService: JxFormService) { }
 
   ngOnInit() {
@@ -21,9 +23,7 @@ export class JxStubGroupComponent implements OnInit {
       let allValidators = this.jxFormService.getValidators(e);
       childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
     });
-
     let group1 = this.fb.group(childControls);
-    this.parent.setControl(this.layout.id, group1)
+    this.parent.setControl(this.layout.id, group1);
   }
-
 }

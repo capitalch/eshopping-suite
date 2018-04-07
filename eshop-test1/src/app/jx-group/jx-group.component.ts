@@ -13,7 +13,7 @@ export class JxGroupComponent implements OnInit {
   constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
 
   ngOnInit() {
-    this.init();
+    // this.init();
   }
 
   init() {

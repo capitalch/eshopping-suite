@@ -2,22 +2,22 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
 import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxFormService {
+  _myForm: FormGroup;
+  constructor(private httpClient: HttpClient) {
+    // console.log('service called');
+  }
 
-  constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
-    console.log('service called');
+  getForm(){
+    return(this._myForm);
+  }
 
-    // httpClient
-    //   .get('assets/config.json')
-    //   .subscribe(d => {
-    //     this.brokerService.behEmit("config", d);
-    //   }, err => {
-    //     console.log(err);
-    //   });
+  setForm(form){
+    this._myForm = form;
   }
 
   customValidators = {

@@ -5,7 +5,8 @@
       <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
         <button (click)="removeFromArray(j)">Remove</button>
         <ng-container *ngFor="let control of layout.group.controls">
-          <ng-container [ngSwitch]="control.type">
+          <jx-stub [jControl] = "control" [parent] = "parent" [layout] = "layout" [parentType] ="'array'" [group] = "group"></jx-stub>
+          <!-- <ng-container [ngSwitch]="control.type">
 
             <div *ngSwitchCase="'textarea'">
               <jx-textarea [layout]="control" [parent]="group" [idx]="j"></jx-textarea>
@@ -35,7 +36,7 @@
               <jx-default [layout]="control" [parent]="group" [idx]="j"></jx-default>
             </div>
 
-          </ng-container>
+          </ng-container> -->
         </ng-container>
       </div>
     </ng-container>

@@ -1,7 +1,12 @@
 <form [formGroup]="myForm" novalidate>
-  <div [ngClass]="options.wrapperClass">    
-    <ng-container *ngFor="let layout of layouts">      
-      <jx-stub [layouts]="layouts" [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub>
+  <div [ngClass]="options.wrapperClass">
+    <ng-container *ngFor="let layout of layouts">
+      <jx-stub [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub>
+      <!-- <ng-container [ngSwitch]="layout.type">
+        <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class &&layout.class.group">
+          <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
+        </div>
+      </ng-container> -->
       <!-- <div [ngSwitch]="layout.type">
 
         <div *ngSwitchCase="'textarea'">

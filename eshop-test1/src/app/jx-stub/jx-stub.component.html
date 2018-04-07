@@ -1,12 +1,8 @@
 <div [formGroup]="parent">
-  
-  
-  <!-- <ng-container *ngFor="let jControl of layouts"> -->
 
     <ng-container [ngSwitch]="jControl.type">
       
-      <div *ngSwitchCase="'checkbox'">
-        <!-- <jx-checkbox [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-checkbox> -->
+      <div *ngSwitchCase="'checkbox'">        
         <jx-checkbox [layout]="jControl" [parent]="container"></jx-checkbox>
       </div>
       
@@ -27,7 +23,7 @@
       </div>
 
       <div *ngSwitchCase="'group'">
-        <jx-group [layout]="jControl" [parent]="parentType=='form' ? parent : parent.get(layout.id)"></jx-group>
+        <jx-group [layout]="jControl" [parent]="container"></jx-group>
       </div>
 
       <div *ngSwitchCase="'groupArray'">
@@ -43,7 +39,7 @@
         <jxmat-checkbox [layout]="jControl" [parent]="container"></jxmat-checkbox>
       </div>
 
-      <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
+      <div *ngSwitchDefault [ngClass]="jControl.class && jControl.class.group" [ngStyle]="jControl.style">
         <jx-default [layout]="jControl" [parent]="container"></jx-default>
       </div>
 

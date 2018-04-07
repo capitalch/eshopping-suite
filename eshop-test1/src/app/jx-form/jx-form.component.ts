@@ -14,14 +14,9 @@ export class JxFormComponent implements OnInit {
   @Input() options: any = {};
   myForm: FormGroup;
   errorMessages: any[] = [];
-  constructor(private fb: FormBuilder, private jxFormService: JxFormService, private brokerService: BrokerService) { }
+  constructor(private fb: FormBuilder, private jxFormService: JxFormService) { }
 
-  ngOnInit() {
-    this.init();
-    // this.myForm = this.fb.group({});
-  }
-
-  init() {
+  ngOnInit() {    
     let formControls = {};
     this.layouts.forEach(x => {
       let allValidators = this.jxFormService.getValidators(x);
@@ -29,29 +24,30 @@ export class JxFormComponent implements OnInit {
 
     });
     this.myForm = this.fb.group(formControls);
+    this.jxFormService.setForm(this.myForm);
   }
 
-  submit(actionName) {
-    console.log(this.myForm.valid);
-    this.validateAllFormFields(this.myForm);
-    if (this.myForm.valid) {
-      console.log('form submitting');
-      this.jxFormService.executeAction(actionName, this.myForm);
-    } else {
-      console.log("Invalid form");
-    }
-  }
+  // submit(actionName) {
+  //   console.log(this.myForm.valid);
+  //   this.validateAllFormFields(this.myForm);
+  //   if (this.myForm.valid) {
+  //     console.log('form submitting');
+  //     this.jxFormService.executeAction(actionName, this.myForm);
+  //   } else {
+  //     console.log("Invalid form");
+  //   }
+  // }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched();
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
+  // validateAllFormFields(formGroup: FormGroup) {
+  //   Object.keys(formGroup.controls).forEach(field => {
+  //     const control = formGroup.get(field);
+  //     if (control instanceof FormControl) {
+  //       control.markAsTouched();
+  //     } else if (control instanceof FormGroup) {
+  //       this.validateAllFormFields(control);
+  //     }
+  //   });
+  // }
 
   addGroupInArray(layout) {
     let childControls = {};

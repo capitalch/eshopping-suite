@@ -19,14 +19,25 @@ router.get('/api/test', (req, res, next) => {
     }
 });
 
-router.post('/test', (req, res, next) => {
+router.post('/countries', (req, res, next) => {
     try {
-        // res.json({
-        //     "statusCode": 400,
-        //     "error": "Bad Request",
-        //     "message": "Email address already registerd"
-        // });
-        res.json(null);
+        res.json([{
+            name: "---select country---",
+            value: 0
+        }, {
+            name: "India",
+            value: "in"
+        }, {
+            name: "USA",
+            value: "us"
+        }, {
+            name: "Japan",
+            value: "jp"
+        }, {
+            name:"SriLanka",
+            value:"sl"
+        }
+    ]);
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);

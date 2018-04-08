@@ -5,60 +5,6 @@ let form1 = [
         , label: "Agreed"
         , value: false
     }
-
-    // , {
-    //     type: "textarea"
-    //     , id: "address"
-    //     , label: "Address"
-    //     , placeholder: "Address"
-    //     , value: "12345"
-    //     , validation: {
-    //         required: { message: '$ is required' },
-    //         minlength: { value: 5, message: 'Minimum length for $ is 5' },
-    //         maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-    //     }
-    // }
-    // , {
-    //     type: "select"
-    //     , label: "Country"
-    //     , value: "0"
-    //     , id: "country"
-    //     , options: [
-    //         {name: "---Choose---", value: "0" }
-    //         , { name: "USA", value: "us" }
-    //         , { name: "India", value: "in" }
-    //     ]
-    //     , validation: {
-    //         selectRequired: {
-    //             message: 'You must select a value for $'
-    //             , arg: 0
-    //         }
-    //     }
-    // }
-    // , {
-    //     type: "checkboxGroup"
-    //     , label: "Food3"
-    //     , id: "food3"
-    //     , validation: {
-    //         required: { message: '$ is required' }
-    //     }
-    //     , options: [
-    //         { label: "Main course", value: false, id: "main3" }
-    //         , { label: "Desert", value: true, id: "desert3" }
-    //         , { label: "beverages", value: false, id: "beverages3" }
-    //     ]
-    // }
-
-    // , {
-    //     type: "radio"
-    //     , label: "Gender"
-    //     , value: "M"
-    //     , id: "gender123"
-    //     , options: [
-    //         { label: "Male", value: "M", id: "male1" }
-    //         , { label: "Female", value: "F", id: "female1" }
-    //     ]
-    // }
     ,
     {
         type: "group"
@@ -97,7 +43,7 @@ let form1 = [
                     }
                 ]
             }
-            , 
+            ,
             {
                 type: "textarea"
                 , id: "address"
@@ -112,107 +58,6 @@ let form1 = [
             }
         ]
     }
-
-    // ,
-    //        
-    //         , {
-    //             type: "select"
-    //             , label: "Country"
-    //             , value: "0"
-    //             , id: "country"
-    //             , options: [
-    //                 { name: "---Choose---", value: "0" }
-    //                 , { name: "USA", value: "us" }
-    //                 , { name: "India", value: "in" }
-    //             ]
-    //             , validation: {
-    //                 selectRequired: {
-    //                     message: 'You must select a value for $'
-    //                     , arg: 0
-    //                 }
-    //             }
-    //         }
-    //         , {
-    //             type: "checkboxGroup"
-    //             , label: "Food3"
-    //             , id: "food3"
-    //             , validation: {
-    //                 required: { message: '$ is required' }
-    //             }
-    //             , options: [
-    //                 { label: "Main course", value: false, id: "main3" }
-    //                 , { label: "Desert", value: true, id: "desert3" }
-    //                 , { label: "beverages", value: false, id: "beverages3" }
-    //             ]
-    //         }
-    //         , {
-    //             type: "checkbox"
-    //             , id: "agreed5"
-    //             , label: "Agreed"
-    //             , value: true
-    //         }
-    //         , {
-    //             type: "radio"
-    //             , label: "Gender"
-    //             , value: "M"
-    //             , id: "gender123"
-    //             , options: [
-    //                 { label: "Male", value: "M", id: "male1" }
-    //                 , { label: "Female", value: "F", id: "female1" }
-    //             ]
-    //         }
-    //         ,
-    //         {
-    //             type: "groupArray"
-    //             , label: "Tags"
-    //             , id: "tags"
-    //             , group: {
-    //                 label: "Tag"
-    //                 , id: "tag3"
-    //                 , controls: [
-    //                     {
-    //                         type: "mat-checkbox"
-    //                         , id: "agreed6"
-    //                         , label: "Agreed"
-    //                         , value: false
-    //                     },
-    //                     {
-    //                         type: "textarea"
-    //                         , id: "address"
-    //                         , label: "Address"
-    //                         , placeholder: "Address"
-    //                         , value: "12345"
-    //                         , validation: {
-    //                             required: { message: '$ is required' },
-    //                             minlength: { value: 5, message: 'Minimum length for $ is 5' },
-    //                             maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-    //                         }
-    //                     }
-    //                     , {
-    //                         type: "checkbox"
-    //                         , id: "agreed7"
-    //                         , label: "Agreed"
-    //                         , value: true
-    //                     }
-    //                     , {
-    //                         type: "checkboxGroup"
-    //                         , label: "Food3"
-    //                         , id: "food3"
-    //                         , validation: {
-    //                             required: { message: '$ is required' }
-    //                         }
-    //                         , options: [
-    //                             { label: "Main course", value: false, id: "main3" }
-    //                             , { label: "Desert", value: true, id: "desert3" }
-    //                             , { label: "beverages", value: false, id: "beverages3" }
-    //                         ]
-    //                     }
-
-    //                 ]
-    //             }
-    //         }
-    //     ]
-    // }
     ,
     {
         type: "groupArray"
@@ -274,8 +119,26 @@ let form1 = [
                         , { label: "Female", value: "F", id: "female1" }
                     ]
                 }
-                , { 544444444444444444444444444444444444444444444444444444444444444444
-                                                   -
+                , {
+                    type: "select"
+                    , label: "Country"
+                    , value: "0"
+                    , id: "country"
+                    , options:"countries2"
+                    , validation: {
+                        selectRequired: {
+                            message: 'You must select a value for $'
+                            , arg: 0
+                        }
+                    }
+                }
+            ]
+        }
+    }
+];
+export { form1 };
+
+                // ,{                                                   
             //     type: "radio"
             //     , label: "Gender"
             //     , value: "M"

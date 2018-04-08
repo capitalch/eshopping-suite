@@ -29,8 +29,7 @@ export class BrokerService {
   getHttpUrl = (id) => {
     let host = this.settings.host.replace(/\/$/, "");
     let url = this.settings[id];
-    url || (url=this.settings['defaultEndPoint']);
-    // url && (url=='default') && (url=this.settings['defaultEndPoint']);
+    url || (url=this.settings['defaultEndPoint']);    
     url && (url = url.replace(/^,/, ''));
     url = host.concat('/', url);
     return (url);

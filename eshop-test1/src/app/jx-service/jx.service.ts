@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
-import {options} from './option-bank';
+import { countries } from './options-bank';
 // import { BrokerService } from './broker.service';
 
 @Injectable()
@@ -124,15 +124,17 @@ export class JxService {
     return (allValidators);
   }
 
-  // optionsBank: {} = {
-  //   countries: [
-  //     { name: "---select a country---", value: 0 }
-  //     , { name: "India", value: "in" }
-  //     , { name: "USA", value: "us" }
-  //     , { name: "Japan", value: "jp" }
-  //   ]
-  // }
+  options: {} = {
+    countries: countries
+    , countries1: () => countries
+    , countries2: Observable.of(countries)
+  }
   getOption(optionName) {
-    return (options[optionName]);
+    let opts = this.options[optionName];
+    let optType = typeof (opts);
+    if (optType == "function") {
+      opts = opts();
+    }
+    return (opts);
   }
 }

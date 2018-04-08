@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
-
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'jx-textarea',
   template: `
@@ -77,7 +77,15 @@ export class JxSelectComponent {
   constructor(private jxService: JxService) { }
   ngOnInit() {
     if (typeof (this.layout.options) == "string") {
-      this.options = this.jxService.getOption('countries');
+      let options = this.jxService.getOption(this.layout.options);
+      if (options instanceof Observable) {
+        options.subscribe(x => {
+          this.options = x;
+        }).unsubscribe();
+      } else {
+        this.options = options;
+      }
+
     } else {
       this.options = this.layout.options;
     }

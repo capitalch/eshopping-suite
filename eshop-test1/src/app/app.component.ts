@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { form1 } from './app.config';
-import { JxFormService } from './jx-form.service';
+import { JxService } from './jx-service/jx.service';
 import { BrokerService } from './broker.service';
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
   options: any = {};
   content: string;
 
-  constructor(private JxFormService: JxFormService, private brokerService: BrokerService) {
+  constructor(private JxFormService: JxService, private brokerService: BrokerService) {
     
   }
 

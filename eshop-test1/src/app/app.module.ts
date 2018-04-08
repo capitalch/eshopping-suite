@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { JxFormService } from './jx-form.service';
+import { JxService } from './jx-service/jx.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { JxFormComponent } from './jx-form/jx-form.component';
@@ -49,7 +49,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , HttpClientModule
     , AngularMaterialModule
   ],
-  providers: [JxFormService, BrokerService],
+  providers: [JxService, BrokerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,9 +24,9 @@ let form1 = [
     //     , value: "0"
     //     , id: "country"
     //     , options: [
-    //         { label: "---Choose---", value: "0" }
-    //         , { label: "USA", value: "us" }
-    //         , { label: "India", value: "in" }
+    //         {name: "---Choose---", value: "0" }
+    //         , { name: "USA", value: "us" }
+    //         , { name: "India", value: "in" }
     //     ]
     //     , validation: {
     //         selectRequired: {
@@ -59,59 +59,59 @@ let form1 = [
     //         , { label: "Female", value: "F", id: "female1" }
     //     ]
     // }
-    // ,
-    // {
-    //     type: "group"
-    //     , label: "Passwords"
-    //     , id: "pwd"
-    //     , controls: [
-    //         {
-    //             type: "checkbox"
-    //             , id: "agreed"
-    //             , label: "Agreed"
-    //             , value: false
-    //         }
-    //         , {
-    //             type: "group"
-    //             , id: "Agreement1"
-    //             , label: "Agreement"
-    //             , controls: [
-    //                 {
-    //                     type: "checkbox"
-    //                     , id: "agreed11"
-    //                     , label: "Agreed"
-    //                     , value: true
-    //                 }
-    //                 , {
-    //                     type: "group"
-    //                     , id: "Agreement1"
-    //                     , label: "Agreement"
-    //                     , controls: [
-    //                         {
-    //                             type: "checkbox"
-    //                             , id: "agreed111"
-    //                             , label: "Agreed11"
-    //                             , value: true
-    //                         }
-    //                     ]
-    //                 }
-    //             ]
-    //         }
-    //         , 
-    //         {
-    //             type: "textarea"
-    //             , id: "address"
-    //             , label: "Address"
-    //             , placeholder: "Address"
-    //             , value: "12345"
-    //             , validation: {
-    //                 required: { message: '$ is required' },
-    //                 minlength: { value: 5, message: 'Minimum length for $ is 5' },
-    //                 maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-    //             }
-    //         }
-    //     ]
-    // }
+    ,
+    {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "checkbox"
+                , id: "agreed"
+                , label: "Agreed"
+                , value: false
+            }
+            , {
+                type: "group"
+                , id: "Agreement1"
+                , label: "Agreement"
+                , controls: [
+                    {
+                        type: "checkbox"
+                        , id: "agreed11"
+                        , label: "Agreed"
+                        , value: true
+                    }
+                    , {
+                        type: "group"
+                        , id: "Agreement1"
+                        , label: "Agreement"
+                        , controls: [
+                            {
+                                type: "checkbox"
+                                , id: "agreed111"
+                                , label: "Agreed11"
+                                , value: true
+                            }
+                        ]
+                    }
+                ]
+            }
+            , 
+            {
+                type: "textarea"
+                , id: "address"
+                , label: "Address"
+                , placeholder: "Address"
+                , value: "12345"
+                , validation: {
+                    required: { message: '$ is required' },
+                    minlength: { value: 5, message: 'Minimum length for $ is 5' },
+                    maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+                }
+            }
+        ]
+    }
 
     // ,
     //        
@@ -121,9 +121,9 @@ let form1 = [
     //             , value: "0"
     //             , id: "country"
     //             , options: [
-    //                 { label: "---Choose---", value: "0" }
-    //                 , { label: "USA", value: "us" }
-    //                 , { label: "India", value: "in" }
+    //                 { name: "---Choose---", value: "0" }
+    //                 , { name: "USA", value: "us" }
+    //                 , { name: "India", value: "in" }
     //             ]
     //             , validation: {
     //                 selectRequired: {
@@ -279,11 +279,7 @@ let form1 = [
                     , label: "Country"
                     , value: "0"
                     , id: "country"
-                    , options: [
-                        { label: "---Choose---", value: "0" }
-                        , { label: "USA", value: "us" }
-                        , { label: "India", value: "in" }
-                    ]
+                    , options: "countries"
                     , validation: {
                         selectRequired: {
                             message: 'You must select a value for $'
@@ -386,9 +382,9 @@ export { form1 };
             //                     //     , value: "0"
             //                     //     , id: "country"
             //                     //     , options: [
-            //                     //         { label: "---Choose---", value: "0" }
-            //                     //         , { label: "USA", value: "us" }
-            //                     //         , { label: "India", value: "in" }
+            //                     //         { name: "---Choose---", value: "0" }
+            //                     //         , { name: "USA", value: "us" }
+            //                     //         , { name: "India", value: "in" }
             //                     //     ]
             //                     //     , validation: {
             //                     //         selectRequired: {
@@ -499,9 +495,9 @@ export { form1 };
             //     , value: "0"
             //     , id: "country"
             //     , options: [
-            //         { label: "---Choose---", value: "0" }
-            //         , { label: "USA", value: "us" }
-            //         , { label: "India", value: "in" }
+            //         { name: "---Choose---", value: "0" }
+            //         , { name: "USA", value: "us" }
+            //         , { name: "India", value: "in" }
             //     ]
             //     , validation: {
             //         selectRequired: {
@@ -553,9 +549,9 @@ export { form1 };
     //     , value: "0"
     //     , id: "country"
     //     , options: [
-    //         { label: "---Choose---", value: "0" }
-    //         , { label: "USA", value: "us" }
-    //         , { label: "India", value: "in" }
+    //         { name: "---Choose---", value: "0" }
+    //         , { name: "USA", value: "us" }
+    //         , { name: "India", value: "in" }
     //     ]
     //     , validation: {
     //         selectRequired: {

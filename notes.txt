@@ -27,15 +27,16 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 2. file upload
             9. Provide json and functions as parameters
 
-3. Required symbol
+3. show Required symbol
             13. Provide group / formgroup
             14. Checkboxgroup bug fix groupArray
             15. Checkboxgroup in group and groupArray implement and check
 4. Populate drop down lists from service
 5. Populate drop down list from web
 6. Required validation in radio buttons
-7. Check checkboxGroup in jx-form, jx-group, jx-array
+            7. Check checkboxGroup in jx-form, jx-group, jx-array
 8. Check add / remove of jx-array in jx-form, jx-group
+9. Define sql id in hidden field
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

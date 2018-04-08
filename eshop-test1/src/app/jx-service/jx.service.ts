@@ -3,20 +3,21 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
-import { BrokerService } from './broker.service';
+import {options} from './option-bank';
+// import { BrokerService } from './broker.service';
 
 @Injectable()
-export class JxFormService {
+export class JxService {
   _myForm: FormGroup;
+
   constructor(private httpClient: HttpClient) {
-    // console.log('service called');
   }
 
-  getForm(){
-    return(this._myForm);
+  getForm() {
+    return (this._myForm);
   }
 
-  setForm(form){
+  setForm(form) {
     this._myForm = form;
   }
 
@@ -121,5 +122,17 @@ export class JxFormService {
       }
     });
     return (allValidators);
+  }
+
+  // optionsBank: {} = {
+  //   countries: [
+  //     { name: "---select a country---", value: 0 }
+  //     , { name: "India", value: "in" }
+  //     , { name: "USA", value: "us" }
+  //     , { name: "Japan", value: "jp" }
+  //   ]
+  // }
+  getOption(optionName) {
+    return (options[optionName]);
   }
 }

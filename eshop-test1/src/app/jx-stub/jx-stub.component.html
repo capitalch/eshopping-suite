@@ -1,50 +1,48 @@
 <div [formGroup]="parent">
 
-    <ng-container [ngSwitch]="jControl.type">
-      
-      <div *ngSwitchCase="'checkbox'">        
-        <jx-checkbox [layout]="jControl" [parent]="container"></jx-checkbox>
-      </div>
-      
-      <div *ngSwitchCase="'textarea'">
-        <jx-textarea [layout]="jControl" [parent]="container"></jx-textarea>
-      </div>
+  <ng-container [ngSwitch]="jControl.type">
 
-      <div *ngSwitchCase="'radio'">
-        <jx-radio [layout]="jControl" [parent]="container"></jx-radio>
-      </div>
+    <div *ngSwitchCase="'checkbox'">
+      <jx-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox>
+    </div>
 
-      <div *ngSwitchCase="'select'">
-        <jx-select [layout]="jControl" [parent]="container"></jx-select>
-      </div>
+    <div *ngSwitchCase="'textarea'">
+      <jx-textarea [layout]="jControl" [parent]="container" [idx] = "idx"></jx-textarea>
+    </div>
 
-      <div *ngSwitchCase="'checkboxGroup'">
-        <jx-checkbox-group [layout]="jControl" [parent]="container"></jx-checkbox-group>
-      </div>
+    <div *ngSwitchCase="'radio'">
+      <jx-radio [layout]="jControl" [parent]="container" [idx] = "idx"></jx-radio>
+    </div>
 
-      <div *ngSwitchCase="'group'">
-        <jx-group [layout]="jControl" [parent]="container"></jx-group>
-      </div>
+    <div *ngSwitchCase="'select'">
+      <jx-select [layout]="jControl" [parent]="container" [idx] = "idx"></jx-select>
+    </div>
 
-      <div *ngSwitchCase="'groupArray'">
-        <button (click)="addGroupInArray(layout)">Add</button>
-        <jx-array [layout]="jControl" [parent]="container"></jx-array>
-      </div>
+    <div *ngSwitchCase="'checkboxGroup'">
+      <jx-checkbox-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox-group>
+    </div>
 
-      <div *ngSwitchCase="'submit'" [ngStyle]="jControl.style" [ngClass]="jControl.class &&jControl.class.group">
-        <button [ngClass]="jControl.class && jControl.class.element" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
-      </div>
+    <div *ngSwitchCase="'group'">
+      <jx-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-group>
+    </div>
 
-      <div *ngSwitchCase="'mat-checkbox'">
-        <jxmat-checkbox [layout]="jControl" [parent]="container"></jxmat-checkbox>
-      </div>
+    <div *ngSwitchCase="'groupArray'">
+      <button (click)="addGroupInArray(jControl)">Add</button>
+      <jx-array [layout]="jControl" [parent]="container" [idx] = "idx"></jx-array>
+    </div>
 
-      <div *ngSwitchDefault [ngClass]="jControl.class && jControl.class.group" [ngStyle]="jControl.style">
-        <jx-default [layout]="jControl" [parent]="container"></jx-default>
-      </div>
+    <div *ngSwitchCase="'submit'" [ngStyle]="jControl.style" [ngClass]="jControl.class &&jControl.class.group">
+      <button [ngClass]="jControl.class && jControl.class.element" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
+    </div>
 
-    </ng-container>
+    <div *ngSwitchCase="'mat-checkbox'">
+      <jxmat-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jxmat-checkbox>
+    </div>
 
+    <div *ngSwitchDefault [ngClass]="jControl.class && jControl.class.group" [ngStyle]="jControl.style">
+      <jx-default [layout]="jControl" [parent]="container" [idx] = "idx"></jx-default>
+    </div>
 
-  <!-- </ng-container> -->
+  </ng-container>
+
 </div>

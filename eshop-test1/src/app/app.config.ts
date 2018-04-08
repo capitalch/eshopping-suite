@@ -124,7 +124,7 @@ let form1 = [
                     , label: "Country"
                     , value: "0"
                     , id: "country"
-                    , options:"countries"
+                    , options:"countries3"
                     , validation: {
                         selectRequired: {
                             message: 'You must select a value for $'

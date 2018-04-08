@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
@@ -74,18 +74,20 @@ export class JxSelectComponent {
   @Input() idx: string;
   @Input() parent: FormGroup;
   options: any;
-  constructor(private jxService: JxService) { }
+  constructor(private jxService: JxService, private ref: ChangeDetectorRef) {
+
+  }
   ngOnInit() {
     if (typeof (this.layout.options) == "string") {
       let options = this.jxService.getOption(this.layout.options);
       if (options instanceof Observable) {
         options.subscribe(x => {
           this.options = x;
-        }).unsubscribe();
+          this.ref.markForCheck(); //forceful change detector
+        });
       } else {
         this.options = options;
       }
-
     } else {
       this.options = this.layout.options;
     }

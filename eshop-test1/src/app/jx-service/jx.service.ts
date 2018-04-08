@@ -4,13 +4,14 @@ import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
+import { BrokerService } from '../broker.service';
 // import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxService {
   _myForm: FormGroup;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private brokerService:BrokerService) {
   }
 
   getForm() {
@@ -128,6 +129,7 @@ export class JxService {
     countries: countries
     , countries1: () => countries
     , countries2: Observable.of(countries)
+    , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
   }
   getOption(optionName) {
     let opts = this.options[optionName];

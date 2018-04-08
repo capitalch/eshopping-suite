@@ -23,13 +23,13 @@ export class BrokerService {
     this.subject = new Subject();
     this.behSubject = new BehaviorSubject(0);
   }
-  init(_settings){
+  init(_settings) {
     this.settings = _settings;
   }
   getHttpUrl = (id) => {
     let host = this.settings.host.replace(/\/$/, "");
     let url = this.settings[id];
-    url || (url=this.settings['defaultEndPoint']);    
+    url || (url = this.settings['defaultEndPoint']);
     url && (url = url.replace(/^,/, ''));
     url = host.concat('/', url);
     return (url);
@@ -51,6 +51,12 @@ export class BrokerService {
 
   behFilterOn(id: string) {
     return (this.behSubject.filter(d => (d.id === id)));
+  }
+
+  httpPost$(url: string) {
+    let obs = this.httpClient
+      .post(url, null);
+    return (obs);
   }
 
   httpPost(id: string, body?: any, queryParams?: {}, carryBag?: any) {
@@ -84,7 +90,7 @@ export class BrokerService {
   httpGet(id: string, queryParams?: {}) {
     try {
       let url = this.getHttpUrl(id);// urlMaps[id];
-      let httpParams = new HttpParams();      
+      let httpParams = new HttpParams();
       httpParams = queryParams && (Object.keys(queryParams).reduce((prevValue, x, i) => {
         httpParams = httpParams.append(x, queryParams[x]);
         return (httpParams);

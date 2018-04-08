@@ -274,35 +274,8 @@ let form1 = [
                         , { label: "Female", value: "F", id: "female1" }
                     ]
                 }
-                , {
-                    type: "select"
-                    , label: "Country"
-                    , value: "0"
-                    , id: "country"
-                    , options: "countries"
-                    , validation: {
-                        selectRequired: {
-                            message: 'You must select a value for $'
-                            , arg: 0
-                        }
-                    }
-                }
-            ]
-        }
-    }
-
-    , {
-        type: 'submit'
-        , label: 'Submit'
-        , class: { group: 'submit-right', element: 'btn btn-primary' }
-        , actionName: 'submitForm'
-    }
-
-];
-export { form1 };
-
-
-            // , {
+                , { 544444444444444444444444444444444444444444444444444444444444444444
+                                                   -
             //     type: "radio"
             //     , label: "Gender"
             //     , value: "M"

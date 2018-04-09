@@ -8,7 +8,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class JxErrorComponent implements OnInit {
   @Input() layout: any={};
-  // @Input() control:any;
   @Input() parent:any;
   control:any;
   constructor() { }

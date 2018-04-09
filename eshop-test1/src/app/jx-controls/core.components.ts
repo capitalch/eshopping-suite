@@ -45,8 +45,7 @@ export class JxCheckboxComponent {
       <legend>{{layout.label}}</legend>
       <ng-container *ngFor="let option of layout.options">
         <input type="radio" [id]="option.id+idx" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
-        <label [for]="option.id+idx">{{option.label}}</label>
-        
+        <label [for]="option.id+idx">{{option.label}}</label>        
       </ng-container>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </fieldset>`

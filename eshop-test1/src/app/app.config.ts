@@ -1,24 +1,44 @@
 let form1 = [
+    // {
+    //     type: "checkbox"
+    //     , id: "agreed"
+    //     , label: "Agreed"
+    //     , value: false
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }, {
+    //     type: "checkboxGroup"
+    //     , label: "Food2"
+    //     , id: "food2"
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    //     , options: [
+    //         { label: "Main course", value: false, id: "main2" }
+    //         , { label: "Desert", value: true, id: "desert2" }
+    //         , { label: "beverages", value: false, id: "beverages2" }
+    //     ]
+    // }
+    // , 
     {
-        type: "checkbox"
-        , id: "agreed"
-        , label: "Agreed"
-        , value: false
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }, {
-        type: "checkboxGroup"
-        , label: "Food2"
-        , id: "food2"
-        , validation: {
-            required: { message: '$ is required' }
-        }
+        type: "radio"
+        , label: "Gender"
+        // , value: "M"
+        , id: "gender123"
         , options: [
-            { label: "Main course", value: false, id: "main2" }
-            , { label: "Desert", value: true, id: "desert2" }
-            , { label: "beverages", value: false, id: "beverages2" }
+            { label: "Male", value: "M", id: "male1" }
+            , { label: "Female", value: "F", id: "female1" }
         ]
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    , {
+        type: "submit"
+        , label: "submit"
+        , class: { element: "btn btn-primary" }
+        , actionName: "submit"
     }
     // {
     //     type: "mat-checkbox"

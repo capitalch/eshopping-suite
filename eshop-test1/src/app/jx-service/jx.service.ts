@@ -11,7 +11,7 @@ import { BrokerService } from '../broker.service';
 export class JxService {
   _myForm: FormGroup;
 
-  constructor(private httpClient: HttpClient, private brokerService:BrokerService) {
+  constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
   }
 
   getForm() {
@@ -58,11 +58,11 @@ export class JxService {
   }
 
   actions = {
-    submitForm: (form) => {
+    submit: (form) => {
       delete form.value.undefined;
       console.log(form.value);
     }
-    , resetForm: (form) => {
+    , reset: (form) => {
       console.log("Form is done reset");
     }
   }
@@ -98,7 +98,8 @@ export class JxService {
 
       switch (x) {
         case 'required':
-          allValidators.validators.push(Validators.required);
+          (layout.type in { checkbox: ''}) ? allValidators.validators.push(Validators.requiredTrue)
+            : allValidators.validators.push(Validators.required)
           break;
         case 'email':
           allValidators.validators.push(Validators.email);
@@ -133,7 +134,7 @@ export class JxService {
   }
   getOption(optionName) {
     let opts = this.options[optionName];
-    (typeof(opts) == 'function') && (opts = opts());
+    (typeof (opts) == 'function') && (opts = opts());
     // let optType = typeof (opts);
     // if (optType == "function") {
     //   opts = opts();

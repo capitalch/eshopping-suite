@@ -133,10 +133,11 @@ export class JxService {
   }
   getOption(optionName) {
     let opts = this.options[optionName];
-    let optType = typeof (opts);
-    if (optType == "function") {
-      opts = opts();
-    }
+    (typeof(opts) == 'function') && (opts = opts());
+    // let optType = typeof (opts);
+    // if (optType == "function") {
+    //   opts = opts();
+    // }
     return (opts);
   }
 }

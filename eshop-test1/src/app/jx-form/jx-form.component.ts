@@ -21,7 +21,6 @@ export class JxFormComponent implements OnInit {
     this.layouts.forEach(x => {
       let allValidators = this.jxService.getValidators(x);
       formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
-
     });
     this.myForm = this.fb.group(formControls);
     this.jxService.setForm(this.myForm);

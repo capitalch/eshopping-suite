@@ -27,6 +27,7 @@ export class JxTextareaComponent {
       <label>
         <input type="checkbox" [id]="layout.id+idx" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
       </label>
+      <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
 })
 export class JxCheckboxComponent {
@@ -78,6 +79,7 @@ export class JxSelectComponent {
 
   }
   ngOnInit() {
+    //logic for options being an array, a function or an observable
     if (typeof (this.layout.options) == "string") {
       let options = this.jxService.getOption(this.layout.options);
       if (options instanceof Observable) {

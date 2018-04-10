@@ -20,14 +20,17 @@ export class JxFormComponent implements OnInit {
   ngOnInit() {
     let formControls = {};
     //handle the meta element
-    let index = _.findIndex(this.layouts, (x) => x.type == 'meta');
-    this.jxService.setMeta(this.layouts[index]);
-    this.layouts.splice(index, 1);
+    let metaIndex = _.findIndex(this.layouts, (x) => x.type == 'meta');
+    const meta = this.layouts[metaIndex];
+    
+    // this.jxService.setMeta(this.layouts[index]);
+    this.layouts.splice(metaIndex, 1);
     this.layouts.forEach(x => {
       let allValidators = this.jxService.getValidators(x);
       formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
     });
     this.myForm = this.fb.group(formControls);
-    this.jxService.setForm(this.myForm);
+    this.myForm["meta"] = meta;
+    // this.jxService.setForm(this.myForm);
   }
 }

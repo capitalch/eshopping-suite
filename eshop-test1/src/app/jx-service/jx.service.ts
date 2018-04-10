@@ -9,26 +9,8 @@ import { BrokerService } from '../broker.service';
 
 @Injectable()
 export class JxService {
-  private _myForm: FormGroup;
-  private _meta: any;
 
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
-  }
-
-  getForm() {
-    return (this._myForm);
-  }
-
-  setForm(form) {
-    this._myForm = form;
-  }
-
-  getMeta() {
-    return (this._meta);
-  }
-
-  setMeta(meta) {
-    this._meta = meta;
   }
 
   customValidators = {
@@ -67,11 +49,8 @@ export class JxService {
   }
 
   actions = {
-    submit: (form) => {
-      delete form.value.undefined;
-      let formValue = form.value;
-      formValue["meta"] = this.getMeta() || {};
-      console.log(form.value);
+    submit: (formValue) => {
+      console.log(formValue);
     }
     , reset: (form) => {
       console.log("Form is done reset");
@@ -143,6 +122,7 @@ export class JxService {
     , countries2: Observable.of(countries)
     , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
   }
+  
   getOption(optionName) {
     let opts = this.options[optionName];
     (typeof (opts) == 'function') && (opts = opts());

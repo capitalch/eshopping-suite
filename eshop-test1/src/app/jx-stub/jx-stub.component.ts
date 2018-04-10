@@ -18,7 +18,6 @@ export class JxStubComponent implements OnInit {
   constructor(private fb: FormBuilder, private jxService: JxService) { }
 
   ngOnInit() {
-    // let childControls = {};
     if (this.parentType == "form") {
       this.container = this.parent;
     }
@@ -30,10 +29,16 @@ export class JxStubComponent implements OnInit {
   }
 
   submit(actionName) {
-    let myForm = this.jxService.getForm();
+    let myForm = this.parent;
+    let meta = myForm.meta;
+    let serverMeta = Object.assign({},meta);
+    delete serverMeta.client;
     this.validateAllFormFields(myForm);
     if (myForm.valid) {
-      this.jxService.executeAction(actionName, myForm);
+      delete myForm.value.undefined;
+      let formValue = myForm.value;
+      formValue["meta"] = serverMeta;
+      this.jxService.executeAction(actionName, formValue);
     } else {
       console.log("Invalid form");
     }

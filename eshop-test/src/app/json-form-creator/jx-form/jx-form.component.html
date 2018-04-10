@@ -1,7 +1,17 @@
 <form [formGroup]="myForm" novalidate>
   <div [ngClass]="options.wrapperClass">
     <ng-container *ngFor="let layout of layouts">
-      <div [ngSwitch]="layout.type">
+      <jx-stub [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub>      
+    </ng-container>
+  </div>
+</form>
+<!-- deprecated
+<ng-container [ngSwitch]="layout.type">
+        <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class &&layout.class.group">
+          <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
+        </div>
+      </ng-container> -->
+      <!-- <div [ngSwitch]="layout.type">
 
         <div *ngSwitchCase="'textarea'">
           <jx-textarea [layout] = "layout" [parent] = "myForm"></jx-textarea>          
@@ -29,19 +39,19 @@
 
         <div *ngSwitchCase="'groupArray'">
           <button (click)="addGroupInArray(layout)">Add</button>
-          <jx-array [layout]="layout" [parent]="myForm">
-          </jx-array>
+          <jx-array [layout]="layout" [parent]="myForm"></jx-array>
         </div>
 
         <div *ngSwitchCase="'submit'" [ngStyle]="layout.style" [ngClass]="layout.class && layout.class.group">
           <button [ngClass]="layout.class && layout.class.element" (click)="submit(layout.actionName)" type="submit">{{layout.label}}</button>
         </div>
 
+        <div *ngSwitchCase="'mat-checkbox'">
+          <jxmat-checkbox [layout]="layout" [parent]="myForm"></jxmat-checkbox>
+        </div>
+
         <div *ngSwitchDefault [ngClass]="layout.class && layout.class.group" [ngStyle]="layout.style">
           <jx-default [layout] = "layout" [parent] = "myForm"></jx-default>         
         </div>
 
-      </div>
-    </ng-container>
-  </div>
-</form>
+      </div> -->

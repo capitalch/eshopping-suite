@@ -5,7 +5,8 @@
       <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
         <button (click)="removeFromArray(j)">Remove</button>
         <ng-container *ngFor="let control of layout.group.controls">
-          <ng-container [ngSwitch]="control.type">
+          <jx-stub [jControl] = "control" [parent] = "parent" [layout] = "layout" [parentType] ="'array'" [group] = "group" [idx] = "j"></jx-stub>
+          <!-- <ng-container [ngSwitch]="control.type">
 
             <div *ngSwitchCase="'textarea'">
               <jx-textarea [layout]="control" [parent]="group" [idx]="j"></jx-textarea>
@@ -27,14 +28,15 @@
               <jx-checkbox-group [layout]="control" [parent]="group" [idx]="j"></jx-checkbox-group>
             </div>
 
-            <div *ngSwitchDefault>
-              
-              <label [for]="control.id+j">{{control.label}}</label>
-              <input [type]="control.type" [id]="control.id+j" [placeholder]="control.placeholder" [formControlName]="control.id">
-              <jx-error [layout]="control" [control]="group.get(control.id)"></jx-error>
+            <div *ngSwitchCase="'mat-checkbox'">
+              <jxmat-checkbox [layout]="control" [parent]="group" [idx]="j"></jxmat-checkbox>
             </div>
 
-          </ng-container>
+            <div *ngSwitchDefault>
+              <jx-default [layout]="control" [parent]="group" [idx]="j"></jx-default>
+            </div>
+
+          </ng-container> -->
         </ng-container>
       </div>
     </ng-container>

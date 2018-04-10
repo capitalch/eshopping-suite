@@ -7,12 +7,13 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./jx-error.component.scss']
 })
 export class JxErrorComponent implements OnInit {
-
   @Input() layout: any={};
-  @Input() control:any;
+  @Input() parent:any;
+  control:any;
   constructor() { }
 
   ngOnInit() {
+    this.control = this.parent.get(this.layout.id);
   }
   getMessages(){
     let messages=[];

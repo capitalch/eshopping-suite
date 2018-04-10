@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { JxFormService } from '../jx-form.service';
+import { JxService } from '../jx-service/jx.service';
 
 @Component({
   selector: 'jx-array',
@@ -8,26 +8,20 @@ import { JxFormService } from '../jx-form.service';
   styleUrls: ['./jx-array.component.scss']
 })
 export class JxArrayComponent implements OnInit {
-
   @Input() layout: any;
   @Input() parent: FormGroup;
-  constructor(private fb: FormBuilder, private JxFormService: JxFormService) { }
+  @Input() idx: string = "";
+  constructor(private fb: FormBuilder, private jxService: JxService) { }
 
   ngOnInit() {
-
     let childControls = {};
     this.layout.group.controls && this.layout.group.controls
       .forEach(e => {
-        if ((e.type == "checkboxGroup") && e.options) {
-
-        } else {
-          let allValidators = this.JxFormService.getValidators(e);
-          childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
-        }
-
+        let allValidators = this.jxService.getValidators(e);
+        childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
       });
-    let group1 = this.fb.group(childControls);
-    this.parent.setControl(this.layout.id, this.fb.array([group1]));
+    let group = this.fb.group(childControls);
+    this.parent.setControl(this.layout.id, this.fb.array([group]));
   }
 
   removeFromArray(j) {

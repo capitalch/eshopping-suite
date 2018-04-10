@@ -2,13 +2,24 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
+import { countries } from './options-bank';
+import { BrokerService } from '../broker.service';
+// import { BrokerService } from './broker.service';
 
 @Injectable()
-export class JxFormService {
+export class JxService {
+  _myForm: FormGroup;
 
-  constructor(private httpClient: HttpClient) {
-    console.log('service called');
+  constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
+  }
+
+  getForm() {
+    return (this._myForm);
+  }
+
+  setForm(form) {
+    this._myForm = form;
   }
 
   customValidators = {
@@ -47,11 +58,11 @@ export class JxFormService {
   }
 
   actions = {
-    submitForm: (form) => {
+    submit: (form) => {
       delete form.value.undefined;
       console.log(form.value);
     }
-    , resetForm: (form) => {
+    , reset: (form) => {
       console.log("Form is done reset");
     }
   }
@@ -87,7 +98,8 @@ export class JxFormService {
 
       switch (x) {
         case 'required':
-          allValidators.validators.push(Validators.required);
+          (layout.type in { checkbox: ''}) ? allValidators.validators.push(Validators.requiredTrue)
+            : allValidators.validators.push(Validators.required)
           break;
         case 'email':
           allValidators.validators.push(Validators.email);
@@ -114,4 +126,19 @@ export class JxFormService {
     return (allValidators);
   }
 
+  options: {} = {
+    countries: countries
+    , countries1: () => countries
+    , countries2: Observable.of(countries)
+    , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
+  }
+  getOption(optionName) {
+    let opts = this.options[optionName];
+    (typeof (opts) == 'function') && (opts = opts());
+    // let optType = typeof (opts);
+    // if (optType == "function") {
+    //   opts = opts();
+    // }
+    return (opts);
+  }
 }

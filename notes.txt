@@ -31,11 +31,10 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             13. Provide group / formgroup
             14. Checkboxgroup bug fix groupArray
             15. Checkboxgroup in group and groupArray implement and check
-4. Populate drop down lists from service
-5. Populate drop down list from web
-6. Required validation in radio buttons
+            4. Populate drop down lists from service
+            5. Populate drop down list from web
+            6. Required validation in radio buttons
             7. Check checkboxGroup in jx-form, jx-group, jx-array
-8. Check aderil;o54u5rtred / remove of jx-array in jx-form, jx-group
 9. Define sql id in hidden field
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation

@@ -9,7 +9,8 @@ import { BrokerService } from '../broker.service';
 
 @Injectable()
 export class JxService {
-  _myForm: FormGroup;
+  private _myForm: FormGroup;
+  private _meta: any;
 
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
   }
@@ -20,6 +21,14 @@ export class JxService {
 
   setForm(form) {
     this._myForm = form;
+  }
+
+  getMeta() {
+    return (this._meta);
+  }
+
+  setMeta(meta) {
+    this._meta = meta;
   }
 
   customValidators = {
@@ -60,6 +69,8 @@ export class JxService {
   actions = {
     submit: (form) => {
       delete form.value.undefined;
+      let formValue = form.value;
+      formValue["meta"] = this.getMeta() || {};
       console.log(form.value);
     }
     , reset: (form) => {
@@ -98,7 +109,7 @@ export class JxService {
 
       switch (x) {
         case 'required':
-          (layout.type in { checkbox: ''}) ? allValidators.validators.push(Validators.requiredTrue)
+          (layout.type in { checkbox: '' }) ? allValidators.validators.push(Validators.requiredTrue)
             : allValidators.validators.push(Validators.required)
           break;
         case 'email':
@@ -135,10 +146,6 @@ export class JxService {
   getOption(optionName) {
     let opts = this.options[optionName];
     (typeof (opts) == 'function') && (opts = opts());
-    // let optType = typeof (opts);
-    // if (optType == "function") {
-    //   opts = opts();
-    // }
     return (opts);
   }
 }

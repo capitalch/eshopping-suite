@@ -1,5 +1,23 @@
 let form1 = [
-    // {
+    {
+        type: "meta"
+        , class: ""
+        , id: "jx-address"
+    }
+    ,
+    {
+        type: "textarea"
+        , id: "address"
+        , label: "Address"
+        , placeholder: "Address"
+        , value: "12345"
+        , validation: {
+            required: { message: '$ is required' },
+            minlength: { value: 5, message: 'Minimum length for $ is 5' },
+            maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+        }
+    }
+    // ,{
     //     type: "checkbox"
     //     , id: "agreed"
     //     , label: "Agreed"
@@ -20,7 +38,7 @@ let form1 = [
     //         , { label: "beverages", value: false, id: "beverages2" }
     //     ]
     // }
-    // , 
+    ,
     {
         type: "radio"
         , label: "Gender"

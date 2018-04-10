@@ -35,7 +35,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             5. Populate drop down list from web
             6. Required validation in radio buttons
             7. Check checkboxGroup in jx-form, jx-group, jx-array
-9. Define sql id in hidden field
+            9. Define sql id / meta data in app.config.ts file
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

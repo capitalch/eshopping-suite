@@ -32,7 +32,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'submit'">
-      <button [ngClass]="jControl.class && jControl.class.element" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
+      <button [ngClass]="jControl.class" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'mat-checkbox'">

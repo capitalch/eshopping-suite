@@ -211,7 +211,7 @@ let form1 = [
     , {
         type: "submit"
         , label: "submit"
-        // , class: { element: "btn btn-primary" }
+        , class: "btn btn-primary"
         , actionName: "submit"
     }
 ];

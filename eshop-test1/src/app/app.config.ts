@@ -22,7 +22,11 @@ let form1 = [
     {
         type: "textarea"
         , id: "address"
-        , class: { element: "textarea-class", label: "label-class", parent: "parent-class" }
+        , class: { 
+            label: 'label-address-class'
+            , element: 'element-address-class'
+            , parent: 'parent-address-class' 
+        }
         , label: "Address"
         , placeholder: "Address"
         , value: "12345"
@@ -67,7 +71,6 @@ let form1 = [
             required: { message: '$ is required' }
         }
     }
-
     ,
     {
         type: "mat-checkbox"

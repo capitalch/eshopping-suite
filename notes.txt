@@ -36,6 +36,8 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             6. Required validation in radio buttons
             7. Check checkboxGroup in jx-form, jx-group, jx-array
             9. Define sql id / meta data in app.config.ts file
+10. Group for button and button groups
+11. mat controls provisions
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

@@ -12,14 +12,14 @@
         font-weight: bold;
     }
 
-    input[type=submit],
-    input[type=button],
-    button {
-        background: #4B99AD;
-        padding: 8px 15px 8px 15px;
-        border: none;
-        color: #fff;
-    }
+    // input[type=submit],
+    // input[type=button],
+    // button {
+    //     background: #4B99AD;
+    //     padding: 8px 15px 8px 15px;
+    //     border: none;
+    //     color: #fff;
+    // }
 
     input[type=text],
     input[type=date],
@@ -52,19 +52,46 @@
         border: 1px solid #88D5E9;
     }
 
-    .field-divided {
-        width: 49%;
+    text, textarea{
+        width:100%;
     }
 
-    .field-long {
-        width: 100%;
+    select {
+        width:49%;
     }
 
-    .field-select {
-        width: 100%;
+    .textarea-class{
+        width:100%;
     }
 
-    .field-textarea {
-        height: 100px;
+    .label-class{
+        color:green;
+        display:block;
     }
+
+    .tag-class{
+        label {
+            color:magenta;
+            display:block;
+        }
+
+        input[type=text] {
+            width:80%
+        }
+    }
+    // .field-divided {
+    //     width: 49%;
+    // }
+
+    // .field-long {
+    //     width: 100%;
+    // }
+
+    // .field-select {
+    //     width: 100%;
+    // }
+
+    // .field-textarea {
+    //     height: 100px;
+    // }
 }

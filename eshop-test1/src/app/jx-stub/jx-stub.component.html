@@ -1,48 +1,48 @@
-<div [formGroup]="parent">
+<ng-container [formGroup]="parent">
 
   <ng-container [ngSwitch]="jControl.type">
 
-    <div *ngSwitchCase="'checkbox'">
+    <ng-container *ngSwitchCase="'checkbox'">
       <jx-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'textarea'">
+    <ng-container *ngSwitchCase="'textarea'">
       <jx-textarea [layout]="jControl" [parent]="container" [idx] = "idx"></jx-textarea>      
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'radio'">
+    <ng-container *ngSwitchCase="'radio'">
       <jx-radio [layout]="jControl" [parent]="container" [idx] = "idx"></jx-radio>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'select'">
+    <ng-container *ngSwitchCase="'select'">
       <jx-select [layout]="jControl" [parent]="container" [idx] = "idx"></jx-select>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'checkboxGroup'">
+    <ng-container *ngSwitchCase="'checkboxGroup'">
       <jx-checkbox-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox-group>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'group'">
+    <ng-container *ngSwitchCase="'group'">
       <jx-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-group>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'groupArray'">
+    <ng-container *ngSwitchCase="'groupArray'">
       <button (click)="addGroupInArray(jControl)">Add</button>
       <jx-array [layout]="jControl" [parent]="container" [idx] = "idx"></jx-array>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'submit'" [ngStyle]="jControl.style" [ngClass]="jControl.class &&jControl.class.group">
+    <ng-container *ngSwitchCase="'submit'">
       <button [ngClass]="jControl.class && jControl.class.element" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="'mat-checkbox'">
+    <ng-container *ngSwitchCase="'mat-checkbox'">
       <jxmat-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jxmat-checkbox>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchDefault [ngClass]="jControl.class && jControl.class.group" [ngStyle]="jControl.style">
+    <ng-container *ngSwitchDefault >
       <jx-default [layout]="jControl" [parent]="container" [idx] = "idx"></jx-default>
-    </div>
+    </ng-container>
 
   </ng-container>
 
-</div>
+</ng-container>

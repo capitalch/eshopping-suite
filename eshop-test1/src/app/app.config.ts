@@ -2,14 +2,27 @@ let form1 = [
     {
         type: "meta"
         , client: {
-            class: "form-style-1"
+            class: "form-style-1",
+            title: "Test form"
         }
         , id: "jx-address"
+    }
+    , {
+        type: "text"
+        , id: "tagValue"
+        , class: "tag-class"
+        , label: "Tag value"
+        , placeholder: "Tag value"
+        , value: ""
+        , validation: {
+            required: { message: '$ is a required field' }
+        }
     }
     ,
     {
         type: "textarea"
         , id: "address"
+        , class: { element: "textarea-class", label: "label-class", parent: "parent-class" }
         , label: "Address"
         , placeholder: "Address"
         , value: "12345"
@@ -139,7 +152,7 @@ let form1 = [
                     , label: "First name"
                     , placeholder: "First name"
                     , value: ""
-                    , class: { label: "redClass" }
+                    , class: { label: "red-class", element: "textarea-class" }
                     , validation: {
                         required: { message: '$ is required' },
                         minlength: { value: 3, message: 'Minimum length for $ is 3' },

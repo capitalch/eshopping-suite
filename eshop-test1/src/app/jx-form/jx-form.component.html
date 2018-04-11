@@ -1,4 +1,5 @@
 <form [formGroup]="myForm" novalidate [ngClass] = "myForm.meta.client.class" >
+  <h2>{{myForm.meta.client.title}}</h2>
   <!-- <div [ngClass]="options.wrapperClass"> -->
     <ng-container *ngFor="let layout of layouts">
       <jx-stub [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub>      

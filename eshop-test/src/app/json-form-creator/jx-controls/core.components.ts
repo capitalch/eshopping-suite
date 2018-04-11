@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
   selector: 'jx-textarea',
   template: `
     <ng-container [formGroup]="parent">
-      <label [for]="layout.id+idx">{{layout.label}}</label>
-      <textarea class="field-long" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+      <label [ngClass]="layout.id+'-label'" [for]="layout.id+idx">{{layout.label}}</label>
+      <textarea [ngClass]="layout.id" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
 })

@@ -27,9 +27,6 @@ export class AppComponent {
     this.options = {
       wrapperClass: "form-style-1"
     };
-    // this.brokerService.behFilterOn("config").subscribe(d => {
-    //   this.myLayout = d.data;
-    // });
     this.myLayout = form1;
     this.content = "This is code"
   }

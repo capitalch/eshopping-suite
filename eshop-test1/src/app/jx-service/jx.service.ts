@@ -9,17 +9,8 @@ import { BrokerService } from '../broker.service';
 
 @Injectable()
 export class JxService {
-  _myForm: FormGroup;
 
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
-  }
-
-  getForm() {
-    return (this._myForm);
-  }
-
-  setForm(form) {
-    this._myForm = form;
   }
 
   customValidators = {
@@ -58,9 +49,8 @@ export class JxService {
   }
 
   actions = {
-    submit: (form) => {
-      delete form.value.undefined;
-      console.log(form.value);
+    submit: (formValue) => {
+      console.log(formValue);
     }
     , reset: (form) => {
       console.log("Form is done reset");
@@ -98,7 +88,7 @@ export class JxService {
 
       switch (x) {
         case 'required':
-          (layout.type in { checkbox: ''}) ? allValidators.validators.push(Validators.requiredTrue)
+          (layout.type in { checkbox: '' }) ? allValidators.validators.push(Validators.requiredTrue)
             : allValidators.validators.push(Validators.required)
           break;
         case 'email':
@@ -132,13 +122,10 @@ export class JxService {
     , countries2: Observable.of(countries)
     , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
   }
+  
   getOption(optionName) {
     let opts = this.options[optionName];
     (typeof (opts) == 'function') && (opts = opts());
-    // let optType = typeof (opts);
-    // if (optType == "function") {
-    //   opts = opts();
-    // }
     return (opts);
   }
 }

@@ -18,7 +18,6 @@ export class JxStubComponent implements OnInit {
   constructor(private fb: FormBuilder, private jxService: JxService) { }
 
   ngOnInit() {
-    let childControls = {};
     if (this.parentType == "form") {
       this.container = this.parent;
     }
@@ -30,10 +29,16 @@ export class JxStubComponent implements OnInit {
   }
 
   submit(actionName) {
-    let myForm = this.jxService.getForm();
+    let myForm = this.parent;
+    let meta = myForm.meta;
+    let serverMeta = Object.assign({},meta);
+    delete serverMeta.client;
     this.validateAllFormFields(myForm);
     if (myForm.valid) {
-      this.jxService.executeAction(actionName, myForm);
+      delete myForm.value.undefined;
+      let formValue = myForm.value;
+      formValue["meta"] = serverMeta;
+      this.jxService.executeAction(actionName, formValue);
     } else {
       console.log("Invalid form");
     }
@@ -56,15 +61,9 @@ export class JxStubComponent implements OnInit {
 
   addGroupInArray(layout) {
     let childControls = {};
-    layout.group.controls && layout.group.controls.forEach(e => {
-      // if (e.type == "checkboxGroup") {
-
-      // } else if (e.type == "group") {
-
-      // } else {
+    layout.group.controls && layout.group.controls.forEach(e => {      
       let allValidators = this.jxService.getValidators(e);
-      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
-      // }
+      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];      
     });
     let group = this.fb.group(childControls);
     let groupArray = <FormArray>this.parent.get(layout.id);

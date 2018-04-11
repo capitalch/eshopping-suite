@@ -5,30 +5,43 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'jx-textarea',
   template: `
-    <ng-container [formGroup]="parent">
+    <div [formGroup]="parent" [ngClass] = "layout.class">
       <label [for]="layout.id+idx">{{layout.label}}</label>
-      <textarea class="field-long" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+      <textarea [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </ng-container>`
+    </div>`
 })
 
 export class JxTextareaComponent {
   @Input() layout: any;
   @Input() idx: string;
   @Input() parent: FormGroup;
+  // elementClass: string = "";
+  // parentClass: string="";
+  // labelClass: string = "";
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() {
+    // this.layout.class
+    //   ? (
+    //     (typeof (this.layout.class) == "object")
+    //     && (this.elementClass = this.layout.class.element || ''
+    //       , this.labelClass = this.layout.class.label || ''
+    //       , this.parentClass = this.layout.class.parent || ''
+    //     ) || (this.elementClass = this.layout.class)
+    //   )
+    //   : (this.elementClass = '', this.labelClass = '', this.parentClass = '');
+  }
 }
 
 @Component({
   selector: 'jx-checkbox',
   template: `
-    <ng-container [formGroup]="parent">
+    <div [formGroup]="parent" [ngClass] = "layout.class">
       <label>
         <input type="checkbox" [id]="layout.id+idx" [formControlName]="layout.id" [value]="layout.value"> {{layout.label}}
       </label>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </ng-container>`
+    </div>`
 })
 export class JxCheckboxComponent {
   @Input() layout: any;
@@ -41,12 +54,12 @@ export class JxCheckboxComponent {
 @Component({
   selector: 'jx-radio',
   template: `
-    <fieldset [formGroup]="parent">
+    <fieldset [formGroup]="parent" [ngClass] = "layout.class">
       <legend>{{layout.label}}</legend>
-      <ng-container *ngFor="let option of layout.options">
+      <div *ngFor="let option of layout.options">
         <input type="radio" [id]="option.id+idx" [formControlName]="layout.id" [value]="option.value" [name]="layout.id">
         <label [for]="option.id+idx">{{option.label}}</label>        
-      </ng-container>
+      </div>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </fieldset>`
 })
@@ -61,14 +74,14 @@ export class JxRadioComponent {
 @Component({
   selector: 'jx-select',
   template: `
-    <ng-container [formGroup]="parent">
+    <div [formGroup]="parent" [ngClass] = "layout.class">
       <label>{{layout.label}}</label>
-      <select [formControlName]="layout.id" class="field-select">
+      <select [formControlName]="layout.id">
         <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
         </option>
       </select>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </ng-container>
+    </div>
     `
 })
 export class JxSelectComponent {
@@ -100,11 +113,11 @@ export class JxSelectComponent {
 @Component({
   selector: 'jx-default',
   template: `
-    <ng-container [formGroup]="parent">
+    <div [formGroup]="parent" [ngClass]="layout.class">
       <label [for]="layout.id+idx">{{layout.label}}</label>
       <input [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </ng-container>`
+    </div>`
 })
 export class JxDefaultComponent {
   @Input() layout: any;

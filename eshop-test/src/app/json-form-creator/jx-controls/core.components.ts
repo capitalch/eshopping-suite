@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
     <ng-container [formGroup]="parent">
       <label [ngClass]="layout.id+'-label'" [for]="layout.id+idx">{{layout.label}}</label>
       <textarea [ngClass]="layout.id" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-      <jx-error [layout]="layout" [parent]="parent"></jx-error>
+      <jx-error [ngClass]="layout.id+'-error'" [layout]="layout" [parent]="parent"></jx-error>
     </ng-container>`
 })
 

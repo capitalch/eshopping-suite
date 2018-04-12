@@ -7,6 +7,22 @@ let form1 = [
         }
         , id: "jx-address"
     }
+    , {
+        type: "select"
+        , label: "Country"
+        , value: ""
+        , id: "country1"
+        , options:"countries3"
+        , validation: {
+            // selectRequired: {
+            //     message: 'You must select a value for $'
+            //     , arg: 0
+            // }
+            required:{
+                message:"You must surely select a value for $"
+            }
+        }
+    }
     // , {
     //     type: "text"
     //     , id: "tagValue"
@@ -18,17 +34,17 @@ let form1 = [
     //         required: { message: '$ is a required field' }
     //     }
     // }
-    // , {
-    //     type: "mat-input"
-    //     , subType: "text"
-    //     , id: "mat1"
-    //     , label: "mat name"
-    //     , placeholder: "mat placeholder"
-    //     , value: ""
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
+    , {
+        type: "mat-input"
+        , subType: "text"
+        , id: "mat1"
+        , label: "mat name"
+        , placeholder: "mat placeholder"
+        , value: ""
+        , validation: {
+            required: { message: '$ is a required field' }
+        }
+    }
     ,
     {
         type: "mat-radio"
@@ -41,6 +57,21 @@ let form1 = [
         ]
         , validation: {
             required: { message: '$ is required' }
+        }
+    }
+    , {
+        type: "mat-select"
+        , label: "Country"
+        , value: ""
+        , id: "country"
+        // , placeholder: "Select a country"
+        , options: "countries3"
+        , validation: {
+            // selectRequired: {
+            //     message: 'You must select a value for $'
+            //     , arg: 0
+            // }
+            required:{message:"Value is required"}
         }
     }
     // ,

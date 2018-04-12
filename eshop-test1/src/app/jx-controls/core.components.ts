@@ -146,7 +146,7 @@ export class JxSelectComponent {
   template: `
     <div [formGroup]="parent" [ngClass]="parentClass">
       <label [ngClass] ="labelClass" [for]="layout.id+idx">{{layout.label}}</label>
-      <input [ngClass] = "elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+      <input [ngClass] = "elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id" [value] = "layout.value">
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </div>`
 })

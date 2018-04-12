@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { JxService } from '../jx-service/jx.service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -58,6 +60,15 @@ export class JxMatRadioComponent {
     }
 }
 
+// <div [formGroup]="parent" [ngClass] = "parentClass">
+// <label [ngClass] = "labelClass">{{layout.label}}</label>
+// <select [ngClass] = "elementClass" [formControlName]="layout.id">
+//   <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
+//   </option>
+// </select>
+// <jx-error [layout]="layout" [parent]="parent"></jx-error>
+// </div>
+
 // <mat-form-field>
 //   <mat-select placeholder="Favorite food">
 //     <mat-option *ngFor="let food of foods" [value]="food.value">
@@ -69,14 +80,14 @@ export class JxMatRadioComponent {
 @Component({
     selector: 'jxmat-select',
     template: `
-    <fieldset [formGroup] = "parent">
-    <legend>{{layout.label}}</legend> 
-        <mat-radio-group [formControlName] = "layout.id">
-            <ng-container *ngFor="let option of layout.options">
-                    <mat-radio-button [name] = "layout.id" [value] = "option.value">{{option.label}}</mat-radio-button>
-            </ng-container>
-        </mat-radio-group>
-    </fieldset>    
+    <mat-form-field [formGroup]="parent">
+        <mat-select [formControlName]="layout.id" >
+            <mat-option *ngFor="let option of options" [value]="option.value" >
+                {{option.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <jx-error [layout]="layout" [parent]="parent"></jx-error> 
     `
 })
 
@@ -84,7 +95,21 @@ export class JxMatSelectComponent {
     @Input() layout: any;
     @Input() idx: string;
     @Input() parent: FormGroup;
-    constructor() { }
+    options: any;
+    constructor(private jxService: JxService, private ref: ChangeDetectorRef) { }
     ngOnInit() {
+        if (typeof (this.layout.options) == "string") {
+            let options = this.jxService.getOption(this.layout.options);
+            if (options instanceof Observable) {
+              options.subscribe(x => {
+                this.options = x;
+                this.ref.markForCheck(); //forceful change detector
+              });
+            } else {
+              this.options = options;
+            }
+          } else {
+            this.options = this.layout.options;
+          }
     }
 }

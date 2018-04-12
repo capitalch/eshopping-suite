@@ -23,7 +23,7 @@ router.post('/countries', (req, res, next) => {
     try {
         res.json([{
             name: "---select country---",
-            value: 0
+            value: ""
         }, {
             name: "India",
             value: "in"

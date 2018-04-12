@@ -15,3 +15,23 @@ export class JxMatCheckboxComponent {
     constructor() { }
     ngOnInit() { }
 }
+
+@Component({
+    selector: 'jxmat-input',
+    template: `
+    <div [formGroup]="parent">
+        <mat-form-field>
+            <input matInput  [type]="layout.subType" [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value">
+        </mat-form-field>
+        <jx-error [layout]="layout" [parent]="parent"></jx-error>     
+    </div>`
+})
+export class JxMatInputComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    constructor() { }
+    ngOnInit() {
+
+    }
+}

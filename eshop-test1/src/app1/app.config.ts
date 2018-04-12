@@ -18,25 +18,14 @@ let form1 = [
             required: { message: '$ is a required field' }
         }
     }
-    , {
-        type: "mat-input"
-        , subType: "text"
-        , id: "mat1"
-        , label: "mat name"
-        , placeholder: "mat placeholder"
-        , value: ""
-        , validation: {
-            required: { message: '$ is a required field' }
-        }
-    }
     ,
     {
         type: "textarea"
         , id: "address"
-        , class: {
+        , class: { 
             label: 'label-address-class'
             , element: 'element-address-class'
-            , parent: 'parent-address-class'
+            , parent: 'parent-address-class' 
         }
         , label: "Address"
         , placeholder: "Address"

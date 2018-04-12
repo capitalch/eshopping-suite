@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JxService } from './jx-service/jx.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JxFormComponent } from './jx-form/jx-form.component';
 import { JxGroupComponent } from './jx-group/jx-group.component';
 import { JxArrayComponent } from './jx-array/jx-array.component';
@@ -19,10 +18,7 @@ import {
   , JxDefaultComponent
 
 } from './jx-controls/core.components';
-import {
-  JxMatCheckboxComponent
-  , JxMatInputComponent
-} from './jx-controls/mat.components';
+import { JxMatCheckboxComponent } from './jx-controls/mat.components';
 
 import { BrokerService } from './broker.service';
 // import { JxChildrenComponent } from './jx-children/jx-children.component';
@@ -43,7 +39,6 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxSelectComponent
     , JxDefaultComponent
     , JxMatCheckboxComponent
-    , JxMatInputComponent
     // , JxChildrenComponent
     , JxStubComponent
   ],
@@ -53,7 +48,6 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , ReactiveFormsModule
     , HttpClientModule
     , AngularMaterialModule
-    , BrowserAnimationsModule
   ],
   providers: [JxService, BrokerService],
   bootstrap: [AppComponent]

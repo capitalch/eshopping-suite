@@ -18,13 +18,12 @@ export class JxMatCheckboxComponent {
 
 @Component({
     selector: 'jxmat-input',
-    template: `
-    <div [formGroup]="parent">
-        <mat-form-field>
-            <input matInput  [type]="layout.subType" [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value">
+    template: `    
+        <mat-form-field [formGroup]="parent">
+            <input matInput  [type]="layout.subType" [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value">            
         </mat-form-field>
-        <jx-error [layout]="layout" [parent]="parent"></jx-error>     
-    </div>`
+        <jx-error [layout]="layout" [parent]="parent"></jx-error>
+        `
 })
 export class JxMatInputComponent {
     @Input() layout: any;

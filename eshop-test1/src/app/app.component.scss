@@ -12,7 +12,7 @@
         font-weight: bold;
     }
     fieldset {
-        border: 2px groove threedface;
+        border: 1px groove threedface;
         padding: 5px;
         margin: 10px auto;
     } 
@@ -67,6 +67,26 @@
     .label-class {
         color: green;
         display: block;
+    }
+    .address-class{
+        padding:10px 0 10px 0;
+        // label{
+        //     color:green;
+        //     display:block;
+        // }
+        // textArea{
+        //     width:50%;
+        // }
+    }
+    .label-address-class{
+        color:red;
+        display:block;
+    }
+    .element-address-class{
+        background-color: yellow;
+    }
+    .parent-address-class{
+        padding:10px 0 10px 0;
     }
     .tag-class {
         label {

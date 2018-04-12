@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+
 @Component({
     selector: 'jxmat-checkbox',
     template: `
@@ -32,5 +33,28 @@ export class JxMatInputComponent {
     constructor() { }
     ngOnInit() {
 
+    }
+}
+
+@Component({
+    selector: 'jxmat-radio',
+    template: `
+    <fieldset [formGroup] = "parent">
+    <legend>{{layout.label}}</legend> 
+        <mat-radio-group [formControlName] = "layout.id">
+            <ng-container *ngFor="let option of layout.options">
+                    <mat-radio-button [name] = "layout.id" [value] = "option.value">{{option.label}}</mat-radio-button>
+            </ng-container>
+        </mat-radio-group>
+    </fieldset>    
+    `
+})
+
+export class JxMatRadioComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    constructor() { }
+    ngOnInit() {
     }
 }

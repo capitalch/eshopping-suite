@@ -23,7 +23,6 @@ export class JxFormComponent implements OnInit {
     let metaIndex = _.findIndex(this.layouts, (x) => x.type == 'meta');
     const meta = this.layouts[metaIndex];
     
-    // this.jxService.setMeta(this.layouts[index]);
     this.layouts.splice(metaIndex, 1);
     this.layouts.forEach(x => {
       let allValidators = this.jxService.getValidators(x);

@@ -24,15 +24,15 @@
     //     color: #fff;
     // }
     input[type=text]:not([matInput]),
-    input[type=date],
-    input[type=datetime],
-    input[type=number],
-    input[type=search],
-    input[type=time],
-    input[type=url],
-    input[type=email],
-    textarea,
-    select {
+    input[type=date]:not([matInput]),
+    input[type=datetime]:not([matInput]),
+    input[type=number]:not([matInput]),
+    input[type=search]:not([matInput]),
+    input[type=time]:not([matInput]),
+    input[type=url]:not([matInput]),
+    input[type=email]:not([matInput]),
+    textarea:not([matInput]),
+    select:not([matInput]) {
         box-sizing: border-box;
         border: 1px solid #BEBEBE;
         padding: 5px;
@@ -40,15 +40,15 @@
         outline: none;
     }
     input:not([matInput])[type=text]:focus,
-    input[type=date]:focus,
-    input[type=datetime]:focus,
-    input[type=number]:focus,
-    input[type=search]:focus,
-    input[type=time]:focus,
-    input[type=url]:focus,
-    input[type=email]:focus,
-    textarea:focus,
-    select:focus {
+    input:not([matInput])[type=date]:focus,
+    input:not([matInput])[type=datetime]:focus,
+    input:not([matInput])[type=number]:focus,
+    input:not([matInput])[type=search]:focus,
+    input:not([matInput])[type=time]:focus,
+    input:not([matInput])[type=url]:focus,
+    input:not([matInput])[type=email]:focus,
+    textarea:not([matInput]):focus,
+    select:not([matInput]):focus {
         box-shadow: 0 0 8px #88D5E9;
         border: 1px solid #88D5E9;
     }

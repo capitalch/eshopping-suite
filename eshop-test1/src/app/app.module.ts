@@ -19,9 +19,11 @@ import {
   , JxDefaultComponent
 
 } from './jx-controls/core.components';
+// import {MatRadioModule} from '@angular/material/radio';
 import {
   JxMatCheckboxComponent
   , JxMatInputComponent
+  , JxMatRadioComponent
 } from './jx-controls/mat.components';
 
 import { BrokerService } from './broker.service';
@@ -44,6 +46,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxDefaultComponent
     , JxMatCheckboxComponent
     , JxMatInputComponent
+    , JxMatRadioComponent
     // , JxChildrenComponent
     , JxStubComponent
   ],

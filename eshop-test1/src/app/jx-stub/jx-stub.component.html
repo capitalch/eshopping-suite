@@ -47,6 +47,10 @@
       <jxmat-radio [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-radio>
     </ng-container>
 
+    <ng-container *ngSwitchCase="'mat-select'">
+      <jxmat-radio [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-radio>
+    </ng-container>
+
     <ng-container *ngSwitchDefault >
       <jx-default [layout]="jControl" [parent]="container" [idx] = "idx"></jx-default>
     </ng-container>

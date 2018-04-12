@@ -23,7 +23,8 @@ import {
 import {
   JxMatCheckboxComponent
   , JxMatInputComponent
-  , JxMatRadioComponent
+  , JxMatRadioComponent,
+  JxMatSelectComponent
 } from './jx-controls/mat.components';
 
 import { BrokerService } from './broker.service';
@@ -47,6 +48,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxMatCheckboxComponent
     , JxMatInputComponent
     , JxMatRadioComponent
+    , JxMatSelectComponent
     // , JxChildrenComponent
     , JxStubComponent
   ],

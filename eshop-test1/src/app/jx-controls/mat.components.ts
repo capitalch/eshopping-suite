@@ -32,7 +32,6 @@ export class JxMatInputComponent {
     @Input() parent: FormGroup;
     constructor() { }
     ngOnInit() {
-
     }
 }
 
@@ -51,6 +50,37 @@ export class JxMatInputComponent {
 })
 
 export class JxMatRadioComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    constructor() { }
+    ngOnInit() {
+    }
+}
+
+// <mat-form-field>
+//   <mat-select placeholder="Favorite food">
+//     <mat-option *ngFor="let food of foods" [value]="food.value">
+//       {{ food.viewValue }}
+//     </mat-option>
+//   </mat-select>
+// </mat-form-field>
+
+@Component({
+    selector: 'jxmat-select',
+    template: `
+    <fieldset [formGroup] = "parent">
+    <legend>{{layout.label}}</legend> 
+        <mat-radio-group [formControlName] = "layout.id">
+            <ng-container *ngFor="let option of layout.options">
+                    <mat-radio-button [name] = "layout.id" [value] = "option.value">{{option.label}}</mat-radio-button>
+            </ng-container>
+        </mat-radio-group>
+    </fieldset>    
+    `
+})
+
+export class JxMatSelectComponent {
     @Input() layout: any;
     @Input() idx: string;
     @Input() parent: FormGroup;

@@ -37,7 +37,11 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             7. Check checkboxGroup in jx-form, jx-group, jx-array
             9. Define sql id / meta data in app.config.ts file
 10. Group for button and button groups
-11. mat controls provisions
+            11. mat input all types
+            12. Mat radio
+13. mat select
+14. mat date
+
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

@@ -7,73 +7,70 @@ let form1 = [
         }
         , id: "jx-address"
     }
-    , {
-        type: "select"
-        , label: "Country"
-        , value: ""
-        , id: "country1"
-        , options:"countries3"
-        , validation: {
-            // selectRequired: {
-            //     message: 'You must select a value for $'
-            //     , arg: 0
-            // }
-            required:{
-                message:"You must surely select a value for $"
-            }
-        }
-    }
-    , {
-        type: "mat-textarea"
-        , id: "tagValue"
-        , class: "tag-class"
-        , label: "Tag value"
-        , placeholder: "Tag value"
-        , value: ""
-        , validation: {
-            required: { message: '$ is a required field' }
-        }
-    }
-    , {
-        type: "mat-input"
-        , subType: "text"
-        , id: "mat1"
-        , label: "mat name"
-        , placeholder: "mat placeholder"
-        , value: ""
-        , validation: {
-            required: { message: '$ is a required field' }
-        }
-    }
     ,
     {
-        type: "mat-radio"
-        , label: "Gender"
-        , value: "M"
-        , id: "gender12"
-        , options: [
-            { label: "Male", value: "M", id: "male1" }
-            , { label: "Female", value: "F", id: "female1" }
-        ]
-        , validation: {
-            required: { message: '$ is required' }
-        }
+        type:"mat-datepicker",
+        id:"matDatePicker1",
+        placeholder:"select a date"
     }
-    , {
-        type: "mat-select"
-        , label: "Country"
-        , value: ""
-        , id: "country"
-        // , placeholder: "Select a country"
-        , options: "countries3"
-        , validation: {
-            // selectRequired: {
-            //     message: 'You must select a value for $'
-            //     , arg: 0
-            // }
-            required:{message:"Value is required"}
-        }
-    }
+    // , {
+    //     type: "select"
+    //     , label: "Country"
+    //     , value: ""
+    //     , id: "country1"
+    //     , options:"countries3"
+    //     , validation: {            
+    //         required:{
+    //             message:"You must surely select a value for $"
+    //         }
+    //     }
+    // }
+    // , {
+    //     type: "mat-textarea"
+    //     , id: "tagValue"
+    //     , class: "tag-class"
+    //     , label: "Tag value"
+    //     , placeholder: "Tag value"
+    //     , value: ""
+    //     , validation: {
+    //         required: { message: '$ is a required field' }
+    //     }
+    // }
+    // , {
+    //     type: "mat-input"
+    //     , subType: "text"
+    //     , id: "mat1"
+    //     , label: "mat name"
+    //     , placeholder: "mat placeholder"
+    //     , value: ""
+    //     , validation: {
+    //         required: { message: '$ is a required field' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: "mat-radio"
+    //     , label: "Gender"
+    //     , value: "M"
+    //     , id: "gender12"
+    //     , options: [
+    //         { label: "Male", value: "M", id: "male1" }
+    //         , { label: "Female", value: "F", id: "female1" }
+    //     ]
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // , {
+    //     type: "mat-select"
+    //     , label: "Country"
+    //     , value: ""
+    //     , id: "country"
+    //     , options: "countries3"
+    //     , validation: {
+    //         required:{message:"Value is required"}
+    //     }
+    // }
     // ,
     // {
     //     type: "textarea"

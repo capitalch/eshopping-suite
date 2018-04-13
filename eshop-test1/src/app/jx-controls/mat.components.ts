@@ -165,5 +165,41 @@ export class JxMatInputComponent {
     }
 }
 
+// <mat-form-field>
+//   <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+//   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+//   <mat-datepicker #picker></mat-datepicker>
+// </mat-form-field>
+
+@Component({
+    selector: 'jxmat-datepicker',
+    template: `    
+        <mat-form-field [formGroup]="parent" [ngClass]="parentClass">
+            <input matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value">           
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <jx-error [layout]="layout" [parent]="parent"></jx-error>
+        `
+})
+export class JxMatDatePickerComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    elementClass: string = "";
+    parentClass: string = "";
+    labelClass: string = "";
+    constructor() { }
+    ngOnInit() {
+        this.layout.class && (
+            (typeof (this.layout.class) == "object")
+            && (this.elementClass = this.layout.class.element || ''
+                , this.labelClass = this.layout.class.label || ''
+                , this.parentClass = this.layout.class.parent || ''
+            ) || (this.parentClass = this.layout.class)
+        );
+    }
+}
+
 
 

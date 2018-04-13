@@ -66,7 +66,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
   providers: [
     JxService
     , BrokerService
-    , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

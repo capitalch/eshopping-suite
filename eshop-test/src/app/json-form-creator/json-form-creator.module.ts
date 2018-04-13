@@ -10,7 +10,6 @@ import { JxArrayComponent } from './jx-array/jx-array.component';
 import { JxGroupComponent } from './jx-group/jx-group.component';
 import { JxCheckboxGroupComponent } from './jx-controls/jx-checkbox-group/jx-checkbox-group.component';
 import { JxErrorComponent } from './jx-controls/jx-error/jx-error.component';
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import {
   JxTextareaComponent
   , JxCheckboxComponent
@@ -20,7 +19,7 @@ import {
 } from './jx-controls/core.components';
 import { JxMatCheckboxComponent } from './jx-controls/mat.components';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
-
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 @NgModule({
   imports: [

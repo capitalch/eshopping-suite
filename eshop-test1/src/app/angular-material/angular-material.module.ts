@@ -6,6 +6,8 @@ import {
   , MatInputModule
   , MatRadioModule
   , MatSelectModule
+  , MatDatepickerModule
+  , MatNativeDateModule
 } from '@angular/material';
 // import {MatRadioModule} from '@angular/material/radio';
 
@@ -17,6 +19,8 @@ import {
     , MatInputModule
     , MatRadioModule
     , MatSelectModule
+    , MatDatepickerModule
+    , MatNativeDateModule
   ],
   exports: [
     MatButtonModule
@@ -24,6 +28,8 @@ import {
     , MatInputModule
     , MatRadioModule
     , MatSelectModule
+    , MatDatepickerModule
+    , MatNativeDateModule
   ],
   declarations: []
 })

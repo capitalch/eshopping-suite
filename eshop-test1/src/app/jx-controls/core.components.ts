@@ -2,34 +2,6 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
-@Component({
-  selector: 'jx-textarea',
-  template: `
-    <div [formGroup]="parent" [ngClass] = "parentClass">
-      <label [ngClass] = "labelClass" [for]="layout.id+idx">{{layout.label}}</label>
-      <textarea [ngClass] = "elementClass" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
-      <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </div>`
-})
-
-export class JxTextareaComponent {
-  @Input() layout: any;
-  @Input() idx: string;
-  @Input() parent: FormGroup;
-  elementClass: string = "";
-  parentClass: string = "";
-  labelClass: string = "";
-  constructor() { }
-  ngOnInit() {
-    this.layout.class && (
-      (typeof (this.layout.class) == "object")
-      && (this.elementClass = this.layout.class.element || ''
-        , this.labelClass = this.layout.class.label || ''
-        , this.parentClass = this.layout.class.parent || ''
-      ) || (this.parentClass = this.layout.class)
-    );
-  }
-}
 
 @Component({
   selector: 'jx-checkbox',
@@ -142,11 +114,40 @@ export class JxSelectComponent {
 }
 
 @Component({
+  selector: 'jx-textarea',
+  template: `
+    <div [formGroup]="parent" [ngClass] = "parentClass">
+      <label [ngClass] = "labelClass" [for]="layout.id+idx">{{layout.label}}</label>
+      <textarea [ngClass] = "elementClass" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+      <jx-error [layout]="layout" [parent]="parent"></jx-error>
+    </div>`
+})
+
+export class JxTextareaComponent {
+  @Input() layout: any;
+  @Input() idx: string;
+  @Input() parent: FormGroup;
+  elementClass: string = "";
+  parentClass: string = "";
+  labelClass: string = "";
+  constructor() { }
+  ngOnInit() {
+    this.layout.class && (
+      (typeof (this.layout.class) == "object")
+      && (this.elementClass = this.layout.class.element || ''
+        , this.labelClass = this.layout.class.label || ''
+        , this.parentClass = this.layout.class.parent || ''
+      ) || (this.parentClass = this.layout.class)
+    );
+  }
+}
+
+@Component({
   selector: 'jx-default',
   template: `
     <div [formGroup]="parent" [ngClass]="parentClass">
       <label [ngClass] ="labelClass" [for]="layout.id+idx">{{layout.label}}</label>
-      <input [ngClass] = "elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">
+      <input [ngClass] = "elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id" [value] = "layout.value">
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </div>`
 })

@@ -20,12 +20,12 @@ export class JxService {
       };
       return (func);
     },
-    selectRequired: (def) => {
-      let func = (control) => {
-        return ((control.value == def) ? { selectRequired: true } : null);
-      }
-      return (func);
-    },
+    // selectRequired: (def) => {
+    //   let func = (control) => {
+    //     return ((control.value == def) ? { selectRequired: true } : null);
+    //   }
+    //   return (func);
+    // },
     email2: () => {
       let func = (control) => {
         let val = control.value;

@@ -23,17 +23,17 @@ let form1 = [
             }
         }
     }
-    // , {
-    //     type: "text"
-    //     , id: "tagValue"
-    //     , class: "tag-class"
-    //     , label: "Tag value"
-    //     , placeholder: "Tag value"
-    //     , value: ""
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
+    , {
+        type: "mat-textarea"
+        , id: "tagValue"
+        , class: "tag-class"
+        , label: "Tag value"
+        , placeholder: "Tag value"
+        , value: ""
+        , validation: {
+            required: { message: '$ is a required field' }
+        }
+    }
     , {
         type: "mat-input"
         , subType: "text"

@@ -7,6 +7,7 @@ import {
   , MatRadioModule
   , MatSelectModule
   , MatDatepickerModule
+  // , NativeDateModule
   // , MatNativeDateModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -22,6 +23,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     , MatSelectModule
     , MatDatepickerModule
     // , MatNativeDateModule
+    // , NativeDateModule
     , MatMomentDateModule
   ],
   exports: [
@@ -31,6 +33,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     , MatRadioModule
     , MatSelectModule
     , MatDatepickerModule
+    // , NativeDateModule
     // , MatNativeDateModule
     , MatMomentDateModule
   ],

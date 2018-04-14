@@ -1,26 +1,31 @@
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import * as _moment from 'moment';
+import * as moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { Moment} from 'moment';
+import { NativeDateAdapter } from '@angular/material';
 
 // const moment = _rollupMoment || _moment;
 
-export class MyMomentDateAdapter extends MomentDateAdapter {
-
-    // parse(value: any, parseFormat: string | string[]): Moment | null {
-    //     if (value && typeof value == 'string') {
-    //         return moment(value, parseFormat, this.locale);
-    //     }
-    //     return value ? moment(value).locale(this.locale) : null;
-    // }
-
-    format(date: Moment, displayFormat: string): string {
-        // date = this.clone(date);
-        // if (!this.isValid(date)) {
-        //     throw Error('MomentDateAdapter: Cannot format invalid date.');
+export class MyDateAdapter extends NativeDateAdapter {
+    format(date: Date, displayFormat: Object): string {
+        // if (displayFormat == "input") {
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            return this._to2digit(day) + '/' + this._to2digit(month) + '/' + year;
+        // } else {
+        //     return date.toDateString();
         // }
-        // return date.format(displayFormat);
-        return(date.format('dd/MM/yyyy'))
     }
 
-}
+    parse(value: any): Date | null {        
+        if (typeof value == 'number') {
+          return new Date(value);
+        }
+        return value ? new Date(Date.parse(value)) : null;
+      }
+ 
+    private _to2digit(n: number) {
+        return ('00' + n).slice(-2);
+    } 
+ }

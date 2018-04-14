@@ -2,10 +2,12 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
-import { MatDatepickerInputEvent } from '@angular/material';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+// import { MatDatepickerInputEvent } from '@angular/material';
+// import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+// import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
 import * as moment from "moment";
+import { DateAdapter } from '@angular/material';
+// import { MyMomentDateAdapter, MyDateAdapter } from './myMomentDateAdapter';
 // import { MyMomentDateAdapter } from './myMomentDateAdapter';
 
 
@@ -169,17 +171,20 @@ export class JxMatInputComponent {
         );
     }
 }
-
+// (dateInput) = "change($event)"
+// providers: [{ provide: DateAdapter, useClass: MyDateAdapter }]
+// , providers:[{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}]
 @Component({
     selector: 'jxmat-datepicker',
     template: `    
         <mat-form-field [formGroup]="parent" [ngClass]="parentClass">
-            <input (dateInput) = "change('input',$event)" matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value" readonly>           
+            <input (dateInput) = "change($event)" matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value" readonly>           
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
         <jx-error [layout]="layout" [parent]="parent"></jx-error>
         `
+    
 })
 export class JxMatDatePickerComponent {
     @Input() layout: any;
@@ -188,7 +193,9 @@ export class JxMatDatePickerComponent {
     elementClass: string = "";
     parentClass: string = "";
     labelClass: string = "";
-    constructor(private adapter: DateAdapter<Date>) { }
+    constructor(
+        private adapter: DateAdapter<Date>
+    ) { }
     ngOnInit() {
         this.layout.class && (
             (typeof (this.layout.class) == "object")
@@ -200,14 +207,12 @@ export class JxMatDatePickerComponent {
         this.adapter.setLocale(this.layout.locale || "en-US");
     }
 
-    change(type: string, event: MatDatepickerInputEvent<Date>) {
-        let val = moment(event.value);
-        let group  = <FormGroup> this.parent;
-        let ctrl = <FormControl>group.controls[this.layout.id];
-        let fmt = this.layout.outputFormat || "MM//DD//YY";
-        let val1 = val.format(this.layout.outputFormat || 'DD/MM/YY');
-        ctrl.setValue(val1);
-        // console.log(val.format("YYYY-MM-DD"));
+    change(event: any) {
+        let val2 = moment(event.value).format("YYYY-MM-DD");
+        let group = <FormGroup>this.parent;
+        let ctrl = <FormControl>group.controls[this.layout.id];       
+        const val = moment.utc(val2);
+        ctrl.setValue(val);
     }
 }
 

@@ -9,11 +9,10 @@ let form1 = [
     }
     ,
     {
-        type:"mat-datepicker",
-        id:"matDatePicker1",
-        placeholder:"select a date"
-        // , locale:"en-GB",
-        // , outputFormat:"YYYY-MM-DD"
+        type: "mat-datepicker",
+        id: "matDatePicker1",
+        placeholder: "select a date"
+        , locale: "en-US",
     }
     // , {
     //     type: "select"

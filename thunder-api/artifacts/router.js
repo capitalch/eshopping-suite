@@ -34,10 +34,20 @@ router.post('/countries', (req, res, next) => {
             name: "Japan",
             value: "jp"
         }, {
-            name:"SriLanka",
-            value:"sl"
-        }
-    ]);
+            name: "SriLanka",
+            value: "sl"
+        }]);
+    } catch (error) {
+        let err = new def.NError(500, messages.errInternalServerError, error.message);
+        next(err);
+    }
+})
+
+router.post('/form', (req, res, next) => {
+    try {
+        // res.json({email1:true});
+        console.log(req.body);
+        res.json(req.body);
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
+import * as moment from "moment";
 // import { BrokerService } from './broker.service';
 
 @Injectable()
@@ -51,6 +52,11 @@ export class JxService {
   actions = {
     submit: (formValue) => {
       console.log(formValue);
+      // let matDate = formValue.matDatePicker1;
+      // formValue.matDatePicker1 = matDate.format("YYYY-MM-DD");
+      this.httpClient.post("http://localhost:3002/form",formValue).subscribe(d=>{
+        console.log("ok");
+      })
     }
     , reset: (form) => {
       console.log("Form is done reset");

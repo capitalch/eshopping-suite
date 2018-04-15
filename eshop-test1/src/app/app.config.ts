@@ -12,7 +12,69 @@ let form1 = [
         type: "mat-datepicker",
         id: "matDatePicker1",
         placeholder: "select a date"
-        , locale: "en-US",
+        , label: "myDatePicker"
+        , locale: "en-US"
+        , validation: {
+            required: {
+                message: "You must surely select a value for $"
+            }
+        }
+    }
+    ,
+    {
+        type: "group"
+        , label: "Passwords"
+        , id: "pwd"
+        , controls: [
+            {
+                type: "checkbox"
+                , id: "agreed"
+                , label: "Agreed"
+                , value: false
+                , validation: {
+                    required: { message: '$ is required' }
+                }
+            }
+            , {
+                type: "group"
+                , id: "Agreement1"
+                , label: "Agreement"
+                , controls: [
+                    {
+                        type: "checkbox"
+                        , id: "agreed11"
+                        , label: "Agreed"
+                        , value: true
+                    }
+                    , {
+                        type: "group"
+                        , id: "Agreement1"
+                        , label: "Agreement"
+                        , controls: [
+                            {
+                                type: "checkbox"
+                                , id: "agreed111"
+                                , label: "Agreed11"
+                                , value: true
+                            }
+                        ]
+                    }
+                ]
+            }
+            ,
+            {
+                type: "textarea"
+                , id: "address"
+                , label: "Address"
+                , placeholder: "Address"
+                , value: "12345"
+                , validation: {
+                    required: { message: '$ is required' },
+                    minlength: { value: 5, message: 'Minimum length for $ is 5' },
+                    maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+                }
+            }
+        ]
     }
     // , {
     //     type: "select"
@@ -133,61 +195,7 @@ let form1 = [
     //     , value: false
     // }
     // ,
-    // {
-    //     type: "group"
-    //     , label: "Passwords"
-    //     , id: "pwd"
-    //     , controls: [
-    //         {
-    //             type: "checkbox"
-    //             , id: "agreed"
-    //             , label: "Agreed"
-    //             , value: false
-    //             , validation: {
-    //                 required: { message: '$ is required' }
-    //             }
-    //         }
-    //         , {
-    //             type: "group"
-    //             , id: "Agreement1"
-    //             , label: "Agreement"
-    //             , controls: [
-    //                 {
-    //                     type: "checkbox"
-    //                     , id: "agreed11"
-    //                     , label: "Agreed"
-    //                     , value: true
-    //                 }
-    //                 , {
-    //                     type: "group"
-    //                     , id: "Agreement1"
-    //                     , label: "Agreement"
-    //                     , controls: [
-    //                         {
-    //                             type: "checkbox"
-    //                             , id: "agreed111"
-    //                             , label: "Agreed11"
-    //                             , value: true
-    //                         }
-    //                     ]
-    //                 }
-    //             ]
-    //         }
-    //         ,
-    //         {
-    //             type: "textarea"
-    //             , id: "address"
-    //             , label: "Address"
-    //             , placeholder: "Address"
-    //             , value: "12345"
-    //             , validation: {
-    //                 required: { message: '$ is required' },
-    //                 minlength: { value: 5, message: 'Minimum length for $ is 5' },
-    //                 maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-    //             }
-    //         }
-    //     ]
-    // }
+    
     // ,
     // {
     //     type: "groupArray"
@@ -270,6 +278,13 @@ let form1 = [
         , label: "submit"
         , class: "btn btn-primary"
         , actionName: "submit"
+    }
+    , {
+        type: "button"
+        , label: "My Submit"
+        , class: "btn btn-primary"
+        , actionId: "submit1"
+        , action: "submitClicked"
     }
 ];
 export { form1 };

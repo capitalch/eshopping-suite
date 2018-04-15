@@ -21,12 +21,6 @@ export class JxService {
       };
       return (func);
     },
-    // selectRequired: (def) => {
-    //   let func = (control) => {
-    //     return ((control.value == def) ? { selectRequired: true } : null);
-    //   }
-    //   return (func);
-    // },
     email2: () => {
       let func = (control) => {
         let val = control.value;
@@ -51,9 +45,7 @@ export class JxService {
 
   actions = {
     submit: (formValue) => {
-      console.log(formValue);
-      // let matDate = formValue.matDatePicker1;
-      // formValue.matDatePicker1 = matDate.format("YYYY-MM-DD");
+      console.log(formValue);      
       this.httpClient.post("http://localhost:3002/form",formValue).subscribe(d=>{
         console.log("ok");
       })

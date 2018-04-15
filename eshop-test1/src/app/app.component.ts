@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { form1 } from './app.config';
 import { JxService } from './jx-service/jx.service';
 import { BrokerService } from './broker.service';
@@ -13,9 +13,9 @@ export class AppComponent {
   myLayout: any = {};
   options: any = {};
   content: string;
-
+  subs: any;
   constructor(private JxFormService: JxService, private brokerService: BrokerService) {
-    
+
   }
 
   /*
@@ -28,20 +28,17 @@ export class AppComponent {
       wrapperClass: "form-style-1"
     };
     this.myLayout = form1;
-    this.content = "This is code"
+    this.content = "This is code";
+    this.handleChildEvents();
   }
 
-  myValidate(s) {
-    let func = (control: FormControl) => {
-      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-    };
-    return (func);
+  handleChildEvents() {
+    this.subs = this.brokerService.filterOn("submit1").subscribe(d =>
+      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+    );
   }
 
-  selectRequiredValidator(def) {
-    let func = (control: FormControl) => {
-      return ((control.value == def) ? { selectRequired: true } : null);
-    }
-    return (func);
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

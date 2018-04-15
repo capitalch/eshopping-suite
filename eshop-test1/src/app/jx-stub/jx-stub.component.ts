@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
+import { BrokerService } from '../broker.service';
 
 @Component({
   selector: 'jx-stub',
@@ -15,7 +16,7 @@ export class JxStubComponent implements OnInit {
   @Input() group: any;
   @Input() idx: string = "";
   container: any;
-  constructor(private fb: FormBuilder, private jxService: JxService) { }
+  constructor(private fb: FormBuilder, private jxService: JxService, private brokerService: BrokerService) { }
 
   ngOnInit() {
     if (this.parentType == "form") {
@@ -31,7 +32,7 @@ export class JxStubComponent implements OnInit {
   submit(actionName) {
     let myForm = this.parent;
     let meta = myForm.meta;
-    let serverMeta = Object.assign({},meta);
+    let serverMeta = Object.assign({}, meta);
     delete serverMeta.client;
     this.validateAllFormFields(myForm);
     if (myForm.valid) {
@@ -43,6 +44,20 @@ export class JxStubComponent implements OnInit {
       console.log("Invalid form");
     }
   }
+
+  itemClicked() {
+    let myForm = this.parent;
+    let meta = myForm.meta;
+    let serverMeta = Object.assign({}, meta);
+    delete serverMeta.client;
+    let formValue = myForm.value
+    formValue["meta"] = serverMeta;
+    delete myForm.value.undefined;
+    this.jControl.validateForm &&
+      this.validateAllFormFields(myForm)
+    this.brokerService.emit(this.jControl.actionId, myForm);
+  }
+
 
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
@@ -61,9 +76,9 @@ export class JxStubComponent implements OnInit {
 
   addGroupInArray(layout) {
     let childControls = {};
-    layout.group.controls && layout.group.controls.forEach(e => {      
+    layout.group.controls && layout.group.controls.forEach(e => {
       let allValidators = this.jxService.getValidators(e);
-      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];      
+      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
     });
     let group = this.fb.group(childControls);
     let groupArray = <FormArray>this.parent.get(layout.id);

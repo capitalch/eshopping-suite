@@ -30,6 +30,5 @@ export class JxFormComponent implements OnInit {
     });
     this.myForm = this.fb.group(formControls);
     this.myForm["meta"] = meta;
-    // this.jxService.setForm(this.myForm);
   }
 }

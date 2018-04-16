@@ -29,23 +29,23 @@ export class JxStubComponent implements OnInit {
     }
   }
 
-  submit(actionName) {
-    let myForm = this.parent;
-    let meta = myForm.meta;
-    let serverMeta = Object.assign({}, meta);
-    delete serverMeta.client;
-    this.validateAllFormFields(myForm);
-    if (myForm.valid) {
-      delete myForm.value.undefined;
-      let formValue = myForm.value;
-      formValue["meta"] = serverMeta;
-      this.jxService.executeAction(actionName, formValue);
-    } else {
-      console.log("Invalid form");
-    }
+  submit() {
+    this.processForm();
+    this.validateAllFormFields(this.parent);
+    this.parent.valid
+      ? this.brokerService.emit(this.jControl.actionId, this.parent)
+      : console.log("Invalid form");
+
   }
 
-  itemClicked() {
+  buttonClicked() {
+    this.processForm();
+    this.jControl.validateForm &&
+      this.validateAllFormFields(this.parent)
+    this.brokerService.emit(this.jControl.actionId, this.parent);
+  }
+
+  processForm() {
     let myForm = this.parent;
     let meta = myForm.meta;
     let serverMeta = Object.assign({}, meta);
@@ -53,9 +53,6 @@ export class JxStubComponent implements OnInit {
     let formValue = myForm.value
     formValue["meta"] = serverMeta;
     delete myForm.value.undefined;
-    this.jControl.validateForm &&
-      this.validateAllFormFields(myForm)
-    this.brokerService.emit(this.jControl.actionId, myForm);
   }
 
 

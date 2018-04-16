@@ -43,17 +43,17 @@ export class JxService {
 
   }
 
-  actions = {
-    submit: (formValue) => {
-      console.log(formValue);      
-      this.httpClient.post("http://localhost:3002/form",formValue).subscribe(d=>{
-        console.log("ok");
-      })
-    }
-    , reset: (form) => {
-      console.log("Form is done reset");
-    }
-  }
+  // actions = {
+  //   submit: (formValue) => {
+  //     console.log(formValue);      
+  //     this.httpClient.post("http://localhost:3002/form",formValue).subscribe(d=>{
+  //       console.log("ok");
+  //     })
+  //   }
+  //   , reset: (form) => {
+  //     console.log("Form is done reset");
+  //   }
+  // }
 
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);
@@ -68,9 +68,9 @@ export class JxService {
     return (valid ? null : { required: true });
   }
 
-  executeAction(actionName: string, arg: {}) {
-    this.actions[actionName].call(this, arg);
-  }
+  // executeAction(actionName: string, arg: {}) {
+  //   this.actions[actionName].call(this, arg);
+  // }
 
   getGroupValidators(group) {
 

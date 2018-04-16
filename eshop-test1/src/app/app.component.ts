@@ -18,11 +18,6 @@ export class AppComponent {
 
   }
 
-  /*
-  class property
-  class:{group:"class for group", label:"class for label", element:"class for element"}
-  */
-
   ngOnInit() {
     this.options = {
       wrapperClass: "form-style-1"
@@ -36,6 +31,10 @@ export class AppComponent {
     this.subs = this.brokerService.filterOn("submit1").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     );
+    let sub1 = this.brokerService.filterOn("submit").subscribe(d =>
+      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+    )
+    this.subs.add(sub1);
   }
 
   ngOnDestroy() {

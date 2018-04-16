@@ -171,9 +171,7 @@ export class JxMatInputComponent {
         );
     }
 }
-// (dateInput) = "change($event)"
-// providers: [{ provide: DateAdapter, useClass: MyDateAdapter }]
-// , providers:[{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}]
+
 @Component({
     selector: 'jxmat-datepicker',
     template: `    
@@ -184,7 +182,7 @@ export class JxMatInputComponent {
         </mat-form-field>
         <jx-error [layout]="layout" [parent]="parent"></jx-error>
         `
-    
+
 })
 export class JxMatDatePickerComponent {
     @Input() layout: any;
@@ -210,9 +208,46 @@ export class JxMatDatePickerComponent {
     change(event: any) {
         let val2 = moment(event.value).format("YYYY-MM-DD");
         let group = <FormGroup>this.parent;
-        let ctrl = <FormControl>group.controls[this.layout.id];       
+        let ctrl = <FormControl>group.controls[this.layout.id];
         const val = moment.utc(val2);
         ctrl.setValue(val);
+    }
+}
+
+// <mat-form-field [formGroup]="parent" [ngClass]="parentClass">
+//             <input (dateInput) = "change($event)" matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value" readonly>           
+//             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+//             <mat-datepicker #picker ></mat-datepicker>
+//         </mat-form-field>
+//         <jx-error [layout]="layout" [parent]="parent"></jx-error>
+
+@Component({
+    selector: 'jxmat-button',
+    template: `    
+    <button  *ngIf="layout.subType=='raised'" [ngClass] = "elementClass" mat-raised-button [color]="layout.color">{{layout.label}}</button>
+        
+    `
+
+})
+export class JxMatButtonComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    elementClass: string = "";
+    parentClass: string = "";
+    labelClass: string = "";
+    constructor(
+    ) { }
+
+    ngOnInit() {
+        this.layout.class && (
+            (typeof (this.layout.class) == "object")
+            && (this.elementClass = this.layout.class.element || ''
+                , this.labelClass = this.layout.class.label || ''
+                , this.parentClass = this.layout.class.parent || ''
+            ) || (this.parentClass = this.layout.class)
+        );
+
     }
 }
 

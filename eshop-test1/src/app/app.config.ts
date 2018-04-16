@@ -195,7 +195,7 @@ let form1 = [
     //     , value: false
     // }
     // ,
-    
+
     // ,
     // {
     //     type: "groupArray"
@@ -277,14 +277,23 @@ let form1 = [
         type: "submit"
         , label: "submit"
         , class: "btn btn-primary"
-        , actionName: "submit"
+        , actionId: "submit"
     }
     , {
         type: "button"
         , label: "My Submit"
         , class: "btn btn-primary"
         , actionId: "submit1"
-        , action: "submitClicked"
+        , validateForm: true
+    }
+    , {
+        type: "mat-button"
+        , subType:"raised"
+        , color:"primary"
+        , class:{element:"small"}
+        , label: "+"
+        , actionId: "submit2"
+        , validateForm:true
     }
 ];
 export { form1 };

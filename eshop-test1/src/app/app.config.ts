@@ -7,6 +7,7 @@ let form1 = [
         }
         , id: "jx-address"
     }
+<<<<<<< HEAD
     , {
         type: "text"
         , id: "tagValue"
@@ -29,79 +30,20 @@ let form1 = [
             required: { message: '$ is a required field' }
         }
     }
+=======
+>>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
     ,
     {
-        type: "mat-radio"
-        , label: "Gender"
-        , value: "M"
-        , id: "gender12"
-        , options: [
-            { label: "Male", value: "M", id: "male1" }
-            , { label: "Female", value: "F", id: "female1" }
-        ]
+        type: "mat-datepicker",
+        id: "matDatePicker1",
+        placeholder: "select a date"
+        , label: "myDatePicker"
+        , locale: "en-US"
         , validation: {
-            required: { message: '$ is required' }
+            required: {
+                message: "You must surely select a value for $"
+            }
         }
-    }
-    ,
-    {
-        type: "textarea"
-        , id: "address"
-        , class: {
-            label: 'label-address-class'
-            , element: 'element-address-class'
-            , parent: 'parent-address-class'
-        }
-        , label: "Address"
-        , placeholder: "Address"
-        , value: "12345"
-        , validation: {
-            required: { message: '$ is required' },
-            minlength: { value: 5, message: 'Minimum length for $ is 5' },
-            maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-        }
-    }
-    , {
-        type: "checkbox"
-        , id: "agreed"
-        , label: "Agreed"
-        , value: false
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }, {
-        type: "checkboxGroup"
-        , label: "Food2"
-        , id: "food2"
-        , validation: {
-            required: { message: '$ is required' }
-        }
-        , options: [
-            { label: "Main course", value: false, id: "main2" }
-            , { label: "Desert", value: true, id: "desert2" }
-            , { label: "beverages", value: false, id: "beverages2" }
-        ]
-    }
-    ,
-    {
-        type: "radio"
-        , label: "Gender"
-        , value: "M"
-        , id: "gender123"
-        , options: [
-            { label: "Male", value: "M", id: "male1" }
-            , { label: "Female", value: "F", id: "female1" }
-        ]
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }
-    ,
-    {
-        type: "mat-checkbox"
-        , id: "agreed3"
-        , label: "Agreed"
-        , value: false
     }
     ,
     {
@@ -159,6 +101,7 @@ let form1 = [
             }
         ]
     }
+<<<<<<< HEAD
     ,
     {
         type: "groupArray"
@@ -242,6 +185,8 @@ let form1 = [
         id:"matDatePicker1",
         placeholder:"select a date"
     }
+=======
+>>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
     // , {
     //     type: "select"
     //     , label: "Country"
@@ -361,61 +306,7 @@ let form1 = [
     //     , value: false
     // }
     // ,
-    // {
-    //     type: "group"
-    //     , label: "Passwords"
-    //     , id: "pwd"
-    //     , controls: [
-    //         {
-    //             type: "checkbox"
-    //             , id: "agreed"
-    //             , label: "Agreed"
-    //             , value: false
-    //             , validation: {
-    //                 required: { message: '$ is required' }
-    //             }
-    //         }
-    //         , {
-    //             type: "group"
-    //             , id: "Agreement1"
-    //             , label: "Agreement"
-    //             , controls: [
-    //                 {
-    //                     type: "checkbox"
-    //                     , id: "agreed11"
-    //                     , label: "Agreed"
-    //                     , value: true
-    //                 }
-    //                 , {
-    //                     type: "group"
-    //                     , id: "Agreement1"
-    //                     , label: "Agreement"
-    //                     , controls: [
-    //                         {
-    //                             type: "checkbox"
-    //                             , id: "agreed111"
-    //                             , label: "Agreed11"
-    //                             , value: true
-    //                         }
-    //                     ]
-    //                 }
-    //             ]
-    //         }
-    //         ,
-    //         {
-    //             type: "textarea"
-    //             , id: "address"
-    //             , label: "Address"
-    //             , placeholder: "Address"
-    //             , value: "12345"
-    //             , validation: {
-    //                 required: { message: '$ is required' },
-    //                 minlength: { value: 5, message: 'Minimum length for $ is 5' },
-    //                 maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-    //             }
-    //         }
-    //     ]
-    // }
+
     // ,
     // {
     //     type: "groupArray"
@@ -497,8 +388,32 @@ let form1 = [
         type: "submit"
         , label: "submit"
         , class: "btn btn-primary"
-        , actionName: "submit"
+        , actionId: "submit"
     }
+    , {
+        type: "button"
+        , label: "My Submit"
+        , class: "btn btn-primary"
+        , actionId: "submit1"
+        , validateForm: true
+    }
+    , {
+        type: "mat-button"
+        , subType:"raised"
+        , color:"primary"
+        , class:{element:"small"}
+        , label: "+"
+        , actionId: "submit2"
+        , validateForm:true
+    }
+    // , {
+    //     type: "mat-button"
+    //     , subType:"icon"
+    //     , color:"primary"
+    //     , icon: "accessibility"
+    //     , actionId: "submit3"
+    //     , validateForm:true
+    // }
 ];
 export { form1 };
 

@@ -25,7 +25,8 @@ import {
   , JxMatRadioComponent
   , JxMatSelectComponent
   , JxMatTextAreaComponent
-  , JxMatDatePickerComponent
+  , JxMatDatePickerComponent,
+  JxMatButtonComponent
 } from './jx-controls/mat.components';
 import { MAT_DATE_LOCALE } from '@angular/material'
 import { BrokerService } from './broker.service';
@@ -52,6 +53,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxMatSelectComponent
     , JxMatTextAreaComponent
     , JxMatDatePickerComponent
+    , JxMatButtonComponent
     // , JxChildrenComponent
     , JxStubComponent
   ],
@@ -66,7 +68,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
   providers: [
     JxService
     , BrokerService
-    , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,14 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
+// import { MatDatepickerInputEvent } from '@angular/material';
+// import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+// import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
+import * as moment from "moment";
+import { DateAdapter } from '@angular/material';
+// import { MyMomentDateAdapter, MyDateAdapter } from './myMomentDateAdapter';
+// import { MyMomentDateAdapter } from './myMomentDateAdapter';
 
 
 @Component({
@@ -169,12 +176,13 @@ export class JxMatInputComponent {
     selector: 'jxmat-datepicker',
     template: `    
         <mat-form-field [formGroup]="parent" [ngClass]="parentClass">
-            <input matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value">           
+            <input (dateInput) = "change($event)" matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value" readonly>           
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
         <jx-error [layout]="layout" [parent]="parent"></jx-error>
         `
+
 })
 export class JxMatDatePickerComponent {
     @Input() layout: any;
@@ -183,7 +191,9 @@ export class JxMatDatePickerComponent {
     elementClass: string = "";
     parentClass: string = "";
     labelClass: string = "";
-    constructor() { }
+    constructor(
+        private adapter: DateAdapter<Date>
+    ) { }
     ngOnInit() {
         this.layout.class && (
             (typeof (this.layout.class) == "object")
@@ -192,6 +202,52 @@ export class JxMatDatePickerComponent {
                 , this.parentClass = this.layout.class.parent || ''
             ) || (this.parentClass = this.layout.class)
         );
+        this.adapter.setLocale(this.layout.locale || "en-US");
+    }
+
+    change(event: any) {
+        let val2 = moment(event.value).format("YYYY-MM-DD");
+        let group = <FormGroup>this.parent;
+        let ctrl = <FormControl>group.controls[this.layout.id];
+        const val = moment.utc(val2);
+        ctrl.setValue(val);
+    }
+}
+
+// <mat-form-field [formGroup]="parent" [ngClass]="parentClass">
+//             <input (dateInput) = "change($event)" matInput [ngClass] = "elementClass" [matDatepicker]="picker"  [placeholder]="layout.placeholder" [formControlName] = "layout.id" [value]="layout.value" readonly>           
+//             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+//             <mat-datepicker #picker ></mat-datepicker>
+//         </mat-form-field>
+//         <jx-error [layout]="layout" [parent]="parent"></jx-error>
+
+@Component({
+    selector: 'jxmat-button',
+    template: `    
+    <button  *ngIf="layout.subType=='raised'" [ngClass] = "elementClass" mat-raised-button [color]="layout.color">{{layout.label}}</button>
+    <button  *ngIf="layout.subType=='icon'" [ngClass] = "elementClass" mat-icon-button [color]="layout.color">{{layout.icon}}</button>        
+    `
+
+})
+export class JxMatButtonComponent {
+    @Input() layout: any;
+    @Input() idx: string;
+    @Input() parent: FormGroup;
+    elementClass: string = "";
+    parentClass: string = "";
+    labelClass: string = "";
+    constructor(
+    ) { }
+
+    ngOnInit() {
+        this.layout.class && (
+            (typeof (this.layout.class) == "object")
+            && (this.elementClass = this.layout.class.element || ''
+                , this.labelClass = this.layout.class.label || ''
+                , this.parentClass = this.layout.class.parent || ''
+            ) || (this.parentClass = this.layout.class)
+        );
+
     }
 }
 

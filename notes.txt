@@ -27,7 +27,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 2. file upload
             9. Provide json and functions as parameters
 
-3. show Required symbol
+3. Show Required symbol
             13. Provide group / formgroup
             14. Checkboxgroup bug fix groupArray
             15. Checkboxgroup in group and groupArray implement and check
@@ -40,9 +40,10 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             11. mat input all types
             12. Mat radio
             13. mat select
-14. mat date
+            14. mat date
 15. icon button
             16. class in mat controls
+17. Move click events from service to the parent of form control through event emitter or broker service
 
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation

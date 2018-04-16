@@ -32,7 +32,11 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'submit'">
-      <button [ngClass]="jControl.class" (click)="submit(jControl.actionName)" type="submit">{{jControl.label}}</button>
+      <button [ngClass]="jControl.class" (click)="submit()" type="submit">{{jControl.label}}</button>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'button'">
+      <button [ngClass]="jControl.class" (click)="buttonClicked()">{{jControl.label}}</button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'mat-checkbox'">
@@ -57,6 +61,10 @@
 
     <ng-container *ngSwitchCase="'mat-datepicker'">
       <jxmat-datepicker [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-datepicker>
+    </ng-container>
+
+    <ng-container *ngSwitchCase = "'mat-button'">
+      <jxmat-button [layout] ="jControl" [parent] ="container" [idx] = "idx"></jxmat-button>
     </ng-container>
 
     <ng-container *ngSwitchDefault >

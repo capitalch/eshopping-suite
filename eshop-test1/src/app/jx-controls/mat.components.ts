@@ -225,7 +225,7 @@ export class JxMatDatePickerComponent {
     selector: 'jxmat-button',
     template: `    
     <button  *ngIf="layout.subType=='raised'" [ngClass] = "elementClass" mat-raised-button [color]="layout.color">{{layout.label}}</button>
-        
+    <button  *ngIf="layout.subType=='icon'" [ngClass] = "elementClass" mat-icon-button [color]="layout.color">{{layout.icon}}</button>        
     `
 
 })

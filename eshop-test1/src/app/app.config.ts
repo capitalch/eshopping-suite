@@ -295,6 +295,14 @@ let form1 = [
         , actionId: "submit2"
         , validateForm:true
     }
+    // , {
+    //     type: "mat-button"
+    //     , subType:"icon"
+    //     , color:"primary"
+    //     , icon: "accessibility"
+    //     , actionId: "submit3"
+    //     , validateForm:true
+    // }
 ];
 export { form1 };
 

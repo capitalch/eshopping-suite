@@ -1,9 +1,19 @@
 <fieldset [formGroup]="parent">
-  <legend>{{layout.label}}</legend>
+  <legend>{{layout.label}}
+    <button mat-icon-button (click)="addGroupInArray(layout)">
+      <mat-icon>
+          <i class="fa fa-times-circle"></i>
+      </mat-icon>
+    </button>
+  </legend>
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
       <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
-        <button (click)="removeFromArray(j)">Remove</button>
+        <button mat-icon-button (click)="removeFromArray(j)" style="float:right;">
+          <mat-icon>
+              <i class="fa fa-times-circle"></i>
+          </mat-icon>
+        </button>
         <ng-container *ngFor="let control of layout.group.controls">
           <jx-stub [jControl] = "control" [parent] = "parent" [layout] = "layout" [parentType] ="'array'" [group] = "group" [idx] = "j"></jx-stub>         
         </ng-container>
@@ -12,35 +22,3 @@
   </ng-container>
 </fieldset>
 
-<!-- deprecated
-   <ng-container [ngSwitch]="control.type">
-
-            <div *ngSwitchCase="'textarea'">
-              <jx-textarea [layout]="control" [parent]="group" [idx]="j"></jx-textarea>
-            </div>
-
-            <div *ngSwitchCase="'checkbox'">
-              <jx-checkbox [layout]="control" [parent]="group" [idx]="j"></jx-checkbox>
-            </div>
-
-            <div *ngSwitchCase="'radio'">
-              <jx-radio [layout]="control" [parent]="group" [idx]="j"></jx-radio>
-            </div>
-
-            <div *ngSwitchCase="'select'">
-              <jx-select [layout]="control" [parent]="group"></jx-select>
-            </div>
-
-            <div *ngSwitchCase="'checkboxGroup'">
-              <jx-checkbox-group [layout]="control" [parent]="group" [idx]="j"></jx-checkbox-group>
-            </div>
-
-            <div *ngSwitchCase="'mat-checkbox'">
-              <jxmat-checkbox [layout]="control" [parent]="group" [idx]="j"></jxmat-checkbox>
-            </div>
-
-            <div *ngSwitchDefault>
-              <jx-default [layout]="control" [parent]="group" [idx]="j"></jx-default>
-            </div>
-
-          </ng-container> -->

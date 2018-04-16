@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReactiveFormComponent } from './reactive-form.component';
+import { JxCheckboxGroupComponent } from './jx-checkbox-group.component';
 
-describe('ReactiveFormComponent', () => {
-  let component: ReactiveFormComponent;
-  let fixture: ComponentFixture<ReactiveFormComponent>;
+describe('JxCheckboxGroupComponent', () => {
+  let component: JxCheckboxGroupComponent;
+  let fixture: ComponentFixture<JxCheckboxGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReactiveFormComponent ]
+      declarations: [ JxCheckboxGroupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReactiveFormComponent);
+    fixture = TestBed.createComponent(JxCheckboxGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

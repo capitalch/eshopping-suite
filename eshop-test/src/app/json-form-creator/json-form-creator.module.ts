@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JxService } from './jx-service/jx.service';
@@ -17,9 +18,29 @@ import {
   , JxSelectComponent
   , JxDefaultComponent
 } from './jx-controls/core.components';
-import { JxMatCheckboxComponent } from './jx-controls/mat.components';
+import {
+  JxMatCheckboxComponent
+  , JxMatInputComponent
+  , JxMatRadioComponent
+  , JxMatSelectComponent
+  , JxMatTextAreaComponent
+  , JxMatDatePickerComponent
+} from './jx-controls/mat.components';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+// import { MatIconModule } from '@angular/material/icon';
+// import { 
+//   MatButtonModule
+//   , MatCheckboxModule
+//   , MatInputModule
+//   , MatRadioModule
+//   , MatSelectModule
+//   , MatDatepickerModule
+//   , MatNativeDateModule
+// } from '@angular/material';
+// import { MAT_DATE_LOCALE } from '@angular/material';
+
+
 
 @NgModule({
   imports: [
@@ -28,23 +49,37 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularMaterialModule
+    BrowserAnimationsModule
+    ,AngularMaterialModule
+    // , MatButtonModule
+    // , MatCheckboxModule
+    // , MatInputModule
+    // , MatRadioModule
+    // , MatSelectModule
+    // , MatDatepickerModule
+    // , MatNativeDateModule
+    // , MatIconModule
   ],
   declarations: [
-    JxFormComponent, 
-    JxArrayComponent, 
-    JxGroupComponent, 
-    JxCheckboxGroupComponent, 
-    JxErrorComponent,
-    JxTextareaComponent,
-    JxCheckboxComponent,
-    JxRadioComponent,
-    JxSelectComponent,
-    JxDefaultComponent,
-    JxStubComponent,
-    JxMatCheckboxComponent
+    JxFormComponent
+    , JxGroupComponent
+    , JxArrayComponent
+    , JxErrorComponent
+    , JxCheckboxGroupComponent
+    , JxTextareaComponent
+    , JxCheckboxComponent
+    , JxRadioComponent
+    , JxSelectComponent
+    , JxDefaultComponent
+    , JxMatCheckboxComponent
+    , JxMatInputComponent
+    , JxMatRadioComponent
+    , JxMatSelectComponent
+    , JxMatTextAreaComponent
+    , JxMatDatePickerComponent
+    , JxStubComponent
   ],
-  providers: [JxService, BrokerService],
+  providers: [JxService, BrokerService],  //, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   exports:[JxFormComponent]
 })
 export class JsonFormCreatorModule { }

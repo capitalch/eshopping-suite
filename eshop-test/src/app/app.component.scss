@@ -5,15 +5,8 @@
 ::ng-deep .form-style-1 {
     margin: 0px auto;
     max-width: 600px;
-    
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     border: 1px solid green;
-    legend {
-        font-weight: bold;
-    }
-    fieldset {
-        margin: 10px 0 10px 0;
-    } 
     .header
     {
         border: 1px solid black;
@@ -27,34 +20,52 @@
         padding: 20px 12px 10px 20px;
         background: #88D5E9;
     }
-    input[type=text],
-    input[type=date],
-    input[type=datetime],
-    input[type=number],
-    input[type=search],
-    input[type=time],
-    input[type=url],
-    input[type=email],
-    textarea,
-    select {
+    legend {
+        font-weight: bold;
+    }
+    fieldset {
+        //border: 1px groove threedface;
+        //padding: 5px;
+        //margin: 10px auto;
+    } // input[type=submit],
+    // input[type=button],
+    // button {
+    //     background: #4B99AD;
+    //     padding: 8px 15px 8px 15px;
+    //     border: none;
+    //     color: #fff;
+    // }
+    input[type=text]:not([matInput]),
+    input[type=date]:not([matInput]),
+    input[type=datetime]:not([matInput]),
+    input[type=number]:not([matInput]),
+    input[type=search]:not([matInput]),
+    input[type=time]:not([matInput]),
+    input[type=url]:not([matInput]),
+    input[type=email]:not([matInput]),
+    textarea:not([matInput]),
+    select:not([matInput]) {
         box-sizing: border-box;
         border: 1px solid #BEBEBE;
         padding: 5px;
         margin: 0px;
         outline: none;
     }
-    input[type=text]:focus,
-    input[type=date]:focus,
-    input[type=datetime]:focus,
-    input[type=number]:focus,
-    input[type=search]:focus,
-    input[type=time]:focus,
-    input[type=url]:focus,
-    input[type=email]:focus,
-    textarea:focus,
-    select:focus {
+    input:not([matInput])[type=text]:focus,
+    input:not([matInput])[type=date]:focus,
+    input:not([matInput])[type=datetime]:focus,
+    input:not([matInput])[type=number]:focus,
+    input:not([matInput])[type=search]:focus,
+    input:not([matInput])[type=time]:focus,
+    input:not([matInput])[type=url]:focus,
+    input:not([matInput])[type=email]:focus,
+    textarea:not([matInput]):focus,
+    select:not([matInput]):focus {
         box-shadow: 0 0 8px #88D5E9;
         border: 1px solid #88D5E9;
+    }
+    input[matInput] {
+        width: 100%;
     }
     text,
     textarea {
@@ -69,6 +80,25 @@
     .label-class {
         color: green;
         display: block;
+    }
+    .address-class {
+        padding: 10px 0 10px 0; // label{
+        //     color:green;
+        //     display:block;
+        // }
+        // textArea{
+        //     width:50%;
+        // }
+    }
+    .label-address-class {
+        color: red;
+        display: block;
+    }
+    .element-address-class {
+        background-color: yellow;
+    }
+    .parent-address-class {
+        padding: 10px 0 10px 0;
     }
     .tag-class {
         label {

@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { 
   MatButtonModule
   , MatCheckboxModule
   , MatInputModule
   , MatRadioModule
   , MatSelectModule
+  , MatDatepickerModule
+  , MatNativeDateModule
 } from '@angular/material';
 // import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   imports: [
@@ -17,6 +21,9 @@ import {
     , MatInputModule
     , MatRadioModule
     , MatSelectModule
+    , MatDatepickerModule
+    , MatNativeDateModule
+    , MatIconModule
   ],
   exports: [
     MatButtonModule
@@ -24,6 +31,9 @@ import {
     , MatInputModule
     , MatRadioModule
     , MatSelectModule
+    , MatDatepickerModule
+    , MatNativeDateModule
+    , MatIconModule
   ],
   declarations: []
 })

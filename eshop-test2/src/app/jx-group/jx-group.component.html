@@ -1,0 +1,45 @@
+<fieldset [formGroup]="parent">
+  <legend>{{layout.label}}</legend>
+  <div [formGroupName]="layout.id">
+    <ng-container *ngFor="let jControl of layout.controls">
+      <jx-stub  [jControl]="jControl" [parent]="parent" [layout]="layout" [parentType]="'group'"></jx-stub>      
+    </ng-container>
+  </div>
+</fieldset>
+<!-- deprecated
+<ng-container [ngSwitch]="controlInGroup.type">
+
+        <div *ngSwitchCase="'checkbox'">
+          <jx-checkbox [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-checkbox>
+        </div>
+
+        <div *ngSwitchCase="'textarea'">
+          <jx-textarea [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-textarea>
+        </div>
+
+        <div *ngSwitchCase="'radio'">
+          <jx-radio [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-radio>
+        </div>
+
+        <div *ngSwitchCase="'select'">
+          <jx-select [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-select>
+        </div>
+
+        <div *ngSwitchCase="'checkboxGroup'">
+          <jx-checkbox-group [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-checkbox-group>
+        </div>
+
+        <div *ngSwitchCase="'groupArray'">
+          <button (click)="addGroupInArray(layout)">Add</button>
+          <jx-array [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-array>
+        </div>
+
+        <div *ngSwitchCase="'mat-checkbox'">
+          <jxmat-checkbox [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jxmat-checkbox>
+        </div>
+
+        <div *ngSwitchDefault>
+          <jx-default [layout]="controlInGroup" [parent]="parent.get(layout.id)"></jx-default>
+        </div>
+
+      </ng-container> -->

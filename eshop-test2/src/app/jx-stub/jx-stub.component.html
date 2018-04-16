@@ -27,6 +27,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'groupArray'">
+      <button (click)="addGroupInArray(jControl)">Add</button>
       <jx-array [layout]="jControl" [parent]="container" [idx] = "idx"></jx-array>
     </ng-container>
 
@@ -47,7 +48,15 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'mat-select'">
-      <jxmat-radio [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-radio>
+      <jxmat-select [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-select>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-textarea'">
+      <jxmat-textarea [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-textarea>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-datepicker'">
+      <jxmat-datepicker [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-datepicker>
     </ng-container>
 
     <ng-container *ngSwitchDefault >

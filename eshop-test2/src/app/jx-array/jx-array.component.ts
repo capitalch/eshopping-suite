@@ -29,14 +29,4 @@ export class JxArrayComponent implements OnInit {
     groupArray.removeAt(j);
   }
 
-  addGroupInArray(layout) {
-    let childControls = {};
-    layout.group.controls && layout.group.controls.forEach(e => {      
-      let allValidators = this.jxService.getValidators(e);
-      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];      
-    });
-    let group = this.fb.group(childControls);
-    let groupArray = <FormArray>this.parent.get(layout.id);
-    groupArray.push(group);
-  }
 }

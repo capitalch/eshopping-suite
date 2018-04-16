@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { AppService } from './app.service';
-import { Validators } from '@angular/forms';
-
-
+import { Component } from '@angular/core';
+import { Validators, FormControl } from '@angular/forms';
+import { form1 } from './app.config';
+import { JxService } from './jx-service/jx.service';
+import { BrokerService } from './broker.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,34 +10,38 @@ import { Validators } from '@angular/forms';
 })
 export class AppComponent {
   title = 'app';
-  @ViewChild("div1") div1;
-  mySchema: any = {};
-  myConfig: any = {};
-  constructor(private appService: AppService) {
-    console.log('app constructor');
+  myLayout: any = {};
+  options: any = {};
+  content: string;
 
+  constructor(private JxFormService: JxService, private brokerService: BrokerService) {
+    
   }
+
+  /*
+  class property
+  class:{group:"class for group", label:"class for label", element:"class for element"}
+  */
 
   ngOnInit() {
-    console.log('app init');
-    this.mySchema = {
-      firstName: ['', Validators.required],
-      lastName: ''
+    this.options = {
+      wrapperClass: "form-style-1"
     };
-    this.myConfig = {
-      onSubmit: (d) => {
-        console.log(d);
-      }
+    this.myLayout = form1;
+    this.content = "This is code"
+  }
+
+  myValidate(s) {
+    let func = (control: FormControl) => {
+      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
+    };
+    return (func);
+  }
+
+  selectRequiredValidator(def) {
+    let func = (control: FormControl) => {
+      return ((control.value == def) ? { selectRequired: true } : null);
     }
-  }
-
-  onResize(e) {
-    console.log('resize');
-    let size = this.div1.nativeElement.getBoundingClientRect();
-    console.log('Size:', size);
-  }
-
-  addToCart() {
-    this.appService.addToCart();
+    return (func);
   }
 }

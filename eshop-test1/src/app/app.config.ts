@@ -2,8 +2,10 @@ let form1 = [
     {
         type: "meta"
         , client: {
-            class: "form-style-1",
-            title: "Test form"
+            formClass: "form-style-1",
+            title: "Test form",
+            titleClass: "header",
+            bodyClass: "body"
         }
         , id: "jx-address"
     }

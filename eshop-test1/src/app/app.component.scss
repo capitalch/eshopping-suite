@@ -5,17 +5,26 @@
 ::ng-deep .form-style-1 {
     margin: 0px auto;
     max-width: 600px;
-    padding: 20px 12px 10px 20px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     border: 1px solid green;
     legend {
         font-weight: bold;
     }
-    fieldset {
-        border: 1px groove threedface;
-        padding: 5px;
-        margin: 10px auto;
-    } // input[type=submit],
+    .header
+    {
+        border: 1px solid black;
+        font-size: 1.2em;
+        padding-left: 2%;
+    }
+    .body
+    {
+        padding: 20px 12px 10px 20px;
+    }
+    // fieldset {
+    //     border: 1px groove threedface;
+    //     padding: 5px;
+    //     margin: 10px auto;
+    // } // input[type=submit],
     // input[type=button],
     // button {
     //     background: #4B99AD;

@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
     // , MatNativeDateModule
     // , NativeDateModule
     , MatMomentDateModule
+    , MatIconModule
   ],
   exports: [
     MatButtonModule
@@ -37,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     // , NativeDateModule
     // , MatNativeDateModule
     , MatMomentDateModule
+    ,MatIconModule
   ],
   declarations: []
 })

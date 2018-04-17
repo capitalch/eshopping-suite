@@ -23,14 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
     , MatRadioModule
     , MatSelectModule
     , MatDatepickerModule
-<<<<<<< HEAD
-    , MatNativeDateModule
-    ,MatIconModule
-=======
     // , MatNativeDateModule
     // , NativeDateModule
     , MatMomentDateModule
->>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
   ],
   exports: [
     MatButtonModule
@@ -39,14 +34,9 @@ import { MatIconModule } from '@angular/material/icon';
     , MatRadioModule
     , MatSelectModule
     , MatDatepickerModule
-<<<<<<< HEAD
-    , MatNativeDateModule
-    ,MatIconModule
-=======
     // , NativeDateModule
     // , MatNativeDateModule
     , MatMomentDateModule
->>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
   ],
   declarations: []
 })

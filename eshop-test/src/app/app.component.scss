@@ -23,18 +23,6 @@
     legend {
         font-weight: bold;
     }
-    fieldset {
-        //border: 1px groove threedface;
-        //padding: 5px;
-        //margin: 10px auto;
-    } // input[type=submit],
-    // input[type=button],
-    // button {
-    //     background: #4B99AD;
-    //     padding: 8px 15px 8px 15px;
-    //     border: none;
-    //     color: #fff;
-    // }
     input[type=text]:not([matInput]),
     input[type=date]:not([matInput]),
     input[type=datetime]:not([matInput]),
@@ -82,13 +70,7 @@
         display: block;
     }
     .address-class {
-        padding: 10px 0 10px 0; // label{
-        //     color:green;
-        //     display:block;
-        // }
-        // textArea{
-        //     width:50%;
-        // }
+        padding: 10px 0 10px 0; 
     }
     .label-address-class {
         color: red;

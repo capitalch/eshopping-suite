@@ -42,139 +42,173 @@ let form1 = [
             }
         }
     }
-    ,
-    {
-        type: "group"
-        , label: "Passwords"
-        , id: "pwd"
-        , controls: [
-            {
-                type: "checkbox"
-                , id: "agreed"
-                , label: "Agreed"
-                , value: false
-                , validation: {
-                    required: { message: '$ is required' }
-                }
-            }
-            , {
-                type: "group"
-                , id: "Agreement1"
-                , label: "Agreement"
-                , controls: [
-                    {
-                        type: "checkbox"
-                        , id: "agreed11"
-                        , label: "Agreed"
-                        , value: true
-                    }
-                    , {
-                        type: "group"
-                        , id: "Agreement1"
-                        , label: "Agreement"
-                        , controls: [
-                            {
-                                type: "checkbox"
-                                , id: "agreed111"
-                                , label: "Agreed11"
-                                , value: true
-                            }
-                        ]
-                    }
-                ]
-            }
-            ,
-            {
-                type: "textarea"
-                , id: "address"
-                , label: "Address"
-                , placeholder: "Address"
-                , value: "12345"
-                , validation: {
-                    required: { message: '$ is required' },
-                    minlength: { value: 5, message: 'Minimum length for $ is 5' },
-                    maxlength: { value: 200, message: 'Maximum length for $ is 200' }
-                }
-            }
-        ]
-    }
-    ,
-    {
-        type: "groupArray"
-        , label: "Tags"
-        , id: "tags"
-        , group: {
-            label: "Tag"
-            , id: "tag"
-            , controls: [
-                {
-                    type: "mat-checkbox"
-                    , id: "agreed8"
-                    , label: "Agreed"
-                    , value: false
-                }
-                , {
-                    type: "textarea"
-                    , id: "firstName"
-                    , label: "First name"
-                    , placeholder: "First name"
-                    , value: ""
-                    , class: { label: "red-class", element: "textarea-class" }
-                    , validation: {
-                        required: { message: '$ is required' },
-                        minlength: { value: 3, message: 'Minimum length for $ is 3' },
-                        maxlength: { value: 10, message: 'Maximum length for $ is 10' },
-                        myValidate: {
-                            message: 'My validation fails'
-                            , arg: 'test'
-                        }
-                    }
-                }
-                , {
-                    type: "checkbox"
-                    , id: "agreed9"
-                    , label: "Agreed"
-                    , value: true
-                }
-                , {
-                    type: "checkboxGroup"
-                    , label: "Food2"
-                    , id: "food2"
-                    , validation: {
-                        required: { message: '$ is required' }
-                    }
-                    , options: [
-                        { label: "Main course", value: false, id: "main2" }
-                        , { label: "Desert", value: true, id: "desert2" }
-                        , { label: "beverages", value: false, id: "beverages2" }
-                    ]
-                }
-                , {
-                    type: "radio"
-                    , label: "Gender"
-                    , value: "M"
-                    , id: "gender123"
-                    , options: [
-                        { label: "Male", value: "M", id: "male1" }
-                        , { label: "Female", value: "F", id: "female1" }
-                    ]
-                }
-                , {
-                    type: "select"
-                    , label: "Country"
-                    , value: ""
-                    , id: "country"
-                    , options: "countries3"
-                    , validation: {
-                        required: {
-                            message: 'You must select a value for $'
-                        }
-                    }
-                }
-            ]
-        }
-    }
     // ,
+    // {
+    //     type: "group"
+    //     , label: "Passwords"
+    //     , id: "pwd"
+    //     , controls: [
+    //         {
+    //             type: "checkbox"
+    //             , id: "agreed"
+    //             , label: "Agreed"
+    //             , value: false
+    //             , validation: {
+    //                 required: { message: '$ is required' }
+    //             }
+    //         }
+    //         , {
+    //             type: "group"
+    //             , id: "Agreement1"
+    //             , label: "Agreement"
+    //             , controls: [
+    //                 {
+    //                     type: "checkbox"
+    //                     , id: "agreed11"
+    //                     , label: "Agreed"
+    //                     , value: true
+    //                 }
+    //                 , {
+    //                     type: "group"
+    //                     , id: "Agreement1"
+    //                     , label: "Agreement"
+    //                     , controls: [
+    //                         {
+    //                             type: "checkbox"
+    //                             , id: "agreed111"
+    //                             , label: "Agreed11"
+    //                             , value: true
+    //                         }
+    //                     ]
+    //                 }
+    //             ]
+    //         }
+    //         ,
+    //         {
+    //             type: "textarea"
+    //             , id: "address"
+    //             , label: "Address"
+    //             , placeholder: "Address"
+    //             , value: "12345"
+    //             , validation: {
+    //                 required: { message: '$ is required' },
+    //                 minlength: { value: 5, message: 'Minimum length for $ is 5' },
+    //                 maxlength: { value: 200, message: 'Maximum length for $ is 200' }
+    //             }
+    //         }
+    //     ]
+    // }
+    // ,
+    // {
+    //     type: "groupArray"
+    //     , label: "Tags"
+    //     , id: "tags"
+    //     , group: {
+    //         label: "Tag"
+    //         , id: "tag"
+    //         , controls: [
+    //             {
+    //                 type: "mat-checkbox"
+    //                 , id: "agreed8"
+    //                 , label: "Agreed"
+    //                 , value: false
+    //             }
+    //             , {
+    //                 type: "textarea"
+    //                 , id: "firstName"
+    //                 , label: "First name"
+    //                 , placeholder: "First name"
+    //                 , value: ""
+    //                 , class: { label: "red-class", element: "textarea-class" }
+    //                 , validation: {
+    //                     required: { message: '$ is required' },
+    //                     minlength: { value: 3, message: 'Minimum length for $ is 3' },
+    //                     maxlength: { value: 10, message: 'Maximum length for $ is 10' },
+    //                     myValidate: {
+    //                         message: 'My validation fails'
+    //                         , arg: 'test'
+    //                     }
+    //                 }
+    //             }
+    //             , {
+    //                 type: "checkbox"
+    //                 , id: "agreed9"
+    //                 , label: "Agreed"
+    //                 , value: true
+    //             }
+    //             , {
+    //                 type: "checkboxGroup"
+    //                 , label: "Food2"
+    //                 , id: "food2"
+    //                 , validation: {
+    //                     required: { message: '$ is required' }
+    //                 }
+    //                 , options: [
+    //                     { label: "Main course", value: false, id: "main2" }
+    //                     , { label: "Desert", value: true, id: "desert2" }
+    //                     , { label: "beverages", value: false, id: "beverages2" }
+    //                 ]
+    //             }
+    //             , {
+    //                 type: "radio"
+    //                 , label: "Gender"
+    //                 , value: "M"
+    //                 , id: "gender123"
+    //                 , options: [
+    //                     { label: "Male", value: "M", id: "male1" }
+    //                     , { label: "Female", value: "F", id: "female1" }
+    //                 ]
+    //             }
+    //             , {
+    //                 type: "select"
+    //                 , label: "Country"
+    //                 , value: ""
+    //                 , id: "country"
+    //                 , options: "countries3"
+    //                 , validation: {
+    //                     required: {
+    //                         message: 'You must select a value for $'
+    //                     }
+    //                 }
+    //             }
+    //         ]
+    //     }
+    // }
+    
+    , {
+        type: "submit"
+        , label: "submit"
+        , class: "btn btn-primary"
+        , actionId: "submit"
+    }
+    , {
+        type: "button"
+        , label: "My Submit"
+        , class: "btn btn-primary"
+        , actionId: "submit1"
+        , validateForm: true
+    }
+    //subType can be button, icon, raised, fab, miniFab
+    , {
+        type: "mat-button"
+        , subType:"button"
+        , faClass:"fa fa-taxi fa-fw"
+        , color:"primary"
+        , label: "My Taxi"
+        , actionId: "submit2"
+        , validateForm:true
+    }
+    // , {
+    //     type: "mat-button"
+    //     , subType:"icon"
+    //     , color:"primary"
+    //     , icon: "accessibility"
+    //     , actionId: "submit3"
+    //     , validateForm:true
+    // }
+];
+export { form1 };
+// ,
     // {
     //     type:"mat-datepicker",
     //     id:"matDatePicker1",
@@ -377,39 +411,6 @@ let form1 = [
     //         ]
     //     }
     // }
-    , {
-        type: "submit"
-        , label: "submit"
-        , class: "btn btn-primary"
-        , actionId: "submit"
-    }
-    , {
-        type: "button"
-        , label: "My Submit"
-        , class: "btn btn-primary"
-        , actionId: "submit1"
-        , validateForm: true
-    }
-    , {
-        type: "mat-button"
-        , subType:"raised"
-        , color:"primary"
-        , class:{element:"small"}
-        , label: "+"
-        , actionId: "submit2"
-        , validateForm:true
-    }
-    // , {
-    //     type: "mat-button"
-    //     , subType:"icon"
-    //     , color:"primary"
-    //     , icon: "accessibility"
-    //     , actionId: "submit3"
-    //     , validateForm:true
-    // }
-];
-export { form1 };
-
                 // ,{                                                   
             //     type: "radio"
             //     , label: "Gender"

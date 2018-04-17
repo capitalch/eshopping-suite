@@ -63,7 +63,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase = "'mat-button'">
-      <jxmat-button [layout] ="jControl" [parent] ="container" [idx] = "idx"></jxmat-button>
+      <jxmat-button [layout] ="jControl" (click)="buttonClicked()" [parent] ="container" [idx] = "idx"></jxmat-button>
     </ng-container>
 
     <ng-container *ngSwitchDefault >

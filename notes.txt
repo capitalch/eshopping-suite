@@ -43,7 +43,11 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             14. mat date
 15. icon button
             16. class in mat controls
-17. Move click events from service to the parent of form control through event emitter or broker service
+            17. Move click events from service to the parent of form control through event emitter or broker service
+18. Custom component
+19. Form level validations
+20. Move common code of css class to service
+21. Like button implement anchor tag           
 
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation

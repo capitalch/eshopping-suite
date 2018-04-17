@@ -223,9 +223,33 @@ export class JxMatDatePickerComponent {
 
 @Component({
     selector: 'jxmat-button',
-    template: `    
-    <button  *ngIf="layout.subType=='raised'" [ngClass] = "elementClass" mat-raised-button [color]="layout.color">{{layout.label}}</button>
-    <button  *ngIf="layout.subType=='icon'" [ngClass] = "elementClass" mat-icon-button [color]="layout.color">{{layout.icon}}</button>        
+    template: `
+    <ng-container [ngClass] = "groupClass" *ngIf="layout.subType=='raised'">  
+        <button [ngClass] = "elementClass" mat-raised-button [color]="layout.color">
+            <span [ngClass]= "labelClass">{{layout.label}}</span>
+            <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>
+        </button>
+    </ng-container>
+    <ng-container [ngClass] = "groupClass" *ngIf="layout.subType=='icon'">
+        <button [color] = "layout.color" [ngClass] = "elementClass" mat-icon-button>               
+            <span [ngClass]= "labelClass">{{layout.label}}</span>
+            <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
+        </button>        
+    </ng-container>
+
+    <ng-container [ngClass] = "groupClass" *ngIf="layout.subType=='button'">
+        <button [color] = "layout.color" [ngClass] = "elementClass" mat-button>               
+            <span [ngClass]= "labelClass">{{layout.label}}</span>
+            <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
+        </button>        
+    </ng-container>
+
+    <ng-container [ngClass] = "groupClass" *ngIf="layout.subType=='fab'">
+        <button [color] = "layout.color" [ngClass] = "elementClass" mat-fab>               
+            <span [ngClass]= "labelClass">{{layout.label}}</span>
+            <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
+        </button>        
+    </ng-container>
     `
 
 })

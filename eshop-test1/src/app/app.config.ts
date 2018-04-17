@@ -7,6 +7,28 @@ let form1 = [
         }
         , id: "jx-address"
     }
+    , {
+        type: "text"
+        , id: "tagValue"
+        , class: "tag-class"
+        , label: "Tag value"
+        , placeholder: "Tag value"
+        , value: ""
+        , validation: {
+            required: { message: '$ is a required field' }
+        }
+    }
+    , {
+        type: "mat-input"
+        , subType: "text"
+        , id: "mat1"
+        , label: "mat name"
+        , placeholder: "mat placeholder"
+        , value: ""
+        , validation: {
+            required: { message: '$ is a required field' }
+        }
+    }
     ,
     {
         type: "mat-datepicker",
@@ -140,25 +162,24 @@ let form1 = [
                 , {
                     type: "select"
                     , label: "Country"
-                    , value: "0"
+                    , value: ""
                     , id: "country"
                     , options: "countries3"
                     , validation: {
-                        selectRequired: {
+                        required: {
                             message: 'You must select a value for $'
-                            , arg: 0
                         }
                     }
                 }
             ]
         }
     }
-    ,
-    {
-        type:"mat-datepicker",
-        id:"matDatePicker1",
-        placeholder:"select a date"
-    }
+    // ,
+    // {
+    //     type:"mat-datepicker",
+    //     id:"matDatePicker1",
+    //     placeholder:"select a date"
+    // }
     // , {
     //     type: "select"
     //     , label: "Country"

@@ -7,7 +7,6 @@ let form1 = [
         }
         , id: "jx-address"
     }
-<<<<<<< HEAD
     , {
         type: "text"
         , id: "tagValue"
@@ -30,8 +29,6 @@ let form1 = [
             required: { message: '$ is a required field' }
         }
     }
-=======
->>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
     ,
     {
         type: "mat-datepicker",
@@ -101,7 +98,6 @@ let form1 = [
             }
         ]
     }
-<<<<<<< HEAD
     ,
     {
         type: "groupArray"
@@ -166,27 +162,24 @@ let form1 = [
                 , {
                     type: "select"
                     , label: "Country"
-                    , value: "0"
+                    , value: ""
                     , id: "country"
                     , options: "countries3"
                     , validation: {
-                        selectRequired: {
+                        required: {
                             message: 'You must select a value for $'
-                            , arg: 0
                         }
                     }
                 }
             ]
         }
     }
-    ,
-    {
-        type:"mat-datepicker",
-        id:"matDatePicker1",
-        placeholder:"select a date"
-    }
-=======
->>>>>>> 16a5fa38cce314ce4becf582b5c2fe9bdb187334
+    // ,
+    // {
+    //     type:"mat-datepicker",
+    //     id:"matDatePicker1",
+    //     placeholder:"select a date"
+    // }
     // , {
     //     type: "select"
     //     , label: "Country"

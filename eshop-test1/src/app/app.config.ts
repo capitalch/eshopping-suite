@@ -9,6 +9,17 @@ let form1 = [
         }
         , id: "jx-address"
     }
+    ,
+    {
+        type: "textarea"
+        // , class: {parent:"textarea-test"} 
+        , id: "address1"
+        , label: "Address"
+        , placeholder: "Address"
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
     , {
         type: "text"
         , id: "tagValue"
@@ -43,6 +54,22 @@ let form1 = [
                 message: "You must surely select a value for $"
             }
         }
+    }
+    , {
+        type: "anchor"
+        , href: "http://www.microsoft.com"
+        , label: "Some label"
+
+    }
+    //subType can be button, icon, raised, fab, miniFab
+    , {
+        type: "mat-button"
+        , subType: "anchor"
+        , faClass: "fa fa-taxi fa-fw"
+        , color: "primary"
+        // , label: "My Taxi"
+        , actionId: "submit2"
+        , validateForm: true
     }
     // ,
     // {
@@ -176,7 +203,7 @@ let form1 = [
     //         ]
     //     }
     // }
-    
+
     , {
         type: "submit"
         , label: "submit"
@@ -191,15 +218,7 @@ let form1 = [
         , validateForm: true
     }
     //subType can be button, icon, raised, fab, miniFab
-    , {
-        type: "mat-button"
-        , subType:"button"
-        , faClass:"fa fa-taxi fa-fw"
-        , color:"primary"
-        , label: "My Taxi"
-        , actionId: "submit2"
-        , validateForm:true
-    }
+
     // , {
     //     type: "mat-button"
     //     , subType:"icon"
@@ -727,4 +746,26 @@ export { form1 };
     //             }
     //         ]
     //     }
+    // }
+
+    //documentation
+    //mat-button
+    //subType can be button, icon, raised, fab, mini-Fab
+    //color can be primary, danger, accent and warn
+    // , {
+    //     type: "mat-button"
+    //     , subType:"mini-fab"
+    //     , faClass:"fa fa-taxi fa-fw"
+    //     , color:"primary"
+    //     // , label: "My Taxi"
+    //     , actionId: "submit2"
+    //     , validateForm:true
+    // }
+
+    //anchor
+    // ,{
+    //     type:"anchor"
+    //     ,href:"http://www.microsoft.com"
+    //     ,label:"Some label"
+
     // }

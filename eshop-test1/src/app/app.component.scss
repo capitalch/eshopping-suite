@@ -68,6 +68,14 @@
     textarea {
         width: 100%;
     }
+
+    .textarea-test{
+        width: 100%;
+        label{
+            color:red;
+        }
+    }
+
     select {
         width: 49%;
     }

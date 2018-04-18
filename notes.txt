@@ -15,7 +15,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 ------------------------------------------------------------------------------------
 //form template
 
-1. Provide seamless class/ css structure      
+            1. Provide seamless class/ css structure      
             2. Buttons: clickable, reset, submit
             2.5. Checkboxgroup simplify and provide in group
             3. Custom Template of controls
@@ -36,18 +36,20 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             6. Required validation in radio buttons
             7. Check checkboxGroup in jx-form, jx-group, jx-array
             9. Define sql id / meta data in app.config.ts file
-10. Group for button and button groups
+10. Button groups
             11. mat input all types
             12. Mat radio
             13. mat select
             14. mat date
-15. icon button
+            15. icon button
             16. class in mat controls
             17. Move click events from service to the parent of form control through event emitter or broker service
 18. Custom component
 19. Form level validations
 20. Move common code of css class to service
-21. Like button implement anchor tag           
+21. Just like button implement anchor tag
+22. Form level validation
+23. Fab button
 
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation

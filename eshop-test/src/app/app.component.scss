@@ -3,23 +3,12 @@
 }
 
 ::ng-deep .form-style-1 {
+    
     margin: 0px auto;
     max-width: 600px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     border: 1px solid green;
-    .header
-    {
-        border: 1px solid black;
-        background: red;
-        color:white;
-        font-size: 1.2em;
-        padding-left: 2%;
-    }
-    .body
-    {
-        padding: 20px 12px 10px 20px;
-        background: #88D5E9;
-    }
+
     legend {
         font-weight: bold;
     }

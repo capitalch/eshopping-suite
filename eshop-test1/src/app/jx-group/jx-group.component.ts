@@ -19,6 +19,10 @@ export class JxGroupComponent implements OnInit {
       let allValidators = this.jxService.getValidators(e);
       childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators]
     });
+    let validator = ()=>{
+      return({pwd:false});
+    }
+    // let group = this.fb.group(childControls,{validator:validator});
     let group = this.fb.group(childControls);
     this.parent.setControl(this.layout.id, group);
   }

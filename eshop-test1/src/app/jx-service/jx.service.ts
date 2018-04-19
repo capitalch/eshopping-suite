@@ -56,7 +56,7 @@ export class JxService {
     },
     groupValidator1: () => {
       let func = (control) => {
-        return (null);
+        return ({groupValidator1:false});
       };
       return (func);
     }

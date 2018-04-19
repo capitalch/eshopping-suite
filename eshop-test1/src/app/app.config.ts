@@ -9,95 +9,75 @@ let form1 = [
         }
         , id: "jx-address"
     }
-    // ,
-    // {
-    //     type: "textarea"
-    //     , class: {parent:"textarea-test"} 
-    //     , id: "address1"
-    //     , label: "Address"
-    //     , placeholder: "Address"
-    //     , validation: {
-    //         required: { message: '$ is required' }
-    //     }
-    // }
-    // , {
-    //     type: "text"
-    //     , id: "tagValue"
-    //     , class: "tag-class"
-    //     , label: "Tag value"
-    //     , placeholder: "Tag value"
-    //     , value: ""
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
-    // , {
-    //     type: "mat-input"
-    //     , subType: "text"
-    //     , id: "mat1"
-    //     , label: "mat name"
-    //     , placeholder: "mat placeholder"
-    //     , value: ""
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
-    // ,
-    // {
-    //     type: "mat-datepicker",
-    //     id: "matDatePicker1",
-    //     placeholder: "select a date"
-    //     , label: "myDatePicker"
-    //     , locale: "en-GB"
-    //     , validation: {
-    //         required: {
-    //             message: "You must surely select a value for $"
-    //         }
-    //     }
-    // }
-    // , {
-    //     type: "anchor"
-    //     , href: "http://www.microsoft.com"
-    //     , label: "Some label"
-
-    // }
-    // //subType can be button, icon, raised, fab, mini-fab
-    // , {
-    //     type: "mat-button"
-    //     , subType: "anchor"
-    //     , faClass: "fa fa-taxi fa-fw"
-    //     , color: "primary"
-    //     // , label: "My Taxi"
-    //     , actionId: "submit2"
-    //     , validateForm: true
-    // }
     ,
     {
-        type: "group"
-        , label: "Passwords"
-        , id: "pwd"
-        , validation: {
-            groupValidator1: { message: "$ is not correct" }
-            , groupAsyncValidator1: {
-                message: "Async validation failed"
-                , arg: {
-                    url: "http://localhost:3002/group"
-                }
-                , async: true
+        type: "groupArray"
+        , label: "Tags"
+        , id: "tags"
+        , group: {
+            label: "Tag"
+            , id: "tag"
+            , validation: {
+                groupValidator1: { message: "$ is not correct" }
+                // , groupAsyncValidator1: {
+                //     message: "Async validation failed"
+                //     , arg: {
+                //         url: "http://localhost:3002/group"
+                //     }
+                //     , async: true
+                // }
             }
+            , controls: [
+                // {
+                //     type: "mat-checkbox"
+                //     , id: "agreed8"
+                //     , label: "Agreed"
+                //     , value: false
+                // }
+                // , 
+                {
+                    type: "textarea"
+                    , id: "firstName"
+                    , label: "First name"
+                    , placeholder: "First name"
+                    , value: ""
+                    , class: { label: "red-class", element: "textarea-class" }
+                    // , validation: {
+                    //     required: { message: '$ is required' },
+                    //     minlength: { value: 3, message: 'Minimum length for $ is 3' },
+                    //     maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+                    // }
+                }                
+            ]
         }
-        , controls: [
-            {
-                type: "checkbox"
-                , id: "agreed"
-                , label: "Agreed"
-                , value: true
-                , validation: {
-                    required: { message: '$ is required' }
-                }
-            }
-        ]
     }
+    // ,
+    // {
+    //     type: "group"
+    //     , label: "Passwords"
+    //     , id: "pwd"
+    //     , validation: {
+    //         groupValidator1: { message: "$ is not correct" }
+    //         , groupAsyncValidator1: {
+    //             message: "Async validation failed"
+    //             , arg: {
+    //                 url: "http://localhost:3002/group"
+    //             }
+    //             , async: true
+    //         }
+    //     }
+    //     , controls: [
+    //         {
+    //             type: "checkbox"
+    //             , id: "agreed"
+    //             , label: "Agreed"
+    //             , value: true
+    //             , validation: {
+    //                 required: { message: '$ is required' }
+    //             }
+    //         }
+    //     ]
+    // }
     , {
         type: "submit"
         , label: "submit"

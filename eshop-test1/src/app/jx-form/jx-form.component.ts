@@ -28,6 +28,10 @@ export class JxFormComponent implements OnInit {
       let allValidators = this.jxService.getValidators(x);
       formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
     });
+
+    // let allValidators = this.jxService.getValidators(this.layout);
+    // let group = this.fb.group(childControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});    
+
     this.myForm = this.fb.group(formControls);
     this.myForm["meta"] = meta;
   }

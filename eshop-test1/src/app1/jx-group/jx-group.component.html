@@ -1,9 +1,0 @@
-<fieldset [formGroup]="parent">
-  <legend>{{layout.label}}</legend>
-  <div [formGroupName]="layout.id">
-    <ng-container *ngFor="let jControl of layout.controls">
-      <jx-stub  [jControl]="jControl" [parent]="parent" [layout]="layout" [parentType]="group"></jx-stub>      
-    </ng-container>
-  </div>
-  <jx-error [layout]="layout" [parent]="parent"></jx-error>
-</fieldset>

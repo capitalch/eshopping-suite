@@ -54,6 +54,9 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             25. Documentation for json object
 26. Debounce effect
 
+DRM-160II canon scanner
+rxjs I was reading
+https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
 
 https://toddmotto.com/emulated-native-shadow-dom-angular-2-view-encapsulation
 ------------------------------------------------------------------------------------

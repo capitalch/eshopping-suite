@@ -76,9 +76,16 @@ let form1 = [
         type: "group"
         , label: "Passwords"
         , id: "pwd"
-        // , validation:{
-        //     groupValidation:{message:"$ is wrong"}
-        // }
+        , validation: {
+            groupValidator1: { message: "$ is not correct" }
+            , groupAsyncValidator1: {
+                message: "Async validation failed"
+                , arg: {
+                    url: "http://localhost:3002/group"
+                }
+                , async: true
+            }
+        }
         , controls: [
             {
                 type: "checkbox"
@@ -91,8 +98,6 @@ let form1 = [
             }
         ]
     }
-
-
     , {
         type: "submit"
         , label: "submit"
@@ -111,6 +116,34 @@ let form1 = [
 export { form1 };
 
     //documentation
+    //Group level sync and async validation
+    // ,
+    // {
+    //     type: "group"
+    //     , label: "Passwords"
+    //     , id: "pwd"
+    //     , validation: {
+    //         groupValidator1: { message: "$ is not correct" }
+    //         , groupAsyncValidator1: {
+    //             message: "Async validation failed"
+    //             , arg: {
+    //                 url: "http://localhost:3002/group"
+    //             }
+    //             , async: true
+    //         }
+    //     }
+    //     , controls: [
+    //         {
+    //             type: "checkbox"
+    //             , id: "agreed"
+    //             , label: "Agreed"
+    //             , value: true
+    //             , validation: {
+    //                 required: { message: '$ is required' }
+    //             }
+    //         }
+    //     ]
+    // }
     // {
     //     type: "meta"
     //     , client: {

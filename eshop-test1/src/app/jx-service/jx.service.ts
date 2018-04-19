@@ -53,6 +53,22 @@ export class JxService {
         return (obs);
       };
       return (func);
+    },
+    groupValidator1: () => {
+      let func = (control) => {
+        return (null);
+      };
+      return (func);
+    }
+
+    , groupAsyncValidator1: (arg) => {
+      let func = (group) => {
+        let obs = Observable.of(null);
+        // let body = "test";
+        // let obs = this.httpClient.post(arg.url, body);
+        return(obs);
+      }
+      return (func);
     }
 
   }

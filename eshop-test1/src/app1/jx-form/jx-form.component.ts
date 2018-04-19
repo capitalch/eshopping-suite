@@ -22,7 +22,6 @@ export class JxFormComponent implements OnInit {
     let formControls = {};
     //handle the meta element
     let metaIndex = _.findIndex(this.layouts, (x) => x.type == 'meta');
-    // const meta = this.layouts[metaIndex];
     this.meta = this.layouts[metaIndex];
     
     this.layouts.splice(metaIndex, 1);
@@ -30,11 +29,11 @@ export class JxFormComponent implements OnInit {
       let allValidators = this.jxService.getValidators(x);
       formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
     });
-    
-    let allValidators = this.jxService.getValidators(this.meta.client);
-    this.myForm = this.fb.group(formControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});
-    
-    // this.myForm = this.fb.group(formControls);
+
+    // let allValidators = this.jxService.getValidators(this.meta.client);
+    // let group = this.fb.group(childControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});    
+    // this.myForm = this.fb.group(formControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});
+    this.myForm = this.fb.group(formControls);
     this.myForm["meta"] = this.meta;
   }
 }

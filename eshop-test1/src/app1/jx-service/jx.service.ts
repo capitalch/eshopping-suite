@@ -6,7 +6,6 @@ import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
 import * as moment from "moment";
-// import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxService {
@@ -56,14 +55,14 @@ export class JxService {
     },
     groupValidator1: () => {
       let func = (control) => {
-        return (null);
+        return ({groupValidator1:false});
       };
       return (func);
     }
 
     , groupAsyncValidator1: (arg) => {
       let func = (group) => {
-        let obs = Observable.of({groupValidator1:false});
+        let obs = Observable.of(null);
         // let body = "test";
         // let obs = this.httpClient.post(arg.url, body);
         return(obs);

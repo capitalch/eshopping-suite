@@ -1,0 +1,79 @@
+<ng-container [formGroup]="parent">
+
+  <ng-container [ngSwitch]="jControl.type">
+
+    <ng-container *ngSwitchCase="'checkbox'">
+      <jx-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'textarea'">
+      <jx-textarea [layout]="jControl" [parent]="container" [idx] = "idx"></jx-textarea>      
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'radio'">
+      <jx-radio [layout]="jControl" [parent]="container" [idx] = "idx"></jx-radio>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'select'">
+      <jx-select [layout]="jControl" [parent]="container" [idx] = "idx"></jx-select>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'checkboxGroup'">
+      <jx-checkbox-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-checkbox-group>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'group'">
+      <jx-group [layout]="jControl" [parent]="container" [idx] = "idx"></jx-group>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'groupArray'">
+      <jx-array [layout]="jControl" [parent]="container" [idx] = "idx"></jx-array>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'submit'">
+      <button [ngClass]="jControl.class" (click)="submit()" type="submit">{{jControl.label}}</button>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'button'">
+      <button [ngClass]="jControl.class" (click)="buttonClicked()">{{jControl.label}}</button>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'anchor'">
+      <a [ngClass]="jControl.class"  [href]="jControl.href">{{jControl.label}}</a>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-checkbox'">
+      <jxmat-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jxmat-checkbox>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-input'">
+      <jxmat-input [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-input>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-radio'">
+      <jxmat-radio [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-radio>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-select'">
+      <jxmat-select [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-select>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-textarea'">
+      <jxmat-textarea [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-textarea>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'mat-datepicker'">
+      <jxmat-datepicker [layout]="jControl" [parent] ="container" [idx] = "idx"></jxmat-datepicker>
+    </ng-container>
+
+    <ng-container *ngSwitchCase = "'mat-button'">
+      <jxmat-button [layout] ="jControl" (click)="buttonClicked()" [parent] ="container" [idx] = "idx"></jxmat-button>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault >
+      <jx-default [layout]="jControl" [parent]="container" [idx] = "idx"></jx-default>
+    </ng-container>
+
+  </ng-container>
+
+</ng-container>

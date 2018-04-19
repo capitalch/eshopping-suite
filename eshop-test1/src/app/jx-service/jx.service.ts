@@ -6,7 +6,6 @@ import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
 import * as moment from "moment";
-// import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxService {

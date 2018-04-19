@@ -14,6 +14,7 @@ export class JxFormComponent implements OnInit {
   @Input() layouts: any[] = [];
   @Input() options: any = {};
   myForm: FormGroup;
+  meta:any;
   errorMessages: any[] = [];
   constructor(private fb: FormBuilder, private jxService: JxService) { }
 
@@ -21,7 +22,7 @@ export class JxFormComponent implements OnInit {
     let formControls = {};
     //handle the meta element
     let metaIndex = _.findIndex(this.layouts, (x) => x.type == 'meta');
-    const meta = this.layouts[metaIndex];
+    this.meta = this.layouts[metaIndex];
     
     this.layouts.splice(metaIndex, 1);
     this.layouts.forEach(x => {
@@ -29,10 +30,10 @@ export class JxFormComponent implements OnInit {
       formControls[x.id] = [x.value, allValidators.validators, allValidators.asyncValidators];
     });
 
-    // let allValidators = this.jxService.getValidators(this.layout);
+    // let allValidators = this.jxService.getValidators(this.meta.client);
     // let group = this.fb.group(childControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});    
-
+    // this.myForm = this.fb.group(formControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});
     this.myForm = this.fb.group(formControls);
-    this.myForm["meta"] = meta;
+    this.myForm["meta"] = this.meta;
   }
 }

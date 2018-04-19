@@ -1,0 +1,15 @@
+.animate
+{
+    border-bottom: 1px solid darkorange;
+    padding:5px;
+    animation: color-highlight .8s ease-out;
+    // animation-duration: 6s;
+}
+
+
+@keyframes color-highlight {
+    // from {background-color: rgb(80, 77, 77);}
+    // to {background-color: white;}
+    0% { opacity: 0; transform: translateY(-40%); }   
+    100% { opacity: 1; transform: translateY(0); }
+}

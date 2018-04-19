@@ -8,7 +8,7 @@
   </legend>
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
-      <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
+      <div class="animate" [formGroupName]="j">
         <button mat-icon-button (click)="removeFromArray(j)" style="float:right;">
           <mat-icon>
               <i class="fa fa-times-circle"></i>

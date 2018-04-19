@@ -37,6 +37,6 @@ export class JxArrayComponent implements OnInit {
     });
     let group = this.fb.group(childControls);
     let groupArray = <FormArray>this.parent.get(layout.id);
-    groupArray.push(group);
+    groupArray.insert(0,group);
   }
 }

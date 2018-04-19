@@ -14,6 +14,20 @@ export class JxService {
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
   }
 
+  getClasses(layout: any, parent: any) {
+    let classes: any = {};
+    if (layout.class) {
+      if (typeof (layout.class) == "object") {
+        classes.elementClass = layout.class.element || '';
+        classes.labelClass = layout.class.label || '';
+        classes.parentClass = layout.class.parent || ''
+      } else {
+        classes.elementClass = layout.class;
+      }
+    }
+    return (classes);
+  }
+
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
@@ -39,21 +53,25 @@ export class JxService {
         return (obs);
       };
       return (func);
+    },
+    groupValidator1: () => {
+      let func = (control) => {
+        return (null);
+      };
+      return (func);
+    }
+
+    , groupAsyncValidator1: (arg) => {
+      let func = (group) => {
+        let obs = Observable.of(null);
+        // let body = "test";
+        // let obs = this.httpClient.post(arg.url, body);
+        return(obs);
+      }
+      return (func);
     }
 
   }
-
-  // actions = {
-  //   submit: (formValue) => {
-  //     console.log(formValue);      
-  //     this.httpClient.post("http://localhost:3002/form",formValue).subscribe(d=>{
-  //       console.log("ok");
-  //     })
-  //   }
-  //   , reset: (form) => {
-  //     console.log("Form is done reset");
-  //   }
-  // }
 
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);
@@ -67,10 +85,6 @@ export class JxService {
     });
     return (valid ? null : { required: true });
   }
-
-  // executeAction(actionName: string, arg: {}) {
-  //   this.actions[actionName].call(this, arg);
-  // }
 
   getGroupValidators(group) {
 
@@ -120,7 +134,7 @@ export class JxService {
     , countries2: Observable.of(countries)
     , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
   }
-  
+
   getOption(optionName) {
     let opts = this.options[optionName];
     (typeof (opts) == 'function') && (opts = opts());

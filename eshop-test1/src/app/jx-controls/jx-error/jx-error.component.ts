@@ -7,20 +7,24 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./jx-error.component.scss']
 })
 export class JxErrorComponent implements OnInit {
-  @Input() layout: any={};
-  @Input() parent:any;
-  control:any;
+  @Input() layout: any = {};
+  @Input() parent: any;
+  @Input() parentType: string;
+  control: any;
   constructor() { }
 
   ngOnInit() {
-    this.control = this.parent.get(this.layout.id);
+    // this.parentType = this.parentType || ""
+    // this.parentType ||
+      (this.control = this.parent.get(this.layout.id));
+
   }
-  getMessages(){
-    let messages=[];
-    Object.keys(this.control.errors).forEach(x=>{
+  getMessages() {
+    let messages = [];
+    Object.keys(this.control.errors).forEach(x => {
       messages.push(this.layout.validation[x] && this.layout.validation[x].message.replace('$', this.layout.label))
     });
-    return(messages);
+    return (messages);
   }
 
 }

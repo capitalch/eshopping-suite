@@ -34,7 +34,10 @@ export class AppComponent {
     let sub1 = this.brokerService.filterOn("submit").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
-    this.subs.add(sub1);
+    let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
+      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+    )
+    this.subs.add(sub1).add(sub2);
   }
 
   ngOnDestroy() {

@@ -38,6 +38,10 @@
       <button [ngClass]="jControl.class" (click)="buttonClicked()">{{jControl.label}}</button>
     </ng-container>
 
+    <ng-container *ngSwitchCase="'anchor'">
+      <a [ngClass]="jControl.class"  [href]="jControl.href">{{jControl.label}}</a>
+    </ng-container>
+
     <ng-container *ngSwitchCase="'mat-checkbox'">
       <jxmat-checkbox [layout]="jControl" [parent]="container" [idx] = "idx"></jxmat-checkbox>
     </ng-container>
@@ -63,7 +67,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase = "'mat-button'">
-      <jxmat-button [layout] ="jControl" [parent] ="container" [idx] = "idx"></jxmat-button>
+      <jxmat-button [layout] ="jControl" (click)="buttonClicked()" [parent] ="container" [idx] = "idx"></jxmat-button>
     </ng-container>
 
     <ng-container *ngSwitchDefault >

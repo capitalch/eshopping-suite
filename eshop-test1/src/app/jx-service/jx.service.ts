@@ -60,7 +60,6 @@ export class JxService {
       };
       return (func);
     }
-
     , groupAsyncValidator1: (arg) => {
       let func = (group) => {
         let obs = Observable.of({groupValidator1:false});

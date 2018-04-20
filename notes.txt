@@ -20,14 +20,10 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             2.5. Checkboxgroup simplify and provide in group
             3. Custom Template of controls
             4. Adding controls on the fly in an array on click of plus or minus buttons
-
             5. Grouping with fieldset and legend
             6. textarea
             7. async validation
-2. file upload
             9. Provide json and functions as parameters
-
-3. Show Required symbol
             13. Provide group / formgroup
             14. Checkboxgroup bug fix groupArray
             15. Checkboxgroup in group and groupArray implement and check
@@ -36,7 +32,6 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             6. Required validation in radio buttons
             7. Check checkboxGroup in jx-form, jx-group, jx-array
             9. Define sql id / meta data in app.config.ts file
-10. Button groups
             11. mat input all types
             12. Mat radio
             13. mat select
@@ -44,15 +39,19 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             15. icon button
             16. class in mat controls
             17. Move click events from service to the parent of form control through event emitter or broker service
-18. Custom component
-19. Form level validations and group validation
-        20. Move common code of css class to service
-21. Just like button implement anchor tag
-22. Form level validation
+            19. Form level validations and group validation
+            20. Move common code of css class to service
             23. Fab button
-24. Check service in library being installed separately
             25. Documentation for json object
-26. Debounce effect
+
+1. file upload
+2. Show Required symbol
+3. Button groups
+4. Custom component
+5. Just like button implement anchor tag
+6. Check service in library being installed separately
+7. Debounce effect for async validation
+8. Array Add remove buttons customization
 
 DRM-160II canon scanner
 rxjs I was reading

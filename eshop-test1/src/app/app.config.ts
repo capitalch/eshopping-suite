@@ -44,13 +44,13 @@ let form1 = [
             , id: "tag"
             , validation: {
                 groupValidator1: { message: "$ is not correct" }
-                // , groupAsyncValidator1: {
-                //     message: "Async validation failed"
-                //     , arg: {
-                //         url: "http://localhost:3002/group"
-                //     }
-                //     , async: true
-                // }
+                , groupAsyncValidator1: {
+                    message: "Async validation failed"
+                    , arg: {
+                        url: "http://localhost:3002/group"
+                    }
+                    , async: true
+                }
             }
             , controls: [
                 // {

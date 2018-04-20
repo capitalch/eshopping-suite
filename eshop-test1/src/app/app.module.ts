@@ -32,6 +32,7 @@ import { MAT_DATE_LOCALE } from '@angular/material'
 import { BrokerService } from './broker.service';
 // import { JxChildrenComponent } from './jx-children/jx-children.component';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
+import { LearnComponent } from './learn/learn.component';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxMatDatePickerComponent
     , JxMatButtonComponent
     // , JxChildrenComponent
-    , JxStubComponent
+    , JxStubComponent, LearnComponent
   ],
   imports: [
     BrowserModule

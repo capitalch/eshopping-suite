@@ -56,13 +56,15 @@ export class JxService {
     },
     groupValidator1: () => {
       let func = (control) => {
-        return (null);
+        let ret;
+        control.value.firstName ? ret=null : ret={groupValidator1:false};
+        return (ret);
       };
       return (func);
     }
     , groupAsyncValidator1: (arg) => {
       let func = (group) => {
-        let obs = Observable.of({groupValidator1:false});
+        let obs = Observable.of({groupAsyncValidator1:false});
         // let body = "test";
         // let obs = this.httpClient.post(arg.url, body);
         return(obs);

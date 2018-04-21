@@ -1,6 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { throttle, debounce } from 'rxjs/operators';
+import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
@@ -64,9 +66,10 @@ export class JxService {
     }
     , groupAsyncValidator1: (arg) => {
       let func = (group) => {
-        let obs = Observable.of({groupAsyncValidator1:false});
-        // let body = "test";
-        // let obs = this.httpClient.post(arg.url, body);
+        // let obs = Observable.of({groupAsyncValidator1:false});
+        let body = "test";
+        let obs = this.httpClient.post(arg.url, body);
+        // let obs1 = obs.pipe(debounce(()=>interval(3000)));
         return(obs);
       }
       return (func);

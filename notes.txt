@@ -49,9 +49,8 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 3. Button groups
 4. Custom component
 5. Just like button implement anchor tag
-6. Check service in library being installed separately
-7. Debounce effect for async validation
-8. Array Add remove buttons customization
+            6. Debounce effect for async validation
+7. Array Add remove buttons customization
 
 //for angular Async validation
 https://github.com/angular/angular/issues/13200

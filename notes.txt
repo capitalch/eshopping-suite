@@ -53,6 +53,9 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 7. Debounce effect for async validation
 8. Array Add remove buttons customization
 
+//for angular Async validation
+https://github.com/angular/angular/issues/13200
+
 DRM-160II canon scanner
 rxjs I was reading
 https://gist.github.com/staltz/868e7e9bc2a7b8c1f754

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { fromEvent } from 'rxjs/Observable/fromEvent';
 import { throttle, debounce } from 'rxjs/operators';
+import "rxjs/add/operator/concatMap";
+import { from } from 'rxjs/observable/from'
+import 'rxjs/add/operator/delay'
 // import {throttle} from 'rxjs/add';
 // import 'rxjs/add/operator/throttle';
 import { timer } from "rxjs/observable/timer";
+
 import { interval } from 'rxjs/observable/interval';
 @Component({
   selector: 'app-learn',
@@ -18,6 +22,17 @@ export class LearnComponent implements OnInit {
   ngOnInit() {
     // this.doThrottle();
     // this.doDebounce();
+    // this.arrayEject();
+  }
+
+  arrayEject() {
+    // let obs = from([0, 100, 200, 300, 400, 500, 600]).delay(10000);
+    // obs.subscribe(d => console.log(d));
+
+    let obs = from([1, 2, 3, 4, 5])
+      .concatMap(x => Observable.of(x).delay(5000));
+    obs.subscribe(x => console.log(x));
+    // let obs1 = interval(1000).pipe(obs)
   }
 
   doThrottle() {

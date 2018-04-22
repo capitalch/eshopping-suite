@@ -33,6 +33,7 @@ let form1 = [
                 message: "Async validation failed"
                 , arg: {
                     url: "http://localhost:3002/group"
+                    , delay: 5000
                 }
                 , async: true
             }

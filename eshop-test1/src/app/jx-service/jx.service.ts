@@ -2,13 +2,14 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { throttle, debounce } from 'rxjs/operators';
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/switchMap";
 import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
 import * as moment from "moment";
-// import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxService {
@@ -29,15 +30,15 @@ export class JxService {
     }
     return (classes);
   }
-
+  counter: number = 0;
   customValidators = {
     myValidate: (s) => {
       let func = (control) => {
         return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
       };
       return (func);
-    },
-    email2: () => {
+    }
+    , email2: () => {
       let func = (control) => {
         let val = control.value;
         if (val.indexOf('@') == -1) {
@@ -47,34 +48,36 @@ export class JxService {
         }
       };
       return (func);
-    },
-    email1: (arg) => {
+    }
+    , email1: (arg) => {
       let func = (control) => {
         let body = { value: control.value };
         let obs = this.httpClient.post(arg.url, body);
         return (obs);
       };
       return (func);
-    },
-    groupValidator1: () => {
+    }
+    , groupValidator1: () => {
       let func = (control) => {
         let ret;
-        control.value.firstName ? ret=null : ret={groupValidator1:false};
+        control.value.firstName ? ret = null : ret = { groupValidator1: false };
         return (ret);
       };
       return (func);
     }
     , groupAsyncValidator1: (arg) => {
       let func = (group) => {
-        // let obs = Observable.of({groupAsyncValidator1:false});
-        let body = "test";
-        let obs = this.httpClient.post(arg.url, body);
-        // let obs1 = obs.pipe(debounce(()=>interval(3000)));
-        return(obs);
+        let obs = Observable.of(null);        
+        if (group.valueChanges) {
+          let body = { value: group.value };
+          obs = group.valueChanges
+            .debounceTime(arg.delay || 3000)
+            .switchMap(val => this.httpClient.post(arg.url, body));
+        }        
+        return (obs);
       }
       return (func);
     }
-
   }
 
   executeCustomValidation(name: string, arg: {}) {

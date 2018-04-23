@@ -4,6 +4,7 @@ import 'rxjs/add/observable/of';
 import { throttle, debounce } from 'rxjs/operators';
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/first";
 import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
@@ -13,7 +14,7 @@ import * as moment from "moment";
 
 @Injectable()
 export class JxService {
-
+  customValidators:any={};
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
   }
 
@@ -30,55 +31,60 @@ export class JxService {
     }
     return (classes);
   }
-  counter: number = 0;
-  customValidators = {
-    myValidate: (s) => {
-      let func = (control) => {
-        return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
-      };
-      return (func);
-    }
-    , email2: () => {
-      let func = (control) => {
-        let val = control.value;
-        if (val.indexOf('@') == -1) {
-          return ({ email2: true });
-        } else {
-          return (null);
-        }
-      };
-      return (func);
-    }
-    , email1: (arg) => {
-      let func = (control) => {
-        let body = { value: control.value };
-        let obs = this.httpClient.post(arg.url, body);
-        return (obs);
-      };
-      return (func);
-    }
-    , groupValidator1: () => {
-      let func = (control) => {
-        let ret;
-        control.value.firstName ? ret = null : ret = { groupValidator1: false };
-        return (ret);
-      };
-      return (func);
-    }
-    , groupAsyncValidator1: (arg) => {
-      let func = (group) => {
-        let obs = Observable.of(null);        
-        if (group.valueChanges) {
-          let body = { value: group.value };
-          obs = group.valueChanges
-            .debounceTime(arg.delay || 3000)
-            .switchMap(val => this.httpClient.post(arg.url, body));
-        }        
-        return (obs);
-      }
-      return (func);
-    }
+
+  initCustomValidators(obj) {
+    this.customValidators = obj;
   }
+
+  // customValidators = {
+  //   myValidate: (s) => {
+  //     let func = (control) => {
+  //       return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
+  //     };
+  //     return (func);
+  //   }
+  //   , email2: () => {
+  //     let func = (control) => {
+  //       let val = control.value;
+  //       if (val.indexOf('@') == -1) {
+  //         return ({ email2: true });
+  //       } else {
+  //         return (null);
+  //       }
+  //     };
+  //     return (func);
+  //   }
+  //   , email1: (arg) => {
+  //     let func = (control) => {
+  //       let body = { value: control.value };
+  //       let obs = this.httpClient.post(arg.url, body);
+  //       return (obs);
+  //     };
+  //     return (func);
+  //   }
+  //   , groupValidator1: () => {
+  //     let func = (control) => {
+  //       let ret;
+  //       control.value.firstName ? ret = null : ret = { groupValidator1: false };
+  //       return (ret);
+  //     };
+  //     return (func);
+  //   }
+  //   , groupAsyncValidator1: (arg) => {
+  //     let func = (group) => {
+  //       let obs = Observable.of(null);
+  //       if (group.valueChanges) {
+  //         let body = { value: group.value };
+  //         obs = group.valueChanges
+  //           .debounceTime(arg.delay || 3000)
+  //           .switchMap(() => this.httpClient.post(arg.url, body))
+  //           .first();
+  //       }
+  //       return (obs);
+  //     }
+  //     return (func);
+  //   }
+  // }
 
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);

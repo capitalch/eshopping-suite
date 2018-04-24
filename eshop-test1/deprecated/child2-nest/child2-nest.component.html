@@ -1,6 +1,0 @@
-<ng-container [formGroup]="parentControl">
-  <ng-container [formGroupName]="'group2'">
-    <input type="text" [formControlName]="'child2'">
-    <child3-nest [parentControl] = "parentControl.get('group2')"></child3-nest>
-  </ng-container>
-</ng-container>

@@ -34,6 +34,7 @@ import { BrokerService } from './broker.service';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
 import { LearnComponent } from './learn/learn.component';
 import { JxMainService } from './jx-main.service';
+import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { JxMainService } from './jx-main.service';
     , HttpClientModule
     , AngularMaterialModule
     , BrowserAnimationsModule
+    , DynamicFormModule
   ],
   providers: [
     , JxMainService

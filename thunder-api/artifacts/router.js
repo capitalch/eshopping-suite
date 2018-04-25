@@ -41,7 +41,31 @@ router.post('/countries', (req, res, next) => {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);
     }
-})
+});
+
+router.post('/states', (req, res, next) => {
+    try {
+        res.json([{
+            name: "---select states---",
+            value: ""
+        }, {
+            name: "Assam",
+            value: "as"
+        }, {
+            name: "Karnataka",
+            value: "ka"
+        }, {
+            name: "Gujrat",
+            value: "gu"
+        }, {
+            name: "West Bengal",
+            value: "wb"
+        }]);
+    } catch (error) {
+        let err = new def.NError(500, messages.errInternalServerError, error.message);
+        next(err);
+    }
+});
 
 router.post('/form', (req, res, next) => {
     try {

@@ -8,34 +8,34 @@ import { form1 } from './app.config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Form Creator';
-  myLayout: any = {};
-  options: any = {};
-  content: string;
+  // title = 'Form Creator';
+  // myLayout: any = {};
+  // options: any = {};
+  // content: string;
 
   constructor(){}
 
   ngOnInit() {
-    this.options = {
-      wrapperClass: "form-style-1"
-    };
+    // this.options = {
+    //   wrapperClass: "form-style-1"
+    // };
     
-    this.myLayout = form1;
-    this.content = "This is code"
+    // this.myLayout = form1;
+    // this.content = "This is code"
   }
 
-  myValidate(s) {
-    let func = (control: FormControl) => {
-      return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-    };
-    return (func);
-  }
+  // myValidate(s) {
+  //   let func = (control: FormControl) => {
+  //     return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
+  //   };
+  //   return (func);
+  // }
 
-  selectRequiredValidator(def) {
-    let func = (control: FormControl) => {
-      return ((control.value == def) ? { selectRequired: true } : null);
-    }
-    return (func);
-  }
+  // selectRequiredValidator(def) {
+  //   let func = (control: FormControl) => {
+  //     return ((control.value == def) ? { selectRequired: true } : null);
+  //   }
+  //   return (func);
+  // }
 
 }

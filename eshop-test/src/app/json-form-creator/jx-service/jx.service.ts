@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
-import { countries } from './options-bank';
+import { countries, states } from './options-bank';
 import { BrokerService } from '../broker.service';
 // import { BrokerService } from './broker.service';
 
@@ -121,6 +121,8 @@ export class JxService {
     , countries1: () => countries
     , countries2: Observable.of(countries)
     , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
+    , states: this.brokerService.httpPost$("http://localhost:3002/states")
+    //,states: states
   }
   
   getOption(optionName) {

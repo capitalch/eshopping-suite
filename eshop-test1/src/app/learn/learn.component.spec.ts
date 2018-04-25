@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupxChildComponent } from './groupx-child.component';
+import { LearnComponent } from './learn.component';
 
-describe('GroupxChildComponent', () => {
-  let component: GroupxChildComponent;
-  let fixture: ComponentFixture<GroupxChildComponent>;
+describe('LearnComponent', () => {
+  let component: LearnComponent;
+  let fixture: ComponentFixture<LearnComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GroupxChildComponent ]
+      declarations: [ LearnComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GroupxChildComponent);
+    fixture = TestBed.createComponent(LearnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

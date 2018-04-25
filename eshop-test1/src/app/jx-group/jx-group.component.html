@@ -3,7 +3,7 @@
   <div [formGroupName]="layout.id">
     <ng-container *ngFor="let jControl of layout.controls">
       <jx-stub  [jControl]="jControl" [parent]="parent" [layout]="layout" [parentType]="'group'"></jx-stub>      
-      <jx-error [layout]="layout" [parent]="parent" [parentType] = "group"></jx-error>
     </ng-container>
   </div>
+  <jx-error [layout]="layout" [parent]="parent" [parentType] = "group"></jx-error>
 </fieldset>

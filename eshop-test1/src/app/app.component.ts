@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import { form1 } from './app.config';
 import { JxService } from './jx-service/jx.service';
 import { BrokerService } from './broker.service';
+import { JxMainService } from './jx-main.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +18,7 @@ export class AppComponent {
   options: any = {};
   content: string;
   subs: any;
-  constructor(private JxFormService: JxService, private brokerService: BrokerService) {
+  constructor(private jxMainService:JxMainService, private JxFormService: JxService, private brokerService: BrokerService, private httpClient: HttpClient) {
 
   }
 
@@ -24,20 +28,6 @@ export class AppComponent {
     };
     this.myLayout = form1;
     this.content = "This is code";
-    this.handleChildEvents();
-  }
-
-  handleChildEvents() {
-    this.subs = this.brokerService.filterOn("submit1").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    );
-    let sub1 = this.brokerService.filterOn("submit").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
-    let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
-    this.subs.add(sub1).add(sub2);
   }
 
   ngOnDestroy() {

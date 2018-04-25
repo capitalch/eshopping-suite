@@ -1,17 +1,22 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { throttle, debounce } from 'rxjs/operators';
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/first";
+import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
 import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
 import * as moment from "moment";
-// import { BrokerService } from './broker.service';
 
 @Injectable()
 export class JxService {
-
+  customValidators:any={};
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
+    console.log("jx.service");
   }
 
   getClasses(layout: any, parent: any) {
@@ -28,50 +33,10 @@ export class JxService {
     return (classes);
   }
 
-  customValidators = {
-    myValidate: (s) => {
-      let func = (control) => {
-        return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
-      };
-      return (func);
-    },
-    email2: () => {
-      let func = (control) => {
-        let val = control.value;
-        if (val.indexOf('@') == -1) {
-          return ({ email2: true });
-        } else {
-          return (null);
-        }
-      };
-      return (func);
-    },
-    email1: (arg) => {
-      let func = (control) => {
-        let body = { value: control.value };
-        let obs = this.httpClient.post(arg.url, body);
-        return (obs);
-      };
-      return (func);
-    },
-    groupValidator1: () => {
-      let func = (control) => {
-        return (null);
-      };
-      return (func);
-    }
-
-    , groupAsyncValidator1: (arg) => {
-      let func = (group) => {
-        let obs = Observable.of(null);
-        // let body = "test";
-        // let obs = this.httpClient.post(arg.url, body);
-        return(obs);
-      }
-      return (func);
-    }
-
+  initCustomValidators(obj) {
+    this.customValidators = obj;
   }
+
 
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);
@@ -86,9 +51,9 @@ export class JxService {
     return (valid ? null : { required: true });
   }
 
-  getGroupValidators(group) {
+  // getGroupValidators(group) {
 
-  }
+  // }
 
   getValidators(layout) {
     let allValidators = {

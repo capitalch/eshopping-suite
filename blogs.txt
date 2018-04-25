@@ -1,0 +1,6 @@
+1. ebuki service
+2. Validations
+    component level
+    group level
+    form level
+    array level: When adding a new group in array the group level validation is active

@@ -91,7 +91,8 @@ router.post('/email', (req, res, next) => {
 router.post('/group', (req, res, next) => {
     try {
         // res.json({email1:true});
-        res.json({groupAsyncValidator1:true});
+        // res.json({groupAsyncValidator1:false});
+        res.json(null);
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);

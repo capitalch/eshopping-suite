@@ -32,6 +32,8 @@ import { MAT_DATE_LOCALE } from '@angular/material'
 import { BrokerService } from './broker.service';
 // import { JxChildrenComponent } from './jx-children/jx-children.component';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
+import { LearnComponent } from './learn/learn.component';
+import { JxMainService } from './jx-main.service';
 
 
 @NgModule({
@@ -55,7 +57,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , JxMatDatePickerComponent
     , JxMatButtonComponent
     // , JxChildrenComponent
-    , JxStubComponent
+    , JxStubComponent, LearnComponent
   ],
   imports: [
     BrowserModule
@@ -66,8 +68,10 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
     , BrowserAnimationsModule
   ],
   providers: [
-    JxService
+    , JxMainService
     , BrokerService
+
+    , JxService
     // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]

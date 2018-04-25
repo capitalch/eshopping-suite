@@ -10,14 +10,26 @@ export class JxErrorComponent implements OnInit {
   @Input() layout: any = {};
   @Input() parent: any;
   @Input() parentType: string;
+  @Input() controlType:string;
+  @Input() idx;
   control: any;
   constructor() { }
 
   ngOnInit() {
-    // this.parentType = this.parentType || ""
-    // this.parentType ||
-      (this.control = this.parent.get(this.layout.id));
 
+    // this.control = this.parent.get(this.layout.id);
+    if (this.controlType=="form") {
+      this.control = this.parent;
+    } else {
+      (this.idx || (this.idx == 0))
+        ? (
+          this.control = this.parent.get(this.layout.id).controls[this.idx]
+          , this.layout = this.layout.group
+        )
+        : (
+          this.control = this.parent.get(this.layout.id)
+        );
+    }
   }
   getMessages() {
     let messages = [];

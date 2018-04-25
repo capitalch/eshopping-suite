@@ -54,6 +54,7 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 5. Just like button implement anchor tag
             6. Debounce effect for async validation
 7. Array Add remove buttons customization
+8. Typeahead
 
 //for angular Async validation
 https://github.com/angular/angular/issues/13200

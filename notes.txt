@@ -55,7 +55,14 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             6. Debounce effect for async validation
 7. Array Add remove buttons customization
 8. Typeahead
+9. Dynamic component
+    Organize
+    Buttons
+    Custom object
+    Ts file checkup
+    Modulerize
 
+    
 //for angular Async validation
 https://github.com/angular/angular/issues/13200
 

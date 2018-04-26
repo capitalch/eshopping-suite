@@ -16,7 +16,8 @@ import {
   , JxCheckboxComponent
   , JxRadioComponent
   , JxSelectComponent
-  , JxDefaultComponent
+  , JxDefaultComponent,
+  JxDynamicComponent
 } from './jx-controls/core.components';
 // import {MatRadioModule} from '@angular/material/radio';
 import {
@@ -58,7 +59,9 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
     , JxMatDatePickerComponent
     , JxMatButtonComponent
     // , JxChildrenComponent
-    , JxStubComponent, LearnComponent
+    , JxStubComponent
+    , LearnComponent
+    , JxDynamicComponent
   ],
   imports: [
     BrowserModule
@@ -75,6 +78,13 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 
     , JxService
     // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ]
+  , entryComponents: [
+    JxCheckboxComponent
+    , JxTextareaComponent
+    , JxRadioComponent
+    , JxSelectComponent
+    , JxCheckboxGroupComponent
   ],
   bootstrap: [AppComponent]
 })

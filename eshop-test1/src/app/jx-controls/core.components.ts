@@ -1,7 +1,43 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
+import { JxCheckboxGroupComponent } from './jx-checkbox-group/jx-checkbox-group.component';
+
+@Component({
+  selector: 'jx-dynamic'
+  , template: `
+    <div [ngClass] = "classes.parentClass">
+     
+    </div>`
+})
+export class JxDynamicComponent {
+  @Input() layout: any;
+  @Input() idx: string;
+  @Input() parent: FormGroup;
+  component;
+  components: any = {
+    checkbox: JxCheckboxComponent
+    , textarea: JxTextareaComponent
+    , radio: JxRadioComponent
+    , select: JxSelectComponent
+    , checkboxGroup:JxCheckboxGroupComponent
+  }
+  classes: any = {}
+  constructor(private jxService: JxService
+    , private resolver: ComponentFactoryResolver
+    , private container: ViewContainerRef
+  ) { }
+  ngOnInit() {
+    this.classes = this.jxService.getClasses(this.layout, this.parent);
+    const component = this.components[this.layout.type];// JxCheckboxComponent;
+    const factory = this.resolver.resolveComponentFactory<any>(component);
+    this.component = this.container.createComponent(factory);
+    this.component.instance.layout = this.layout;
+    this.component.instance.idx = this.idx;
+    this.component.instance.parent = this.parent;
+  }
+}
 
 @Component({
   selector: 'jx-checkbox',

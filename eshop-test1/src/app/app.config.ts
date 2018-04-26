@@ -37,11 +37,61 @@ let form1 = [
                 }
                 , async: true
             }
+            // , required:{message: '$ is required' }
             // required: { message: '$ is required' }
             // , minlength: { value: 3, message: 'Minimum length for $ is 3' }
             // , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
         }
     }
+    , {
+        type: "checkbox"
+        , id: "agreed"
+        , label: "Agreed"
+        , value: true
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    ,
+    {
+        type: "radio"
+        , label: "Gender"
+        , value: "M"
+        , id: "gender123"
+        , options: [
+            { label: "Male", value: "M", id: "male1" }
+            , { label: "Female", value: "F", id: "female1" }
+        ]
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    , {
+        type: "select"
+        , label: "Country"
+        , value: ""
+        , id: "country"
+        , options: "countries3"
+        , validation: {
+            required: {
+                message: 'You must select a value for $'
+            }
+        }
+    }
+    , {
+        type: "checkboxGroup"
+        , label: "Food2"
+        , id: "food2"
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: [
+            { label: "Main course", value: false, id: "main2" }
+            , { label: "Desert", value: true, id: "desert2" }
+            , { label: "beverages", value: false, id: "beverages2" }
+        ]
+    }
+
     // ,
     // {
     //     type: "groupArray"

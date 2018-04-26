@@ -64,7 +64,7 @@ export class JxMainService {
       , groupAsyncValidator1: (arg) => {
         let func = (group) => {
           let obs = Observable.of(null);
-          if (group.valueChanges) {
+          if (group.valueChanges && group.value) {
             let body = { value: group.value };
             obs = group.valueChanges
               .debounceTime(arg.delay || 3000)

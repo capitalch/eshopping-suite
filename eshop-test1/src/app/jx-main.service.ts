@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BrokerService } from './broker.service';
 import { HttpClient } from '@angular/common/http';
-import { JxService } from './jx-service/jx.service';
+// import { JxService } from './jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
+import { JxService } from './jx-dynamic-form/jx-service/jx.service';
 
 @Injectable()
 export class JxMainService {

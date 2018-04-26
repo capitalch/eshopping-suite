@@ -1,8 +1,12 @@
 import { Component, OnInit, Input, ChangeDetectorRef, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
 import { JxCheckboxGroupComponent } from './jx-checkbox-group/jx-checkbox-group.component';
+import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent } from './mat.components';
+import { JxGroupComponent } from '../jx-group/jx-group.component';
+import { JxArrayComponent } from '../jx-array/jx-array.component';
+import { BrokerService } from '../../broker.service';
 
 @Component({
   selector: 'jx-dynamic'
@@ -21,13 +25,24 @@ export class JxDynamicComponent {
     , textarea: JxTextareaComponent
     , radio: JxRadioComponent
     , select: JxSelectComponent
-    , checkboxGroup:JxCheckboxGroupComponent
+    , checkboxGroup: JxCheckboxGroupComponent
+    , "mat-checkbox": JxMatCheckboxComponent
+    , "mat-input": JxMatInputComponent
+    , "mat-radio": JxMatRadioComponent
+    , "mat-select": JxMatSelectComponent
+    , "mat-textarea": JxMatTextAreaComponent
+    , "mat-datepicker": JxMatDatePickerComponent
+    , group: JxGroupComponent
+    , groupArray: JxArrayComponent
+    , button: JxButtonComponent
+    , submit: JxSubmitComponent
   }
   classes: any = {}
   constructor(private jxService: JxService
     , private resolver: ComponentFactoryResolver
     , private container: ViewContainerRef
   ) { }
+  
   ngOnInit() {
     this.classes = this.jxService.getClasses(this.layout, this.parent);
     const component = this.components[this.layout.type];// JxCheckboxComponent;
@@ -36,6 +51,64 @@ export class JxDynamicComponent {
     this.component.instance.layout = this.layout;
     this.component.instance.idx = this.idx;
     this.component.instance.parent = this.parent;
+  }
+}
+
+@Component({
+  selector: 'jx-button',
+  template: `
+    <div [formGroup]="parent" [ngClass] = "classes.parentClass">
+        <button (click) = "buttonClicked()" [ngClass] = "classes.elementClass" type="button" [id]="layout.id+idx||''"> {{layout.label}}</button>
+    </div>`
+})
+export class JxButtonComponent {
+  @Input() layout: any;
+  @Input() idx: string;
+  @Input() parent: FormGroup;
+  classes: any = {}
+  constructor(private brokerService: BrokerService, private jxService: JxService) { }
+  ngOnInit() {
+    this.classes = this.jxService.getClasses(this.layout, this.parent);
+  }
+
+  buttonClicked() {
+    this.jxService.processForm(this.parent);
+    if (this.layout.validateForm) {
+      this.jxService.validateAllFormFields(this.parent);
+      if (this.parent.valid && (!this.parent.pending)) {
+        this.brokerService.emit(this.layout.actionId, this.parent);
+      } else {
+        console.log("Invalid form");
+      }
+    } else {
+      this.brokerService.emit(this.layout.actionId, this.parent);
+    }
+  }
+}
+
+@Component({
+  selector: 'jx-submit',
+  template: `
+    <div [formGroup]="parent" [ngClass] = "classes.parentClass">
+        <button (click) = "submit()" [ngClass] = "classes.elementClass" type="submit" [id]="layout.id+idx||''"> {{layout.label}}</button>
+    </div>`
+})
+export class JxSubmitComponent {
+  @Input() layout: any;
+  @Input() idx: string;
+  @Input() parent: FormGroup;
+  classes: any = {}
+  constructor(private jxService: JxService, private brokerService: BrokerService) { }
+  ngOnInit() {
+    this.classes = this.jxService.getClasses(this.layout, this.parent);
+  }
+
+  submit() {
+    this.jxService.processForm(this.parent);
+    this.jxService.validateAllFormFields(this.parent);
+    this.parent.valid
+      ? this.brokerService.emit(this.layout.actionId, this.parent)
+      : console.log("Invalid form");
   }
 }
 
@@ -54,19 +127,9 @@ export class JxCheckboxComponent {
   @Input() idx: string;
   @Input() parent: FormGroup;
   classes: any = {}
-  // elementClass: string = "";
-  // parentClass: string = "";
-  // labelClass: string = "";
   constructor(private jxService: JxService) { }
   ngOnInit() {
     this.classes = this.jxService.getClasses(this.layout, this.parent);
-    // this.layout.class && (
-    //   (typeof (this.layout.class) == "object")
-    //   && (this.elementClass = this.layout.class.element || ''
-    //     , this.labelClass = this.layout.class.label || ''
-    //     , this.parentClass = this.layout.class.parent || ''
-    //   ) || (this.parentClass = this.layout.class)
-    // );
   }
 }
 
@@ -87,19 +150,9 @@ export class JxRadioComponent {
   @Input() idx: string;
   @Input() parent: FormGroup;
   classes: any = {};
-  // elementClass: string = "";
-  // parentClass: string = "";
-  // labelClass: string = "";
   constructor(private jxService: JxService) { }
   ngOnInit() {
     this.classes = this.jxService.getClasses(this.layout, this.parent);
-    // this.layout.class && (
-    //   (typeof (this.layout.class) == "object")
-    //   && (this.elementClass = this.layout.class.element || ''
-    //     , this.labelClass = this.layout.class.label || ''
-    //     , this.parentClass = this.layout.class.parent || ''
-    //   ) || (this.parentClass = this.layout.class)
-    // );
   }
 }
 
@@ -120,9 +173,6 @@ export class JxSelectComponent {
   @Input() layout: any;
   @Input() idx: string;
   @Input() parent: FormGroup;
-  // elementClass: string = "";
-  // parentClass: string = "";
-  // labelClass: string = "";
   classes: any = {};
   options: any;
   constructor(private jxService: JxService, private ref: ChangeDetectorRef) {
@@ -144,13 +194,6 @@ export class JxSelectComponent {
       this.options = this.layout.options;
     }
     this.classes = this.jxService.getClasses(this.layout, this.parent);
-    // this.layout.class && (
-    //   (typeof (this.layout.class) == "object")
-    //   && (this.elementClass = this.layout.class.element || ''
-    //     , this.labelClass = this.layout.class.label || ''
-    //     , this.parentClass = this.layout.class.parent || ''
-    //   ) || (this.parentClass = this.layout.class)
-    // );
   }
 }
 
@@ -169,19 +212,9 @@ export class JxTextareaComponent {
   @Input() idx: string;
   @Input() parent: FormGroup;
   classes: any = {};
-  // elementClass: string = "";
-  // parentClass: string = "";
-  // labelClass: string = "";
   constructor(private jxService: JxService) { }
   ngOnInit() {
     this.classes = this.jxService.getClasses(this.layout, this.parent);
-    // this.layout.class && (
-    //   (typeof (this.layout.class) == "object")
-    //   && (this.elementClass = this.layout.class.element || ''
-    //     , this.labelClass = this.layout.class.label || ''
-    //     , this.parentClass = this.layout.class.parent || ''
-    //   ) || (this.parentClass = this.layout.class)
-    // );
   }
 }
 
@@ -199,9 +232,6 @@ export class JxDefaultComponent {
   @Input() idx: string;
   @Input() parent: FormGroup;
   classes: any = {};
-  // elementClass: string = "";
-  // parentClass: string = "";
-  // labelClass: string = "";
   constructor(private jxService: JxService) { }
   ngOnInit() {
     this.classes = this.jxService.getClasses(this.layout, this.parent);

@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable'; import * as moment from "moment";
 import { DateAdapter } from '@angular/material';
+import { BrokerService } from '../../broker.service';
+// import { BrokerService } from '../broker.service';
 
 @Component({
     selector: 'jxmat-checkbox',
@@ -16,19 +18,9 @@ export class JxMatCheckboxComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes; any = {};
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     constructor(private jxService: JxService) { }
     ngOnInit() {
         this.classes = this.jxService.getClasses(this.layout, this.parent);
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
     }
 }
 
@@ -50,19 +42,9 @@ export class JxMatRadioComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {}
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     constructor(private jxService: JxService) { }
     ngOnInit() {
         this.classes = this.jxService.getClasses(this.layout, this.parent);
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
     }
 }
 
@@ -84,9 +66,6 @@ export class JxMatSelectComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {};
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     options: any;
     constructor(private jxService: JxService, private ref: ChangeDetectorRef) { }
     ngOnInit() {
@@ -104,13 +83,6 @@ export class JxMatSelectComponent {
             this.options = this.layout.options;
         }
         this.classes = this.jxService.getClasses(this.layout, this.parent);
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
     }
 }
 
@@ -128,18 +100,8 @@ export class JxMatTextAreaComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {};
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     constructor(private jxService: JxService) { }
     ngOnInit() {
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
         this.classes = this.jxService.getClasses(this.layout, this.parent);
     }
 }
@@ -158,18 +120,8 @@ export class JxMatInputComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {};
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     constructor(private jxService: JxService) { }
     ngOnInit() {
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
         this.classes = this.jxService.getClasses(this.layout, this.parent);
     }
 }
@@ -191,21 +143,11 @@ export class JxMatDatePickerComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes; any = {};
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
     constructor(
         private jxService: JxService
         , private adapter: DateAdapter<Date>
     ) { }
     ngOnInit() {
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
         this.classes = this.jxService.getClasses(this.layout, this.parent);
         this.adapter.setLocale(this.layout.locale || "en-US");
     }
@@ -224,31 +166,31 @@ export class JxMatDatePickerComponent {
     template: `
     <ng-container [ngSwitch]="layout.subType">
         <span *ngSwitchCase="'raised'" [ngClass] = "classes.parentClass" >
-            <button mat-raised-button [ngClass] = "classes.elementClass"  [color]="layout.color">
+            <button (click)="buttonClicked()" mat-raised-button [ngClass] = "classes.elementClass"  [color]="layout.color">
                 <span [ngClass]= "classes.labelClass">{{layout.label}}</span>
                 <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>
             </button>
         </span>
         <span *ngSwitchCase="'icon'" [ngClass] = "classes.parentClass" >
-            <button mat-icon-button [color] = "layout.color" [ngClass] = "classes.elementClass" >               
+            <button (click)="buttonClicked()" mat-icon-button [color] = "layout.color" [ngClass] = "classes.elementClass" >               
                 <span [ngClass]= "classes.labelClass">{{layout.label}}</span>
                 <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
             </button>  
         </span>
         <span *ngSwitchCase="'button'" [ngClass] = "classes.parentClass" >
-            <button mat-button [color] = "layout.color" [ngClass] = "classes.elementClass" >               
+            <button (click)="buttonClicked()" mat-button [color] = "layout.color" [ngClass] = "classes.elementClass" >               
                 <span [ngClass]= "classes.labelClass">{{layout.label}}</span>
                 <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
             </button>  
         </span>
         <span *ngSwitchCase="'fab'" [ngClass] = "classes.parentClass" >
-            <button mat-fab [color] = "layout.color" [ngClass] = "classes.elementClass" >               
+            <button (click)="buttonClicked()" mat-fab [color] = "layout.color" [ngClass] = "classes.elementClass" >               
                 <span [ngClass]= "classes.labelClass">{{layout.label}}</span>
                 <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
             </button>  
         </span>
         <span *ngSwitchCase="'mini-fab'" [ngClass] = "classes.parentClass" >
-            <button mat-mini-fab [color] = "layout.color" [ngClass] = "classes.elementClass" >               
+            <button (click)="buttonClicked()" mat-mini-fab [color] = "layout.color" [ngClass] = "classes.elementClass" >               
                 <span [ngClass]= "classes.labelClass">{{layout.label}}</span>
                 <i *ngIf="layout.faClass" [class] = "layout.faClass"></i>                
             </button>  
@@ -263,21 +205,24 @@ export class JxMatButtonComponent {
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes
-    // elementClass: string = "";
-    // parentClass: string = "";
-    // labelClass: string = "";
-    constructor(private jxService: JxService
+    constructor(private jxService: JxService, private brokerService: BrokerService
     ) { }
 
     ngOnInit() {
-        // this.layout.class && (
-        //     (typeof (this.layout.class) == "object")
-        //     && (this.elementClass = this.layout.class.element || ''
-        //         , this.labelClass = this.layout.class.label || ''
-        //         , this.parentClass = this.layout.class.parent || ''
-        //     ) || (this.parentClass = this.layout.class)
-        // );
         this.classes = this.jxService.getClasses(this.layout, this.parent);
+    }
+    buttonClicked() {
+        this.jxService.processForm(this.parent);
+        if (this.layout.validateForm) {
+            this.jxService.validateAllFormFields(this.parent);
+            if (this.parent.valid && (!this.parent.pending)) {
+                this.brokerService.emit(this.layout.actionId, this.parent);
+            } else {
+                console.log("Invalid form");
+            }
+        } else {
+            this.brokerService.emit(this.layout.actionId, this.parent);
+        }
     }
 }
 

@@ -7,10 +7,11 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/first";
 import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Validators, FormGroup } from '@angular/forms';
+import { Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { countries } from './options-bank';
-import { BrokerService } from '../broker.service';
+// import { BrokerService } from '../broker.service';
 import * as moment from "moment";
+import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class JxService {
@@ -37,7 +38,6 @@ export class JxService {
     this.customValidators = obj;
   }
 
-
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);
     return (f);
@@ -50,10 +50,6 @@ export class JxService {
     });
     return (valid ? null : { required: true });
   }
-
-  // getGroupValidators(group) {
-
-  // }
 
   getValidators(layout) {
     let allValidators = {
@@ -91,6 +87,31 @@ export class JxService {
       }
     });
     return (allValidators);
+  }
+
+  processForm(parent) {
+    let myForm:any = parent;
+    let meta = myForm.meta;
+    let serverMeta = Object.assign({}, meta);
+    delete serverMeta.client;
+    let formValue = myForm.value
+    formValue["meta"] = serverMeta;
+    delete myForm.value.undefined;
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched();
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      } else if (control instanceof FormArray) {
+        (<FormArray>control).controls.forEach(x => {
+          this.validateAllFormFields(<FormGroup>x);
+        })
+      }
+    });
   }
 
   options: {} = {

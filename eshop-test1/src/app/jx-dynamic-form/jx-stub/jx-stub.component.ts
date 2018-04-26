@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
-import { BrokerService } from '../broker.service';
+import { BrokerService } from '../../broker.service';
+// import { BrokerService } from '../broker.service';
 
 @Component({
   selector: 'jx-stub',
@@ -39,10 +40,20 @@ export class JxStubComponent implements OnInit {
   }
 
   buttonClicked() {
-    this.processForm();
-    this.jControl.validateForm &&
-      this.validateAllFormFields(this.parent)
-    this.brokerService.emit(this.jControl.actionId, this.parent);
+    (this.layout.type.toLower() == "submit") && this.submit();
+    if (this.layout.type.toLower() in ['button', 'mat-button']) {
+      this.processForm();
+      if (this.layout.validateForm) {
+        this.validateAllFormFields(this.parent);
+        if (this.parent.valid && (!this.parent.pending)) {
+          this.brokerService.emit(this.jControl.actionId, this.parent);
+        } else {
+          console.log("Invalid form");
+        }
+      } else {
+        this.brokerService.emit(this.jControl.actionId, this.parent);
+      }
+    }
   }
 
   processForm() {

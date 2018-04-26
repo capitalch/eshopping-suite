@@ -9,13 +9,12 @@ import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { countries } from './options-bank';
-// import { BrokerService } from '../broker.service';
 import * as moment from "moment";
 import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class JxService {
-  customValidators:any={};
+  customValidators: any = {};
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
     console.log("jx.service");
   }
@@ -90,7 +89,7 @@ export class JxService {
   }
 
   processForm(parent) {
-    let myForm:any = parent;
+    let myForm: any = parent;
     let meta = myForm.meta;
     let serverMeta = Object.assign({}, meta);
     delete serverMeta.client;

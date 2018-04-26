@@ -1,58 +1,12 @@
 import { Component, OnInit, Input, ChangeDetectorRef, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import { JxService } from '../jx-service/jx.service';
+import { JxService } from '../../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
-import { JxCheckboxGroupComponent } from './jx-checkbox-group/jx-checkbox-group.component';
-import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent } from './mat.components';
-import { JxGroupComponent } from '../jx-group/jx-group.component';
-import { JxArrayComponent } from '../jx-array/jx-array.component';
-import { BrokerService } from '../../broker.service';
-
-@Component({
-  selector: 'jx-dynamic'
-  , template: `
-    <div [ngClass] = "classes.parentClass">
-     
-    </div>`
-})
-export class JxDynamicComponent {
-  @Input() layout: any;
-  @Input() idx: string;
-  @Input() parent: FormGroup;
-  component;
-  components: any = {
-    checkbox: JxCheckboxComponent
-    , textarea: JxTextareaComponent
-    , radio: JxRadioComponent
-    , select: JxSelectComponent
-    , checkboxGroup: JxCheckboxGroupComponent
-    , "mat-checkbox": JxMatCheckboxComponent
-    , "mat-input": JxMatInputComponent
-    , "mat-radio": JxMatRadioComponent
-    , "mat-select": JxMatSelectComponent
-    , "mat-textarea": JxMatTextAreaComponent
-    , "mat-datepicker": JxMatDatePickerComponent
-    , group: JxGroupComponent
-    , groupArray: JxArrayComponent
-    , button: JxButtonComponent
-    , submit: JxSubmitComponent
-  }
-  classes: any = {}
-  constructor(private jxService: JxService
-    , private resolver: ComponentFactoryResolver
-    , private container: ViewContainerRef
-  ) { }
-  
-  ngOnInit() {
-    this.classes = this.jxService.getClasses(this.layout, this.parent);
-    const component = this.components[this.layout.type];// JxCheckboxComponent;
-    const factory = this.resolver.resolveComponentFactory<any>(component);
-    this.component = this.container.createComponent(factory);
-    this.component.instance.layout = this.layout;
-    this.component.instance.idx = this.idx;
-    this.component.instance.parent = this.parent;
-  }
-}
+import { JxCheckboxGroupComponent } from '../jx-checkbox-group/jx-checkbox-group.component';
+import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent } from '../jx-mat/mat.components';
+import { JxGroupComponent } from '../../jx-group/jx-group.component';
+import { JxArrayComponent } from '../../jx-array/jx-array.component';
+import { BrokerService } from '../../../broker.service';
 
 @Component({
   selector: 'jx-button',

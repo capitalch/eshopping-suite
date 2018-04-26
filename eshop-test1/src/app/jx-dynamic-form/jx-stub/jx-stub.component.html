@@ -1,0 +1,10 @@
+<ng-container [formGroup]="parent">
+  <ng-container [ngSwitch]="jControl.type">
+    <ng-container *ngSwitchCase="'anchor'">
+      <a [ngClass]="jControl.class" [href]="jControl.href">{{jControl.label}}</a>
+    </ng-container>
+    <ng-container *ngSwitchDefault >
+      <jx-dynamic [layout]="jControl" [parent]="container" [idx] = "idx" (click) = "buttonClicked()"></jx-dynamic>
+    </ng-container>
+  </ng-container>
+</ng-container>

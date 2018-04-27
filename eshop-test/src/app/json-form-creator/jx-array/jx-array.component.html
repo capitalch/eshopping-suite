@@ -8,7 +8,7 @@
   </legend>
   <ng-container [formArrayName]="layout.id">
     <ng-container *ngFor="let group of parent.get(layout.id).controls;let j= index">
-      <div class="animate" [formGroupName]="j">
+      <div style="border-bottom: 1px solid darkorange;padding:5px;" [formGroupName]="j">
         <button mat-icon-button (click)="removeFromArray(j)" style="float:right;">
           <mat-icon>
               <i class="fa fa-times-circle"></i>
@@ -18,7 +18,7 @@
           <jx-stub [jControl] = "control" [parent] = "parent" [layout] = "layout" [parentType] ="'array'" [group] = "group" [idx] = "j"></jx-stub>         
         </ng-container>
       </div>
+      <jx-error [layout]="layout" [parent]="parent" [idx]="j"></jx-error>
     </ng-container>
   </ng-container>
 </fieldset>
-

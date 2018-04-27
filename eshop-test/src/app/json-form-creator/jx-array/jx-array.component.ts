@@ -20,7 +20,11 @@ export class JxArrayComponent implements OnInit {
         let allValidators = this.jxService.getValidators(e);
         childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
       });
-    let group = this.fb.group(childControls);
+
+    let allValidators = this.jxService.getValidators(this.layout.group);
+    let group = this.fb.group(childControls, { validator: allValidators.validators, asyncValidator: allValidators.asyncValidators });
+
+    // let group = this.fb.group(childControls);
     this.parent.setControl(this.layout.id, this.fb.array([group]));
   }
 
@@ -31,12 +35,17 @@ export class JxArrayComponent implements OnInit {
 
   addGroupInArray(layout) {
     let childControls = {};
-    layout.group.controls && layout.group.controls.forEach(e => {      
+    layout.group.controls && layout.group.controls.forEach(e => {
       let allValidators = this.jxService.getValidators(e);
-      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];      
+      childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
     });
-    let group = this.fb.group(childControls);
+
+    let allValidators = this.jxService.getValidators(this.layout.group);
+    let group = this.fb.group(childControls, { validator: allValidators.validators, asyncValidator: allValidators.asyncValidators });
+
+    // let group = this.fb.group(childControls);
     let groupArray = <FormArray>this.parent.get(layout.id);
-    groupArray.insert(0,group);
+    groupArray.push(group);
   }
+
 }

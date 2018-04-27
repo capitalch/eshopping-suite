@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
+import { BrokerService } from '../broker.service';
 
 @Component({
   selector: 'jx-stub',
@@ -15,7 +16,7 @@ export class JxStubComponent implements OnInit {
   @Input() group: any;
   @Input() idx: string = "";
   container: any;
-  constructor(private fb: FormBuilder, private jxService: JxService) { }
+  constructor(private fb: FormBuilder, private jxService: JxService, private brokerService: BrokerService) { }
 
   ngOnInit() {
     if (this.parentType == "form") {
@@ -28,21 +29,33 @@ export class JxStubComponent implements OnInit {
     }
   }
 
-  submit(actionName) {
+  submit() {
+    this.processForm();
+    this.validateAllFormFields(this.parent);
+    this.parent.valid
+      ? this.brokerService.emit(this.jControl.actionId, this.parent)
+      : console.log("Invalid form");
+
+  }
+
+  buttonClicked() {
+    this.processForm();
+    this.jControl.validateForm &&
+      this.validateAllFormFields(this.parent)
+    this.brokerService.emit(this.jControl.actionId, this.parent);
+  }
+
+  processForm() {
     let myForm = this.parent;
     let meta = myForm.meta;
-    let serverMeta = Object.assign({},meta);
+    let serverMeta = Object.assign({}, meta);
     delete serverMeta.client;
-    this.validateAllFormFields(myForm);
-    if (myForm.valid) {
-      delete myForm.value.undefined;
-      let formValue = myForm.value;
-      formValue["meta"] = serverMeta;
-      this.jxService.executeAction(actionName, formValue);
-    } else {
-      console.log("Invalid form");
-    }
+    let formValue = myForm.value
+    formValue["meta"] = serverMeta;
+    delete myForm.value.undefined;
+    console.log(formValue);
   }
+
 
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
@@ -58,4 +71,20 @@ export class JxStubComponent implements OnInit {
       }
     });
   }
+
+  // addGroupInArray(layout) {
+  //   let childControls = {};
+  //   layout.group.controls && layout.group.controls.forEach(e => {
+  //     let allValidators = this.jxService.getValidators(e);
+  //     childControls[e.id] = [e.value, allValidators.validators, allValidators.asyncValidators];
+  //   });
+
+  //   let allValidators = this.jxService.getValidators(this.layout.group);
+  //   let group = this.fb.group(childControls, { validator: allValidators.validators, asyncValidator: allValidators.asyncValidators });
+
+
+  //   // let group = this.fb.group(childControls);
+  //   let groupArray = <FormArray>this.parent.get(layout.id);
+  //   groupArray.push(group);
+  // }
 }

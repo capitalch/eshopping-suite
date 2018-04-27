@@ -1,61 +1,42 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { throttle, debounce } from 'rxjs/operators';
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/first";
+import { interval } from 'rxjs/observable/interval';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormGroup } from '@angular/forms';
-import { countries, states } from './options-bank';
+import { countries } from './options-bank';
 import { BrokerService } from '../broker.service';
-// import { BrokerService } from './broker.service';
+import * as moment from "moment";
 
 @Injectable()
 export class JxService {
-
+  customValidators:any={};
   constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
+    console.log("jx.service");
   }
 
-  customValidators = {
-    myValidate: (s) => {
-      let func = (control) => {
-        return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
-      };
-      return (func);
-    },
-    selectRequired: (def) => {
-      let func = (control) => {
-        return ((control.value == def) ? { selectRequired: true } : null);
+  getClasses(layout: any, parent: any) {
+    let classes: any = {};
+    if (layout.class) {
+      if (typeof (layout.class) == "object") {
+        classes.elementClass = layout.class.element || '';
+        classes.labelClass = layout.class.label || '';
+        classes.parentClass = layout.class.parent || ''
+      } else {
+        classes.elementClass = layout.class;
       }
-      return (func);
-    },
-    email2: () => {
-      let func = (control) => {
-        let val = control.value;
-        if (val.indexOf('@') == -1) {
-          return ({ email2: true });
-        } else {
-          return (null);
-        }
-      };
-      return (func);
-    },
-    email1: (arg) => {
-      let func = (control) => {
-        let body = { value: control.value };
-        let obs = this.httpClient.post(arg.url, body);
-        return (obs);
-      };
-      return (func);
     }
-
+    return (classes);
   }
 
-  actions = {
-    submit: (formValue) => {
-      console.log(formValue);
-    }
-    , reset: (form) => {
-      console.log("Form is done reset");
-    }
+  initCustomValidators(obj) {
+    this.customValidators = obj;
   }
+
 
   executeCustomValidation(name: string, arg: {}) {
     let f = this.customValidators[name].call(this, arg);
@@ -70,13 +51,9 @@ export class JxService {
     return (valid ? null : { required: true });
   }
 
-  executeAction(actionName: string, arg: {}) {
-    this.actions[actionName].call(this, arg);
-  }
+  // getGroupValidators(group) {
 
-  getGroupValidators(group) {
-
-  }
+  // }
 
   getValidators(layout) {
     let allValidators = {
@@ -122,9 +99,8 @@ export class JxService {
     , countries2: Observable.of(countries)
     , countries3: this.brokerService.httpPost$("http://localhost:3002/countries")
     , states: this.brokerService.httpPost$("http://localhost:3002/states")
-    //,states: states
   }
-  
+
   getOption(optionName) {
     let opts = this.options[optionName];
     (typeof (opts) == 'function') && (opts = opts());

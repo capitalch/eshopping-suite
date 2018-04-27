@@ -1,16 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JxService } from './jx-service/jx.service';
-import { BrokerService } from './broker.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JxFormComponent } from './jx-form/jx-form.component';
-import { JxArrayComponent } from './jx-array/jx-array.component';
 import { JxGroupComponent } from './jx-group/jx-group.component';
-import { JxCheckboxGroupComponent } from './jx-controls/jx-checkbox-group/jx-checkbox-group.component';
+import { JxArrayComponent } from './jx-array/jx-array.component';
 import { JxErrorComponent } from './jx-controls/jx-error/jx-error.component';
+import { JxCheckboxGroupComponent } from './jx-controls/jx-checkbox-group/jx-checkbox-group.component';
 import {
   JxTextareaComponent
   , JxCheckboxComponent
@@ -18,48 +17,24 @@ import {
   , JxSelectComponent
   , JxDefaultComponent
 } from './jx-controls/core.components';
+// import {MatRadioModule} from '@angular/material/radio';
 import {
   JxMatCheckboxComponent
   , JxMatInputComponent
   , JxMatRadioComponent
   , JxMatSelectComponent
   , JxMatTextAreaComponent
-  , JxMatDatePickerComponent
+  , JxMatDatePickerComponent,
+  JxMatButtonComponent
 } from './jx-controls/mat.components';
+//import { MAT_DATE_LOCALE } from '@angular/material'
+import { BrokerService } from './broker.service';
+// import { JxChildrenComponent } from './jx-children/jx-children.component';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
-// import { MatIconModule } from '@angular/material/icon';
-// import { 
-//   MatButtonModule
-//   , MatCheckboxModule
-//   , MatInputModule
-//   , MatRadioModule
-//   , MatSelectModule
-//   , MatDatepickerModule
-//   , MatNativeDateModule
-// } from '@angular/material';
-// import { MAT_DATE_LOCALE } from '@angular/material';
-
+import { JxMainService } from './jx-main.service';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule
-    ,AngularMaterialModule
-    // , MatButtonModule
-    // , MatCheckboxModule
-    // , MatInputModule
-    // , MatRadioModule
-    // , MatSelectModule
-    // , MatDatepickerModule
-    // , MatNativeDateModule
-    // , MatIconModule
-  ],
   declarations: [
     JxFormComponent
     , JxGroupComponent
@@ -77,9 +52,24 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     , JxMatSelectComponent
     , JxMatTextAreaComponent
     , JxMatDatePickerComponent
+    , JxMatButtonComponent
+    // , JxChildrenComponent
     , JxStubComponent
   ],
-  providers: [JxService, BrokerService],  //, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
-  exports:[JxFormComponent]
+  imports: [
+    BrowserModule
+    , FormsModule
+    , ReactiveFormsModule
+    , HttpClientModule
+    , AngularMaterialModule
+    , BrowserAnimationsModule
+  ],
+  exports:[JxFormComponent],
+  providers: [
+    , JxMainService
+    , BrokerService
+    , JxService
+    // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ]
 })
 export class JsonFormCreatorModule { }

@@ -1,82 +1,89 @@
-::ng-deep .submit-right {
-    text-align: right;
-}
+// ::ng-deep .submit-right {
+//     text-align: right;
+// }
 
-::ng-deep .form-style-1 {
+// ::ng-deep .form-style-1 {
     
-    margin: 0px auto;
-    max-width: 600px;
-    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    border: 1px solid green;
-    legend {
-        font-weight: bold;
-    }
-    input[type=text]:not([matInput]),
-    input[type=date]:not([matInput]),
-    input[type=datetime]:not([matInput]),
-    input[type=number]:not([matInput]),
-    input[type=search]:not([matInput]),
-    input[type=time]:not([matInput]),
-    input[type=url]:not([matInput]),
-    input[type=email]:not([matInput]),
-    textarea:not([matInput]),
-    select:not([matInput]) {
-        box-sizing: border-box;
-        border: 1px solid #BEBEBE;
-        padding: 5px;
-        margin: 0px;
-        outline: none;
-    }
-    input:not([matInput])[type=text]:focus,
-    input:not([matInput])[type=date]:focus,
-    input:not([matInput])[type=datetime]:focus,
-    input:not([matInput])[type=number]:focus,
-    input:not([matInput])[type=search]:focus,
-    input:not([matInput])[type=time]:focus,
-    input:not([matInput])[type=url]:focus,
-    input:not([matInput])[type=email]:focus,
-    textarea:not([matInput]):focus,
-    select:not([matInput]):focus {
-        box-shadow: 0 0 8px #88D5E9;
-        border: 1px solid #88D5E9;
-    }
-    input[matInput] {
-        width: 100%;
-    }
-    text,
-    textarea {
-        width: 100%;
-    }
-    select {
-        width: 49%;
-    }
-    .textarea-class {
-        width: 100%;
-    }
-    .label-class {
-        color: green;
-        display: block;
-    }
-    .address-class {
-        padding: 10px 0 10px 0; 
-    }
-    .label-address-class {
-        color: red;
-        display: block;
-    }
-    .element-address-class {
-        background-color: yellow;
-    }
-    .parent-address-class {
-        padding: 10px 0 10px 0;
-    }
-    .tag-class {
-        label {
-            color: magenta;
-            display: block;
-        }
-        input[type=text] {
-            width: 80%
-        }
+//     margin: 0px auto;
+//     max-width: 600px;
+//     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+//     border: 1px solid green;
+//     legend {
+//         font-weight: bold;
+//     }
+//     input[type=text]:not([matInput]),
+//     input[type=date]:not([matInput]),
+//     input[type=datetime]:not([matInput]),
+//     input[type=number]:not([matInput]),
+//     input[type=search]:not([matInput]),
+//     input[type=time]:not([matInput]),
+//     input[type=url]:not([matInput]),
+//     input[type=email]:not([matInput]),
+//     textarea:not([matInput]),
+//     select:not([matInput]) {
+//         box-sizing: border-box;
+//         border: 1px solid #BEBEBE;
+//         padding: 5px;
+//         margin: 0px;
+//         outline: none;
+//     }
+//     input:not([matInput])[type=text]:focus,
+//     input:not([matInput])[type=date]:focus,
+//     input:not([matInput])[type=datetime]:focus,
+//     input:not([matInput])[type=number]:focus,
+//     input:not([matInput])[type=search]:focus,
+//     input:not([matInput])[type=time]:focus,
+//     input:not([matInput])[type=url]:focus,
+//     input:not([matInput])[type=email]:focus,
+//     textarea:not([matInput]):focus,
+//     select:not([matInput]):focus {
+//         box-shadow: 0 0 8px #88D5E9;
+//         border: 1px solid #88D5E9;
+//     }
+//     input[matInput] {
+//         width: 100%;
+//     }
+//     text,
+//     textarea {
+//         width: 100%;
+//     }
+//     select {
+//         width: 49%;
+//     }
+//     .textarea-class {
+//         width: 100%;
+//     }
+//     .label-class {
+//         color: green;
+//         display: block;
+//     }
+//     .address-class {
+//         padding: 10px 0 10px 0; 
+//     }
+//     .label-address-class {
+//         color: red;
+//         display: block;
+//     }
+//     .element-address-class {
+//         background-color: yellow;
+//     }
+//     .parent-address-class {
+//         padding: 10px 0 10px 0;
+//     }
+//     .tag-class {
+//         label {
+//             color: magenta;
+//             display: block;
+//         }
+//         input[type=text] {
+//             width: 80%
+//         }
+//     }
+// }
+::ng-deep .radio-container
+{
+    div
+    {
+        background: yellow;
     }
 }

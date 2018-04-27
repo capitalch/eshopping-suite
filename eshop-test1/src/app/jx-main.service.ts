@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BrokerService } from './broker.service';
 import { HttpClient } from '@angular/common/http';
-import { JxService } from './jx-service/jx.service';
+// import { JxService } from './jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
+import { JxService } from './jx-dynamic-form/jx-service/jx.service';
 
 @Injectable()
 export class JxMainService {
@@ -64,7 +65,7 @@ export class JxMainService {
       , groupAsyncValidator1: (arg) => {
         let func = (group) => {
           let obs = Observable.of(null);
-          if (group.valueChanges) {
+          if (group.valueChanges && group.value) {
             let body = { value: group.value };
             obs = group.valueChanges
               .debounceTime(arg.delay || 3000)

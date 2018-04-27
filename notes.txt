@@ -9,6 +9,9 @@
 6. 
 7.
 
+//dynamic reactive form
+https://toddmotto.com/angular-dynamic-components-forms
+
 // for formgroup
 https://www.concretepage.com/angular-2/angular-2-formgroup-example
 https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
@@ -46,12 +49,20 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
 1. file upload
 2. Show Required symbol
-3. Button groups
+            3. Button groups
 4. Custom component
 5. Just like button implement anchor tag
             6. Debounce effect for async validation
 7. Array Add remove buttons customization
+8. Typeahead
+9. Dynamic component
+    Organize
+    Buttons
+    Custom object
+    Ts file checkup
+    Modulerize
 
+    
 //for angular Async validation
 https://github.com/angular/angular/issues/13200
 

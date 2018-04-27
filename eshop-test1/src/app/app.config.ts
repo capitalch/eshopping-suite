@@ -20,12 +20,6 @@ let form1 = [
         }
         , id: "jx-address"
     }
-    , {
-        type: "custom1"
-        , id: "myCustom1"
-        , label: "Custom1"
-        , placeholder: "custom 1"
-    }
     ,
     {
         type: "textarea"
@@ -118,6 +112,7 @@ let form1 = [
             }
             , controls: [
                 // {
+                    
                 {
                     type: "textarea"
                     , id: "firstName"
@@ -176,12 +171,12 @@ let form1 = [
     }
     , {
         type: "mat-button"
-        , subType: "raised"
-        , faClass: "fa fa-taxi fa-fw"
-        , color: "primary"
+        , subType:"raised"
+        , faClass:"fa fa-taxi fa-fw"
+        , color:"primary"
         , label: "Add"
         , actionId: "submit2"
-        , validateForm: true
+        , validateForm:true
     }
 
 ];

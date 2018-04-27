@@ -118,7 +118,6 @@ let form1 = [
             }
             , controls: [
                 // {
-
                 {
                     type: "textarea"
                     , id: "firstName"

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { JxCheckboxComponent, JxTextareaComponent, JxRadioComponent, JxSelectComponent, JxButtonComponent, JxSubmitComponent } from '../jx-core/core.components';
+// import { JxCheckboxComponent, JxTextareaComponent, JxRadioComponent, JxSelectComponent, JxButtonComponent, JxSubmitComponent } from '../jx-core/core.components';
 import { JxCheckboxGroupComponent } from '../jx-checkbox-group/jx-checkbox-group.component';
 import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent, JxMatButtonComponent } from '../jx-mat/mat.components';
 import { JxGroupComponent } from '../../jx-group/jx-group.component';

@@ -1,0 +1,5 @@
+<div [formGroup]="parent" [ngClass] = "classes.parentClass" >
+  <label [ngClass] = "classes.labelClass" [for]="layout.id">{{layout.label}}</label>
+  <textarea   [ngClass] = "classes.elementClass" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id">{{layout.value}}</textarea>
+  <jx-error [layout]="layout" [parent]="parent"></jx-error>
+</div>

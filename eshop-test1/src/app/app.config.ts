@@ -20,6 +20,13 @@ let form1 = [
         }
         , id: "jx-address"
     }
+    , {
+        type:"custom1"
+        , id:"custom1"
+        , label:"Custom control"
+        , placeholder:"My custom control"
+        , class: { label: "red-class", element: "textarea-class" }
+    }
     ,
     {
         type: "textarea"

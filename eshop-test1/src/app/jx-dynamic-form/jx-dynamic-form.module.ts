@@ -11,6 +11,7 @@ import { JxStubComponent } from './jx-stub/jx-stub.component';
 import { JxErrorComponent } from './jx-controls/jx-error/jx-error.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { JxDynamicComponent } from './jx-controls/jx-dynamic/jx-dynamic.component';
+import { Custom1Component } from './jx-controls/custom1/custom1.component';
 @NgModule({
   imports: [
     CommonModule
@@ -37,8 +38,7 @@ import { JxDynamicComponent } from './jx-controls/jx-dynamic/jx-dynamic.componen
     , JxMatInputComponent
     , JxMatDatePickerComponent
     , JxMatButtonComponent
-    
-    , JxDynamicComponent
+    , JxDynamicComponent, Custom1Component
   ]
   , exports: [JxFormComponent]
   , entryComponents: [
@@ -59,6 +59,7 @@ import { JxDynamicComponent } from './jx-controls/jx-dynamic/jx-dynamic.componen
     , JxArrayComponent
     , JxButtonComponent
     , JxSubmitComponent
+    , Custom1Component
   ]
 })
 export class JxDynamicFormModule { }

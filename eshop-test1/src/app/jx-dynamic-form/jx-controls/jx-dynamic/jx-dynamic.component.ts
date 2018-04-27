@@ -6,6 +6,7 @@ import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMat
 import { JxGroupComponent } from '../../jx-group/jx-group.component';
 import { JxArrayComponent } from '../../jx-array/jx-array.component';
 import { JxService } from '../../jx-service/jx.service';
+import { Custom1Component } from '../custom1/custom1.component';
 
 @Component({
   selector: 'jx-dynamic'
@@ -35,6 +36,7 @@ export class JxDynamicComponent implements OnInit {
     , groupArray: JxArrayComponent
     , button: JxButtonComponent
     , submit: JxSubmitComponent
+    , custom1:Custom1Component
   }
   classes: any = {}
   constructor(private jxService: JxService

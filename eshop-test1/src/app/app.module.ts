@@ -13,13 +13,13 @@ import { JxMainService } from './jx-main.service';
 // import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 import { JxDynamicFormModule } from './jx-dynamic-form/jx-dynamic-form.module';
 import { JxService } from './jx-dynamic-form/jx-service/jx.service';
-import { LearningComponent } from './learn/learning/learning.component';
+import { LearnComponent } from './learning/learn/learn.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LearningComponent
+    LearnComponent
   ],
   imports: [
     BrowserModule

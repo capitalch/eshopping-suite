@@ -2,10 +2,11 @@ import { Component, OnInit, Input, ComponentFactoryResolver, ViewContainerRef } 
 import { FormGroup } from '@angular/forms';
 import { JxCheckboxComponent, JxTextareaComponent, JxRadioComponent, JxSelectComponent, JxButtonComponent, JxSubmitComponent } from '../jx-core/core.components';
 import { JxCheckboxGroupComponent } from '../jx-checkbox-group/jx-checkbox-group.component';
-import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent } from '../jx-mat/mat.components';
+import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMatSelectComponent, JxMatTextAreaComponent, JxMatDatePickerComponent, JxMatButtonComponent } from '../jx-mat/mat.components';
 import { JxGroupComponent } from '../../jx-group/jx-group.component';
 import { JxArrayComponent } from '../../jx-array/jx-array.component';
 import { JxService } from '../../jx-service/jx.service';
+import { Custom1Component } from '../custom1/custom1.component';
 
 @Component({
   selector: 'jx-dynamic'
@@ -30,10 +31,12 @@ export class JxDynamicComponent implements OnInit {
     , "mat-select": JxMatSelectComponent
     , "mat-textarea": JxMatTextAreaComponent
     , "mat-datepicker": JxMatDatePickerComponent
+    , "mat-button": JxMatButtonComponent
     , group: JxGroupComponent
     , groupArray: JxArrayComponent
     , button: JxButtonComponent
     , submit: JxSubmitComponent
+    , custom1:Custom1Component
   }
   classes: any = {}
   constructor(private jxService: JxService

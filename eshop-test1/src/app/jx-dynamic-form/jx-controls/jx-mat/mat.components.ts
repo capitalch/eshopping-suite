@@ -4,7 +4,6 @@ import { JxService } from '../../jx-service/jx.service';
 import { Observable } from 'rxjs/Observable'; import * as moment from "moment";
 import { DateAdapter } from '@angular/material';
 import { BrokerService } from '../../../broker.service';
-// import { BrokerService } from '../broker.service';
 
 @Component({
     selector: 'jxmat-checkbox',

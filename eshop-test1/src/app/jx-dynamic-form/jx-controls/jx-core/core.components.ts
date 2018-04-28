@@ -172,23 +172,23 @@ export class JxTextareaComponent {
   }
 }
 
-@Component({
-  selector: 'jx-default',
-  template: `
-    <div [formGroup]="parent" [ngClass]="classes.parentClass">
-      <label [ngClass] ="classes.labelClass" [for]="layout.id+idx">{{layout.label}}</label>
-      <input [ngClass] = "classes.elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id" [value] = "layout.value">
-      <jx-error [layout]="layout" [parent]="parent"></jx-error>
-    </div>`
-})
-export class JxDefaultComponent {
-  @Input() layout: any;
-  @Input() idx: string;
-  @Input() parent: FormGroup;
-  classes: any = {};
-  constructor(private jxService: JxService) { }
-  ngOnInit() {
-    this.classes = this.jxService.getClasses(this.layout, this.parent);
-  }
-}
+// @Component({
+//   selector: 'jx-default',
+//   template: `
+//     <div [formGroup]="parent" [ngClass]="classes.parentClass">
+//       <label [ngClass] ="classes.labelClass" [for]="layout.id+idx">{{layout.label}}</label>
+//       <input [ngClass] = "classes.elementClass" [type]="layout.type" [id]="layout.id+idx" [placeholder]="layout.placeholder" [formControlName]="layout.id" [value] = "layout.value">
+//       <jx-error [layout]="layout" [parent]="parent"></jx-error>
+//     </div>`
+// })
+// export class JxDefaultComponent {
+//   @Input() layout: any;
+//   @Input() idx: string;
+//   @Input() parent: FormGroup;
+//   classes: any = {};
+//   constructor(private jxService: JxService) { }
+//   ngOnInit() {
+//     this.classes = this.jxService.getClasses(this.layout, this.parent);
+//   }
+// }
 

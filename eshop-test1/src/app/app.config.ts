@@ -21,6 +21,12 @@ let form1 = [
         , id: "jx-address"
     }
     , {
+        type: "anchor"
+        , href: "http://www.microsoft.com"
+        , label: "Some label"
+
+    }
+    , {
         type: "custom1"
         , id: "custom1"
         , label: "Custom control"

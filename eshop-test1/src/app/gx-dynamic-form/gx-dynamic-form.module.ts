@@ -9,6 +9,7 @@ import { GxService } from './gx.service';
 import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
 import { GxGroupComponent } from './gx-group/gx-group.component';
 import { GxArrayComponent } from './gx-array/gx-array.component';
+import { GxButtonGroupComponent } from './gx-controls/gx-button-group/gx-button-group.component';
 
 
 
@@ -26,13 +27,16 @@ import { GxArrayComponent } from './gx-array/gx-array.component';
     , GxButtonComponent
     , GxErrorComponent
     , GxGroupComponent
-    , GxArrayComponent]
+    , GxArrayComponent
+    , GxButtonGroupComponent
+  ]
   , entryComponents: [
     GxTextareaComponent
     , GxButtonComponent
     , GxErrorComponent
     , GxGroupComponent
     , GxArrayComponent
+    , GxButtonGroupComponent
   ]
   , providers: [GxService]
 })

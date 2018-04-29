@@ -202,6 +202,27 @@ let form1 = [
         , actionId: "submit1"
         // , validateForm: true
     }
+    , {
+        type: "buttongroup"
+        // , label: "Button group"
+        , class: ""
+        , controls: [
+            {
+                type: "button"
+                , label: "Submit"
+                , class: "btn btn-primary"
+                , actionId: "submit1"
+                , validateForm: true
+            }
+            , {
+                type: "button"
+                , subtype:"reset"
+                , label: "Cancel"
+                , class: "btn btn-primary"
+                , actionId: "cancel1"
+            }
+        ]
+    }
     // , {
     //     type: "mat-button"
     //     , subType: "raised"

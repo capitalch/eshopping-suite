@@ -29,17 +29,16 @@ export class GxTextareaComponent {
         //   this.classes = this.jxService.getClasses(this.layout, this.parent);
         // let xControl = this.fb.control(this.layout.value || "");
         // this.parent.setControl(this.layout.id, xControl);
-        
+
         this.gxService.createGenericControl(this.layout, this.parent);
     }
 }
 
 @Component({
     selector: 'gx-button',
-    template: `
-      
-        <button (click) = "buttonClicked()"  
-            type="button" [id]="layout.id+idx||''"  ngClass="btn btn-primary"> 
+    template: `      
+        <button (click) = "buttonClicked()" 
+            type="button" [id]="layout.id+idx||''"> 
                 {{layout.label}}
         </button>
       `
@@ -48,30 +47,36 @@ export class GxTextareaComponent {
 // </div>
 export class GxButtonComponent {
     @Input() layout: any;
-    @Input() idx: string;
+    // @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {}
-    btnClass;
+    // styles;
     constructor(private brokerService: BrokerService
         , private gxService: GxService
-        
+
     ) { }
     ngOnInit() {
-        this.btnClass = "btn"
+        // this.styles = {color:"red"};
+        // this.btnClass = "btn"
         //   this.classes = this.jxService.getClasses(this.layout, this.parent);
     }
 
     buttonClicked() {
-      this.gxService.processForm(this.parent);
-      if (this.layout.validateForm) {
-        this.gxService.validateAllFormFields(this.parent);
-        if (this.parent.valid && (!this.parent.pending)) {
-          this.brokerService.emit(this.layout.actionId, this.parent);
+        if (this.layout.subtype && this.layout.subtype == "reset") {
+            this.parent.reset();
         } else {
-          console.log("Invalid form");
+            this.gxService.processForm(this.parent);
+            if (this.layout.validateForm) {
+                this.gxService.validateAllFormFields(this.parent);
+                if (this.parent.valid && (!this.parent.pending)) {
+                    this.brokerService.emit(this.layout.actionId, this.parent);
+                } else {
+                    console.log("Invalid form");
+                }
+            } else {
+                this.brokerService.emit(this.layout.actionId, this.parent);
+            }
         }
-      } else {
-        this.brokerService.emit(this.layout.actionId, this.parent);
-      }
+
     }
 }

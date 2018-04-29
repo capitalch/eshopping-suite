@@ -5,10 +5,6 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
 @Injectable()
 export class GxService {
   customValidators: any = {};
-  // components = {
-  //   textarea: GxTextareaComponent
-  //   , button: GxButtonComponent
-  // }
 
   constructor(
     private fb: FormBuilder
@@ -24,6 +20,24 @@ export class GxService {
     let allValidators = this.getValidators(layout);
     let xControl = this.fb.control(layout.value || "", allValidators.validators, allValidators.asyncValidators);
     parent.setControl(layout.id, xControl);
+  }
+
+
+  getGroupValidators(layout){
+    let validators={
+      validator:null
+      , asyncValidator:null
+    };
+    if(layout.validation){
+      Object.keys(layout.validation).forEach(x=>{
+        if(layout.validation[x].async){
+          validators.asyncValidator = this.executeCustomValidation(x,layout.validation[x].arg);
+        } else {
+          validators.validator = this.executeCustomValidation(x,layout.validation[x].arg);
+        }
+      });
+    }
+    return(validators);
   }
 
   getValidators(layout) {
@@ -69,7 +83,6 @@ export class GxService {
     return (f);
   }
 
-
   processForm(parent) {
     let myForm: any = parent;
     let meta = myForm.meta;
@@ -95,7 +108,4 @@ export class GxService {
     });
   }
 
-  // componentMapper(type): any {
-  //   return (this.components[type]);
-  // }
 }

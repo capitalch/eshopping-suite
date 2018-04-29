@@ -6,7 +6,7 @@ let components = {
     textarea: GxTextareaComponent
     , button: GxButtonComponent
     , group: GxGroupComponent
-    , grouparray: GxArrayComponent
+    , array: GxArrayComponent
 }
 
 export { components };

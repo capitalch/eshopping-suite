@@ -8,8 +8,9 @@ let form1 = [
             , class: { form: "form-style-1", title: "header", body: "body" }
 
             // , validation: {
-            //     groupValidator1: { message: "Data is not correct" }
-            //     , groupAsyncValidator1: {
+            //     // groupValidator1: { message: "Data is not correct" }
+            //     // , 
+            //     groupAsyncValidator1: {
             //         message: "Async validation failed"
             //         , arg: {
             //             url: "http://localhost:3002/group"
@@ -108,12 +109,22 @@ let form1 = [
 
     ,
     {
-        type: "groupArray"
+        type: "array"
         , label: "Tags"
         , id: "tags"
+        , validation: {
+            // groupValidator1: { message: "$ are not correct" }
+            // , 
+            // groupAsyncValidator1: {
+            //     message: "Async validation failed"
+            //     , arg: {
+            //         url: "http://localhost:3002/group"
+            //     }
+            //     , async: true
+            // }
+        }
         , group: {
             label: "Tag"
-            , id: "tag"
             , validation: {
                 groupValidator1: { message: "$ is not correct" }
                 , groupAsyncValidator1: {
@@ -149,8 +160,9 @@ let form1 = [
     //     , label: "Passwords"
     //     , id: "pwd"
     //     // , validation: {
-    //     //     groupValidator1: { message: "$ is not correct" }
-    //     //     , groupAsyncValidator1: {
+    //     //     // groupValidator1: { message: "$ is not correct" }
+    //     //     // , 
+    //     //     groupAsyncValidator1: {
     //     //         message: "Async validation failed"
     //     //         , arg: {
     //     //             url: "http://localhost:3002/group"
@@ -182,6 +194,13 @@ let form1 = [
         , class: "btn btn-primary"
         , actionId: "submit1"
         , validateForm: true
+    }
+    , {
+        type: "button"
+        , label: "Cancel"
+        , class: "btn btn-primary"
+        , actionId: "submit1"
+        // , validateForm: true
     }
     // , {
     //     type: "mat-button"

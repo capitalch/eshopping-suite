@@ -37,20 +37,27 @@ export class GxTextareaComponent {
 @Component({
     selector: 'gx-button',
     template: `
-      <div [formGroup]="parent" [ngClass] = "classes.parentClass">
-          <button (click) = "buttonClicked()" [ngClass] = "classes.elementClass" type="button" [id]="layout.id+idx||''"> {{layout.label}}</button>
-      </div>`
+      
+        <button (click) = "buttonClicked()"  
+            type="button" [id]="layout.id+idx||''"  ngClass="btn btn-primary"> 
+                {{layout.label}}
+        </button>
+      `
 })
+// <div [formGroup]="parent" [ngClass] = "classes.parentClass">
+// </div>
 export class GxButtonComponent {
     @Input() layout: any;
     @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {}
+    btnClass;
     constructor(private brokerService: BrokerService
         , private gxService: GxService
         
     ) { }
     ngOnInit() {
+        this.btnClass = "btn"
         //   this.classes = this.jxService.getClasses(this.layout, this.parent);
     }
 

@@ -22,8 +22,7 @@ component;
     , private container : ViewContainerRef
   ) { }
 
-  ngOnInit(){
-    // const component = this.gxService.componentMapper(this.layout.type);
+  ngOnInit(){    
     const component = components[this.layout.type.toLowerCase()];
     const factory = this.resolver.resolveComponentFactory(component);
     this.component = this.container.createComponent(factory);

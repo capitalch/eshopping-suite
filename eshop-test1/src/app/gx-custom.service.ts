@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { BrokerService } from './broker.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -13,6 +13,7 @@ export class GxCustomService {
     , private gxService: GxService
   ) {
     this.handleChildEvents();
+    this.initCustomValidators();
   }
 
   handleChildEvents() {
@@ -82,6 +83,7 @@ export class GxCustomService {
               .switchMap(() => this.httpClient.post(arg.url, body))
               .first();
           }
+          // this.ref.tick();
           return (obs);
         }
         return (func);

@@ -2,4 +2,5 @@
   <ng-container *ngFor="let layout of layouts">
     <ng-container gxDynamic [layout]="layout" [parent]="myForm"></ng-container>
   </ng-container>
+  <gx-error [layout]="meta.client" [parent]="myForm"></gx-error>
 </form>

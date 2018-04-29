@@ -33,7 +33,7 @@ export class JxDynamicComponent implements OnInit {
     , "mat-datepicker": JxMatDatePickerComponent
     , "mat-button": JxMatButtonComponent
     , group: JxGroupComponent
-    , groupArray: JxArrayComponent
+    , array: JxArrayComponent
     , anchor: JxAnchorComponent
     , button: JxButtonComponent
     , submit: JxSubmitComponent

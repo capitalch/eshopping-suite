@@ -8,6 +8,7 @@ import { form1 } from './app.config';
 import { BrokerService } from './broker.service';
 import { JxMainService } from './jx-main.service';
 import { JxService } from './jx-dynamic-form/jx-service/jx.service';
+import { GxCustomService } from './gx-custom.service';
 // import { GxCustomService } from './gx-custom.service';
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent {
     , private JxFormService: JxService
     , private brokerService: BrokerService
     , private httpClient: HttpClient
-    // , private gxCustomService:GxCustomService
+    , private gxCustomService:GxCustomService
   ) {
 
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'gx-error',
@@ -7,12 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GxErrorComponent implements OnInit {
   @Input() layout: any = {};
-  @Input() parent: any;
+  @Input() parent: FormGroup;
   control:any;
   constructor() { }
 
   ngOnInit() {
-    this.control = this.parent;
+    this.control = this.parent.get(this.layout.id);
   }
 
   getMessages() {

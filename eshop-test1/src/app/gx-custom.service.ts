@@ -16,8 +16,17 @@ export class GxCustomService {
   }
 
   handleChildEvents() {
-    this.subs = this.brokerService.filterOn("submit1").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+
+    this.subs = this.brokerService.filterOn("submit1").subscribe(d => {
+      if (d.error) {
+        console.log(d.error);
+      } else {
+        console.log(d.data.value);
+      }
+    }
+      // d.error 
+      // ? (console.log(d.error)) 
+      // : (console.log(d.data.value))
     );
     let sub1 = this.brokerService.filterOn("submit").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))

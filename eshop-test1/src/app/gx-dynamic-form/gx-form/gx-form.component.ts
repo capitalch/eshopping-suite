@@ -23,7 +23,7 @@ export class GxFormComponent implements OnInit {
     this.meta = this.layouts[metaIndex];
 
     this.layouts.splice(metaIndex, 1);
-    this.myForm = this.fb.group([]);
+    this.myForm = this.fb.group({});
   }
 
 }

@@ -16,6 +16,7 @@ import { JxService } from './jx-dynamic-form/jx-service/jx.service';
 import { LearnComponent } from './learning/learn/learn.component';
 import { Dynamic2FormModule } from './dynamic2-form/dynamic2-form.module';
 import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
+import { GxCustomService } from './gx-custom.service';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
     , JxMainService
     , BrokerService
     , JxService
+    , GxCustomService
     // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]

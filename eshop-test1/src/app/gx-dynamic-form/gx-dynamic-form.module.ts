@@ -7,6 +7,8 @@ import { GxDynamicDirective } from './gx-controls/gx-dynamic/gx-dynamic.directiv
 import { GxTextareaComponent, GxButtonComponent } from './gx-controls/gx-core/core.components';
 import { GxService } from './gx.service';
 import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
+import { GxGroupComponent } from './gx-group/gx-group.component';
+import { GxArrayComponent } from './gx-array/gx-array.component';
 
 
 
@@ -22,11 +24,15 @@ import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
     , GxDynamicDirective
     , GxTextareaComponent
     , GxButtonComponent
-    , GxErrorComponent]
+    , GxErrorComponent
+    , GxGroupComponent
+    , GxArrayComponent]
   , entryComponents: [
     GxTextareaComponent
     , GxButtonComponent
     , GxErrorComponent
+    , GxGroupComponent
+    , GxArrayComponent
   ]
   , providers: [GxService]
 })

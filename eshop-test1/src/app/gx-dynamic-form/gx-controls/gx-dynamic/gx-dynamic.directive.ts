@@ -2,6 +2,7 @@ import { Directive, Input, OnInit, ComponentFactoryResolver, ViewContainerRef } 
 import { FormGroup } from '@angular/forms';
 import { GxTextareaComponent, GxButtonComponent } from '../gx-core/core.components';
 import { GxService } from '../../gx.service';
+import { components } from './gx-component-mapper';
 
 @Directive({
   selector: '[gxDynamic]'
@@ -23,7 +24,7 @@ component;
 
   ngOnInit(){
     // const component = this.gxService.componentMapper(this.layout.type);
-    const component = this.components[this.layout.type.toLowerCase()];
+    const component = components[this.layout.type.toLowerCase()];
     const factory = this.resolver.resolveComponentFactory(component);
     this.component = this.container.createComponent(factory);
     this.component.instance.parent = this.parent;

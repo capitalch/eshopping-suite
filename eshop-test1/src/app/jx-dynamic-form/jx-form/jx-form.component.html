@@ -1,10 +1,11 @@
-<form [formGroup]="myForm" novalidate [ngClass] = "myForm.meta.client.class && myForm.meta.client.class.form" >
+<form [formGroup]="myForm" [ngClass] = "myForm.meta.client.class && myForm.meta.client.class.form" >
   <div [ngClass]="myForm.meta.client.class && myForm.meta.client.class.title">
     {{myForm.meta.client.title}}
   </div>
   <div [ngClass]="myForm.meta.client.class && myForm.meta.client.class.body">
     <ng-container *ngFor="let layout of layouts">
-      <jx-stub [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub>      
+      <jx-stub [jControl]="layout" [parent]="myForm" [parentType]="'form'"></jx-stub> 
+      <!-- <jx-dynamic [layout]="layout" [parent]="myForm" [idx]="idx" ></jx-dynamic>      -->
     </ng-container>
   </div>
   <jx-error [layout]="meta.client" [parent]="myForm" [controlType] = "'form'"></jx-error>

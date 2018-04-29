@@ -14,6 +14,8 @@ import { JxMainService } from './jx-main.service';
 import { JxDynamicFormModule } from './jx-dynamic-form/jx-dynamic-form.module';
 import { JxService } from './jx-dynamic-form/jx-service/jx.service';
 import { LearnComponent } from './learning/learn/learn.component';
+import { Dynamic2FormModule } from './dynamic2-form/dynamic2-form.module';
+import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { LearnComponent } from './learning/learn/learn.component';
     , BrowserAnimationsModule
     // , DynamicFormModule
     , JxDynamicFormModule
+    , Dynamic2FormModule
+    , GxDynamicFormModule
   ],
   providers: [
     , JxMainService

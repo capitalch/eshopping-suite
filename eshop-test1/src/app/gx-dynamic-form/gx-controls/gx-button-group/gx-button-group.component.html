@@ -1,0 +1,6 @@
+<fieldset>
+  <legend>{{layout.label}}</legend>
+  <ng-container *ngFor="let jControl of layout.controls">
+    <ng-container gxDynamic [layout]="jControl" [parent]="parent"></ng-container>
+  </ng-container>
+</fieldset>

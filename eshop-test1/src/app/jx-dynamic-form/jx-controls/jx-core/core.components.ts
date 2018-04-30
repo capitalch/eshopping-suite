@@ -8,6 +8,25 @@ import { JxGroupComponent } from '../../jx-group/jx-group.component';
 import { JxArrayComponent } from '../../jx-array/jx-array.component';
 import { BrokerService } from '../../../broker.service';
 
+
+@Component({
+  selector: 'jx-anchor',
+  template: `
+    <div [formGroup]="parent" [ngClass] = "classes.parentClass">
+        <a [ngClass] = "classes.elementClass" [href]="layout.href" [id]="layout.id+idx||''"> {{layout.label}}</a>
+    </div>`
+})
+export class JxAnchorComponent {
+  @Input() layout: any;
+  @Input() idx: string;
+  @Input() parent: FormGroup;
+  classes: any = {}
+  constructor(private brokerService: BrokerService, private jxService: JxService) { }
+  ngOnInit() {
+    this.classes = this.jxService.getClasses(this.layout, this.parent);
+  }
+}
+
 @Component({
   selector: 'jx-button',
   template: `

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { JxService } from '../jx-service/jx.service';
-// import { BrokerService } from '../broker.service';
 import * as _ from "lodash";
 
 @Component({
@@ -22,7 +21,6 @@ export class JxFormComponent implements OnInit {
     let formControls = {};
     //handle the meta element
     let metaIndex = _.findIndex(this.layouts, (x) => x.type == 'meta');
-    // const meta = this.layouts[metaIndex];
     this.meta = this.layouts[metaIndex];
     
     this.layouts.splice(metaIndex, 1);
@@ -34,7 +32,6 @@ export class JxFormComponent implements OnInit {
     let allValidators = this.jxService.getValidators(this.meta.client);
     this.myForm = this.fb.group(formControls,{validator:allValidators.validators, asyncValidator:allValidators.asyncValidators});
     
-    // this.myForm = this.fb.group(formControls);
     this.myForm["meta"] = this.meta;
   }
 }

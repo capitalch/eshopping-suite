@@ -24,7 +24,6 @@ export class JxArrayComponent implements OnInit {
     let allValidators = this.jxService.getValidators(this.layout.group);
     let group = this.fb.group(childControls, { validator: allValidators.validators, asyncValidator: allValidators.asyncValidators });
 
-    // let group = this.fb.group(childControls);
     this.parent.setControl(this.layout.id, this.fb.array([group]));
   }
 

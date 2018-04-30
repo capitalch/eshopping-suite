@@ -6,9 +6,13 @@
     margin: 0px auto;
     max-width: 600px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    border: 1px solid green;
+    border: 2px solid green;
+    small{
+        color:red;
+    }
     legend {
         font-weight: bold;
+        margin:5px;
     }
     .header
     {
@@ -20,18 +24,21 @@
     {
         padding: 20px 12px 10px 20px;
     }
-    // fieldset {
-    //     border: 1px groove threedface;
-    //     padding: 5px;
-    //     margin: 10px auto;
-    // } // input[type=submit],
-    // input[type=button],
-    // button {
-    //     background: #4B99AD;
-    //     padding: 8px 15px 8px 15px;
-    //     border: none;
-    //     color: #fff;
-    // }
+    fieldset {
+        border: 1px groove threedface;
+        // padding: 5px;
+        margin: 5px;
+    } // input[type=submit],
+    input[type=button],
+    button {
+        // background: #4B99AD;
+        // padding: 8px 15px 8px 15px;
+        margin:5px;
+        // float: right;
+        // border: none;
+    
+        // color: #fff;
+    }
     input[type=text]:not([matInput]),
     input[type=date]:not([matInput]),
     input[type=datetime]:not([matInput]),
@@ -66,15 +73,18 @@
     }
     text,
     textarea {
-        width: 100%;
+        width: 50%;
+        margin:0px;
+        padding:100px;
+        display:block;
     }
 
-    .textarea-test{
-        width: 100%;
-        label{
-            color:red;
-        }
-    }
+    // .textarea-test{
+    //     width: 100%;
+    //     label{
+    //         color:red;
+    //     }
+    // }
 
     select {
         width: 49%;

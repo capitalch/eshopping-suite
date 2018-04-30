@@ -8,8 +8,9 @@ let form1 = [
             , class: { form: "form-style-1", title: "header", body: "body" }
 
             // , validation: {
-            //     groupValidator1: { message: "Data is not correct" }
-            //     , groupAsyncValidator1: {
+            //     // groupValidator1: { message: "Data is not correct" }
+            //     // , 
+            //     groupAsyncValidator1: {
             //         message: "Async validation failed"
             //         , arg: {
             //             url: "http://localhost:3002/group"
@@ -20,93 +21,110 @@ let form1 = [
         }
         , id: "jx-address"
     }
-    , {
-        type:"custom1"
-        , id:"custom1"
-        , label:"Custom control"
-        , placeholder:"My custom control"
-        , class: { label: "red-class", element: "textarea-class" }
-    }
-    ,
-    {
-        type: "textarea"
-        , id: "firstName"
-        , label: "First name"
-        , placeholder: "First name"
-        , value: ""
-        , class: { label: "red-class", element: "textarea-class" }
-        , validation: {
-            groupAsyncValidator1: {
-                message: "Async validation failed"
-                , arg: {
-                    url: "http://localhost:3002/group"
-                    , delay: 1000
-                }
-                , async: true
-            }
-            // , required:{message: '$ is required' }
-            // required: { message: '$ is required' }
-            // , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-            // , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-        }
-    }
-    , {
-        type: "checkbox"
-        , id: "agreed"
-        , label: "Agreed"
-        , value: true
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }
-    ,
-    {
-        type: "radio"
-        , label: "Gender"
-        , value: "M"
-        , id: "gender123"
-        , options: [
-            { label: "Male", value: "M", id: "male1" }
-            , { label: "Female", value: "F", id: "female1" }
-        ]
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }
-    , {
-        type: "select"
-        , label: "Country"
-        , value: ""
-        , id: "country"
-        , options: "countries3"
-        , validation: {
-            required: {
-                message: 'You must select a value for $'
-            }
-        }
-    }
-    , {
-        type: "checkboxGroup"
-        , label: "Food2"
-        , id: "food2"
-        , validation: {
-            required: { message: '$ is required' }
-        }
-        , options: [
-            { label: "Main course", value: false, id: "main2" }
-            , { label: "Desert", value: true, id: "desert2" }
-            , { label: "beverages", value: false, id: "beverages2" }
-        ]
-    }
+    // , {
+    //     type: "anchor"
+    //     , href: "http://www.microsoft.com"
+    //     , label: "Some label"
+
+    // }
+    // , {
+    //     type: "custom1"
+    //     , id: "custom1"
+    //     , label: "Custom control"
+    //     , placeholder: "My custom control"
+    //     , class: { label: "red-class", element: "textarea-class" }
+    // }
+    // ,
+    // {
+    //     type: "textarea"
+    //     , id: "firstName"
+    //     , label: "First name"
+    //     , placeholder: "First name"
+    //     , value: ""
+    //     , class: { label: "red-class", element: "textarea-class" }
+    //     , validation: {
+    //         // groupAsyncValidator1: {
+    //         //     message: "Async validation failed"
+    //         //     , arg: {
+    //         //         url: "http://localhost:3002/group"
+    //         //         , delay: 1000
+    //         //     }
+    //         //     , async: true
+    //         // }
+    //         // ,
+    //         required: { message: '$ is required' }
+    //         // required: { message: '$ is required' }
+    //         // , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+    //         // , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+    //     }
+    // }
+    // , {
+    //     type: "checkbox"
+    //     , id: "agreed"
+    //     , label: "Agreed"
+    //     , value: true
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: "radio"
+    //     , label: "Gender"
+    //     , value: "M"
+    //     , id: "gender123"
+    //     , options: [
+    //         { label: "Male", value: "M", id: "male1" }
+    //         , { label: "Female", value: "F", id: "female1" }
+    //     ]
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // , {
+    //     type: "select"
+    //     , label: "Country"
+    //     , value: ""
+    //     , id: "country"
+    //     , options: "countries3"
+    //     , validation: {
+    //         required: {
+    //             message: 'You must select a value for $'
+    //         }
+    //     }
+    // }
+    // , {
+    //     type: "checkboxGroup"
+    //     , label: "Food2"
+    //     , id: "food2"
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    //     , options: [
+    //         { label: "Main course", value: false, id: "main2" }
+    //         , { label: "Desert", value: true, id: "desert2" }
+    //         , { label: "beverages", value: false, id: "beverages2" }
+    //     ]
+    // }
 
     ,
     {
-        type: "groupArray"
+        type: "array"
         , label: "Tags"
         , id: "tags"
+        , validation: {
+            // groupValidator1: { message: "$ are not correct" }
+            // , 
+            // groupAsyncValidator1: {
+            //     message: "Async validation failed"
+            //     , arg: {
+            //         url: "http://localhost:3002/group"
+            //     }
+            //     , async: true
+            // }
+        }
         , group: {
             label: "Tag"
-            , id: "tag"
             , validation: {
                 groupValidator1: { message: "$ is not correct" }
                 , groupAsyncValidator1: {
@@ -119,7 +137,7 @@ let form1 = [
             }
             , controls: [
                 // {
-                    
+
                 {
                     type: "textarea"
                     , id: "firstName"
@@ -127,48 +145,49 @@ let form1 = [
                     , placeholder: "First name"
                     , value: ""
                     , class: { label: "red-class", element: "textarea-class" }
-                    // , validation: {
-                    //     required: { message: '$ is required' },
-                    //     minlength: { value: 3, message: 'Minimum length for $ is 3' },
-                    //     maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-                    // }
+                    , validation: {
+                        required: { message: '$ is required' },
+                        minlength: { value: 3, message: 'Minimum length for $ is 3' },
+                        maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+                    }
                 }
             ]
         }
     }
-    ,
-    {
-        type: "group"
-        , label: "Passwords"
-        , id: "pwd"
-        // , validation: {
-        //     groupValidator1: { message: "$ is not correct" }
-        //     , groupAsyncValidator1: {
-        //         message: "Async validation failed"
-        //         , arg: {
-        //             url: "http://localhost:3002/group"
-        //         }
-        //         , async: true
-        //     }
-        // }
-        , controls: [
-            {
-                type: "checkbox"
-                , id: "agreed"
-                , label: "Agreed"
-                , value: true
-                , validation: {
-                    required: { message: '$ is required' }
-                }
-            }
-        ]
-    }
-    , {
-        type: "submit"
-        , label: "submit"
-        , class: "btn btn-primary"
-        , actionId: "submit"
-    }
+    // ,
+    // {
+    //     type: "group"
+    //     , label: "Passwords"
+    //     , id: "pwd"
+    //     // , validation: {
+    //     //     // groupValidator1: { message: "$ is not correct" }
+    //     //     // , 
+    //     //     groupAsyncValidator1: {
+    //     //         message: "Async validation failed"
+    //     //         , arg: {
+    //     //             url: "http://localhost:3002/group"
+    //     //         }
+    //     //         , async: true
+    //     //     }
+    //     // }
+    //     , controls: [
+    //         {
+    //             type: "textarea"
+    //             , id: "agreed"
+    //             , label: "Agreed"
+    //             , value: "abcd"
+    //             , validation: {
+    //                 required: { message: '$ is required' }
+    //             }
+    //         }
+    //     ]
+    // }
+    // , {
+    //     type: "submit"
+    //     , label: "submit"
+    //     , class: "btn btn-primary"
+    //     , actionId: "submit"
+    // }
     , {
         type: "button"
         , label: "My Submit"
@@ -177,14 +196,42 @@ let form1 = [
         , validateForm: true
     }
     , {
-        type: "mat-button"
-        , subType:"raised"
-        , faClass:"fa fa-taxi fa-fw"
-        , color:"primary"
-        , label: "Add"
-        , actionId: "submit2"
-        , validateForm:true
+        type: "button"
+        , label: "Cancel"
+        , class: "btn btn-primary"
+        , actionId: "submit1"
+        // , validateForm: true
     }
+    , {
+        type: "buttongroup"
+        // , label: "Button group"
+        , class: ""
+        , controls: [
+            {
+                type: "button"
+                , label: "Submit"
+                , class: "btn btn-primary"
+                , actionId: "submit1"
+                , validateForm: true
+            }
+            , {
+                type: "button"
+                , subtype:"reset"
+                , label: "Cancel"
+                , class: "btn btn-primary"
+                , actionId: "cancel1"
+            }
+        ]
+    }
+    // , {
+    //     type: "mat-button"
+    //     , subType: "raised"
+    //     , faClass: "fa fa-taxi fa-fw"
+    //     , color: "primary"
+    //     , label: "Add"
+    //     , actionId: "submit2"
+    //     , validateForm: true
+    // }
 
 ];
 export { form1 };

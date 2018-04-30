@@ -6,7 +6,7 @@ import { JxMatCheckboxComponent, JxMatInputComponent, JxMatRadioComponent, JxMat
 import { JxGroupComponent } from './jx-group/jx-group.component';
 import { JxArrayComponent } from './jx-array/jx-array.component';
 import { JxFormComponent } from './jx-form/jx-form.component';
-import { JxCheckboxComponent, JxTextareaComponent, JxRadioComponent, JxSelectComponent, JxButtonComponent, JxSubmitComponent } from './jx-controls/jx-core/core.components';
+import { JxCheckboxComponent, JxTextareaComponent, JxRadioComponent, JxSelectComponent, JxButtonComponent, JxSubmitComponent, JxAnchorComponent } from './jx-controls/jx-core/core.components';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
 import { JxErrorComponent } from './jx-controls/jx-error/jx-error.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
@@ -20,6 +20,7 @@ import { Custom1Component } from './jx-controls/custom1/custom1.component';
   ],
   declarations: [
     JxFormComponent
+    , JxAnchorComponent
     , JxButtonComponent
     , JxSubmitComponent
     , JxCheckboxComponent
@@ -57,6 +58,7 @@ import { Custom1Component } from './jx-controls/custom1/custom1.component';
     , JxMatButtonComponent
     , JxGroupComponent
     , JxArrayComponent
+    , JxAnchorComponent
     , JxButtonComponent
     , JxSubmitComponent
     , Custom1Component

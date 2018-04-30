@@ -16,8 +16,6 @@ export class JxErrorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-    // this.control = this.parent.get(this.layout.id);
     if (this.controlType=="form") {
       this.control = this.parent;
     } else {
@@ -31,6 +29,7 @@ export class JxErrorComponent implements OnInit {
         );
     }
   }
+
   getMessages() {
     let messages = [];
     Object.keys(this.control.errors).forEach(x => {

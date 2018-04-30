@@ -11,4 +11,4 @@ gx-error is used to display error message when validation fails. gx-error can be
     If you need group level validation in an array then provide:
     <gx-error [layout]="layout.group" [control] = "group"></gx-error>
 
-**Please note that either one of the input properties of parent and control has to be used and not both.**
+**Please note that either one of the input properties of _parent_ and _control_ has to be used and not both.**

@@ -12,3 +12,9 @@ gx-error is used to display error message when validation fails. gx-error can be
     <gx-error [layout]="layout.group" [control] = "group"></gx-error>
 
 **Please note that either one of the input properties of _parent_ and _control_ has to be used and not both.**
+
+# Styling
+1. Each element / component when created in gx-controls has its own .scss file which controls the style of the component
+2. In layout you can provide style:{...} object in each element
+3. In gx-form.component.scss we provide a general default styling governing overall form. Similarly default group and array styling will be provided in corresponding .scss files
+4. From app.component.scss with ng-deep:: you provide a form level class. For each element you can provide a class over here with its id name. id-label and id-cotainer will control the label and container of the element. These will be used in ngClass attribute

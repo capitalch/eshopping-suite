@@ -6,13 +6,14 @@ import { BrokerService } from "../../../broker.service";
 @Component({
     selector: 'gx-textarea',
     template: `
-      <div [formGroup]="parent">
+      <ng-container [formGroup]="parent">
         <label [for]="layout.id">{{layout.label}}</label>
-        <textarea [id]="layout.id" [placeholder]="layout.placeholder" 
+        <textarea [id]="layout.id" [class]="layout.id" 
+            [placeholder]="layout.placeholder" [ngStyle]="layout.style"
             [formControlName]="layout.id">{{layout.value}}
         </textarea>
         <gx-error [layout]="layout" [parent]="parent"></gx-error>
-      </div>`
+      </ng-container>`
 })
 //   
 export class GxTextareaComponent {

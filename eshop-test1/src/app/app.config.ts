@@ -144,6 +144,7 @@ let form1 = [
                     , label: "First name"
                     , placeholder: "First name"
                     , value: ""
+                    , style:{color:"red"}
                     , class: { label: "red-class", element: "textarea-class" }
                     , validation: {
                         required: { message: '$ is required' },

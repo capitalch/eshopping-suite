@@ -3,9 +3,7 @@ let form1 = [
         type: "meta"
         , client: {
             title: "Test form"
-            , titleClass: "header"
-            , bodyClass: "body"
-            , class: { form: "form-style-1", title: "header", body: "body" }
+            , class: "form-style-1"
 
             // , validation: {
             //     // groupValidator1: { message: "Data is not correct" }
@@ -145,7 +143,7 @@ let form1 = [
                     , placeholder: "First name"
                     , value: ""
                     , style:{color:"red"}
-                    , class: { label: "red-class", element: "textarea-class" }
+                    // , class: ""
                     , validation: {
                         required: { message: '$ is required' },
                         minlength: { value: 3, message: 'Minimum length for $ is 3' },

@@ -1,4 +1,4 @@
-#gx-error
+# gx-error
 gx-error is used to display error message when validation fails. gx-error can be provided at form level, group level, array level and component level since you can set validations at these four levels. gx-error displays error messages if the errors property of element is not null. There are following input properties available:
 1) layout: This is configuration of the element available from json configuration file which is passed to the form in form of [layouts]=...
 2) parent: This is provided when the element is child of another element. This is to be used in case of 

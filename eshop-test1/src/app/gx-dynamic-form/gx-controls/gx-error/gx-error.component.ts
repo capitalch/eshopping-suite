@@ -10,15 +10,20 @@ import { FormGroup } from '@angular/forms';
 export class GxErrorComponent implements OnInit {
   @Input() layout: any = {};
   @Input() parent: FormGroup;
-  control:any;
+  @Input() control: any={};
   constructor() { }
 
   ngOnInit() {
+    this.parent && this.layout.id && (
+      this.control = this.parent.get(this.layout.id));
+
+
+
     //If parent is form or group in an array then there is no id in layout. That is meta of form does not and should not have an id.
-    this.layout.id 
-      ? this.control = this.parent.get(this.layout.id)
-      : this.control = this.parent;
-    
+    // this.layout.id
+    //   ? this.control = this.parent.get(this.layout.id)
+    //   : this.control = this.parent;
+
   }
 
   getMessages() {

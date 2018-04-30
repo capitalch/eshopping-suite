@@ -82,8 +82,5 @@
 // }
 ::ng-deep .radio-container
 {
-    div
-    {
-        background: yellow;
-    }
+    background: yellow !important;  
 }

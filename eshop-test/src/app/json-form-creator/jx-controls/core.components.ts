@@ -45,7 +45,7 @@ export class JxCheckboxComponent {
       </div>
       <jx-error [layout]="layout" [parent]="parent"></jx-error>
     </fieldset>`,
-    styles:['div {background:red;}']
+    styles:['fieldset {background:red;}']
 })
 export class JxRadioComponent {
   @Input() layout: any;

@@ -35,7 +35,7 @@ let form1 = [
         , label: "Gender"
         , value: ""
         , id: "gender"
-        , classes: {parentClass:'radio-container', elementClass:'x'}
+        , class: {parent:'radio-container', element:'x'}
         , options: [
             { label: "Male", value: "M", id: "male" }
             , { label: "Female", value: "F", id: "female" }

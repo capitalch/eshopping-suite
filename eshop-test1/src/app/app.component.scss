@@ -7,36 +7,31 @@
     max-width: 600px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     border: 2px solid green;
-    small{
-        color:red;
+    small {
+        color: red;
     }
     legend {
         font-weight: bold;
-        margin:5px;
+        margin: 5px;
     }
-    .header
-    {
+    .header {
         border: 1px solid black;
         font-size: 1.2em;
         padding-left: 2%;
     }
-    .body
-    {
+    .body {
         padding: 20px 12px 10px 20px;
     }
     fieldset {
-        border: 1px groove threedface;
-        // padding: 5px;
+        border: 1px groove threedface; // padding: 5px;
         margin: 5px;
     } // input[type=submit],
     input[type=button],
     button {
         // background: #4B99AD;
         // padding: 8px 15px 8px 15px;
-        margin:5px;
-        // float: right;
+        margin: 5px; // float: right;
         // border: none;
-    
         // color: #fff;
     }
     input[type=text]:not([matInput]),
@@ -71,41 +66,41 @@
     input[matInput] {
         width: 100%;
     }
-    text,
-    // textarea {
+    // text, textarea {
     //     width: 50%;
     //     margin:0px;
     //     display:block;
     // }
-
-    .firstName{
-        width:80%;
-        display:block;
-        color:red;
+    // .firstName {
+    //     display: block;
+    // }
+    .firstName-box {
+        display: inline-block;
+        width: 49.5%
     }
 
-    .firstName-1{
-        color:blue;
-        width:100%;
+    .firstName-1-box {
+        display: inline-block;
+        width:49.5%;
     }
 
-    .firstName-label{
-        color:blue;
-        // margin-bottom:20px;
-        padding:0px;
+    .firstName-1 {
+        color: blue;
+        width: 100%;
     }
-    // .firstName-container{
+    .firstName-label {
+        color: blue; // margin-bottom:20px;
+        // padding: 0px;
+    } // .firstName-container{
     //     background-color:gray;
     //     padding:0px;
     // }
-
     // .textarea-test{
     //     width: 100%;
     //     label{
     //         color:red;
     //     }
     // }
-
     select {
         width: 49%;
     }

@@ -32,29 +32,53 @@ let form1 = [
     //     , placeholder: "My custom control"
     //     , class: { label: "red-class", element: "textarea-class" }
     // }
-    // ,
-    // {
-    //     type: "textarea"
-    //     , id: "firstName"
-    //     , label: "First name"
-    //     , placeholder: "First name"
-    //     , value: ""
-    //     , class: { label: "red-class", element: "textarea-class" }
-    //     // , validation: {
-    //     //     groupAsyncValidator1: {
-    //     //         message: "Async validation failed"
-    //     //         , arg: {
-    //     //             url: "http://localhost:3002/group"
-    //     //             , delay: 1000
-    //     //         }
-    //     //         , async: true
-    //     //     }
-    //     //     ,
-    //     //     required: { message: '$ is required' }
-    //     //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-    //     //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-    //     // }
-    // }
+    ,
+    {
+        type: "textarea"
+        , id: "firstName"
+        , label: "First name"
+        , placeholder: "First name"
+        , value: ""
+        // , class: ""
+        // , validation: {
+        //     groupAsyncValidator1: {
+        //         message: "Async validation failed"
+        //         , arg: {
+        //             url: "http://localhost:3002/group"
+        //             , delay: 1000
+        //         }
+        //         , async: true
+        //     }
+        //     ,
+        //     required: { message: '$ is required' }
+        //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+        //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+        // }
+    }
+    ,
+    {
+        type: "textarea"
+        , id: "firstName-1"
+        , label: "First name1"
+        , placeholder: "First name1"
+        , value: ""
+        // , class: ""
+        // , validation: {
+        //     groupAsyncValidator1: {
+        //         message: "Async validation failed"
+        //         , arg: {
+        //             url: "http://localhost:3002/group"
+        //             , delay: 1000
+        //         }
+        //         , async: true
+        //     }
+        //     ,
+        //     required: { message: '$ is required' }
+        //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+        //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+        // }
+    }
+
     // , {
     //     type: "checkbox"
     //     , id: "agreed"
@@ -153,42 +177,42 @@ let form1 = [
     //         ]
     //     }
     // }
-    ,
-    {
-        type: "group"
-        , label: "Passwords"
-        , id: "pwd"
-        , validation: {
-            groupValidator1: { message: "$ is not correct for group" }
-            // , 
-            // groupAsyncValidator1: {
-            //     message: "Async validation failed"
-            //     , arg: {
-            //         url: "http://localhost:3002/group"
-            //     }
-            //     , async: true
-            // }
-        }
-        , controls: [
-            {
-                type: "textarea"
-                , id: "agreed"
-                , label: "Agreed"
-                , value: "abcd"
-                // , validation: {
-                //     required: { message: '$ is required' }
-                //     ,
-                //     groupAsyncValidator1: {
-                //         message: "Async validation failed"
-                //         , arg: {
-                //             url: "http://localhost:3002/group"
-                //         }
-                //         , async: true
-                //     }
-                // }
-            }
-        ]
-    }
+    // ,
+    // {
+    //     type: "group"
+    //     , label: "Passwords"
+    //     , id: "pwd"
+    //     , validation: {
+    //         groupValidator1: { message: "$ is not correct for group" }
+    //         // , 
+    //         // groupAsyncValidator1: {
+    //         //     message: "Async validation failed"
+    //         //     , arg: {
+    //         //         url: "http://localhost:3002/group"
+    //         //     }
+    //         //     , async: true
+    //         // }
+    //     }
+    //     , controls: [
+    //         {
+    //             type: "textarea"
+    //             , id: "agreed"
+    //             , label: "Agreed"
+    //             , value: "abcd"
+    //             // , validation: {
+    //             //     required: { message: '$ is required' }
+    //             //     ,
+    //             //     groupAsyncValidator1: {
+    //             //         message: "Async validation failed"
+    //             //         , arg: {
+    //             //             url: "http://localhost:3002/group"
+    //             //         }
+    //             //         , async: true
+    //             //     }
+    //             // }
+    //         }
+    //     ]
+    // }
     // , {
     //     type: "submit"
     //     , label: "submit"

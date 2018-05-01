@@ -7,7 +7,7 @@ import { BrokerService } from "../../../broker.service";
     selector: 'gx-textarea'
     , styleUrls: ['./textarea.scss']
     , template: `
-      <div [formGroup]="parent" [class] = "layout.id + '-container'">
+      <div [formGroup]="parent" [class] = "layout.id + '-box'">
         <label [for]="layout.id" [class] = "layout.id + '-label'">{{layout.label}}</label>
         <textarea [id]="layout.id" [class]="layout.id" [ngClass] = "layout.class"
             [placeholder]="layout.placeholder" [ngStyle]="layout.style"
@@ -34,12 +34,14 @@ export class GxTextareaComponent {
 
 @Component({
     selector: 'gx-button',
-    template: `      
+    template: `
+    <div class = "layout.id + '-box'">      
         <button (click) = "buttonClicked()" [class] = "layout.id" [ngClass] = "layout.class"
                 [ngStyle] = "layout.style"
                 type="button" [id]="layout.id"> 
                 {{layout.label}}
         </button>
+    </div>
       `
 })
 export class GxButtonComponent {

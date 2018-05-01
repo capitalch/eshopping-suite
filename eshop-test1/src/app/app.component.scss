@@ -72,14 +72,31 @@
         width: 100%;
     }
     text,
-    textarea {
-        width: 50%;
-        margin:0px;
+    // textarea {
+    //     width: 50%;
+    //     margin:0px;
+    //     display:block;
+    // }
+
+    .firstName{
+        width:80%;
         display:block;
+        color:red;
     }
 
-    // .firstName{
-    //     width:100%;
+    .firstName-1{
+        color:blue;
+        width:100%;
+    }
+
+    .firstName-label{
+        color:blue;
+        // margin-bottom:20px;
+        padding:0px;
+    }
+    // .firstName-container{
+    //     background-color:gray;
+    //     padding:0px;
     // }
 
     // .textarea-test{

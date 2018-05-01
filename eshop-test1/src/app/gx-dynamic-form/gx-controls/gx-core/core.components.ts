@@ -4,11 +4,12 @@ import { GxService } from "../../gx.service";
 import { BrokerService } from "../../../broker.service";
 
 @Component({
-    selector: 'gx-textarea',
-    template: `
-      <div [formGroup]="parent" [class] = "layout.id + '-box'">
-        <label [for]="layout.id">{{layout.label}}</label>
-        <textarea [id]="layout.id" [class]="layout.id" 
+    selector: 'gx-textarea'
+    , styleUrls: ['./textarea.scss']
+    , template: `
+      <div [formGroup]="parent" [class] = "layout.id + '-container'">
+        <label [for]="layout.id" [class] = "layout.id + '-label'">{{layout.label}}</label>
+        <textarea [id]="layout.id" [class]="layout.id" [ngClass] = "layout.class"
             [placeholder]="layout.placeholder" [ngStyle]="layout.style"
             [formControlName]="layout.id">{{layout.value}}
         </textarea>
@@ -27,10 +28,6 @@ export class GxTextareaComponent {
         private fb: FormBuilder
     ) { }
     ngOnInit() {
-        //   this.classes = this.jxService.getClasses(this.layout, this.parent);
-        // let xControl = this.fb.control(this.layout.value || "");
-        // this.parent.setControl(this.layout.id, xControl);
-
         this.gxService.createGenericControl(this.layout, this.parent);
     }
 }
@@ -38,28 +35,22 @@ export class GxTextareaComponent {
 @Component({
     selector: 'gx-button',
     template: `      
-        <button (click) = "buttonClicked()" 
-            type="button" [id]="layout.id+idx||''"> 
+        <button (click) = "buttonClicked()" [class] = "layout.id" [ngClass] = "layout.class"
+                [ngStyle] = "layout.style"
+                type="button" [id]="layout.id"> 
                 {{layout.label}}
         </button>
       `
 })
-// <div [formGroup]="parent" [ngClass] = "classes.parentClass">
-// </div>
 export class GxButtonComponent {
     @Input() layout: any;
     // @Input() idx: string;
     @Input() parent: FormGroup;
     classes: any = {}
-    // styles;
     constructor(private brokerService: BrokerService
         , private gxService: GxService
-
     ) { }
     ngOnInit() {
-        // this.styles = {color:"red"};
-        // this.btnClass = "btn"
-        //   this.classes = this.jxService.getClasses(this.layout, this.parent);
     }
 
     buttonClicked() {
@@ -78,6 +69,5 @@ export class GxButtonComponent {
                 this.brokerService.emit(this.layout.id, this.parent);
             }
         }
-
     }
 }

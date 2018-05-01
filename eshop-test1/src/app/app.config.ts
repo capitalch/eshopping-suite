@@ -3,9 +3,7 @@ let form1 = [
         type: "meta"
         , client: {
             title: "Test form"
-            , titleClass: "header"
-            , bodyClass: "body"
-            , class: { form: "form-style-1", title: "header", body: "body" }
+            , class: "form-style-1"
 
             // , validation: {
             //     // groupValidator1: { message: "Data is not correct" }

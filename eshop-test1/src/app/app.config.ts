@@ -142,8 +142,8 @@ let form1 = [
                     , label: "First name"
                     , placeholder: "First name"
                     , value: ""
-                    , style:{color:"red"}
-                    // , class: ""
+                    // , style:{color:"red"}
+                    , class: "firstName-1"
                     , validation: {
                         required: { message: '$ is required' },
                         minlength: { value: 3, message: 'Minimum length for $ is 3' },

@@ -6,14 +6,14 @@ import { BrokerService } from "../../../broker.service";
 @Component({
     selector: 'gx-textarea',
     template: `
-      <ng-container [formGroup]="parent">
+      <div [formGroup]="parent" [class] = "layout.id + '-box'">
         <label [for]="layout.id">{{layout.label}}</label>
         <textarea [id]="layout.id" [class]="layout.id" 
             [placeholder]="layout.placeholder" [ngStyle]="layout.style"
             [formControlName]="layout.id">{{layout.value}}
         </textarea>
         <gx-error [layout]="layout" [parent]="parent"></gx-error>
-      </ng-container>`
+      </div>`
 })
 //   
 export class GxTextareaComponent {
@@ -70,12 +70,12 @@ export class GxButtonComponent {
             if (this.layout.validateForm) {
                 this.gxService.validateAllFormFields(this.parent);
                 if (this.parent.valid && (!this.parent.pending)) {
-                    this.brokerService.emit(this.layout.actionId, this.parent);
+                    this.brokerService.emit(this.layout.id, this.parent);
                 } else {
                     console.log("Invalid form");
                 }
             } else {
-                this.brokerService.emit(this.layout.actionId, this.parent);
+                this.brokerService.emit(this.layout.id, this.parent);
             }
         }
 

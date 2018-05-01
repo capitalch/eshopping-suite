@@ -79,7 +79,7 @@ export class GxService {
   }
 
   executeCustomValidation(name: string, arg: {}) {
-    let f = this.customValidators[name].call(this, arg);
+    let f = this.customValidators[name].call(this, arg, parent);
     return (f);
   }
 

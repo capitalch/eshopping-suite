@@ -30,7 +30,8 @@ export class GxArrayComponent implements OnInit {
 
   addGroupInArray(layout) {
     let groupArray = <FormArray>this.parent.get(this.layout.id);
-    let group = this.fb.group({});
+    let groupValidators = this.gxService.getGroupValidators(this.layout.group);
+    let group = this.fb.group({}, { validator: groupValidators.validator, asyncValidator: groupValidators.asyncValidator });
     groupArray.push(group);
   }
 

@@ -57,6 +57,14 @@ let form1 = [
     }
     ,
     {
+        type: "input"
+        , id: "firstName2"
+        , label: "First nam2"
+        , placeholder: "First name2"
+        , value: ""
+    }
+    ,
+    {
         type: "textarea"
         , id: "firstName-1"
         , label: "First name1"

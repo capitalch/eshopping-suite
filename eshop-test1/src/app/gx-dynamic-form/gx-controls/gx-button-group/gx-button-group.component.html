@@ -1,6 +1,6 @@
-<fieldset>
-  <legend>{{layout.label}}</legend>
+<div [class] = "layout.id + '-box'">
+  <span [class] =  "layout.id + '-label'">{{layout.label}}</span>
   <ng-container *ngFor="let jControl of layout.controls">
     <ng-container gxDynamic [layout]="jControl" [parent]="parent"></ng-container>
   </ng-container>
-</fieldset>
+</div>

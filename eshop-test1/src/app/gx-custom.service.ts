@@ -24,18 +24,25 @@ export class GxCustomService {
       } else {
         console.log(d.data.value);
       }
-    }
-      // d.error 
-      // ? (console.log(d.error)) 
-      // : (console.log(d.data.value))
-    );
-    let sub1 = this.brokerService.filterOn("submit1").subscribe(d =>
+    });
+
+    let sub3 = this.brokerService.filterOn("mySubmit").subscribe(d => {
+      if (d.error) {
+        console.log(d.error);
+      } else {
+        console.log(d.data.value);
+      }
+    });
+    // d.error 
+    // ? (console.log(d.error)) 
+    // : (console.log(d.data.value))
+    let sub1 = this.brokerService.filterOn("reset").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
     let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
-    this.subs.add(sub1).add(sub2);
+    this.subs.add(sub1).add(sub2).add(sub3);
   }
 
   initCustomValidators() {

@@ -22,11 +22,11 @@ export class AppComponent {
   content: string;
   subs: any;
   constructor(
-    private jxMainService:JxMainService
+    private jxMainService: JxMainService
     , private JxFormService: JxService
     , private brokerService: BrokerService
     , private httpClient: HttpClient
-    , private gxCustomService:GxCustomService
+    , private gxCustomService: GxCustomService
   ) {
 
   }
@@ -37,30 +37,15 @@ export class AppComponent {
     // };
     this.myLayout = form1;
     this.content = "This is code";
+
+  }
+
+  ngAfterViewInit() {
+    this.brokerService.emit("userComponents", "test");
   }
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
 
-  config = [
-    {
-      type: 'input',
-      label: 'Full name',
-      name: 'name',
-      placeholder: 'Enter your name',
-    },
-    {
-      type: 'select',
-      label: 'Favourite food',
-      name: 'food',
-      options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-      placeholder: 'Select an option',
-    },
-    {
-      label: 'Submit',
-      name: 'submit',
-      type: 'button',
-    },
-  ];
 }

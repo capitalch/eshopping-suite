@@ -35,7 +35,7 @@ export class GxTextareaComponent {
 @Component({
     selector: 'gx-button',
     template: `
-    <div class = "layout.id + '-box'">      
+    <div [class] = "layout.id + '-box'">      
         <button (click) = "buttonClicked()" [class] = "layout.id" [ngClass] = "layout.class"
                 [ngStyle] = "layout.style"
                 type="button" [id]="layout.id"> 

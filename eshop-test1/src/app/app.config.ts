@@ -224,37 +224,38 @@ let form1 = [
         , label: "My Submit"
         , class: "btn btn-primary"
         , id: "mySubmit"
-        // , actionId: "submit1"
         , validateForm: true
     }
-    , {
-        type: "button"
-        , label: "Cancel"
-        , class: "btn btn-primary"
-        , actionId: "submit1"
-        // , validateForm: true
-    }
     // , {
-    //     type: "buttongroup"
-    //     // , label: "Button group"
-    //     , class: ""
-    //     , controls: [
-    //         {
-    //             type: "button"
-    //             , label: "Submit"
-    //             , class: "btn btn-primary"
-    //             , actionId: "submit1"
-    //             , validateForm: true
-    //         }
-    //         , {
-    //             type: "button"
-    //             , subtype:"reset"
-    //             , label: "Cancel"
-    //             , class: "btn btn-primary"
-    //             , actionId: "cancel1"
-    //         }
-    //     ]
+    //     type: "button"
+    //     , label: "Cancel"
+    //     , class: "btn btn-primary"
+    //     , actionId: "submit1"
+    //     // , validateForm: true
     // }
+    , {
+        type: "buttongroup"
+        // , label: "Button group"
+        , class: ""
+        , id:"button-group"
+        , controls: [
+            {
+                type: "button"
+                , label: "Submit2"
+                , class: "btn btn-primary"
+                , id: "submit2"
+                , validateForm: true
+            }
+            , {
+                type: "button"
+                , subtype:"reset"
+                , id:"reset"
+                , label: "Cancel"
+                , class: "btn btn-primary"
+                , actionId: "cancel1"
+            }
+        ]
+    }
     // , {
     //     type: "mat-button"
     //     , subType: "raised"

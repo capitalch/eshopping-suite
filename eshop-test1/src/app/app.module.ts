@@ -17,6 +17,7 @@ import { LearnComponent } from './learning/learn/learn.component';
 import { Dynamic2FormModule } from './dynamic2-form/dynamic2-form.module';
 import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
 import { GxCustomService } from './gx-custom.service';
+// import { GxTextareaComponent } from './gx-dynamic-form/gx-controls/gx-core/core.components';
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import { GxCustomService } from './gx-custom.service';
     , JxService
     , GxCustomService
     // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
-  ],
-  bootstrap: [AppComponent]
+  ]
+  , entryComponents:[
+  ]
+  , bootstrap: [AppComponent]
 })
 export class AppModule { }

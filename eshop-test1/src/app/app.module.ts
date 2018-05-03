@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MAT_DATE_LOCALE } from '@angular/material'
+import { MAT_DATE_LOCALE } from '@angular/material';
 import { BrokerService } from './broker.service';
 import { JxMainService } from './jx-main.service';
 // import { DynamicFormModule } from './dynamic-form/dynamic-form.module';

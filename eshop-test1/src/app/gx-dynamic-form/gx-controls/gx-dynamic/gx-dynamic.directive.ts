@@ -4,14 +4,15 @@ import { GxTextareaComponent, GxButtonComponent } from '../gx-core/core.componen
 // import { GxService } from '../../gx.service';
 import { components } from './gx-component-mapper';
 import { BrokerService } from '../../../broker.service';
+import { GxMapperService } from '../../service/gx-mapper.service';
 
 @Directive({
   selector: '[gxDynamic]'
 })
 export class GxDynamicDirective implements OnInit {
-  @Input() parent: FormGroup
+  @Input() parent: FormGroup;
   @Input() layout: any;
-  myComponents:any;
+  myComponents: any;
   // components = {
   //   textarea: GxTextareaComponent
   //   , button: GxButtonComponent
@@ -19,20 +20,20 @@ export class GxDynamicDirective implements OnInit {
   component;
   constructor(
     // private gxService: GxService
-    // , 
-    private brokerService: BrokerService
+    // ,
+    private gxMapperService: GxMapperService
+    , private brokerService: BrokerService
     , private resolver: ComponentFactoryResolver
     , private container: ViewContainerRef
-  ) { 
+  ) {
     // this.brokerService.behFilterOn("gx-component-init").subscribe(d => {
     //   this.myComponents || (this.myComponents = Object.assign(components,d.data), console.log(this.myComponents))      
     // });
   }
   sub;
   ngOnInit() {
-    
-    const component = components[this.layout.type.toLowerCase()];
-    // const component = this.gxService.getMappedComponent(this.layout.type);
+    // const component = components[this.layout.type.toLowerCase()];
+    const component = this.gxMapperService.getMappedComponent(this.layout.type);
     const factory = this.resolver.resolveComponentFactory(component);
     this.component = this.container.createComponent(factory);
     this.component.instance.parent = this.parent;

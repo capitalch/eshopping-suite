@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { GxService } from '../gx.service';
+import { GxService } from '../service/gx.service';
 
 @Component({
   selector: 'app-gx-group'
@@ -18,7 +18,7 @@ export class GxGroupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let groupValidators = this.gxService.getGroupValidators(this.layout);
+    const groupValidators = this.gxService.getGroupValidators(this.layout);
     this.thisGroup = this.fb.group({}, { validator: groupValidators.validator, asyncValidator: groupValidators.asyncValidator });
     this.parent.setControl(this.layout.id, this.thisGroup);
   }

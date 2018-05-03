@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { GxService } from '../../gx-dynamic-form/gx.service';
+import { GxService } from '../../gx-dynamic-form/service/gx.service';
 
 @Component({
   selector: 'gx-input',

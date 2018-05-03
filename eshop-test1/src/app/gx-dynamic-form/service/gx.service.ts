@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GxTextareaComponent, GxButtonComponent } from './gx-controls/gx-core/core.components';
+import { GxTextareaComponent, GxButtonComponent } from '../gx-controls/gx-core/core.components';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 // import { components } from './gx-controls/gx-dynamic/gx-component-mapper';
-import { GxGroupComponent } from './gx-group/gx-group.component';
-import { GxArrayComponent } from './gx-array/gx-array.component';
-import { GxButtonGroupComponent } from './gx-controls/gx-button-group/gx-button-group.component';
-import { BrokerService } from '../broker.service';
+import { GxGroupComponent } from '../gx-group/gx-group.component';
+import { GxArrayComponent } from '../gx-array/gx-array.component';
+import { GxButtonGroupComponent } from '../gx-controls/gx-button-group/gx-button-group.component';
+import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class GxService {
@@ -47,7 +47,7 @@ export class GxService {
   }
 
   // getMappedComponent(compName) {
-  //   return (this.components[compName.toLowerCase()]);
+  //   return (components[compName.toLowerCase()]);
   // }
 
   getGroupValidators(layout) {

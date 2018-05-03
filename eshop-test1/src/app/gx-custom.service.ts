@@ -2,8 +2,9 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { BrokerService } from './broker.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { GxService } from './gx-dynamic-form/gx.service';
+import { GxService } from './gx-dynamic-form/service/gx.service';
 import { components } from './custom-controls/custom-controls-mapper';
+import { GxMapperService } from './gx-dynamic-form/service/gx-mapper.service';
 
 @Injectable()
 export class GxCustomService {
@@ -13,15 +14,16 @@ export class GxCustomService {
     private brokerService: BrokerService
     , private httpClient: HttpClient
     , private gxService: GxService
+    , private gxMapperService: GxMapperService
   ) {
-    this.myComponents = components;
+    // this.myComponents = components;
     this.registerCustomEvents();
     this.registerCustomValidators();
     this.registerCustomControls();
   }
 
   registerCustomControls() {
-    this.gxService.registerCustomControls(this.myComponents);
+    this.gxMapperService.mapComponents(components)
   }
 
   registerCustomEvents() {

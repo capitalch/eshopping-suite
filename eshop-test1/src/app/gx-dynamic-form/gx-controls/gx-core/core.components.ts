@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { GxService } from "../../gx.service";
+import { GxService } from "../../service/gx.service";
 import { BrokerService } from "../../../broker.service";
 
 @Component({
@@ -16,7 +16,7 @@ import { BrokerService } from "../../../broker.service";
         <gx-error [layout]="layout" [parent]="parent"></gx-error>
       </div>`
 })
-//   
+//
 export class GxTextareaComponent {
     @Input() layout: any;
     // @Input() idx: string;

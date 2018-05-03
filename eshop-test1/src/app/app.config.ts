@@ -59,9 +59,20 @@ const form1 = [
     {
         type: 'input'
         , id: 'firstName2'
+        , subtype: 'date'
         , label: 'First name2'
         , placeholder: 'First name2'
         , value: ''
+        // , validation: {
+        //     required: {message: '$ is required'}
+        // }
+    }
+    ,
+    {
+        type: 'anchor'
+        , id: 'myAnchor'
+        , label: 'This is my anchor'
+        , href: 'http://google.com'
     }
     ,
     {
@@ -70,46 +81,48 @@ const form1 = [
         , label: 'First name1'
         , placeholder: 'First name1'
         , value: ''
-        // , class: ''
-        // , validation: {
-        //     groupAsyncValidator1: {
-        //         message: 'Async validation failed'
-        //         , arg: {
-        //             url: 'http://localhost:3002/group'
-        //             , delay: 1000
-        //         }
-        //         , async: true
-        //     }
-        //     ,
-        //     required: { message: '$ is required' }
-        //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-        //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-        // }
+        , validation: {
+            required: {message: '$ is required'}
+        }
     }
 
-    // , {
-    //     type: 'checkbox'
-    //     , id: 'agreed'
-    //     , label: 'Agreed'
-    //     , value: true
-    //     , validation: {
-    //         required: { message: '$ is required' }
-    //     }
-    // }
-    // ,
-    // {
-    //     type: 'radio'
-    //     , label: 'Gender'
-    //     , value: 'M'
-    //     , id: 'gender123'
-    //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
-    //     ]
-    //     , validation: {
-    //         required: { message: '$ is required' }
-    //     }
-    // }
+    , {
+        type: 'checkbox'
+        , id: 'agreed'
+        , label: 'Agreed'
+        , value: true
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    ,
+    {
+        type: 'radio'
+        , label: 'Gender'
+        , value: 'M'
+        , id: 'gender123'
+        , options: [
+            { label: 'Male', value: 'M', id: 'male1' }
+            , { label: 'Female', value: 'F', id: 'female1' }
+        ]
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    ,
+    {
+        type: 'radio'
+        , label: 'Gender1'
+        , value: 'M'
+        , id: 'gender1234'
+        , options: [
+            { label: 'Male', value: 'M', id: 'male2' }
+            , { label: 'Female', value: 'F', id: 'female2' }
+        ]
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
     // , {
     //     type: 'select'
     //     , label: 'Country'

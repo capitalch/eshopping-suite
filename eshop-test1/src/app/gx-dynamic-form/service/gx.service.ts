@@ -10,30 +10,11 @@ import { BrokerService } from '../../broker.service';
 @Injectable()
 export class GxService {
   customValidators: any = {};
-  // myComponents: any;
-
-  //   components = {
-  //     textarea: GxTextareaComponent
-  //     , button: GxButtonComponent
-  //     , group: GxGroupComponent
-  //     , array: GxArrayComponent
-  //     , buttongroup:GxButtonGroupComponent
-  //     // , input:InputComponent
-  // }
 
   constructor(
     private fb: FormBuilder
     , private brokerService: BrokerService
   ) {
-    // this.myComponents = components;
-    // this.brokerService.filterOn("gx-component-init").subscribe(d => {
-    //   console.log(d.data);
-    // });
-  }
-
-  registerCustomControls(comps) {
-    // this.components = Object.assign(comps, components);
-    // this.brokerService.behEmit("gx-component-init",comps);
   }
 
   registerCustomValidators(obj) {
@@ -41,17 +22,13 @@ export class GxService {
   }
 
   createGenericControl(layout, parent) {
-    let allValidators = this.getValidators(layout);
-    let xControl = this.fb.control(layout.value || "", allValidators.validators, allValidators.asyncValidators);
+    const allValidators = this.getValidators(layout);
+    const xControl = this.fb.control(layout.value || '', allValidators.validators, allValidators.asyncValidators);
     parent.setControl(layout.id, xControl);
   }
 
-  // getMappedComponent(compName) {
-  //   return (components[compName.toLowerCase()]);
-  // }
-
   getGroupValidators(layout) {
-    let validators = {
+    const validators = {
       validator: null
       , asyncValidator: null
     };
@@ -68,17 +45,17 @@ export class GxService {
   }
 
   getValidators(layout) {
-    let allValidators = {
+    const allValidators = {
       validators: [],
       asyncValidators: []
     };
 
-    layout.validation && Object.keys(layout.validation).map(x => {
+    const a = layout.validation && Object.keys(layout.validation).map(x => {
 
       switch (x) {
         case 'required':
           (layout.type in { checkbox: '' }) ? allValidators.validators.push(Validators.requiredTrue)
-            : allValidators.validators.push(Validators.required)
+            : allValidators.validators.push(Validators.required);
           break;
         case 'email':
           allValidators.validators.push(Validators.email);
@@ -93,8 +70,8 @@ export class GxService {
           allValidators.validators.push(Validators.pattern(layout.validation[x].value));
           break;
         default:
-          let validatorName = x;
-          let arg = layout.validation[x].arg;
+          const validatorName = x;
+          const arg = layout.validation[x].arg;
           if (layout.validation[x].async) {
             allValidators.asyncValidators.push(this.executeCustomValidation(validatorName, arg));
           } else {
@@ -106,17 +83,17 @@ export class GxService {
   }
 
   executeCustomValidation(name: string, arg: {}) {
-    let f = this.customValidators[name].call(this, arg, parent);
+    const f = this.customValidators[name].call(this, arg, parent);
     return (f);
   }
 
   processForm(parent) {
-    let myForm: any = parent;
-    let meta = myForm.meta;
-    let serverMeta = Object.assign({}, meta);
+    const myForm: any = parent;
+    const meta = myForm.meta;
+    const serverMeta = Object.assign({}, meta);
     delete serverMeta.client;
-    let formValue = myForm.value
-    formValue["meta"] = serverMeta;
+    const formValue = myForm.value;
+    formValue['meta'] = serverMeta;
     delete myForm.value.undefined;
   }
 
@@ -130,7 +107,7 @@ export class GxService {
       } else if (control instanceof FormArray) {
         (<FormArray>control).controls.forEach(x => {
           this.validateAllFormFields(<FormGroup>x);
-        })
+        });
       }
     });
   }

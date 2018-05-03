@@ -2,8 +2,8 @@
   <div [ngClass]="meta.id + '-title'">{{meta.client.title}}</div>
   <div [class]="meta.id + '-body'" >
     <ng-container *ngFor="let layout of layouts">
-      <ng-container gxDynamic [layout]="layout" [parent]="myForm"></ng-container>
+      <ng-container appGxDynamic [layout]="layout" [parent]="myForm"></ng-container>
     </ng-container>
   </div>
-  <gx-error [layout]="meta.client" [control]="myForm"></gx-error>
+  <app-gx-error [layout]="meta.client" [control]="myForm"></app-gx-error>
 </form>

@@ -1,23 +1,23 @@
-import { Component, Input } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { GxService } from "../../service/gx.service";
-import { BrokerService } from "../../../broker.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { GxService } from '../../service/gx.service';
+import { BrokerService } from '../../../broker.service';
 
 @Component({
-    selector: 'gx-textarea'
+    selector: 'app-gx-textarea'
     , styleUrls: ['./textarea.scss']
     , template: `
-      <div [formGroup]="parent" [class] = "layout.id + '-box'">
-        <label [for]="layout.id" [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <textarea [id]="layout.id" [class]="layout.id" [ngClass] = "layout.class"
-            [placeholder]="layout.placeholder" [ngStyle]="layout.style"
-            [formControlName]="layout.id">{{layout.value}}
+      <div [formGroup]='parent' [class] = "layout.id + '-box'">
+      <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
+        <textarea [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
+            [placeholder]='layout.placeholder' [ngStyle]='layout.style'
+            [formControlName]='layout.id'>{{layout.value}}
         </textarea>
-        <gx-error [layout]="layout" [parent]="parent"></gx-error>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
       </div>`
 })
 //
-export class GxTextareaComponent {
+export class GxTextareaComponent implements OnInit {
     @Input() layout: any;
     // @Input() idx: string;
     @Input() parent: FormGroup;
@@ -33,22 +33,22 @@ export class GxTextareaComponent {
 }
 
 @Component({
-    selector: 'gx-button',
+    selector: 'app-gx-button',
     template: `
-    <div [class] = "layout.id + '-box'">      
-        <button (click) = "buttonClicked()" [class] = "layout.id" [ngClass] = "layout.class"
-                [ngStyle] = "layout.style"
-                type="button" [id]="layout.id"> 
+    <div [class] = "layout.id + '-box'">
+        <button (click) = 'buttonClicked()' [class] = 'layout.id' [ngClass] = 'layout.class'
+                [ngStyle] = 'layout.style'
+                type='button' [id]='layout.id'>
                 {{layout.label}}
         </button>
     </div>
       `
 })
-export class GxButtonComponent {
+export class GxButtonComponent implements OnInit {
     @Input() layout: any;
     // @Input() idx: string;
     @Input() parent: FormGroup;
-    classes: any = {}
+    classes: any = {};
     constructor(private brokerService: BrokerService
         , private gxService: GxService
     ) { }
@@ -56,7 +56,7 @@ export class GxButtonComponent {
     }
 
     buttonClicked() {
-        if (this.layout.subtype && this.layout.subtype == "reset") {
+        if (this.layout.subtype && this.layout.subtype === 'reset') {
             this.parent.reset();
         } else {
             this.gxService.processForm(this.parent);
@@ -65,7 +65,7 @@ export class GxButtonComponent {
                 if (this.parent.valid && (!this.parent.pending)) {
                     this.brokerService.emit(this.layout.id, this.parent);
                 } else {
-                    console.log("Invalid form");
+                    console.log('Invalid form');
                 }
             } else {
                 this.brokerService.emit(this.layout.id, this.parent);

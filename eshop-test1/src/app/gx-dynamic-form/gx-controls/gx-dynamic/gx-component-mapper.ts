@@ -1,17 +1,17 @@
-import { GxTextareaComponent, GxButtonComponent } from "../gx-core/core.components";
-import { GxGroupComponent } from "../../gx-group/gx-group.component";
-import { GxArrayComponent } from "../../gx-array/gx-array.component";
-import { GxButtonGroupComponent } from "../gx-button-group/gx-button-group.component";
-// import { InputComponent } from "../../../custom-controls/input/input.component";
+import { GxTextareaComponent, GxButtonComponent } from '../gx-core/core.components';
+import { GxGroupComponent } from '../../gx-group/gx-group.component';
+import { GxArrayComponent } from '../../gx-array/gx-array.component';
+import { GxButtonGroupComponent } from '../gx-button-group/gx-button-group.component';
+// import { InputComponent } from '../../../custom-controls/input/input.component';
 
 
-let components = {
+const components = {
     textarea: GxTextareaComponent
     , button: GxButtonComponent
     , group: GxGroupComponent
     , array: GxArrayComponent
-    , buttongroup:GxButtonGroupComponent
+    , buttongroup: GxButtonGroupComponent
     // , input:InputComponent
-}
+};
 
 export { components };

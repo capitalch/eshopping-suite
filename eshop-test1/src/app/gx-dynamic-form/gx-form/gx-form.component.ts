@@ -19,7 +19,7 @@ export class GxFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const metaIndex = this.layouts.findIndex(x => x.type == 'meta');
+    const metaIndex = this.layouts.findIndex(x => x.type === 'meta');
     this.meta = this.layouts[metaIndex];
 
     this.layouts.splice(metaIndex, 1);

@@ -40,9 +40,9 @@ export class AppComponent {
 
   }
 
-  ngAfterViewInit() {
-    this.brokerService.emit("userComponents", "test");
-  }
+  // ngAfterViewInit() {
+  //   this.brokerService.emit("userComponents", "test");
+  // }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

@@ -10,7 +10,7 @@ import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
 import { GxGroupComponent } from './gx-group/gx-group.component';
 import { GxArrayComponent } from './gx-array/gx-array.component';
 import { GxButtonGroupComponent } from './gx-controls/gx-button-group/gx-button-group.component';
-import { InputComponent } from '../input/input.component';
+import { InputComponent } from '../custom-controls/input/input.component';
 
 
 
@@ -38,7 +38,7 @@ import { InputComponent } from '../input/input.component';
     , GxGroupComponent
     , GxArrayComponent
     , GxButtonGroupComponent
-    // , InputComponent
+    , InputComponent
   ]
   , providers: [GxService]
 })

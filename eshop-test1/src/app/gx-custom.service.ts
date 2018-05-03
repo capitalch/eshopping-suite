@@ -3,21 +3,28 @@ import { BrokerService } from './broker.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { GxService } from './gx-dynamic-form/gx.service';
+import { components } from './custom-controls/custom-controls-mapper';
 
 @Injectable()
 export class GxCustomService {
   subs: any;
+  myComponents: any;
   constructor(
     private brokerService: BrokerService
     , private httpClient: HttpClient
     , private gxService: GxService
   ) {
-    this.handleChildEvents();
-    this.initCustomValidators();
+    this.myComponents = components;
+    this.registerCustomEvents();
+    this.registerCustomValidators();
+    this.registerCustomControls();
   }
 
-  handleChildEvents() {
+  registerCustomControls() {
+    this.gxService.registerCustomControls(this.myComponents);
+  }
 
+  registerCustomEvents() {
     this.subs = this.brokerService.filterOn("submit1").subscribe(d => {
       if (d.error) {
         console.log(d.error);
@@ -33,9 +40,6 @@ export class GxCustomService {
         console.log(d.data.value);
       }
     });
-    // d.error 
-    // ? (console.log(d.error)) 
-    // : (console.log(d.data.value))
     let sub1 = this.brokerService.filterOn("reset").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
@@ -45,7 +49,7 @@ export class GxCustomService {
     this.subs.add(sub1).add(sub2).add(sub3);
   }
 
-  initCustomValidators() {
+  registerCustomValidators() {
     let customValidators = {
       myValidate: (s) => {
         let func = (control) => {
@@ -96,6 +100,6 @@ export class GxCustomService {
         return (func);
       }
     }
-    this.gxService.initCustomValidators(customValidators);
+    this.gxService.registerCustomValidators(customValidators);
   }
 }

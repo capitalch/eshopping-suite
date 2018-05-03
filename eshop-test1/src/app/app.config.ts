@@ -55,14 +55,14 @@ let form1 = [
         //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
         // }
     }
-    ,
-    {
-        type: "input"
-        , id: "firstName2"
-        , label: "First nam2"
-        , placeholder: "First name2"
-        , value: ""
-    }
+    // ,
+    // {
+    //     type: "input"
+    //     , id: "firstName2"
+    //     , label: "First nam2"
+    //     , placeholder: "First name2"
+    //     , value: ""
+    // }
     ,
     {
         type: "textarea"

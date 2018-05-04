@@ -45,14 +45,11 @@ import { IbukiService } from './service/ibuki.service';
     , GxGroupComponent
     , GxArrayComponent
     , GxButtonGroupComponent
-<<<<<<< HEAD
-=======
     , GxInputComponent
     , GxAnchorComponent
     , GxCheckboxComponent
     , GxRadioComponent
     , GxSelectComponent
->>>>>>> b93d59cd1903bfcb278fa14a314f7c8b78fc5f4a
   ]
   , providers: [GxService, GxMapperService, IbukiService]
 })

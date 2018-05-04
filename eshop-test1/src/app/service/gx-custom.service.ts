@@ -1,11 +1,11 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { BrokerService } from './broker.service';
+import { BrokerService } from '../broker.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { GxService } from './gx-dynamic-form/service/gx.service';
-import { components } from './custom-controls/custom-controls-mapper';
-import { GxMapperService } from './gx-dynamic-form/service/gx-mapper.service';
-
+import { GxService } from '../gx-dynamic-form/service/gx.service';
+import { components } from '../custom-controls/custom-controls-mapper';
+import { GxMapperService } from '../gx-dynamic-form/service/gx-mapper.service';
+// import {countries} from './options-set';
 @Injectable()
 export class GxCustomService {
   subs: any;
@@ -20,6 +20,12 @@ export class GxCustomService {
     this.registerCustomEvents();
     this.registerCustomValidators();
     this.registerCustomControls();
+    this.registerSelectOptions();
+    console.log('gx-custom-service');
+  }
+
+  registerSelectOptions(){
+
   }
 
   registerCustomControls() {

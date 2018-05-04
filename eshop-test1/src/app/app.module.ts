@@ -16,7 +16,7 @@ import { BrokerService } from './broker.service';
 import { LearnComponent } from './learning/learn/learn.component';
 
 import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
-import { GxCustomService } from './gx-custom.service';
+import { GxCustomService } from './service/gx-custom.service';
 import { InputComponent } from './custom-controls/input/input.component';
 // import { GxTextareaComponent } from './gx-dynamic-form/gx-controls/gx-core/core.components';
 

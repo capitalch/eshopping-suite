@@ -13,6 +13,7 @@ import { GxArrayComponent } from './gx-array/gx-array.component';
 import { GxButtonGroupComponent } from './gx-controls/gx-button-group/gx-button-group.component';
 import { InputComponent } from '../custom-controls/input/input.component';
 import { GxMapperService } from './service/gx-mapper.service';
+import { IbukiService } from './service/ibuki.service';
 
 
 
@@ -51,6 +52,6 @@ import { GxMapperService } from './service/gx-mapper.service';
     , GxRadioComponent
     , GxSelectComponent
   ]
-  , providers: [GxService, GxMapperService]
+  , providers: [GxService, GxMapperService, IbukiService]
 })
 export class GxDynamicFormModule { }

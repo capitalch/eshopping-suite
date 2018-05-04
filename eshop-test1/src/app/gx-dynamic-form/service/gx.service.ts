@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GxTextareaComponent, GxButtonComponent } from '../gx-controls/gx-core/core.components';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-// import { components } from './gx-controls/gx-dynamic/gx-component-mapper';
 import { GxGroupComponent } from '../gx-group/gx-group.component';
 import { GxArrayComponent } from '../gx-array/gx-array.component';
 import { GxButtonGroupComponent } from '../gx-controls/gx-button-group/gx-button-group.component';
@@ -10,11 +9,16 @@ import { BrokerService } from '../../broker.service';
 @Injectable()
 export class GxService {
   customValidators: any = {};
+  selectOptions:any;
 
   constructor(
     private fb: FormBuilder
     , private brokerService: BrokerService
   ) {
+  }
+
+  registerSelectOptions(opts){
+    this.selectOptions = opts;
   }
 
   registerCustomValidators(obj) {

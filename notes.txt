@@ -46,21 +46,20 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             20. Move common code of css class to service
             23. Fab button
             25. Documentation for json object
-
+            3. Button groups
+            5. Just like button implement anchor tag
+            6. Debounce effect for async validation
+            9. Dynamic component
 1. file upload
 2. Show Required symbol
-            3. Button groups
+            
 4. Custom component
-5. Just like button implement anchor tag
-            6. Debounce effect for async validation
+            
 7. Array Add remove buttons customization
 8. Typeahead
-9. Dynamic component
-    Organize
-    Buttons
-    Custom object
-    Ts file checkup
-    Modulerize
+19. Complete basic and mat controls
+20. Complete check box group
+21. 
 
     
 //for angular Async validation

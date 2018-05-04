@@ -9,8 +9,7 @@ import { Observable } from 'rxjs/Observable';
     , styleUrls: ['./select.scss']
     , template: `
     <div [formGroup]='parent' [class] = "layout.id + '-box'">
-        <label [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <div *ngFor="let option of layout.options">
+        <label [class] = "layout.id + '-label'">{{layout.label}}</label>        
         <select [class]='layout.id' [ngClass] = 'layout.class'
             [ngStyle]='layout.style' [formControlName]='layout.id'>
             <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
@@ -34,6 +33,7 @@ export class GxSelectComponent implements OnInit {
         private fb: FormBuilder
     ) { }
     ngOnInit() {
+        console.log('gx-select');
         // logic for options being an array, a function or an observable
         if (typeof (this.layout.options) === 'string') {
             // const options = this.gxService.getOption(this.layout.options);

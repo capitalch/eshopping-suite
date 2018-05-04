@@ -158,8 +158,9 @@ export class GxMatInputComponent implements OnInit {
 }
 
 @Component({
-    selector: 'app-gxmat-datepicker',
-    template: `
+    selector: 'app-gxmat-datepicker'
+    , styleUrls: ['./mat-datepicker.scss']
+    , template: `
         <mat-form-field [formGroup]='parent' [class] = "layout.id + '-box'">
             <input (dateInput) = "change($event)" matInput
                 [class]='layout.id' [ngClass] = 'layout.class' [ngStyle]='layout.style' [matDatepicker]="picker"
@@ -197,8 +198,9 @@ export class GxMatDatePickerComponent implements OnInit {
 }
 
 @Component({
-    selector: 'app-jxmat-button',
-    template: `
+    selector: 'app-jxmat-button'
+    , styleUrls: ['./mat-button.scss']
+    , template: `
     <ng-container [ngSwitch]="layout.subType">
         <span *ngSwitchCase="'raised'" [class] = "layout.id + '-box'">
             <button (click)="buttonClicked()" mat-raised-button

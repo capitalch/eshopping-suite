@@ -89,7 +89,7 @@ export class GxRadioComponent implements OnInit {
     , template: `
     <div [formGroup]='parent' [class] = "layout.id + '-box'">
         <label [class] = "layout.id + '-label'">
-            <input type = 'checkbox' [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
+            <input type = 'checkbox'  [class]='layout.id' [ngClass] = 'layout.class'
                     [ngStyle]='layout.style' [formControlName]='layout.id'
                     [value] = 'layout.value'>{{layout.label}}
         </label>
@@ -167,8 +167,8 @@ export class GxAnchorComponent implements OnInit {
     , template: `
       <div [formGroup]='parent' [class] = "layout.id + '-box'">
       <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <textarea [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
-            [placeholder]='layout.placeholder' [ngStyle]='layout.style'
+        <textarea [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class' [ngStyle]='layout.style'
+            [placeholder]='layout.placeholder'
             [formControlName]='layout.id'>{{layout.value}}
         </textarea>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
@@ -227,5 +227,53 @@ export class GxButtonComponent implements OnInit {
                 this.ibukiService.emit(this.layout.id, this.parent);
             }
         }
+    }
+}
+
+@Component({
+    selector: 'app-gx-checkboxgroup'
+    , styleUrls: ['./checkboxgroup.scss']
+    , template: `
+    <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
+    <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
+        <ng-container [formGroupName]="layout.id">
+            <ng-container *ngFor="let option of layout.options">
+                <input [id] = "option.id" type="checkbox" [class]='layout.id' [ngClass] = 'layout.class'
+                [ngStyle]='layout.style' [formControlName]='layout.id' >
+                 <label [class] = "layout.id + '-label'"
+                    style="display:inline-block" [for]="option.id">
+                    {{option.label}}
+                </label>
+            </ng-container>
+        </ng-container>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </fieldset>
+      `
+})
+
+// <ng-container>
+//   <fieldset  [formGroup]="parent">
+//     <legend>{{layout.label}}</legend>
+//     <ng-container [formGroupName]="layout.id">
+//       <ng-container *ngFor="let option of layout.options">
+//         <input type="checkbox" [id]="option.id+idx" [formControlName]="option.id">
+//         <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id+idx">{{option.label}}</label>
+//       </ng-container>
+//     </ng-container>
+//     <jx-error [layout]="layout" [parent]="parent"></jx-error>
+//   </fieldset>
+// </ng-container>
+
+export class GxCheckboxGroupComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
     }
 }

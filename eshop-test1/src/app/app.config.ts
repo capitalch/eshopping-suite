@@ -25,6 +25,19 @@ const form1 = [
     //     , label: 'Some label'
 
     // }
+    , {
+        type: 'checkboxGroup'
+        , label: 'Food2'
+        , id: 'food2'
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: [
+            { label: 'Main course', value: false, id: 'main2' }
+            , { label: 'Desert', value: true, id: 'desert2' }
+            , { label: 'beverages', value: false, id: 'beverages2' }
+        ]
+    }
     // , {
     //     type: 'custom1'
     //     , id: 'custom1'
@@ -130,7 +143,7 @@ const form1 = [
             required: { message: '$ is required' }
         }
     }
-,
+    ,
     {
         type: 'mat-radio'
         , label: 'Gender1'

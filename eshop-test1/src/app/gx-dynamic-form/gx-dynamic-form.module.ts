@@ -5,7 +5,7 @@ import { GxFormComponent } from './gx-form/gx-form.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { GxDynamicDirective } from './gx-controls/gx-dynamic/gx-dynamic.directive';
 import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent } from './gx-controls/gx-core/core.components';
-import { GxCheckboxComponent, GxRadioComponent, GxSelectComponent } from './gx-controls/gx-core/core.components';
+import { GxCheckboxComponent, GxRadioComponent, GxSelectComponent, GxCheckboxGroupComponent } from './gx-controls/gx-core/core.components';
 import { GxService } from './service/gx.service';
 import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
 import { GxGroupComponent } from './gx-group/gx-group.component';
@@ -44,6 +44,7 @@ import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent
     , GxMatInputComponent
     , GxMatDatePickerComponent
     , GxMatButtonComponent
+    , GxCheckboxGroupComponent
   ]
   , entryComponents: [
     GxTextareaComponent
@@ -64,6 +65,7 @@ import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent
     , GxMatInputComponent
     , GxMatDatePickerComponent
     , GxMatButtonComponent
+    , GxCheckboxGroupComponent
   ]
   , providers: [GxService, GxMapperService, IbukiService]
 })

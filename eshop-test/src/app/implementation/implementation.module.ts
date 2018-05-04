@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {JsonFormCreatorModule} from '../json-form-creator/json-form-creator.module';
+import {GxDynamicFormModule} from '../gx-dynamic-form/gx-dynamic-form.module';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
     CommonModule
-    ,JsonFormCreatorModule
+    ,GxDynamicFormModule
   ],
   exports:[ProfileComponent],
   declarations: [ProfileComponent]

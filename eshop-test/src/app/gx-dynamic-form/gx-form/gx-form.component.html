@@ -1,0 +1,9 @@
+<form [formGroup]="myForm" [ngClass]="meta.client.class" [class]="meta.id" [ngStyle]="meta.client.style">
+  <div [ngClass]="meta.id + '-title'">{{meta.client.title}}</div>
+  <div [class]="meta.id + '-body'" >
+    <ng-container *ngFor="let layout of layouts">
+      <ng-container appGxDynamic [layout]="layout" [parent]="myForm"></ng-container>
+    </ng-container>
+  </div>
+  <app-gx-error [layout]="meta.client" [control]="myForm"></app-gx-error>
+</form>

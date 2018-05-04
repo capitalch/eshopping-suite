@@ -1,0 +1,6 @@
+<div [class] = "layout.id + '-box'">
+  <span [class] =  "layout.id + '-label'">{{layout.label}}</span>
+  <ng-container *ngFor="let jControl of layout.controls">
+    <ng-container appGxDynamic [layout]="jControl" [parent]="parent"></ng-container>
+  </ng-container>
+</div>

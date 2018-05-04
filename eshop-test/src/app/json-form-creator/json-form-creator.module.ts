@@ -27,8 +27,8 @@ import {
   , JxMatDatePickerComponent,
   JxMatButtonComponent
 } from './jx-controls/mat.components';
-//import { MAT_DATE_LOCALE } from '@angular/material'
-import { BrokerService } from './broker.service';
+// import { MAT_DATE_LOCALE } from '@angular/material'
+// import { BrokerService } from './broker.service';
 // import { JxChildrenComponent } from './jx-children/jx-children.component';
 import { JxStubComponent } from './jx-stub/jx-stub.component';
 import { JxMainService } from './jx-main.service';
@@ -64,7 +64,7 @@ import { JxMainService } from './jx-main.service';
     , AngularMaterialModule
     , BrowserAnimationsModule
   ],
-  exports:[JxFormComponent],
+  exports: [JxFormComponent],
   providers: [
     , JxMainService
     , BrokerService

@@ -1,15 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GxService } from '../../service/gx.service';
-import { BrokerService } from '../../../broker.service';
+// import { BrokerService } from '../../../broker.service';
 import { Observable } from 'rxjs/Observable';
+import { IbukiService } from '../../service/ibuki.service';
 
 @Component({
     selector: 'app-gx-select'
     , styleUrls: ['./select.scss']
     , template: `
     <div [formGroup]='parent' [class] = "layout.id + '-box'">
-        <label [class] = "layout.id + '-label'">{{layout.label}}</label>        
+        <label [class] = "layout.id + '-label'">{{layout.label}}</label>
         <select [class]='layout.id' [ngClass] = 'layout.class'
             [ngStyle]='layout.style' [formControlName]='layout.id'>
             <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
@@ -36,15 +37,17 @@ export class GxSelectComponent implements OnInit {
         console.log('gx-select');
         // logic for options being an array, a function or an observable
         if (typeof (this.layout.options) === 'string') {
-            // const options = this.gxService.getOption(this.layout.options);
-            // if (options instanceof Observable) {
-            //     options.subscribe(x => {
-            //         this.options = x;
-            //         // this.ref.markForCheck(); //forceful change detector
-            //     });
-            // } else {
-            //     this.options = options;
-            // }
+            const options = this.gxService.getSelectOptions(this.layout.options);
+            if (options instanceof Observable) {
+                options.subscribe(x => {
+                    this.options = x;
+                    // this.ref.markForCheck(); //forceful change detector
+                });
+            } else if (typeof (options) === 'function') {
+                this.options = options();
+            } else {
+                this.options = options;
+            }
         } else {
             this.options = this.layout.options;
         }
@@ -205,7 +208,7 @@ export class GxButtonComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
     classes: any = {};
-    constructor(private brokerService: BrokerService
+    constructor(private ibukiService: IbukiService
         , private gxService: GxService
     ) { }
     ngOnInit() {
@@ -219,12 +222,12 @@ export class GxButtonComponent implements OnInit {
             if (this.layout.validateForm) {
                 this.gxService.validateAllFormFields(this.parent);
                 if (this.parent.valid && (!this.parent.pending)) {
-                    this.brokerService.emit(this.layout.id, this.parent);
+                    this.ibukiService.emit(this.layout.id, this.parent);
                 } else {
                     console.log('Invalid form');
                 }
             } else {
-                this.brokerService.emit(this.layout.id, this.parent);
+                this.ibukiService.emit(this.layout.id, this.parent);
             }
         }
     }

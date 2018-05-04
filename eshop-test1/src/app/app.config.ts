@@ -114,11 +114,7 @@ const form1 = [
         , label: 'Country'
         , value: ''
         , id: 'country'
-        , options: [
-            { name: '---Choose---', value: '' }
-            , { name: 'USA', value: 'us' }
-            , { name: 'India', value: 'in' }
-        ]
+        , options: 'countries3'
         , validation: {
             required: {
                 message: 'You must select a value for $'

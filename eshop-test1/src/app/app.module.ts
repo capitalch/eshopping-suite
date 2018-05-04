@@ -8,7 +8,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { BrokerService } from './broker.service';
+// import { BrokerService } from './broker.service';
 
 
 
@@ -37,8 +37,7 @@ import { InputComponent } from './custom-controls/input/input.component';
     , GxDynamicFormModule
   ],
   providers: [
-    , BrokerService
-    , GxCustomService
+    GxCustomService
   ]
   , entryComponents: [
     InputComponent

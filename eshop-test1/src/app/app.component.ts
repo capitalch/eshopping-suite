@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { form1 } from './app.config';
-import { BrokerService } from './broker.service';
+// import { BrokerService } from './broker.service';
 import { GxCustomService } from './service/gx-custom.service';
 // import { GxMapperService } from './gx-dynamic-form/service/gx-mapper.service';
 // import { GxCustomService } from './gx-custom.service';
@@ -19,9 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   options: any = {};
   content: string;
   subs: any;
-  constructor(
-    private brokerService: BrokerService
-    , private httpClient: HttpClient
+  constructor(private httpClient: HttpClient
     , private gxCustomService: GxCustomService
   ) {
 

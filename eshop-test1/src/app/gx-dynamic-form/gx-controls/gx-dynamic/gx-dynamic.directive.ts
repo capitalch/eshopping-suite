@@ -2,8 +2,9 @@ import { Directive, Input, OnInit, ComponentFactoryResolver, ViewContainerRef, O
 import { FormGroup } from '@angular/forms';
 import { GxTextareaComponent, GxButtonComponent } from '../gx-core/core.components';
 import { components } from './gx-component-mapper';
-import { BrokerService } from '../../../broker.service';
+// import { BrokerService } from '../../../broker.service';
 import { GxMapperService } from '../../service/gx-mapper.service';
+import { IbukiService } from '../../service/ibuki.service';
 
 @Directive({
   selector: '[appGxDynamic]'
@@ -15,7 +16,7 @@ export class GxDynamicDirective implements OnInit, OnDestroy {
   component;
   constructor(
     private gxMapperService: GxMapperService
-    , private brokerService: BrokerService
+    , private ibukiService: IbukiService
     , private resolver: ComponentFactoryResolver
     , private container: ViewContainerRef
   ) {

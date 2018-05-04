@@ -4,20 +4,21 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
 import { GxGroupComponent } from '../gx-group/gx-group.component';
 import { GxArrayComponent } from '../gx-array/gx-array.component';
 import { GxButtonGroupComponent } from '../gx-controls/gx-button-group/gx-button-group.component';
-import { BrokerService } from '../../broker.service';
+import { IbukiService } from './ibuki.service';
+// import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class GxService {
   customValidators: any = {};
-  selectOptions:any;
+  selectOptions: any;
 
   constructor(
     private fb: FormBuilder
-    , private brokerService: BrokerService
+    , private ibukiService: IbukiService
   ) {
   }
 
-  registerSelectOptions(opts){
+  registerSelectOptions(opts) {
     this.selectOptions = opts;
   }
 
@@ -29,6 +30,12 @@ export class GxService {
     const allValidators = this.getValidators(layout);
     const xControl = this.fb.control(layout.value || '', allValidators.validators, allValidators.asyncValidators);
     parent.setControl(layout.id, xControl);
+  }
+
+  getSelectOptions(optionName) {
+    const opts = this.selectOptions[optionName];
+    // const a = opts && (typeof (opts) === 'function') && (opts = opts());
+    return (opts);
   }
 
   getGroupValidators(layout) {

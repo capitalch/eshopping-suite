@@ -1,17 +1,19 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { BrokerService } from '../broker.service';
+// import { BrokerService } from '../broker.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { GxService } from '../gx-dynamic-form/service/gx.service';
 import { components } from '../custom-controls/custom-controls-mapper';
 import { GxMapperService } from '../gx-dynamic-form/service/gx-mapper.service';
+import { countries } from './options-set';
+import { IbukiService } from '../gx-dynamic-form/service/ibuki.service';
 // import {countries} from './options-set';
 @Injectable()
 export class GxCustomService {
   subs: any;
   myComponents: any;
   constructor(
-    private brokerService: BrokerService
+    private ibukiService: IbukiService
     , private httpClient: HttpClient
     , private gxService: GxService
     , private gxMapperService: GxMapperService
@@ -24,16 +26,23 @@ export class GxCustomService {
     console.log('gx-custom-service');
   }
 
-  registerSelectOptions(){
+  options = {
+    countries: countries
+    , countries1: () => countries
+    , countries2: Observable.of(countries)
+    , countries3: this.ibukiService.httpPost$('http://localhost:3002/countries')
+  };
 
+  registerSelectOptions() {
+    this.gxService.registerSelectOptions(this.options);
   }
 
   registerCustomControls() {
-    this.gxMapperService.mapComponents(components)
+    this.gxMapperService.mapComponents(components);
   }
 
   registerCustomEvents() {
-    this.subs = this.brokerService.filterOn("submit1").subscribe(d => {
+    this.subs = this.ibukiService.filterOn('submit1').subscribe(d => {
       if (d.error) {
         console.log(d.error);
       } else {
@@ -41,34 +50,34 @@ export class GxCustomService {
       }
     });
 
-    let sub3 = this.brokerService.filterOn("mySubmit").subscribe(d => {
+    const sub3 = this.ibukiService.filterOn('mySubmit').subscribe(d => {
       if (d.error) {
         console.log(d.error);
       } else {
         console.log(d.data.value);
       }
     });
-    let sub1 = this.brokerService.filterOn("reset").subscribe(d =>
+    const sub1 = this.ibukiService.filterOn('reset').subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
-    let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
+    );
+    const sub2 = this.ibukiService.filterOn('submit2').subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
+    );
     this.subs.add(sub1).add(sub2).add(sub3);
   }
 
   registerCustomValidators() {
-    let customValidators = {
+    const customValidators = {
       myValidate: (s) => {
-        let func = (control) => {
+        const func = (control) => {
           return (control.value.indexOf(s) >= 0 ? null : { myValidate: true });
         };
         return (func);
       }
       , email2: () => {
-        let func = (control) => {
-          let val = control.value;
-          if (val.indexOf('@') == -1) {
+        const func = (control) => {
+          const val = control.value;
+          if (val.indexOf('@') === -1) {
             return ({ email2: true });
           } else {
             return (null);
@@ -77,15 +86,15 @@ export class GxCustomService {
         return (func);
       }
       , email1: (arg) => {
-        let func = (control) => {
-          let body = { value: control.value };
-          let obs = this.httpClient.post(arg.url, body);
+        const func = (control) => {
+          const body = { value: control.value };
+          const obs = this.httpClient.post(arg.url, body);
           return (obs);
         };
         return (func);
       }
       , groupValidator1: () => {
-        let func = (control) => {
+        const func = (control) => {
           let ret;
           control.value.firstName ? ret = null : ret = { groupValidator1: false };
           return (ret);
@@ -93,10 +102,10 @@ export class GxCustomService {
         return (func);
       }
       , groupAsyncValidator1: (arg) => {
-        let func = (group) => {
+        const func = (group) => {
           let obs = Observable.of(null);
           if (group.valueChanges && group.value) {
-            let body = { value: group.value };
+            const body = { value: group.value };
             obs = group.valueChanges
               .debounceTime(arg.delay || 3000)
               .switchMap(() => this.httpClient.post(arg.url, body))
@@ -104,10 +113,10 @@ export class GxCustomService {
           }
           // this.ref.tick();
           return (obs);
-        }
+        };
         return (func);
       }
-    }
+    };
     this.gxService.registerCustomValidators(customValidators);
   }
 }

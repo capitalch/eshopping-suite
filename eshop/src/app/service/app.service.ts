@@ -8,7 +8,7 @@ export class AppService {
     , private brokerService: BrokerService
   ) {
     console.log('App service');
-    //get settings file
+    // get settings file
     httpClient
       .get('assets/settings.json')
       .subscribe(d => {
@@ -22,7 +22,6 @@ export class AppService {
   }
 
   init() {
-    
   }
 
   getUserId() {

@@ -19,10 +19,7 @@ import { IbukiService } from '../../service/ibuki.service';
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
     </div>`
 })
-// <select [ngClass] = "classes.elementClass" [formControlName]="layout.id">
-//         <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
-//         </option>
-//       </select>
+
 export class GxSelectComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;

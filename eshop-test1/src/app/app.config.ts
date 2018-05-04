@@ -109,15 +109,85 @@ const form1 = [
     //         required: { message: '$ is required' }
     //     }
     // }
+    // , {
+    //     type: 'select'
+    //     , label: 'Country'
+    //     , value: ''
+    //     , id: 'country'
+    //     , options: 'countries3'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must select a value for $'
+    //         }
+    //     }
+    // }
     , {
-        type: 'select'
+        type: 'mat-checkbox'
+        , id: 'agreed'
+        , label: 'Agreed'
+        , value: true
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+,
+    {
+        type: 'mat-radio'
+        , label: 'Gender1'
+        , value: 'M'
+        , id: 'gender1234'
+        , options: [
+            { label: 'Male', value: 'M', id: 'male2' }
+            , { label: 'Female', value: 'F', id: 'female2' }
+        ]
+        , validation: {
+            required: { message: '$ is required' }
+        }
+    }
+    , {
+        type: 'mat-select'
         , label: 'Country'
         , value: ''
         , id: 'country'
-        , options: 'countries3'
+        , options: 'countries'
         , validation: {
             required: {
                 message: 'You must select a value for $'
+            }
+        }
+    }
+
+    , {
+        type: 'mat-input'
+        , id: 'firstName'
+        , placeholder: 'First name'
+        , label: 'First name'
+        , value: 'abcd'
+        , validation: {
+            // groupAsyncValidator1: {
+            //     message: 'Async validation failed'
+            //     , arg: {
+            //         url: 'http://localhost:3002/group'
+            //         , delay: 1000
+            //     }
+            //     , async: true
+            // }
+            // ,
+            required: { message: '$ is required' }
+            , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+            , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+        }
+    }
+    ,
+    {
+        type: 'mat-datepicker',
+        id: 'matDatePicker1',
+        placeholder: 'select a date'
+        , label: 'myDatePicker'
+        , locale: 'en-GB'
+        , validation: {
+            required: {
+                message: 'You must surely select a value for $'
             }
         }
     }
@@ -289,15 +359,15 @@ const form1 = [
             }
         ]
     }
-    // , {
-    //     type: 'mat-button'
-    //     , subType: 'raised'
-    //     , faClass: 'fa fa-taxi fa-fw'
-    //     , color: 'primary'
-    //     , label: 'Add'
-    //     , actionId: 'submit2'
-    //     , validateForm: true
-    // }
+    , {
+        type: 'mat-button'
+        , subType: 'raised'
+        , faClass: 'fa fa-taxi fa-fw'
+        , color: 'primary'
+        , label: 'Add'
+        , actionId: 'submit2'
+        , validateForm: true
+    }
 
 ];
 export { form1 };
@@ -363,17 +433,6 @@ export { form1 };
     //         required: { message: '$ is a required field' }
     //     }
     // }
-    // , {
-    //     type: 'mat-input'
-    //     , subType: 'text'
-    //     , id: 'mat1'
-    //     , label: 'mat name'
-    //     , placeholder: 'mat placeholder'
-    //     , value: ''
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
     // ,
     // {
     //     type: 'mat-datepicker',
@@ -385,6 +444,17 @@ export { form1 };
     //         required: {
     //             message: 'You must surely select a value for $'
     //         }
+    //     }
+    // }
+    // , {
+    //     type: 'mat-input'
+    //     , subType: 'text'
+    //     , id: 'mat1'
+    //     , label: 'mat name'
+    //     , placeholder: 'mat placeholder'
+    //     , value: ''
+    //     , validation: {
+    //         required: { message: '$ is a required field' }
     //     }
     // }
     // , {

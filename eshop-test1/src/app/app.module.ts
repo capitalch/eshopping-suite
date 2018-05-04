@@ -47,7 +47,7 @@ import { InputComponent } from './custom-controls/input/input.component';
     // , { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
   , entryComponents: [
-    // InputComponent
+    InputComponent
   ]
   , bootstrap: [AppComponent]
 })

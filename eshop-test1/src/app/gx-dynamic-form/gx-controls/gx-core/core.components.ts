@@ -238,31 +238,17 @@ export class GxButtonComponent implements OnInit {
     <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
         <ng-container [formGroupName]="layout.id">
             <ng-container *ngFor="let option of layout.options">
-                <input [id] = "option.id" type="checkbox" [class]='layout.id' [ngClass] = 'layout.class'
-                [ngStyle]='layout.style' [formControlName]='layout.id' >
-                 <label [class] = "layout.id + '-label'"
-                    style="display:inline-block" [for]="option.id">
-                    {{option.label}}
-                </label>
+                <input [id] = "option.id" type="checkbox" [formControlName]="option.id">
+                <label [class] = "layout.id + '-label'"
+                        style="display:inline-block" [for]="option.id">
+                        {{option.label}}
+                    </label>
             </ng-container>
         </ng-container>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
     </fieldset>
       `
 })
-
-// <ng-container>
-//   <fieldset  [formGroup]="parent">
-//     <legend>{{layout.label}}</legend>
-//     <ng-container [formGroupName]="layout.id">
-//       <ng-container *ngFor="let option of layout.options">
-//         <input type="checkbox" [id]="option.id+idx" [formControlName]="option.id">
-//         <label [ngClass]="layout.class && layout.class.label" style="display:inline-block" [for]="option.id+idx">{{option.label}}</label>
-//       </ng-container>
-//     </ng-container>
-//     <jx-error [layout]="layout" [parent]="parent"></jx-error>
-//   </fieldset>
-// </ng-container>
 
 export class GxCheckboxGroupComponent implements OnInit {
     @Input() layout: any;
@@ -274,6 +260,6 @@ export class GxCheckboxGroupComponent implements OnInit {
         private fb: FormBuilder
     ) { }
     ngOnInit() {
-        this.gxService.createGenericControl(this.layout, this.parent);
+        this.gxService.createGroupboxControl(this.layout, this.parent);
     }
 }

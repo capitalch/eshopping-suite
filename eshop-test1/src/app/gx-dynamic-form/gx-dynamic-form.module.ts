@@ -15,6 +15,7 @@ import { GxMapperService } from './service/gx-mapper.service';
 import { IbukiService } from './service/ibuki.service';
 import { GxMatCheckboxComponent, GxMatRadioComponent, GxMatSelectComponent, GxMatInputComponent} from './gx-controls/gx-mat/mat.components';
 import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent } from './gx-controls/gx-mat/mat.components';
+import { GxMatCheckboxGroupComponent} from './gx-controls/gx-mat/mat.components';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent
     , GxMatDatePickerComponent
     , GxMatButtonComponent
     , GxCheckboxGroupComponent
+    , GxMatCheckboxGroupComponent
   ]
   , entryComponents: [
     GxTextareaComponent
@@ -66,6 +68,7 @@ import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent
     , GxMatDatePickerComponent
     , GxMatButtonComponent
     , GxCheckboxGroupComponent
+    , GxMatCheckboxGroupComponent
   ]
   , providers: [GxService, GxMapperService, IbukiService]
 })

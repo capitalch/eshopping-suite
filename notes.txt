@@ -57,8 +57,8 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             
 7. Array Add remove buttons customization
 8. Typeahead
-19. Complete basic and mat controls
-20. Complete check box group
+            19. Complete basic and mat controls
+            20. Complete check box group
 21. 
 
     

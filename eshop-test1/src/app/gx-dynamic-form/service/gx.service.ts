@@ -32,10 +32,30 @@ export class GxService {
     parent.setControl(layout.id, xControl);
   }
 
+  createGroupboxControl(layout, parent) {
+        const childControls = {};
+        const a = layout.options && layout.options.forEach(e => {
+            childControls[e.id] = e.value;
+        });
+        parent.setControl(layout.id, this.fb.group(childControls,
+            {
+                validator: layout.validation && layout.validation.required
+                    && this.checkboxGroupRequiredValidator
+            }));
+  }
+
   getSelectOptions(optionName) {
     const opts = this.selectOptions[optionName];
     // const a = opts && (typeof (opts) === 'function') && (opts = opts());
     return (opts);
+  }
+
+  checkboxGroupRequiredValidator(group) {
+    let valid = false;
+    Object.values(group.controls).forEach((x: any) => {
+      valid = x.value || valid;
+    });
+    return (valid ? null : { required: true });
   }
 
   getGroupValidators(layout) {

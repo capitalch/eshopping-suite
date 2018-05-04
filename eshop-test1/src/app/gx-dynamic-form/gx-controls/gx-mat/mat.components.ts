@@ -14,8 +14,8 @@ import { IbukiService } from '../../service/ibuki.service';
         <label [class] = "layout.id + '-label'">
             <mat-checkbox [class]='layout.id' [ngClass] = 'layout.class'
                     [ngStyle]='layout.style' [formControlName]='layout.id'
-                    [value] = 'layout.value'>{{layout.label}}
-            </mat-checkbox>
+                    [value] = 'layout.value'>
+            </mat-checkbox>{{layout.label}}
         </label>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
     </div>`
@@ -31,6 +31,42 @@ export class GxMatCheckboxComponent implements OnInit {
     ) { }
     ngOnInit() {
         this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gxmat-checkboxgroup'
+    , styleUrls: ['./mat-checkboxgroup.scss']
+    , template: `
+    <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
+    <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
+        <ng-container [formGroupName]="layout.id">
+            <ng-container *ngFor="let option of layout.options">
+                <label [class] = "layout.id + '-label'"
+                        style="display:inline-block">
+                    <mat-checkbox [class]='layout.id' [ngClass] = 'layout.class'
+                        [ngStyle]='layout.style' [formControlName]="option.id">
+                    </mat-checkbox>
+                    {{option.label}}
+                </label>
+            </ng-container>
+        </ng-container>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </fieldset>
+      `
+})
+
+export class GxMatCheckboxGroupComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGroupboxControl(this.layout, this.parent);
     }
 }
 

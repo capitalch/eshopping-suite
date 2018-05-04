@@ -26,7 +26,7 @@ const form1 = [
 
     // }
     , {
-        type: 'checkboxGroup'
+        type: 'mat-checkboxgroup'
         , label: 'Food2'
         , id: 'food2'
         , validation: {
@@ -134,76 +134,76 @@ const form1 = [
     //         }
     //     }
     // }
-    , {
-        type: 'mat-checkbox'
-        , id: 'agreed'
-        , label: 'Agreed'
-        , value: true
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }
-    ,
-    {
-        type: 'mat-radio'
-        , label: 'Gender1'
-        , value: 'M'
-        , id: 'gender1234'
-        , options: [
-            { label: 'Male', value: 'M', id: 'male2' }
-            , { label: 'Female', value: 'F', id: 'female2' }
-        ]
-        , validation: {
-            required: { message: '$ is required' }
-        }
-    }
-    , {
-        type: 'mat-select'
-        , label: 'Country'
-        , value: ''
-        , id: 'country'
-        , options: 'countries'
-        , validation: {
-            required: {
-                message: 'You must select a value for $'
-            }
-        }
-    }
+    // , {
+    //     type: 'mat-checkbox'
+    //     , id: 'agreed'
+    //     , label: 'Agreed'
+    //     , value: true
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: 'mat-radio'
+    //     , label: 'Gender1'
+    //     , value: 'M'
+    //     , id: 'gender1234'
+    //     , options: [
+    //         { label: 'Male', value: 'M', id: 'male2' }
+    //         , { label: 'Female', value: 'F', id: 'female2' }
+    //     ]
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // , {
+    //     type: 'mat-select'
+    //     , label: 'Country'
+    //     , value: ''
+    //     , id: 'country'
+    //     , options: 'countries'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must select a value for $'
+    //         }
+    //     }
+    // }
 
-    , {
-        type: 'mat-input'
-        , id: 'firstName'
-        , placeholder: 'First name'
-        , label: 'First name'
-        , value: 'abcd'
-        , validation: {
-            // groupAsyncValidator1: {
-            //     message: 'Async validation failed'
-            //     , arg: {
-            //         url: 'http://localhost:3002/group'
-            //         , delay: 1000
-            //     }
-            //     , async: true
-            // }
-            // ,
-            required: { message: '$ is required' }
-            , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-            , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-        }
-    }
-    ,
-    {
-        type: 'mat-datepicker',
-        id: 'matDatePicker1',
-        placeholder: 'select a date'
-        , label: 'myDatePicker'
-        , locale: 'en-GB'
-        , validation: {
-            required: {
-                message: 'You must surely select a value for $'
-            }
-        }
-    }
+    // , {
+    //     type: 'mat-input'
+    //     , id: 'firstName'
+    //     , placeholder: 'First name'
+    //     , label: 'First name'
+    //     , value: 'abcd'
+    //     , validation: {
+    //         // groupAsyncValidator1: {
+    //         //     message: 'Async validation failed'
+    //         //     , arg: {
+    //         //         url: 'http://localhost:3002/group'
+    //         //         , delay: 1000
+    //         //     }
+    //         //     , async: true
+    //         // }
+    //         // ,
+    //         required: { message: '$ is required' }
+    //         , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+    //         , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: 'mat-datepicker',
+    //     id: 'matDatePicker1',
+    //     placeholder: 'select a date'
+    //     , label: 'myDatePicker'
+    //     , locale: 'en-GB'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must surely select a value for $'
+    //         }
+    //     }
+    // }
     // ,
     // {
     //     type: 'radio'

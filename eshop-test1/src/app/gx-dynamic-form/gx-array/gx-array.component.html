@@ -11,11 +11,11 @@
           <button (click)="removeFromArray(j)" style="float:right" color="primary">
             <i class="fa fa-times-circle"></i>
           </button>
-          <ng-container gxDynamic [layout]="jControl" [parent]="group"></ng-container>
+          <ng-container appGxDynamic [layout]="jControl" [parent]="group"></ng-container>
         </ng-container>
-        <gx-error [layout]="layout.group" [control]="group"></gx-error>
+        <app-gx-error [layout]="layout.group" [control]="group"></app-gx-error>
       </div>      
     </ng-container>
-    <gx-error [layout]="layout" [parent]="parent"></gx-error>
+    <app-gx-error [layout]="layout" [parent]="parent"></app-gx-error>
   </ng-container>
 </fieldset>

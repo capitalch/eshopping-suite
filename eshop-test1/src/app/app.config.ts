@@ -32,60 +32,59 @@ const form1 = [
     //     , placeholder: 'My custom control'
     //     , class: { label: 'red-class', element: 'textarea-class' }
     // }
-    ,
-    {
-        type: 'textarea'
-        , id: 'firstName'
-        , label: 'First name'
-        , placeholder: 'First name'
-        , value: ''
-        // , class: ''
-        // , validation: {
-        //     groupAsyncValidator1: {
-        //         message: 'Async validation failed'
-        //         , arg: {
-        //             url: 'http://localhost:3002/group'
-        //             , delay: 1000
-        //         }
-        //         , async: true
-        //     }
-        //     ,
-        //     required: { message: '$ is required' }
-        //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-        //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-        // }
-    }
-    ,
-    {
-        type: 'input'
-        , id: 'firstName2'
-        , label: 'First name2'
-        , placeholder: 'First name2'
-        , value: ''
-    }
-    ,
-    {
-        type: 'textarea'
-        , id: 'firstName-1'
-        , label: 'First name1'
-        , placeholder: 'First name1'
-        , value: ''
-        // , class: ''
-        // , validation: {
-        //     groupAsyncValidator1: {
-        //         message: 'Async validation failed'
-        //         , arg: {
-        //             url: 'http://localhost:3002/group'
-        //             , delay: 1000
-        //         }
-        //         , async: true
-        //     }
-        //     ,
-        //     required: { message: '$ is required' }
-        //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
-        //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
-        // }
-    }
+    // ,
+    // {
+    //     type: 'textarea'
+    //     , id: 'firstName'
+    //     , label: 'First name'
+    //     , placeholder: 'First name'
+    //     , value: ''
+    //     // , class: ''
+    //     // , validation: {
+    //     //     groupAsyncValidator1: {
+    //     //         message: 'Async validation failed'
+    //     //         , arg: {
+    //     //             url: 'http://localhost:3002/group'
+    //     //             , delay: 1000
+    //     //         }
+    //     //         , async: true
+    //     //     }
+    //     //     ,
+    //     //     required: { message: '$ is required' }
+    //     //     , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+    //     //     , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+    //     // }
+    // }
+    // ,
+    // {
+    //     type: 'input'
+    //     , id: 'firstName2'
+    //     , subtype: 'date'
+    //     , label: 'First name2'
+    //     , placeholder: 'First name2'
+    //     , value: ''
+    //     // , validation: {
+    //     //     required: {message: '$ is required'}
+    //     // }
+    // }
+    // ,
+    // {
+    //     type: 'anchor'
+    //     , id: 'myAnchor'
+    //     , label: 'This is my anchor'
+    //     , href: 'http://google.com'
+    // }
+    // ,
+    // {
+    //     type: 'textarea'
+    //     , id: 'firstName-1'
+    //     , label: 'First name1'
+    //     , placeholder: 'First name1'
+    //     , value: ''
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
 
     // , {
     //     type: 'checkbox'
@@ -105,6 +104,36 @@ const form1 = [
     //     , options: [
     //         { label: 'Male', value: 'M', id: 'male1' }
     //         , { label: 'Female', value: 'F', id: 'female1' }
+    //     ]
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    , {
+        type: 'select'
+        , label: 'Country'
+        , value: ''
+        , id: 'country'
+        , options: [
+            { name: '---Choose---', value: '' }
+            , { name: 'USA', value: 'us' }
+            , { name: 'India', value: 'in' }
+        ]
+        , validation: {
+            required: {
+                message: 'You must select a value for $'
+            }
+        }
+    }
+    // ,
+    // {
+    //     type: 'radio'
+    //     , label: 'Gender1'
+    //     , value: 'M'
+    //     , id: 'gender1234'
+    //     , options: [
+    //         { label: 'Male', value: 'M', id: 'male2' }
+    //         , { label: 'Female', value: 'F', id: 'female2' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }

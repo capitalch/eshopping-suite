@@ -1,33 +1,63 @@
-import { Injectable } from '@angular/core';
-import { BrokerService } from './broker.service';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { BrokerService } from '../broker.service';
 import { HttpClient } from '@angular/common/http';
-// import { JxService } from './jx-service/jx.service';
 import { Observable } from 'rxjs/Observable';
-import { JxService } from './jx-dynamic-form/jx-service/jx.service';
-
+import { GxService } from '../gx-dynamic-form/service/gx.service';
+import { components } from '../custom-controls/custom-controls-mapper';
+import { GxMapperService } from '../gx-dynamic-form/service/gx-mapper.service';
+// import {countries} from './options-set';
 @Injectable()
-export class JxMainService {
+export class GxCustomService {
   subs: any;
-  constructor(private JxFormService: JxService, private brokerService: BrokerService, private httpClient: HttpClient) {
-    console.log("jx-main service init");
-    this.handleChildEvents();
-    this.initCustomValidators();
+  myComponents: any;
+  constructor(
+    private brokerService: BrokerService
+    , private httpClient: HttpClient
+    , private gxService: GxService
+    , private gxMapperService: GxMapperService
+  ) {
+    // this.myComponents = components;
+    this.registerCustomEvents();
+    this.registerCustomValidators();
+    this.registerCustomControls();
+    this.registerSelectOptions();
+    console.log('gx-custom-service');
   }
 
-  handleChildEvents() {
-    this.subs = this.brokerService.filterOn("submit1").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    );
-    let sub1 = this.brokerService.filterOn("submit").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
-    let sub2 = this.brokerService.filterOn("submit22").subscribe(d =>
-      d.error ? (console.log(d.error)) : (console.log(d.data.value))
-    )
-    this.subs.add(sub1).add(sub2);
+  registerSelectOptions(){
+
   }
 
-  initCustomValidators() {
+  registerCustomControls() {
+    this.gxMapperService.mapComponents(components)
+  }
+
+  registerCustomEvents() {
+    this.subs = this.brokerService.filterOn("submit1").subscribe(d => {
+      if (d.error) {
+        console.log(d.error);
+      } else {
+        console.log(d.data.value);
+      }
+    });
+
+    let sub3 = this.brokerService.filterOn("mySubmit").subscribe(d => {
+      if (d.error) {
+        console.log(d.error);
+      } else {
+        console.log(d.data.value);
+      }
+    });
+    let sub1 = this.brokerService.filterOn("reset").subscribe(d =>
+      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+    )
+    let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
+      d.error ? (console.log(d.error)) : (console.log(d.data.value))
+    )
+    this.subs.add(sub1).add(sub2).add(sub3);
+  }
+
+  registerCustomValidators() {
     let customValidators = {
       myValidate: (s) => {
         let func = (control) => {
@@ -72,11 +102,12 @@ export class JxMainService {
               .switchMap(() => this.httpClient.post(arg.url, body))
               .first();
           }
+          // this.ref.tick();
           return (obs);
         }
         return (func);
       }
     }
-    this.JxFormService.initCustomValidators(customValidators);
+    this.gxService.registerCustomValidators(customValidators);
   }
 }

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/first';
 import { GxService } from '../gx-dynamic-form/service/gx.service';
 import { components } from '../custom-controls/custom-controls-mapper';
 import { GxMapperService } from '../gx-dynamic-form/service/gx-mapper.service';
-import { countries } from './options-set';
+import { countries, genders1, food1 } from './options-set';
 import { IbukiService } from '../gx-dynamic-form/service/ibuki.service';
 // import {countries} from './options-set';
 @Injectable()
@@ -25,7 +25,7 @@ export class GxCustomService {
     this.registerCustomEvents();
     this.registerCustomValidators();
     this.registerCustomControls();
-    this.registerSelectOptions();
+    this.registerOptions();
     console.log('gx-custom-service');
   }
 
@@ -34,10 +34,18 @@ export class GxCustomService {
     , countries1: () => countries
     , countries2: Observable.of(countries)
     , countries3: this.ibukiService.httpPost$('http://localhost:3002/countries')
+    , genders1: genders1
+    , genders2: () => genders1
+    , genders3: Observable.of(genders1)
+    , genders4: this.ibukiService.httpPost$('http://localhost:3002/genders1')
+    , food1: food1
+    , food2: () => food1
+    , food3: Observable.of(food1)
+    , food4: this.ibukiService.httpPost$('http://localhost:3002/food1')
   };
 
-  registerSelectOptions() {
-    this.gxService.registerSelectOptions(this.options);
+  registerOptions() {
+    this.gxService.registerOptions(this.options);
   }
 
   registerCustomControls() {

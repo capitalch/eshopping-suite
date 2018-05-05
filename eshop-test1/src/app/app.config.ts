@@ -26,17 +26,13 @@ const form1 = [
 
     // }
     , {
-        type: 'mat-checkboxgroup'
+        type: 'checkboxgroup'
         , label: 'Food2'
-        , id: 'food2'
+        , id: 'food'
         , validation: {
             required: { message: '$ is required' }
         }
-        , options: [
-            { label: 'Main course', value: false, id: 'main2' }
-            , { label: 'Desert', value: true, id: 'desert2' }
-            , { label: 'beverages', value: false, id: 'beverages2' }
-        ]
+        , options: 'food4'
     }
     // , {
     //     type: 'custom1'
@@ -110,24 +106,21 @@ const form1 = [
     // }
     // ,
     // {
-    //     type: 'radio'
+    //     type: 'mat-radio'
     //     , label: 'Gender'
     //     , value: 'M'
     //     , id: 'gender123'
-    //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
-    //     ]
+    //     , options: 'genders3'
     //     , validation: {
     //         required: { message: '$ is required' }
     //     }
     // }
     // , {
-    //     type: 'select'
+    //     type: 'mat-select'
     //     , label: 'Country'
     //     , value: ''
     //     , id: 'country'
-    //     , options: 'countries3'
+    //     , options: 'countries1'
     //     , validation: {
     //         required: {
     //             message: 'You must select a value for $'
@@ -150,8 +143,8 @@ const form1 = [
     //     , value: 'M'
     //     , id: 'gender1234'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male2' }
-    //         , { label: 'Female', value: 'F', id: 'female2' }
+    //         { name: 'Male', value: 'M', id: 'male2' }
+    //         , { name: 'Female', value: 'F', id: 'female2' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
@@ -211,8 +204,8 @@ const form1 = [
     //     , value: 'M'
     //     , id: 'gender1234'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male2' }
-    //         , { label: 'Female', value: 'F', id: 'female2' }
+    //         { name: 'Male', value: 'M', id: 'male2' }
+    //         , { name: 'Female', value: 'F', id: 'female2' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
@@ -603,8 +596,8 @@ export { form1 };
     //                 , value: 'M'
     //                 , id: 'gender123'
     //                 , options: [
-    //                     { label: 'Male', value: 'M', id: 'male1' }
-    //                     , { label: 'Female', value: 'F', id: 'female1' }
+    //                     { name: 'Male', value: 'M', id: 'male1' }
+    //                     , { name: 'Female', value: 'F', id: 'female1' }
     //                 ]
     //             }
     //             , {
@@ -664,8 +657,8 @@ export { form1 };
     //     , value: 'M'
     //     , id: 'gender12'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
+    //         { name: 'Male', value: 'M', id: 'male1' }
+    //         , { name: 'Female', value: 'F', id: 'female1' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
@@ -727,8 +720,8 @@ export { form1 };
     //     , value: 'M'
     //     , id: 'gender123'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
+    //         { name: 'Male', value: 'M', id: 'male1' }
+    //         , { name: 'Female', value: 'F', id: 'female1' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }

@@ -32,23 +32,16 @@ export class GxSelectComponent implements OnInit {
     ) { }
     ngOnInit() {
         console.log('gx-select');
-        // logic for options being an array, a function or an observable
-        if (typeof (this.layout.options) === 'string') {
-            const options = this.gxService.getSelectOptions(this.layout.options);
-            if (options instanceof Observable) {
-                options.subscribe(x => {
-                    this.options = x;
-                    // this.ref.markForCheck(); //forceful change detector
-                });
-            } else if (typeof (options) === 'function') {
-                this.options = options();
-            } else {
-                this.options = options;
-            }
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+            });
         } else {
-            this.options = this.layout.options;
+            this.options = ret;
         }
-
+        // this.options = this.gxService.getOptions(this.layout);
         this.gxService.createGenericControl(this.layout, this.parent);
     }
 }
@@ -59,11 +52,11 @@ export class GxSelectComponent implements OnInit {
     , template: `
     <fieldset [formGroup]='parent' [class] = "layout.id + '-box'">
         <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
-        <div *ngFor="let option of layout.options">
-        <input type = 'radio' [id]='option.id' [class]='layout.id' [ngClass] = 'layout.class'
+        <div *ngFor="let option of options ">
+            <input type = 'radio' [id]='option.id' [class]='layout.id' [ngClass] = 'layout.class'
                     [ngStyle]='layout.style' [formControlName]='layout.id'
                     [value] = 'option.value' [name] = 'layout.id'>
-        <label [class] = "layout.id + '-label'" [for] = "option.id">{{option.label}}</label>
+            <label [class] = "layout.id + '-option'" [for] = "option.id">{{option.name}}</label>
         </div>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
     </fieldset>`
@@ -72,13 +65,22 @@ export class GxSelectComponent implements OnInit {
 export class GxRadioComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
-    classes: any = {};
+    options: [{}] = [{}];
     constructor(
         private gxService: GxService
         ,
         private fb: FormBuilder
     ) { }
     ngOnInit() {
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+            });
+        } else {
+            this.options = ret;
+        }
         this.gxService.createGenericControl(this.layout, this.parent);
     }
 }
@@ -237,12 +239,12 @@ export class GxButtonComponent implements OnInit {
     <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
     <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
         <ng-container [formGroupName]="layout.id">
-            <ng-container *ngFor="let option of layout.options">
+            <ng-container *ngFor="let option of options">
                 <input [id] = "option.id" type="checkbox" [formControlName]="option.id">
-                <label [class] = "layout.id + '-label'"
+                <label [class] = "layout.id + '-option'"
                         style="display:inline-block" [for]="option.id">
-                        {{option.label}}
-                    </label>
+                        {{option.name}}
+                </label>
             </ng-container>
         </ng-container>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
@@ -253,13 +255,23 @@ export class GxButtonComponent implements OnInit {
 export class GxCheckboxGroupComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
-    classes: any = {};
+    options: any;
     constructor(
         private gxService: GxService
         ,
         private fb: FormBuilder
     ) { }
     ngOnInit() {
-        this.gxService.createGroupboxControl(this.layout, this.parent);
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                // const a = sub && sub.unsubscribe();
+                this.gxService.createCheckboxGroupControl(this.layout, this.parent, this.options);
+            });
+        } else {
+            this.options = ret;
+            this.gxService.createCheckboxGroupControl(this.layout, this.parent, this.options);
+        }
     }
 }

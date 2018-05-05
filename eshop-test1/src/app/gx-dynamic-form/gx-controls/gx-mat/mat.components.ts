@@ -41,13 +41,13 @@ export class GxMatCheckboxComponent implements OnInit {
     <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
     <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
         <ng-container [formGroupName]="layout.id">
-            <ng-container *ngFor="let option of layout.options">
-                <label [class] = "layout.id + '-label'"
+            <ng-container *ngFor="let option of options">
+                <label [class] = "layout.id + '-option'"
                         style="display:inline-block">
                     <mat-checkbox [class]='layout.id' [ngClass] = 'layout.class'
                         [ngStyle]='layout.style' [formControlName]="option.id">
                     </mat-checkbox>
-                    {{option.label}}
+                    {{option.name}}
                 </label>
             </ng-container>
         </ng-container>
@@ -59,14 +59,23 @@ export class GxMatCheckboxComponent implements OnInit {
 export class GxMatCheckboxGroupComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
-    classes: any = {};
+    options: any;
     constructor(
         private gxService: GxService
         ,
         private fb: FormBuilder
     ) { }
     ngOnInit() {
-        this.gxService.createGroupboxControl(this.layout, this.parent);
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+            });
+        } else {
+            this.options = ret;
+        }
+        this.gxService.createCheckboxGroupControl(this.layout, this.parent, ret);
     }
 }
 
@@ -77,10 +86,10 @@ export class GxMatCheckboxGroupComponent implements OnInit {
     <fieldset [formGroup]='parent' [class] = "layout.id + '-box'">
         <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
             <mat-radio-group [formControlName]='layout.id'>
-                <ng-container *ngFor="let option of layout.options">
+                <ng-container *ngFor="let option of options">
                     <mat-radio-button [class]='layout.id' [ngClass] = 'layout.class'
                         [ngStyle]='layout.style' [name] = "layout.id" [value] = "option.value">
-                            {{option.label}}
+                            {{option.name}}
                     </mat-radio-button>
                 </ng-container>
             </mat-radio-group>
@@ -91,12 +100,22 @@ export class GxMatCheckboxGroupComponent implements OnInit {
 export class GxMatRadioComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
+    options: any;
     constructor(
         private gxService: GxService
         ,
         private fb: FormBuilder
     ) { }
     ngOnInit() {
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+            });
+        } else {
+            this.options = ret;
+        }
         this.gxService.createGenericControl(this.layout, this.parent);
     }
 }
@@ -124,20 +143,14 @@ export class GxMatSelectComponent implements OnInit {
     options: any;
     constructor(private gxService: GxService, private ref: ChangeDetectorRef) { }
     ngOnInit() {
-        if (typeof (this.layout.options) === 'string') {
-            const options = this.gxService.getSelectOptions(this.layout.options);
-            if (options instanceof Observable) {
-                options.subscribe(x => {
-                    this.options = x;
-                    // this.ref.markForCheck(); //forceful change detector
-                });
-            } else if (typeof (options) === 'function') {
-                this.options = options();
-            } else {
-                this.options = options;
-            }
+        const ret = this.gxService.getOptions1(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+            });
         } else {
-            this.options = this.layout.options;
+            this.options = ret;
         }
         this.gxService.createGenericControl(this.layout, this.parent);
     }

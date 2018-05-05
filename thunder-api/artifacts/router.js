@@ -19,6 +19,26 @@ router.get('/api/test', (req, res, next) => {
     }
 });
 
+router.post('/genders1', (req, res, next) => {
+    res.json(
+        [
+            { name: 'Male', value: 'M', id: 'male1' }
+            , { name: 'Female', value: 'F', id: 'female1' }
+            , { name: 'Trans', value: 'T', id: 'trans1' }
+        ]);
+})
+
+router.post('food1',(req,res,next)=>{
+    res.json(
+        [
+            { name: 'Main course', value: false, id: 'main2' }
+            , { name: 'Desert', value: true, id: 'desert2' }
+            , { name: 'beverages', value: false, id: 'beverages2' }
+            , , { name: 'Marwari food', value: false, id: 'marvari2' }
+        ]
+    )
+})
+
 router.post('/countries', (req, res, next) => {
     try {
         res.json([{
@@ -91,7 +111,7 @@ router.post('/email', (req, res, next) => {
 router.post('/group', (req, res, next) => {
     try {
         // res.json({email1:true});
-        res.json({groupAsyncValidator1:false});
+        res.json({ groupAsyncValidator1: false });
         // res.json(null);
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);

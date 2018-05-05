@@ -5,12 +5,13 @@ import { GxGroupComponent } from '../gx-group/gx-group.component';
 import { GxArrayComponent } from '../gx-array/gx-array.component';
 import { GxButtonGroupComponent } from '../gx-controls/gx-button-group/gx-button-group.component';
 import { IbukiService } from './ibuki.service';
+import { Observable } from 'rxjs/Observable';
 // import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class GxService {
   customValidators: any = {};
-  selectOptions: any;
+  options: any;
 
   constructor(
     private fb: FormBuilder
@@ -18,8 +19,8 @@ export class GxService {
   ) {
   }
 
-  registerSelectOptions(opts) {
-    this.selectOptions = opts;
+  registerOptions(opts) {
+    this.options = opts;
   }
 
   registerCustomValidators(obj) {
@@ -32,22 +33,71 @@ export class GxService {
     parent.setControl(layout.id, xControl);
   }
 
-  createGroupboxControl(layout, parent) {
-        const childControls = {};
-        const a = layout.options && layout.options.forEach(e => {
-            childControls[e.id] = e.value;
-        });
-        parent.setControl(layout.id, this.fb.group(childControls,
-            {
-                validator: layout.validation && layout.validation.required
-                    && this.checkboxGroupRequiredValidator
-            }));
+  createCheckboxGroupControl(layout, parent, options) {
+    const childControls = {};
+    options.forEach(e => {
+      childControls[e.id] = e.value;
+    });
+    parent.setControl(layout.id, this.fb.group(childControls,
+      {
+        validator: layout.validation && layout.validation.required
+          && this.checkboxGroupRequiredValidator
+      }));
+
+    // const f = (opts) => {
+    //   opts.forEach(e => {
+    //     childControls[e.id] = e.value;
+    //   });
+    //   parent.setControl(layout.id, this.fb.group(childControls,
+    //     {
+    //       validator: layout.validation && layout.validation.required
+    //         && this.checkboxGroupRequiredValidator
+    //     }));
+    // };
+    // if (options instanceof Observable) {
+    //   const sub = options.subscribe(d => {
+    //     f(d);
+    //   });
+    // } else {
+    //   f(options);
+    // }
   }
 
-  getSelectOptions(optionName) {
-    const opts = this.selectOptions[optionName];
-    // const a = opts && (typeof (opts) === 'function') && (opts = opts());
-    return (opts);
+  getOptions1(layout) {
+    let ret;
+    if (typeof (layout.options) === 'string') {
+      const optionsName = layout.options;
+      const temp = this.options[optionsName];
+      if (typeof (temp) === 'function') {
+        ret = temp();
+      } else {
+        ret = temp;
+      }
+    } else {
+      ret = layout.options;
+    }
+    return (ret);
+  }
+
+  getOptions(layout) {
+    let ret;
+    if (typeof (layout.options) === 'string') {
+      const optionsName = layout.options;
+      const temp = this.options[optionsName]; // this.gxService.getOptions(layout.options);
+      if (temp instanceof Observable) {
+        temp.subscribe(x => {
+          ret = x;
+          // this.ref.markForCheck(); //forceful change detector
+        });
+      } else if (typeof (temp) === 'function') {
+        ret = temp();
+      } else {
+        ret = temp;
+      }
+    } else {
+      ret = layout.options;
+    }
+    return (ret);
   }
 
   checkboxGroupRequiredValidator(group) {

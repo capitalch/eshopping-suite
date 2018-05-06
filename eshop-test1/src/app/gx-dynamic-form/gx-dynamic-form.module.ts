@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GxFormComponent } from './gx-form/gx-form.component';

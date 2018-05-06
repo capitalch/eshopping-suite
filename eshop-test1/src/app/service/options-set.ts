@@ -16,9 +16,27 @@ const genders1 = [
 ];
 export {genders1};
 
-const food1 = [
+const food1 = [{
+    name: 'Main course ABC',
+    value: false,
+    id: 'main2'
+}, {
+    name: 'Desert A',
+    value: true,
+    id: 'desert2'
+}, {
+    name: 'beverages',
+    value: false,
+    id: 'beverages2'
+}, {
+    name: 'Marwari foods',
+    value: false,
+    id: 'marvari2'
+}];
+
+const food2 = [
     {name: 'Roti', value: true, id: 'roti1'}
     , {name: 'Tarka', value: false, id: 'taraka1'}
-    , {name: 'Gobi', value: true, id: 'gobi1'}
+    , {name: 'Gobi', value: false, id: 'gobi1'}
 ];
 export {food1};

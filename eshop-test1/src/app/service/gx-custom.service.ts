@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/delay';
 import { GxService } from '../gx-dynamic-form/service/gx.service';
 import { components } from '../custom-controls/custom-controls-mapper';
 import { GxMapperService } from '../gx-dynamic-form/service/gx-mapper.service';
@@ -40,7 +41,7 @@ export class GxCustomService {
     , genders4: this.ibukiService.httpPost$('http://localhost:3002/genders1')
     , food1: food1
     , food2: () => food1
-    , food3: Observable.of(food1)
+    , food3: Observable.of(food1).delay(100)
     , food4: this.ibukiService.httpPost$('http://localhost:3002/food1')
   };
 

@@ -27,12 +27,21 @@ const form1 = [
     // }
     , {
         type: 'checkboxgroup'
-        , label: 'Food2'
-        , id: 'food'
+        , label: 'Food3'
+        , id: 'food3'
         , validation: {
             required: { message: '$ is required' }
         }
         , options: 'food4'
+    }
+    , {
+        type: 'checkboxgroup'
+        , label: 'Food4'
+        , id: 'food4'
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: 'food3'
     }
     // , {
     //     type: 'custom1'
@@ -110,17 +119,17 @@ const form1 = [
     //     , label: 'Gender'
     //     , value: 'M'
     //     , id: 'gender123'
-    //     , options: 'genders3'
+    //     , options: 'genders4'
     //     , validation: {
     //         required: { message: '$ is required' }
     //     }
     // }
     // , {
-    //     type: 'mat-select'
+    //     type: 'select'
     //     , label: 'Country'
     //     , value: ''
     //     , id: 'country'
-    //     , options: 'countries1'
+    //     , options: 'countries3'
     //     , validation: {
     //         required: {
     //             message: 'You must select a value for $'

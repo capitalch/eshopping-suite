@@ -1,195 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GxService } from '../../service/gx.service';
 // import { BrokerService } from '../../../broker.service';
 import { Observable } from 'rxjs/Observable';
 import { IbukiService } from '../../service/ibuki.service';
-
-@Component({
-    selector: 'app-gx-select'
-    , styleUrls: ['./select.scss']
-    , template: `
-    <div [formGroup]='parent' [class] = "layout.id + '-box'">
-        <label [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <select [class]='layout.id' [ngClass] = 'layout.class'
-            [ngStyle]='layout.style' [formControlName]='layout.id'>
-            <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
-            </option>
-        </select>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-    </div>`
-})
-
-export class GxSelectComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    classes: any = {};
-    options: any;
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        console.log('gx-select');
-        const ret = this.gxService.getOptions1(this.layout);
-        if (ret instanceof Observable) {
-            const sub = ret.subscribe(d => {
-                this.options = d;
-                const a = sub && sub.unsubscribe();
-            });
-        } else {
-            this.options = ret;
-        }
-        // this.options = this.gxService.getOptions(this.layout);
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
-
-@Component({
-    selector: 'app-gx-radio'
-    , styleUrls: ['./radio.scss']
-    , template: `
-    <fieldset [formGroup]='parent' [class] = "layout.id + '-box'">
-        <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
-        <div *ngFor="let option of options ">
-            <input type = 'radio' [id]='option.id' [class]='layout.id' [ngClass] = 'layout.class'
-                    [ngStyle]='layout.style' [formControlName]='layout.id'
-                    [value] = 'option.value' [name] = 'layout.id'>
-            <label [class] = "layout.id + '-option'" [for] = "option.id">{{option.name}}</label>
-        </div>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-    </fieldset>`
-})
-
-export class GxRadioComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    options: [{}] = [{}];
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        const ret = this.gxService.getOptions1(this.layout);
-        if (ret instanceof Observable) {
-            const sub = ret.subscribe(d => {
-                this.options = d;
-                const a = sub && sub.unsubscribe();
-            });
-        } else {
-            this.options = ret;
-        }
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
-
-@Component({
-    selector: 'app-gx-checkbox'
-    , styleUrls: ['./checkbox.scss']
-    , template: `
-    <div [formGroup]='parent' [class] = "layout.id + '-box'">
-        <label [class] = "layout.id + '-label'">
-            <input type = 'checkbox'  [class]='layout.id' [ngClass] = 'layout.class'
-                    [ngStyle]='layout.style' [formControlName]='layout.id'
-                    [value] = 'layout.value'>{{layout.label}}
-        </label>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-    </div>`
-})
-
-export class GxCheckboxComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    classes: any = {};
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
-
-@Component({
-    selector: 'app-gx-input'
-    , styleUrls: ['./input.scss']
-    , template: `
-      <div [formGroup]='parent' [class] = "layout.id + '-box'">
-      <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <input [type] = 'layout.subtype' [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
-            [placeholder]='layout.placeholder' [ngStyle]='layout.style'
-            [formControlName]='layout.id' [value] = 'layout.value'>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-      </div>`
-})
-//
-export class GxInputComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    classes: any = {};
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
-
-@Component({
-    selector: 'app-gx-anchor'
-    // , styleUrls: ['./textarea.scss']
-    , template: `
-      <div [formGroup]='parent' [class] = "layout.id + '-box'">
-        <a [href] = "layout.href" [class] ="layout.id" [ngClass] = "layout.class" [ngStyle] = "layout.style">{{layout.label}}</a>
-      </div>`
-})
-
-export class GxAnchorComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    classes: any = {};
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
-
-@Component({
-    selector: 'app-gx-textarea'
-    , styleUrls: ['./textarea.scss']
-    , template: `
-      <div [formGroup]='parent' [class] = "layout.id + '-box'">
-      <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
-        <textarea [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class' [ngStyle]='layout.style'
-            [placeholder]='layout.placeholder'
-            [formControlName]='layout.id'>{{layout.value}}
-        </textarea>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-      </div>`
-})
-//
-export class GxTextareaComponent implements OnInit {
-    @Input() layout: any;
-    @Input() parent: FormGroup;
-    classes: any = {};
-    constructor(
-        private gxService: GxService
-        ,
-        private fb: FormBuilder
-    ) { }
-    ngOnInit() {
-        this.gxService.createGenericControl(this.layout, this.parent);
-    }
-}
 
 @Component({
     selector: 'app-gx-button',
@@ -233,26 +47,100 @@ export class GxButtonComponent implements OnInit {
 }
 
 @Component({
-    selector: 'app-gx-checkboxgroup'
-    , styleUrls: ['./checkboxgroup.scss']
+    selector: 'app-gx-anchor'
+    // , styleUrls: ['./textarea.scss']
     , template: `
-    <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
-    <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
-        <ng-container [formGroupName]="layout.id">
-            <ng-container *ngFor="let option of options">
-                <input [id] = "option.id" type="checkbox" [formControlName]="option.id">
-                <label [class] = "layout.id + '-option'"
-                        style="display:inline-block" [for]="option.id">
-                        {{option.name}}
-                </label>
-            </ng-container>
-        </ng-container>
-        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
-    </fieldset>
-      `
+      <div [formGroup]='parent' [class] = "layout.id + '-box'">
+        <a [href] = "layout.href" [class] ="layout.id" [ngClass] = "layout.class" [ngStyle] = "layout.style">{{layout.label}}</a>
+      </div>`
 })
 
-export class GxCheckboxGroupComponent implements OnInit {
+export class GxAnchorComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-input'
+    , styleUrls: ['./input.scss']
+    , template: `
+      <div [formGroup]='parent' [class] = "layout.id + '-box'">
+      <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
+        <input [type] = 'layout.subtype' [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
+            [placeholder]='layout.placeholder' [ngStyle]='layout.style'
+            [formControlName]='layout.id' [value] = 'layout.value'>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+      </div>`
+})
+//
+export class GxInputComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-textarea'
+    , styleUrls: ['./textarea.scss']
+    , template: `
+      <div [formGroup]='parent' [class] = "layout.id + '-box'">
+      <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
+        <textarea [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class' [ngStyle]='layout.style'
+            [placeholder]='layout.placeholder'
+            [formControlName]='layout.id'>{{layout.value}}
+        </textarea>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+      </div>`
+})
+//
+export class GxTextareaComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-radio'
+    , styleUrls: ['./radio.scss']
+    , template: `
+    <fieldset [formGroup]='parent' [class] = "layout.id + '-box'">
+        <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
+        <div *ngFor="let option of options ">
+            <input type = 'radio' [id]='option.id' [class]='layout.id' [ngClass] = 'layout.class'
+                    [ngStyle]='layout.style' [formControlName]='layout.id'
+                    [value] = 'option.value' [name] = 'layout.id'>
+            <label [class] = "layout.id + '-option'" [for] = "option.id">{{option.name}}</label>
+        </div>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </fieldset>`
+})
+
+export class GxRadioComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
     options: any;
@@ -262,16 +150,139 @@ export class GxCheckboxGroupComponent implements OnInit {
         private fb: FormBuilder
     ) { }
     ngOnInit() {
-        const ret = this.gxService.getOptions1(this.layout);
+        const ret = this.gxService.getOptions(this.layout);
         if (ret instanceof Observable) {
             const sub = ret.subscribe(d => {
                 this.options = d;
-                // const a = sub && sub.unsubscribe();
-                this.gxService.createCheckboxGroupControl(this.layout, this.parent, this.options);
+                const a = sub && sub.unsubscribe();
             });
         } else {
             this.options = ret;
-            this.gxService.createCheckboxGroupControl(this.layout, this.parent, this.options);
+        }
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-select'
+    , styleUrls: ['./select.scss']
+    , template: `
+    <div [formGroup]='parent' [class] = "layout.id + '-box'">
+        <label [class] = "layout.id + '-label'">{{layout.label}}</label>
+        <select [class]='layout.id' [ngClass] = 'layout.class'
+            [ngStyle]='layout.style' [formControlName]='layout.id'>
+            <option *ngFor="let option of options" [value]="option.value" >{{option.name}}
+            </option>
+        </select>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </div>`
+})
+
+export class GxSelectComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    options: any;
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        console.log('gx-select');
+        const ret = this.gxService.getOptions(this.layout);
+        if (ret instanceof Observable) {
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                const a = sub && sub.unsubscribe();
+                // this.gxService.createGenericControl(this.layout, this.parent);
+            });
+        } else {
+            this.options = ret;
+        }
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-checkbox'
+    , styleUrls: ['./checkbox.scss']
+    , template: `
+    <div [formGroup]='parent' [class] = "layout.id + '-box'">
+        <label [class] = "layout.id + '-label'">
+            <input type = 'checkbox'  [class]='layout.id' [ngClass] = 'layout.class'
+                    [ngStyle]='layout.style' [formControlName]='layout.id'
+                    [value] = 'layout.value'>{{layout.label}}
+        </label>
+        <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </div>`
+})
+
+export class GxCheckboxComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        , private fb: FormBuilder
+        , private ref: ChangeDetectorRef
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}
+
+@Component({
+    selector: 'app-gx-checkboxgroup'
+    , styleUrls: ['./checkboxgroup.scss']
+    , template: `
+    <fieldset  [formGroup]="parent" [class] = "layout.id + '-box'">
+        <legend [class] = "layout.id + '-label'">{{layout.label}}</legend>
+        <ng-container [formGroupName]="layout.id">
+            <ng-container *ngFor="let option of options">
+                <label [class] = "layout.id + '-option'"
+                        style="display:inline-block" >
+                        <input  type="checkbox" [formControlName]="option.id">
+                        {{option.name}}
+                </label>
+            </ng-container>
+            <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+        </ng-container>
+    </fieldset>
+      `
+})
+// <input [id] = "option.id" type="checkbox" [formControlName]="option.id">
+export class GxCheckboxGroupComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    options: any;
+    constructor(
+        private gxService: GxService
+        // , private ref: ChangeDetectorRef
+        , private ibukiService: IbukiService
+        , private fb: FormBuilder
+    ) { }
+    // main2: false, desert2: true, beverages2: false, marvari2: false
+    ngOnInit() {
+        const ret = this.gxService.getOptions(this.layout);
+        if (ret instanceof Observable) {
+            const childControls = {};
+            const group: FormGroup = this.fb.group(childControls);
+            group.setValidators(this.gxService.checkboxGroupRequiredValidator);
+            this.parent.setControl(this.layout.id, group);
+            const sub = ret.subscribe(d => {
+                this.options = d;
+                d.forEach(e => {
+                    group.setControl(e.id, this.fb.control(e.value));
+                });
+            });
+        } else {
+            this.options = ret;
+            this.gxService.createCheckboxGroup({
+                parent: this.parent
+                , layout: this.layout
+                , options: ret
+            });
         }
     }
 }

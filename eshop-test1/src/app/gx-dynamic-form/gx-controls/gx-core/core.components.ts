@@ -258,8 +258,6 @@ export class GxCheckboxGroupComponent implements OnInit {
     options: any;
     constructor(
         private gxService: GxService
-        // , private ref: ChangeDetectorRef
-        , private ibukiService: IbukiService
         , private fb: FormBuilder
     ) { }
     // main2: false, desert2: true, beverages2: false, marvari2: false
@@ -275,6 +273,7 @@ export class GxCheckboxGroupComponent implements OnInit {
                 d.forEach(e => {
                     group.setControl(e.id, this.fb.control(e.value));
                 });
+                sub.unsubscribe();
             });
         } else {
             this.options = ret;

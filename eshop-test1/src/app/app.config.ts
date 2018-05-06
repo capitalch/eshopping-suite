@@ -26,7 +26,7 @@ const form1 = [
 
     // }
     , {
-        type: 'checkboxgroup'
+        type: 'mat-checkboxgroup'
         , label: 'Food3'
         , id: 'food3'
         , validation: {

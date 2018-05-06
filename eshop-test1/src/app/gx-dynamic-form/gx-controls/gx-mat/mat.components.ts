@@ -304,20 +304,30 @@ export class GxMatCheckboxGroupComponent implements OnInit {
     options: any;
     constructor(
         private gxService: GxService
-        ,
-        private fb: FormBuilder
+        , private fb: FormBuilder
     ) { }
     ngOnInit() {
         const ret = this.gxService.getOptions(this.layout);
         if (ret instanceof Observable) {
+            const childControls = {};
+            const group: FormGroup = this.fb.group(childControls);
+            group.setValidators(this.gxService.checkboxGroupRequiredValidator);
+            this.parent.setControl(this.layout.id, group);
             const sub = ret.subscribe(d => {
                 this.options = d;
-                const a = sub && sub.unsubscribe();
+                d.forEach(e => {
+                    group.setControl(e.id, this.fb.control(e.value));
+                });
+                sub.unsubscribe();
             });
         } else {
             this.options = ret;
+            this.gxService.createCheckboxGroup({
+                parent: this.parent
+                , layout: this.layout
+                , options: ret
+            });
         }
-        // this.gxService.createCheckboxGroupControl(this.layout, this.parent, ret);
     }
 }
 

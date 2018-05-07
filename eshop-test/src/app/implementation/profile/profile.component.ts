@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import { IbukiService } from '../../gx-dynamic-form/service/ibuki.service';
+import { GxCustomService } from '../../service/gx-custom.service';
 import { form1 } from '../form-json';
 
 @Component({
@@ -9,33 +14,34 @@ import { form1 } from '../form-json';
 })
 export class ProfileComponent implements OnInit {
 
-  title = 'Form Creator';
+  title = 'app';
   myLayout: any = {};
   options: any = {};
   content: string;
+  subs: any;
+  constructor(
+    private ibukiService: IbukiService
+    , private httpClient: HttpClient
+    , private gxCustomService: GxCustomService
+  ) {
 
-  constructor() { }
-
-  ngOnInit() {
-    this.options = {
-      wrapperClass: "form-style-1"
-    };
-    
-    this.myLayout = form1;
   }
 
-  myValidate(s) {
-      let func = (control: FormControl) => {
-        return (control.value.indexOf(s) >= 0 ? null : { myValidate: "true" });
-      };
-      return (func);
-    }
-  
-    selectRequiredValidator(def) {
-      let func = (control: FormControl) => {
-        return ((control.value == def) ? { selectRequired: true } : null);
-      }
-      return (func);
-    }
+  ngOnInit() {
+    // this.options = {
+    //   wrapperClass: "form-style-1"
+    // };
+    this.myLayout = form1;
+    this.content = 'This is code';
+
+  }
+
+  // ngAfterViewInit() {
+  //   this.brokerService.emit("userComponents", "test");
+  // }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 
 }

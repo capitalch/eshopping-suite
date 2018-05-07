@@ -205,7 +205,7 @@ export class GxButtonComponent implements OnInit {
     @Input() layout: any;
     @Input() parent: FormGroup;
     classes: any = {};
-    constructor(private brokerService: BrokerService
+    constructor(private ibukiService: IbukiService
         , private gxService: GxService
     ) { }
     ngOnInit() {
@@ -219,12 +219,12 @@ export class GxButtonComponent implements OnInit {
             if (this.layout.validateForm) {
                 this.gxService.validateAllFormFields(this.parent);
                 if (this.parent.valid && (!this.parent.pending)) {
-                    this.brokerService.emit(this.layout.id, this.parent);
+                    this.ibukiService.emit(this.layout.id, this.parent);
                 } else {
                     console.log('Invalid form');
                 }
             } else {
-                this.brokerService.emit(this.layout.id, this.parent);
+                this.ibukiService.emit(this.layout.id, this.parent);
             }
         }
     }

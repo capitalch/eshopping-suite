@@ -1,5 +1,5 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { BrokerService } from '../broker.service';
+import { IbukiService } from '../gx-dynamic-form/service/ibuki.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { GxService } from '../gx-dynamic-form/service/gx.service';
@@ -11,7 +11,7 @@ export class GxCustomService {
   subs: any;
   myComponents: any;
   constructor(
-    private brokerService: BrokerService
+    private ibukiService: IbukiService
     , private httpClient: HttpClient
     , private gxService: GxService
     , private gxMapperService: GxMapperService
@@ -33,7 +33,7 @@ export class GxCustomService {
   }
 
   registerCustomEvents() {
-    this.subs = this.brokerService.filterOn("submit1").subscribe(d => {
+    this.subs = this.ibukiService.filterOn("submit1").subscribe(d => {
       if (d.error) {
         console.log(d.error);
       } else {
@@ -41,17 +41,17 @@ export class GxCustomService {
       }
     });
 
-    let sub3 = this.brokerService.filterOn("mySubmit").subscribe(d => {
+    let sub3 = this.ibukiService.filterOn("mySubmit").subscribe(d => {
       if (d.error) {
         console.log(d.error);
       } else {
         console.log(d.data.value);
       }
     });
-    let sub1 = this.brokerService.filterOn("reset").subscribe(d =>
+    let sub1 = this.ibukiService.filterOn("reset").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
-    let sub2 = this.brokerService.filterOn("submit2").subscribe(d =>
+    let sub2 = this.ibukiService.filterOn("submit2").subscribe(d =>
       d.error ? (console.log(d.error)) : (console.log(d.data.value))
     )
     this.subs.add(sub1).add(sub2).add(sub3);

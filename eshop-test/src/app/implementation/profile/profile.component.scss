@@ -1,0 +1,170 @@
+::ng-deep .submit-right {
+    text-align: right;
+}
+
+::ng-deep .form-style-1 {
+    margin: 0px auto;
+    max-width: 600px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    border: 2px solid green;
+    small {
+        color: red;
+    }
+    legend {
+        font-weight: bold;
+        margin: 5px;
+    }
+    .header {
+        border: 1px solid black;
+        font-size: 1.2em;
+        padding-left: 2%;
+    }
+    .body {
+        padding: 20px 12px 10px 20px;
+    }
+    fieldset {
+        border: 1px groove threedface; // padding: 5px;
+        margin: 5px;
+    } // input[type=submit],
+    input[type=button],
+    button {
+        // background: #4B99AD;
+        // padding: 8px 15px 8px 15px;
+        margin: 5px; // float: right;
+        // border: none;
+        // color: #fff;
+    }
+    input[type=text]:not([matInput]),
+    input[type=date]:not([matInput]),
+    input[type=datetime]:not([matInput]),
+    input[type=number]:not([matInput]),
+    input[type=search]:not([matInput]),
+    input[type=time]:not([matInput]),
+    input[type=url]:not([matInput]),
+    input[type=email]:not([matInput]),
+    textarea:not([matInput]),
+    select:not([matInput]) {
+        box-sizing: border-box;
+        border: 1px solid #BEBEBE;
+        padding: 5px;
+        margin: 0px;
+        outline: none;
+    }
+    input:not([matInput])[type=text]:focus,
+    input:not([matInput])[type=date]:focus,
+    input:not([matInput])[type=datetime]:focus,
+    input:not([matInput])[type=number]:focus,
+    input:not([matInput])[type=search]:focus,
+    input:not([matInput])[type=time]:focus,
+    input:not([matInput])[type=url]:focus,
+    input:not([matInput])[type=email]:focus,
+    textarea:not([matInput]):focus,
+    select:not([matInput]):focus {
+        box-shadow: 0 0 8px #88D5E9;
+        border: 1px solid #88D5E9;
+    }
+    input[matInput] {
+        width: 100%;
+    }
+    // text, textarea {
+    //     width: 50%;
+    //     margin:0px;
+    //     display:block;
+    // }
+    // .firstName {
+    //     display: block;
+    // }
+    .firstName-box {
+        display: inline-block;
+        width: 49.5%
+    }
+
+    .firstName-1-box {
+        display: inline-block;
+        width:49.5%;
+    }
+
+    .firstName-1 {
+        color: blue;
+        width: 100%;
+    }
+    .firstName-label {
+        color: blue; // margin-bottom:20px;
+        // padding: 0px;
+    } 
+    .mySubmit-box {
+        width:100%;
+        // display:inline-block;
+        text-align: right;
+    }
+
+    .button-group-box{
+        text-align: right;
+    }
+
+    .submit2-box {
+        display:inline-block;
+    }
+    .reset-box {
+        display: inline-block;
+    }
+    // .firstName-container{
+    //     background-color:gray;
+    //     padding:0px;
+    // }
+    // .textarea-test{
+    //     width: 100%;
+    //     label{
+    //         color:red;
+    //     }
+    // }
+    select {
+        width: 49%;
+    }
+    .textarea-class {
+        width: 100%;
+    }
+    .label-class {
+        color: green;
+        display: block;
+    }
+    .address-class {
+        padding: 10px 0 10px 0; // label{
+        //     color:green;
+        //     display:block;
+        // }
+        // textArea{
+        //     width:50%;
+        // }
+    }
+    .label-address-class {
+        color: red;
+        display: block;
+    }
+    .element-address-class {
+        background-color: yellow;
+    }
+    .parent-address-class {
+        padding: 10px 0 10px 0;
+    }
+    .tag-class {
+        label {
+            color: magenta;
+            display: block;
+        }
+        input[type=text] {
+            width: 80%
+        }
+    }
+    .small {
+        width: 5px;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+        min-height: 20px;
+        vertical-align: top;
+        font-size: 16px;
+        padding: 0 0;
+        margin: 0;
+    }
+}

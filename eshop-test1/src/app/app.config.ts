@@ -25,6 +25,30 @@ const form1 = [
     //     , label: 'Some label'
 
     // }
+    , {
+        type: 'mat-checkboxgroup'
+        , label: 'Food3'
+        , id: 'food3'
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: 'food4'
+    }
+    , {
+        type: 'checkboxgroup'
+        , label: 'Food4'
+        , id: 'food4'
+        , validation: {
+            required: { message: '$ is required' }
+        }
+        , options: 'food3'
+    }
+    , {
+        type: 'mat-autocomplete'
+        , label: 'mat autocomplete'
+        , id: 'autocomplete1'
+        , placeholder: 'Mat Autocomplete'
+    }
     // , {
     //     type: 'custom1'
     //     , id: 'custom1'
@@ -97,34 +121,97 @@ const form1 = [
     // }
     // ,
     // {
-    //     type: 'radio'
+    //     type: 'mat-radio'
     //     , label: 'Gender'
     //     , value: 'M'
     //     , id: 'gender123'
+    //     , options: 'genders4'
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // , {
+    //     type: 'select'
+    //     , label: 'Country'
+    //     , value: ''
+    //     , id: 'country'
+    //     , options: 'countries3'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must select a value for $'
+    //         }
+    //     }
+    // }
+    // , {
+    //     type: 'mat-checkbox'
+    //     , id: 'agreed'
+    //     , label: 'Agreed'
+    //     , value: true
+    //     , validation: {
+    //         required: { message: '$ is required' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: 'mat-radio'
+    //     , label: 'Gender1'
+    //     , value: 'M'
+    //     , id: 'gender1234'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
+    //         { name: 'Male', value: 'M', id: 'male2' }
+    //         , { name: 'Female', value: 'F', id: 'female2' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
     //     }
     // }
-    , {
-        type: 'select'
-        , label: 'Country'
-        , value: ''
-        , id: 'country'
-        , options: [
-            { name: '---Choose---', value: '' }
-            , { name: 'USA', value: 'us' }
-            , { name: 'India', value: 'in' }
-        ]
-        , validation: {
-            required: {
-                message: 'You must select a value for $'
-            }
-        }
-    }
+    // , {
+    //     type: 'mat-select'
+    //     , label: 'Country'
+    //     , value: ''
+    //     , id: 'country'
+    //     , options: 'countries'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must select a value for $'
+    //         }
+    //     }
+    // }
+
+    // , {
+    //     type: 'mat-input'
+    //     , id: 'firstName'
+    //     , placeholder: 'First name'
+    //     , label: 'First name'
+    //     , value: 'abcd'
+    //     , validation: {
+    //         // groupAsyncValidator1: {
+    //         //     message: 'Async validation failed'
+    //         //     , arg: {
+    //         //         url: 'http://localhost:3002/group'
+    //         //         , delay: 1000
+    //         //     }
+    //         //     , async: true
+    //         // }
+    //         // ,
+    //         required: { message: '$ is required' }
+    //         , minlength: { value: 3, message: 'Minimum length for $ is 3' }
+    //         , maxlength: { value: 10, message: 'Maximum length for $ is 10' }
+    //     }
+    // }
+    // ,
+    // {
+    //     type: 'mat-datepicker',
+    //     id: 'matDatePicker1',
+    //     placeholder: 'select a date'
+    //     , label: 'myDatePicker'
+    //     , locale: 'en-GB'
+    //     , validation: {
+    //         required: {
+    //             message: 'You must surely select a value for $'
+    //         }
+    //     }
+    // }
     // ,
     // {
     //     type: 'radio'
@@ -132,8 +219,8 @@ const form1 = [
     //     , value: 'M'
     //     , id: 'gender1234'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male2' }
-    //         , { label: 'Female', value: 'F', id: 'female2' }
+    //         { name: 'Male', value: 'M', id: 'male2' }
+    //         , { name: 'Female', value: 'F', id: 'female2' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
@@ -293,15 +380,15 @@ const form1 = [
             }
         ]
     }
-    // , {
-    //     type: 'mat-button'
-    //     , subType: 'raised'
-    //     , faClass: 'fa fa-taxi fa-fw'
-    //     , color: 'primary'
-    //     , label: 'Add'
-    //     , actionId: 'submit2'
-    //     , validateForm: true
-    // }
+    , {
+        type: 'mat-button'
+        , subType: 'raised'
+        , faClass: 'fa fa-taxi fa-fw'
+        , color: 'primary'
+        , label: 'Add'
+        , actionId: 'submit2'
+        , validateForm: true
+    }
 
 ];
 export { form1 };
@@ -367,17 +454,6 @@ export { form1 };
     //         required: { message: '$ is a required field' }
     //     }
     // }
-    // , {
-    //     type: 'mat-input'
-    //     , subType: 'text'
-    //     , id: 'mat1'
-    //     , label: 'mat name'
-    //     , placeholder: 'mat placeholder'
-    //     , value: ''
-    //     , validation: {
-    //         required: { message: '$ is a required field' }
-    //     }
-    // }
     // ,
     // {
     //     type: 'mat-datepicker',
@@ -389,6 +465,17 @@ export { form1 };
     //         required: {
     //             message: 'You must surely select a value for $'
     //         }
+    //     }
+    // }
+    // , {
+    //     type: 'mat-input'
+    //     , subType: 'text'
+    //     , id: 'mat1'
+    //     , label: 'mat name'
+    //     , placeholder: 'mat placeholder'
+    //     , value: ''
+    //     , validation: {
+    //         required: { message: '$ is a required field' }
     //     }
     // }
     // , {
@@ -524,8 +611,8 @@ export { form1 };
     //                 , value: 'M'
     //                 , id: 'gender123'
     //                 , options: [
-    //                     { label: 'Male', value: 'M', id: 'male1' }
-    //                     , { label: 'Female', value: 'F', id: 'female1' }
+    //                     { name: 'Male', value: 'M', id: 'male1' }
+    //                     , { name: 'Female', value: 'F', id: 'female1' }
     //                 ]
     //             }
     //             , {
@@ -585,8 +672,8 @@ export { form1 };
     //     , value: 'M'
     //     , id: 'gender12'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
+    //         { name: 'Male', value: 'M', id: 'male1' }
+    //         , { name: 'Female', value: 'F', id: 'female1' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }
@@ -648,8 +735,8 @@ export { form1 };
     //     , value: 'M'
     //     , id: 'gender123'
     //     , options: [
-    //         { label: 'Male', value: 'M', id: 'male1' }
-    //         , { label: 'Female', value: 'F', id: 'female1' }
+    //         { name: 'Male', value: 'M', id: 'male1' }
+    //         , { name: 'Female', value: 'F', id: 'female1' }
     //     ]
     //     , validation: {
     //         required: { message: '$ is required' }

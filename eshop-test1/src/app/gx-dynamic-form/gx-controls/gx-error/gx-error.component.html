@@ -1,4 +1,4 @@
-<ng-container *ngIf="control.errors && (control.touched || control.dirty);then ifBlock; else elseBlock">
+<ng-container *ngIf="(control.invalid || control.errors) && (control.touched || control.dirty);then ifBlock; else elseBlock">
 </ng-container>
 <ng-template #ifBlock>
   <small style="display:inline-block;" class="error" *ngFor="let message of getMessages()">

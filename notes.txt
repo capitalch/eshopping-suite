@@ -50,6 +50,8 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             5. Just like button implement anchor tag
             6. Debounce effect for async validation
             9. Dynamic component
+            19. Complete basic and mat controls
+            20. Complete check box group
 1. file upload
 2. Show Required symbol
             
@@ -57,15 +59,16 @@ https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
             
 7. Array Add remove buttons customization
 8. Typeahead
-19. Complete basic and mat controls
-20. Complete check box group
-21. 
+            
+            21. Radio button, mat radio button, checkbox group, mat checkbox 
+            group --> options from list, function or observable just as select options.
+
+22. collection of name value pair as user control.
 
     
 //for angular Async validation
 https://github.com/angular/angular/issues/13200
 
-DRM-160II canon scanner
 rxjs I was reading
 https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
 

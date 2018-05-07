@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { IbukiService } from '../../service/ibuki.service';
 
 @Component({
-    selector: 'app-jxmat-button'
+    selector: 'app-gxmat-button'
     , styleUrls: ['./mat-button.scss']
     , template: `
     <ng-container [ngSwitch]="layout.subType">

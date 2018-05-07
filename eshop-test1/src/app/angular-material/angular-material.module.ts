@@ -7,6 +7,7 @@ import {
   , MatRadioModule
   , MatSelectModule
   , MatDatepickerModule
+  , MatAutocompleteModule
   // , NativeDateModule
   // , MatNativeDateModule
 } from '@angular/material';
@@ -27,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     // , NativeDateModule
     , MatMomentDateModule
     , MatIconModule
+    , MatAutocompleteModule
   ],
   exports: [
     MatButtonModule
@@ -38,7 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
     // , NativeDateModule
     // , MatNativeDateModule
     , MatMomentDateModule
-    ,MatIconModule
+    , MatIconModule
+    , MatAutocompleteModule
   ],
   declarations: []
 })

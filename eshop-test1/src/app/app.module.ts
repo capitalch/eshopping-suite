@@ -8,19 +8,11 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MAT_DATE_LOCALE } from '@angular/material';
-// import { BrokerService } from './broker.service';
-
-
-
-
 import { LearnComponent } from './learning/learn/learn.component';
 
 import { GxDynamicFormModule } from './gx-dynamic-form/gx-dynamic-form.module';
 import { GxCustomService } from './service/gx-custom.service';
 import { InputComponent } from './custom-controls/input/input.component';
-// import { GxTextareaComponent } from './gx-dynamic-form/gx-controls/gx-core/core.components';
-
-
 @NgModule({
   declarations: [
     AppComponent,

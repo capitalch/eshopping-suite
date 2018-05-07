@@ -6,6 +6,7 @@ import { GxButtonGroupComponent } from '../gx-button-group/gx-button-group.compo
 import { GxMatCheckboxComponent, GxMatRadioComponent, GxMatSelectComponent, GxMatTextareaComponent } from '../gx-mat/mat.components';
 import { GxMatInputComponent, GxMatDatePickerComponent, GxMatButtonComponent } from '../gx-mat/mat.components';
 import { GxMatCheckboxGroupComponent } from '../gx-mat/mat.components';
+import { GxMatAutocompleteComponent } from '../gx-mat/gx-mat-autocomplete/gx-mat-autocomplete.component';
 // import { InputComponent } from '../../../custom-controls/input/input.component';
 
 
@@ -29,6 +30,7 @@ const components = {
     , 'mat-datepicker': GxMatDatePickerComponent
     , 'mat-button': GxMatButtonComponent
     , 'mat-checkboxgroup': GxMatCheckboxGroupComponent
+    , 'mat-autocomplete': GxMatAutocompleteComponent
 };
 
 export { components };

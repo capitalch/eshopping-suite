@@ -16,12 +16,16 @@ import { IbukiService } from './service/ibuki.service';
 import { GxMatCheckboxComponent, GxMatRadioComponent, GxMatSelectComponent, GxMatInputComponent} from './gx-controls/gx-mat/mat.components';
 import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent } from './gx-controls/gx-mat/mat.components';
 import { GxMatCheckboxGroupComponent} from './gx-controls/gx-mat/mat.components';
+import { GxMatAutocompleteComponent } from './gx-controls/gx-mat/gx-mat-autocomplete/gx-mat-autocomplete.component';
+// import { MatAutocompleteModule } from '@angular/material';
+// import { MatAutocompleteComponent } from './gx-controls/gx-mat/mat-autocomplete/mat-autocomplete.component';
 
 @NgModule({
   imports: [
     CommonModule
     , ReactiveFormsModule
     , AngularMaterialModule
+    // , MatAutocompleteModule
   ],
   exports: [GxFormComponent]
   , declarations: [
@@ -47,6 +51,7 @@ import { GxMatCheckboxGroupComponent} from './gx-controls/gx-mat/mat.components'
     , GxMatButtonComponent
     , GxCheckboxGroupComponent
     , GxMatCheckboxGroupComponent
+    , GxMatAutocompleteComponent
   ]
   , entryComponents: [
     GxTextareaComponent
@@ -69,6 +74,7 @@ import { GxMatCheckboxGroupComponent} from './gx-controls/gx-mat/mat.components'
     , GxMatButtonComponent
     , GxCheckboxGroupComponent
     , GxMatCheckboxGroupComponent
+    , GxMatAutocompleteComponent
   ]
   , providers: [GxService, GxMapperService, IbukiService]
 })

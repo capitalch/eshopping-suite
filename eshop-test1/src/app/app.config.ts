@@ -43,6 +43,12 @@ const form1 = [
         }
         , options: 'food3'
     }
+    , {
+        type: 'mat-autocomplete'
+        , label: 'mat autocomplete'
+        , id: 'autocomplete1'
+        , placeholder: 'Mat Autocomplete'
+    }
     // , {
     //     type: 'custom1'
     //     , id: 'custom1'

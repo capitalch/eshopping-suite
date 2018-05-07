@@ -15,21 +15,21 @@ export class IbukiService {
     idNotMappedToUrl: 'Message id is not mapped to http url in config.ts file at application root.',
     httpGetUnknownError: 'Unknown error encountered while making http get request'
   };
-  
+
   constructor(private httpClient: HttpClient) {
     this.subject = new Subject();
     this.behSubject = new BehaviorSubject(0);
-   }
+  }
 
-   emit(id: string, options?: any) {
+  emit(id: string, options?: any) {
     this
       .subject
       .next({ id: id, data: options });
-  };
+  }
 
   filterOn(id: string): Observable<any> {
     return (this.subject.filter(d => (d.id === id)));
-  };
+  }
 
   behEmit(id: string, options?: any) {
     this.behSubject.next({ id: id, data: options });
@@ -40,15 +40,15 @@ export class IbukiService {
   }
 
   httpPost$(url: string) {
-    let obs = this.httpClient
+    const obs = this.httpClient
       .post(url, null);
     return (obs);
   }
 
   httpPost(id: string, body?: any, queryParams?: {}, carryBag?: any) {
-    let url = this.getHttpUrl(id);
+    const url = this.getHttpUrl(id);
     body = body || {};
-    body.id || (body.id = id);
+    const a = body.id || (body.id = id);
     if (queryParams) {
       let httpParams = new HttpParams();
       httpParams = Object
@@ -71,23 +71,23 @@ export class IbukiService {
           .subject
           .next({ id: id, error: err });
       });
-  };
+  }
 
   init(_settings) {
     this.settings = _settings;
   }
   getHttpUrl = (id) => {
-    let host = this.settings.host.replace(/\/$/, "");
+    const host = this.settings.host.replace(/\/$/, '');
     let url = this.settings[id];
-    url || (url = this.settings['defaultEndPoint']);
-    url && (url = url.replace(/^,/, ''));
+    const a = url || (url = this.settings['defaultEndPoint']);
+    const b = url && (url = url.replace(/^,/, ''));
     url = host.concat('/', url);
     return (url);
   }
 
   httpGet(id: string, queryParams?: {}) {
     try {
-      let url = this.getHttpUrl(id);// urlMaps[id];
+      const url = this.getHttpUrl(id);
       let httpParams = new HttpParams();
       httpParams = queryParams && (Object.keys(queryParams).reduce((prevValue, x, i) => {
         httpParams = httpParams.append(x, queryParams[x]);
@@ -107,12 +107,12 @@ export class IbukiService {
       } else {
         this
           .subject
-          .next({ id: id, error: this.messages.idNotMappedToUrl })
+          .next({ id: id, error: this.messages.idNotMappedToUrl });
       }
     } catch (err) {
       this
         .subject
-        .next({ id: id, error: this.messages.httpGetUnknownError })
+        .next({ id: id, error: this.messages.httpGetUnknownError });
     }
   }
 }

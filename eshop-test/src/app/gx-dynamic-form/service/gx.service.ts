@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
+// import {ApplicationRef} from '@angular/core';
 import { GxTextareaComponent, GxButtonComponent } from '../gx-controls/gx-core/core.components';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { GxGroupComponent } from '../gx-group/gx-group.component';
 import { GxArrayComponent } from '../gx-array/gx-array.component';
 import { GxButtonGroupComponent } from '../gx-controls/gx-button-group/gx-button-group.component';
 import { IbukiService } from './ibuki.service';
+import { Observable } from 'rxjs/Observable';
+// import { BrokerService } from '../../broker.service';
 
 @Injectable()
 export class GxService {
   customValidators: any = {};
-  selectOptions:any;
+  options: any;
 
   constructor(
     private fb: FormBuilder
-    , private brokerService: IbukiService
+    , private ibukiService: IbukiService
+    // , private ref: ApplicationRef
   ) {
   }
 
-  registerSelectOptions(opts){
-    this.selectOptions = opts;
+  registerOptions(opts) {
+    this.options = opts;
   }
 
   registerCustomValidators(obj) {
@@ -30,6 +34,84 @@ export class GxService {
     const xControl = this.fb.control(layout.value || '', allValidators.validators, allValidators.asyncValidators);
     parent.setControl(layout.id, xControl);
   }
+
+  createCheckboxGroup(obj) {
+    const childControls = {};
+    const group: FormGroup = this.fb.group(childControls);
+    group.setValidators(this.checkboxGroupRequiredValidator);
+    obj.parent.setControl(obj.layout.id, group);
+    obj.options.forEach(e => {
+      group.setControl(e.id, this.fb.control(e.value));
+    });
+  }
+
+  createCheckboxGroupControl(layout, options, parent: FormGroup, ret) {
+    const childControls = {};
+    // parent.removeControl(undefined);
+    const group: FormGroup = this.fb.group(childControls);
+    group.setValidators(this.checkboxGroupRequiredValidator);
+    parent.setControl(layout.id, group);
+    const sub = ret.subscribe(d => {
+      options = d;
+      d.forEach(e => {
+        group.setControl(e.id, this.fb.control(e.value));
+      });
+    });
+  }
+
+  checkboxGroupRequiredValidator(group) {
+    // const func = (control: any) => {
+    //   let valid = false;
+    //   Object.values(control.controls).forEach((x: any) => {
+    //     valid = x.value || valid;
+    //   });
+    //   return (valid ? null : { required: true });
+    // };
+    // return(func);
+    let valid = false;
+    Object.values(group.controls).forEach((x: any) => {
+      valid = x.value || valid;
+    });
+    const ret = valid ? null : { required: true };
+    return (ret);
+  }
+
+  getOptions(layout) {
+    let ret;
+    if (typeof (layout.options) === 'string') {
+      const optionsName = layout.options;
+      const temp = this.options[optionsName];
+      if (typeof (temp) === 'function') {
+        ret = temp();
+      } else {
+        ret = temp;
+      }
+    } else {
+      ret = layout.options;
+    }
+    return (ret);
+  }
+
+  // getOptions(layout) {
+  //   let ret;
+  //   if (typeof (layout.options) === 'string') {
+  //     const optionsName = layout.options;
+  //     const temp = this.options[optionsName]; // this.gxService.getOptions(layout.options);
+  //     if (temp instanceof Observable) {
+  //       temp.subscribe(x => {
+  //         ret = x;
+  //         // this.ref.markForCheck(); //forceful change detector
+  //       });
+  //     } else if (typeof (temp) === 'function') {
+  //       ret = temp();
+  //     } else {
+  //       ret = temp;
+  //     }
+  //   } else {
+  //     ret = layout.options;
+  //   }
+  //   return (ret);
+  // }
 
   getGroupValidators(layout) {
     const validators = {

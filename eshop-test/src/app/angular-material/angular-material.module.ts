@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { 
+import {
   MatButtonModule
   , MatCheckboxModule
   , MatInputModule
   , MatRadioModule
   , MatSelectModule
   , MatDatepickerModule
-  , MatNativeDateModule
+  , MatAutocompleteModule
+  // , NativeDateModule
+  // , MatNativeDateModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 // import {MatRadioModule} from '@angular/material/radio';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -22,8 +24,11 @@ import {
     , MatRadioModule
     , MatSelectModule
     , MatDatepickerModule
-    , MatNativeDateModule
+    // , MatNativeDateModule
+    // , NativeDateModule
+    , MatMomentDateModule
     , MatIconModule
+    , MatAutocompleteModule
   ],
   exports: [
     MatButtonModule
@@ -32,8 +37,11 @@ import {
     , MatRadioModule
     , MatSelectModule
     , MatDatepickerModule
-    , MatNativeDateModule
+    // , NativeDateModule
+    // , MatNativeDateModule
+    , MatMomentDateModule
     , MatIconModule
+    , MatAutocompleteModule
   ],
   declarations: []
 })

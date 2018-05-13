@@ -12,15 +12,15 @@ export const routes: Routes = [
         loadChildren: './emart/emart.module#EmartModule'
     },
     {
-        path:'admin',
-        loadChildren:'./admin/admin.module#AdminModule'
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule'
     },
     {
-        path:'b2b',
-        loadChildren:'./b2b/b2b.module#B2bModule'
+        path: 'b2b',
+        loadChildren: './b2b/b2b.module#B2bModule'
     },
     {
-        path:'reports',
-        loadChildren:'./reports/reports.module#ReportsModule'
+        path: 'reports',
+        loadChildren: './reports/reports.module#ReportsModule'
     }
 ]

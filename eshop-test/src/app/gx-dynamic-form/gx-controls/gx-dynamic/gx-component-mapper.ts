@@ -1,6 +1,7 @@
-import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent, GxRadioComponent } from '../gx-core/core.components';
+import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent, GxSpecInputComponent, GxRadioComponent } from '../gx-core/core.components';
 import { GxCheckboxComponent, GxSelectComponent, GxCheckboxGroupComponent } from '../gx-core/core.components';
 import { GxGroupComponent } from '../../gx-group/gx-group.component';
+import { GxSpecGroupComponent } from '../../gx-spec-group/gx-spec-group.component';
 import { GxArrayComponent } from '../../gx-array/gx-array.component';
 import { GxButtonGroupComponent } from '../gx-button-group/gx-button-group.component';
 import { GxMatCheckboxComponent, GxMatRadioComponent, GxMatSelectComponent, GxMatTextareaComponent } from '../gx-mat/mat.components';
@@ -14,10 +15,12 @@ const components = {
     textarea: GxTextareaComponent
     , button: GxButtonComponent
     , group: GxGroupComponent
+    , specgroup: GxSpecGroupComponent
     , array: GxArrayComponent
     , buttongroup: GxButtonGroupComponent
     , anchor: GxAnchorComponent
     , input: GxInputComponent
+    , specinput: GxSpecInputComponent
     , checkbox: GxCheckboxComponent
     , radio: GxRadioComponent
     , select: GxSelectComponent

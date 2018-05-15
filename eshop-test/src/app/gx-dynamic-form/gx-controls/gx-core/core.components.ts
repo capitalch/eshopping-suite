@@ -285,3 +285,30 @@ export class GxCheckboxGroupComponent implements OnInit {
         }
     }
 }
+
+@Component({
+    selector: 'app-gx-spec-input'
+    , styleUrls: ['./specinput.scss']
+    , template: `
+    <div [formGroup]='parent' style="display: inline-block;">
+    <label [for]='layout.id' [class] = "layout.id + '-label'">{{layout.label}}</label>
+      <input [type] = 'layout.subtype' [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
+          [placeholder]='layout.placeholder' [ngStyle]='layout.style'
+          [formControlName]='layout.id' [value] = 'layout.value'>
+      <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
+    </div>`
+})
+//
+export class GxSpecInputComponent implements OnInit {
+    @Input() layout: any;
+    @Input() parent: FormGroup;
+    classes: any = {};
+    constructor(
+        private gxService: GxService
+        ,
+        private fb: FormBuilder
+    ) { }
+    ngOnInit() {
+        this.gxService.createGenericControl(this.layout, this.parent);
+    }
+}

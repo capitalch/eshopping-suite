@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GxFormComponent } from './gx-form/gx-form.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { GxDynamicDirective } from './gx-controls/gx-dynamic/gx-dynamic.directive';
-import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent } from './gx-controls/gx-core/core.components';
+import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent, GxSpecInputComponent } from './gx-controls/gx-core/core.components';
 import { GxCheckboxComponent, GxRadioComponent, GxSelectComponent, GxCheckboxGroupComponent } from './gx-controls/gx-core/core.components';
 import { GxService } from './service/gx.service';
 import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
@@ -17,6 +17,7 @@ import { GxMatCheckboxComponent, GxMatRadioComponent, GxMatSelectComponent, GxMa
 import { GxMatTextareaComponent , GxMatDatePickerComponent, GxMatButtonComponent } from './gx-controls/gx-mat/mat.components';
 import { GxMatCheckboxGroupComponent} from './gx-controls/gx-mat/mat.components';
 import { GxMatAutocompleteComponent } from './gx-controls/gx-mat/gx-mat-autocomplete/gx-mat-autocomplete.component';
+import { GxSpecGroupComponent } from './gx-spec-group/gx-spec-group.component';
 // import { MatAutocompleteModule } from '@angular/material';
 // import { MatAutocompleteComponent } from './gx-controls/gx-mat/mat-autocomplete/mat-autocomplete.component';
 
@@ -39,6 +40,7 @@ import { GxMatAutocompleteComponent } from './gx-controls/gx-mat/gx-mat-autocomp
     , GxButtonGroupComponent
     , GxAnchorComponent
     , GxInputComponent
+    , GxSpecInputComponent
     , GxCheckboxComponent
     , GxRadioComponent
     , GxSelectComponent
@@ -52,15 +54,20 @@ import { GxMatAutocompleteComponent } from './gx-controls/gx-mat/gx-mat-autocomp
     , GxCheckboxGroupComponent
     , GxMatCheckboxGroupComponent
     , GxMatAutocompleteComponent
+    , GxSpecGroupComponent
   ]
   , entryComponents: [
     GxTextareaComponent
     , GxButtonComponent
     , GxErrorComponent
     , GxGroupComponent
+
+    , GxSpecGroupComponent
+
     , GxArrayComponent
     , GxButtonGroupComponent
     , GxInputComponent
+    , GxSpecInputComponent
     , GxAnchorComponent
     , GxCheckboxComponent
     , GxRadioComponent

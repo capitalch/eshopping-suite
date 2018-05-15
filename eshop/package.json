@@ -31,7 +31,7 @@
     "moustache": "0.0.2",
     "mustache": "^2.3.0",
     "ng2-rating": "0.0.7",
-    "ngx-stripe": "^0.3.1",
+    "ngx-stripe": "^0.3.2",
     "primeng": "^5.0.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"

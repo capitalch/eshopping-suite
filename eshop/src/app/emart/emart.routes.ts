@@ -5,15 +5,15 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import {LoginComponent} from './login/login.component';
-import {SignupComponent} from './signup/signup.component'
-export const routes : Routes =[
+import {SignupComponent} from './signup/signup.component';
+export const routes: Routes = [
     {
       path: '',
-      redirectTo:'composite'
+      redirectTo: 'composite'
     }
     , {
       path: 'composite',
-      component:CompositeComponent,
+      component: CompositeComponent,
       children: [
         { path: 'product', component: ProductComponent },
         { path: 'productDetails', component: ProductDetailsComponent },

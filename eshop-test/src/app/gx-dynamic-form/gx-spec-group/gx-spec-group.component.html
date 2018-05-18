@@ -1,13 +1,17 @@
 <fieldset [formGroup]="parent" [class] = "layout.id + '-container'">
   <legend [class] = "layout.id + '-label'">{{layout.label}}
-    <button (click)="addControl(layout)" color="primary">
-      <i class="fa fa-plus-square"></i>
-    </button>
   </legend>
   <ng-container [formGroupName]="layout.id">
     <ng-container *ngFor="let jControl of layout.controls">        
       <ng-container appGxDynamic [layout]="jControl" [parent] = "thisGroup"></ng-container>
     </ng-container>
   </ng-container>
+  <div>
+    <input [(ngModel)]="key" [ngModelOptions]="{standalone: true}" required>
+    <input [(ngModel)]="value" [ngModelOptions]="{standalone: true}" required>
+    <button (click)="addControl(layout)" color="primary">
+      <i class="fa fa-plus-square"></i>
+    </button>
+  </div>
   <app-gx-error [layout]="layout" [parent]="parent"></app-gx-error>
 </fieldset>

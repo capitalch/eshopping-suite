@@ -13,9 +13,10 @@ export class GxSpecGroupComponent implements OnInit {
   @Input() layout: any;
   thisGroup: FormGroup;
   counter: number = 1;
+  key: string;
+  value: string;
 
-  constructor(private fb: FormBuilder, private gxService: GxService) 
-  { }
+  constructor(private fb: FormBuilder, private gxService: GxService) { }
 
   ngOnInit() {
     const groupValidators = this.gxService.getGroupValidators(this.layout);
@@ -23,11 +24,17 @@ export class GxSpecGroupComponent implements OnInit {
     this.parent.setControl(this.layout.id, this.thisGroup);
   }
 
-  addControl(layout)
-  {
+  addControl(layout){
     console.log(layout);
-    layout.controls.push({type:'specinput',subtype:'text', id: 'key'+this.counter , value:' ', validation: {required: { message: '$ is required' }}});
-    layout.controls.push({type:'specinput',subtype:'text', id: 'value'+this.counter , value:' ', validation: {required: { message: '$ is required' }}});
-    this.counter++;
+    layout.controls.push({
+      type:'input',
+      subtype:'text', 
+      id: this.key.replace(/ /g, "-") , 
+      label: this.key ,
+      value: this.value, 
+      validation: {required: { message: '$ is required' }}
+    });
+    this.key="";
+    this.value="";
   }
 }

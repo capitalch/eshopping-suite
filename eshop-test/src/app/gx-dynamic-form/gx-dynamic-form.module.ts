@@ -1,10 +1,10 @@
 import { NgModule, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GxFormComponent } from './gx-form/gx-form.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { GxDynamicDirective } from './gx-controls/gx-dynamic/gx-dynamic.directive';
-import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent, GxSpecInputComponent } from './gx-controls/gx-core/core.components';
+import { GxTextareaComponent, GxButtonComponent, GxAnchorComponent, GxInputComponent } from './gx-controls/gx-core/core.components';
 import { GxCheckboxComponent, GxRadioComponent, GxSelectComponent, GxCheckboxGroupComponent } from './gx-controls/gx-core/core.components';
 import { GxService } from './service/gx.service';
 import { GxErrorComponent } from './gx-controls/gx-error/gx-error.component';
@@ -25,6 +25,7 @@ import { GxSpecGroupComponent } from './gx-spec-group/gx-spec-group.component';
   imports: [
     CommonModule
     , ReactiveFormsModule
+    , FormsModule
     , AngularMaterialModule
     // , MatAutocompleteModule
   ],
@@ -40,7 +41,6 @@ import { GxSpecGroupComponent } from './gx-spec-group/gx-spec-group.component';
     , GxButtonGroupComponent
     , GxAnchorComponent
     , GxInputComponent
-    , GxSpecInputComponent
     , GxCheckboxComponent
     , GxRadioComponent
     , GxSelectComponent
@@ -67,7 +67,6 @@ import { GxSpecGroupComponent } from './gx-spec-group/gx-spec-group.component';
     , GxArrayComponent
     , GxButtonGroupComponent
     , GxInputComponent
-    , GxSpecInputComponent
     , GxAnchorComponent
     , GxCheckboxComponent
     , GxRadioComponent

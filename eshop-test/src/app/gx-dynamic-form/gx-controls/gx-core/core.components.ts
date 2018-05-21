@@ -78,7 +78,7 @@ export class GxAnchorComponent implements OnInit {
         <input [type] = 'layout.subtype' [id]='layout.id' [class]='layout.id' [ngClass] = 'layout.class'
             [placeholder]='layout.placeholder' [ngStyle]='layout.style'
             [formControlName]='layout.id' [value] = 'layout.value'>
-        <button (click)="removeControl()" color="primary">
+        <button (click)='removeControl()' color="primary">
             <i class="fa fa-times"></i>
         </button>
         <app-gx-error [layout]='layout' [parent]='parent'></app-gx-error>
@@ -97,7 +97,7 @@ export class GxInputComponent implements OnInit {
     ngOnInit() {
         this.gxService.createGenericControl(this.layout, this.parent);
     }
-    removecontrol()
+    removeControl()
     {
         alert('Hi');
     }
